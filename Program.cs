@@ -2,7 +2,11 @@
 //ECE264 - Advneture Game Final Project
 //Referneces:
 /*
- * 
+ * For working on github;
+ * pull new changes;
+ * make more changes;
+ * commit new changes with summary message;
+ * push changes to the master;
  * 
  * 
  * 
