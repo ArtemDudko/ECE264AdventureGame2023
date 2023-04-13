@@ -1,0 +1,3 @@
+///the & sign will split our data so that we can use commas and keep one room to one line
+///    id#,		Name,	Location (Room id, zero if it is in player inventory)
+///EX:	 &1		&Coin  &1  (in this case it is the alley)

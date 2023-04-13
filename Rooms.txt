@@ -1,0 +1,3 @@
+///the & sign will split our data so that we can use commas and keep one room to one line
+///    id#,		Name,	Short Description,						Long Description
+///EX:	 &1		&Alley  &You find yourself in a dark alley.		&Upon closer inspection, there are footprints leading into the sewer

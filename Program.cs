@@ -26,12 +26,17 @@ using System.Threading.Tasks;
 
 namespace ECE264AdventureGame2023
 {
-    class Program
+    class Program    ///Game.cs equivalent
     {
         static void Main(string[] args)
         {
 
             Console.WriteLine("Hello taveler.");
+
+
+
+
+
         }
     }
 }
