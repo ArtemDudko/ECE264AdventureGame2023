@@ -8,7 +8,7 @@ namespace ECE264AdventureGame2023
 {
     class Inventory
     {
-        string item_data = File.ReadAllText("Items.txt");
+        string raw_item_data = File.ReadAllText("Items.txt");
         ///the data is in a 2d array format, split by the & sign, it will be split into usable data just like we did in 
         ///the shakespeare lab. 
     }
