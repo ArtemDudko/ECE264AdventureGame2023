@@ -30,6 +30,8 @@ namespace ECE264AdventureGame2023
     {
         static void Main(string[] args)
         {
+            ///testdgdsfgsdfgsdgfg
+            //////test 2
             Console.WriteLine("Welcome to Cyber Conspiracy!");
             Console.WriteLine("Welcome to Cyber Conspiracy!");
             string playerName = WelcomePlayer();
