@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace ECE264AdventureGame2023
 {
-    internal class PlayerPrompt
+    class PlayerPrompt
     {
+
+
+
     }
+
+    
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ECE264AdventureGame2023
 {
-    internal class Rooms
+    class Rooms
     {
         string room_data = File.ReadAllText("Rooms.txt");
         string exit_trigger_data = File.ReadAllText("ExitTriggers.txt");
