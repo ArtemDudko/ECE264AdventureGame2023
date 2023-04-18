@@ -6,7 +6,7 @@
 
 &2    &Back Ally					  &You enter the back ally    &That guy in the hood, who is he?.
 
-&3    &Helio City Square N			  &You continue through the square    &Hey, a coin. Everything's digital in Uprall, so why is this here.
+&3    &Helio City Square N			  &You continue through the square    &Hey, a coin. Everything's digital in Uprall, so why is this here?
 
 &4	  &Corner Street				  &You reach a road leading east    &I have a feeling I'm being watched. Wait, is that a cyborg or and android? I can't even tell.
 
