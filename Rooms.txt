@@ -2,18 +2,55 @@
 ///    id#,		Name,	Short Description,						Long Description
 ///EX:	 &1		    &Alley  &You find yourself in a dark alley.		&Upon closer inspection, there are footprints leading into the sewer
 
-&1  &Helio City Square S    &You've made it to Helio City, Uprall's capital     &Out of the corner of your eye, you see a man in a dark cloak enter the ally next to you.
+&1    &Helio City Square S			  &You've made it to Helio City, Uprall's capital     &Did I just see a guy go into that ally? Wonder who he is...
 
-&2  &Back Ally              &You enter the back ally    &You see the hooded man at the end of the ally.
+&2    &Back Ally					  &You enter the back ally    &That guy in the hood, who is he?.
 
-&3  &Helio City Square N    &You continue through the square    &You notice a shimmer on the ground, and find a strange coin, something rarely seen in Uprall.
+&3    &Helio City Square N			  &You continue through the square    &Hey, a coin. Everything's digital in Uprall, so why is this here.
 
-&4  &Corner Street          &You reach a road leading east    &You have a feeling someone is watching you, you look around and notice a...is that a cyborg or android?
+&4	  &Corner Street				  &You reach a road leading east    &I have a feeling I'm being watched. Wait, is that a cyborg or and android? I can't even tell.
 
-&5  &Academy Road           &You've reached a long road    &You see the Uprallan Academy in the distance, but there arent any classes today, maybe tomorrow you'll visit. 
+&5	  &Academy Road S				  &You've reached a long road    &Hey, the Uprallan Academy. It's closed today, maybe I'll sit in on a lecture tomorrow.
 
-&6  &Side Ally              &You've entered an ally. There's nothing here.  &You get the feeling there's something here, but you aren't sure how to find it.
+&6	  &Side Ally					  &You've entered an empty ally.  &I have a feeling something's here, but I don't know how I'd be able to find it.
 
-&S1 Secret Casino           &Wow, a casino!  
+&1001 &Secret Casino				  &Wow, a casino!			&Hey, this place has blackjack! Maybe I can have some fun?
 
-&7	feglf
+&7	  &Academy Road N				  &You continue down the long road	&Those two guys to my left are staring at me. Not comforting at all. There's also a shop. Wonder what they've got 
+
+&8	  &Shelter						  &You enter a shelter	&Huh, lotta folks here. Maybe I can strike up a conversation with some of them.
+
+&9	  &Courtyard					  &You enter what appears to be a courtyard		&The Filioris Building. This is it. Maybe I can go in through the front? Or maybe the streets on my left and right?
+
+&10	  &Side Street					  &You find your way into an ally		&That guy is clearly standing guard for the Filioris building, maybe I can sneak past him. Or maybe...
+
+&11   &Dead End				     	  &You've reached a dead end		&Damn, a dead end. Maybe I can climb to the top of this building with the right tool.
+
+&1002 &Rooftop						  &You grappled to the rooftop		
+
+&12	  &Firioris Building			  &You walked into the Firioris building foyer	&Ok, I'm in. Now what do I do?
+
+&13	  &Filioris Vault				  &You enter a vault		&The guy was guarding a vault, huh? Whelp, finders keepers.
+
+&14	  &Firioris building office		  &You walk into an office  &Weird that guy had no ID...oh well.
+
+&15	  &Branching Hallway			  &You enter a room.		&I only see one door here, but this room is way, but the carpet splits three ways? Maybe there's something behind these walls?
+
+&1003 &Secret Casino				  &Wow, a casino!			&Hey, this place has blackjack! Maybe I can have some fun, I'm sure Zrkka won't mind.
+
+&1004 &Private Entrance				  &You enter another hallway  &'Reactor' and 'Cybernetic storage'. These guys sure are creative, aren't they?
+
+&16	  &Pre-Reactor Hall				  &You continue down the hall  &I think DMN-14 said I should meet him in the reactor...right?
+
+&17	  &Reactor Core					  &You enter the reactor	
+
+&18	  &Grand Hall					  &You walk into a large room.  &Only one room on my right...and it's at the end of a literal chasm. Great. Now what?
+
+&1006 &Torture Chamber				  &You enter what appears to be a torture chamber  
+
+&1007 &Competency Assessment Chamber  &You find what appears to be a testing facility.
+
+&1008 &Hidden Lift					  &You walk into an elevator	&Ok, this is it. Endgame time. I can only go forward...or back... //(If you go back, you will fail to finish your quest, but you will escape with your life)
+
+&19	  &Sanctum
+
