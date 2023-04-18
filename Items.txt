@@ -1,3 +1,17 @@
 ///the & sign will split our data so that we can use commas and keep one room to one line
 ///    id#,		Name,	Location (Room id, zero if it is in player inventory)
-///EX:	 &1		&Coin  &1  (in this case it is the alley)
+///EX:	 &1		&Coin  &1  ///(in this case it is the alley)
+
+&1		&Cyber Lens		&2
+&2		&Zrkka's Information	&2
+&3		&Coin	&3
+&4		&Secret Coin	&999
+&5		&Hook Shot	&7
+&6		&Password	&1002
+&7		&Cyber Arm	&19
+&8		&Uprall Info Sheet	&19
+&9		&jeanne's Document	&1005
+&10		&Official Initiate Badge	&1007
+&11		&Jeanne's Key	&1006
+&12		&Prototype Wrist Blasters	&7
+&13		&Matter Deflection Apparatus	&7
