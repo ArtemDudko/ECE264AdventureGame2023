@@ -34,26 +34,32 @@ namespace Adventure //Defining Namespace
         class Game //Defining Class
         {
             //Declaring Rooms and CurrentRoom to be in
-            static Room room1 = new Room { Name = "Room1", Description = "You are in " };
-            static Room room2 = new Room { Name = "Room2", Description = "You are in Room2" };
-            static Room room3 = new Room { Name = "Room3", Description = "You are in Room3" };
-            static Room room4 = new Room { Name = "Room4", Description = "You are in Room4" };
-            static Room room5 = new Room { Name = "Room5", Description = "You are in Room5" };
-            static Room room6 = new Room { Name = "Room6", Description = "You are in Room6" };
-            static Room room7 = new Room { Name = "Room7", Description = "You are in Room7" };
-            static Room room8 = new Room { Name = "Room8", Description = "You are in Room8" };
-            static Room room9 = new Room { Name = "Room9", Description = "You are in Room9" };
-            static Room room10 = new Room { Name = "Room10", Description = "You are in Room10" };
-            static Room room11 = new Room { Name = "Room11", Description = "You are in Room11" };
-            static Room room12 = new Room { Name = "Room12", Description = "You are in Room12" };
-            static Room room13 = new Room { Name = "Room13", Description = "You are in Room13" };
-            static Room room14 = new Room { Name = "Room14", Description = "You are in Room14" };
-            static Room room15 = new Room { Name = "Room15", Description = "You are in Room15" };
-            static Room room16 = new Room { Name = "Room16", Description = "You are in Room16" };
-            static Room room17 = new Room { Name = "Room17", Description = "You are in Room17" };
-            static Room room18 = new Room { Name = "Room18", Description = "You are in Room18" };
-            static Room room19 = new Room { Name = "Room19", Description = "You are in Room19" };
-            static Room room20 = new Room { Name = "Room20", Description = "You are in Room20" };
+            static Room room1 = new Room { Name = "Room1", Description = "You are in Helio City Square S" };
+            static Room room2 = new Room { Name = "Room2", Description = "You are in Back Ally" };
+            static Room room3 = new Room { Name = "Room3", Description = "You are in Helio City Square N" };
+            static Room room4 = new Room { Name = "Room4", Description = "You are in Corner Street" };
+            static Room room5 = new Room { Name = "Room5", Description = "You are in Academy Road S" };
+            static Room room6 = new Room { Name = "Room6", Description = "You are in Side Ally" };
+            static Room room7 = new Room { Name = "Room7", Description = "You are in Academy Road N" };
+            static Room room8 = new Room { Name = "Room8", Description = "You are in Shelter" };
+            static Room room9 = new Room { Name = "Room9", Description = "You are in Courtyard" };
+            static Room room10 = new Room { Name = "Room10", Description = "You are in Side Street" };
+            static Room room11 = new Room { Name = "Room11", Description = "You are in Dead End" };
+            static Room room12 = new Room { Name = "Room12", Description = "You are in Firioris Building" };
+            static Room room13 = new Room { Name = "Room13", Description = "You are in Filioris Vault" };
+            static Room room14 = new Room { Name = "Room14", Description = "You are in Firioris building office" };
+            static Room room15 = new Room { Name = "Room15", Description = "You are in Branching Hallway" };
+            static Room room16 = new Room { Name = "Room16", Description = "You are in Pre-Reactor Hall" };
+            static Room room17 = new Room { Name = "Room17", Description = "You are in Reactor Core" };
+            static Room room18 = new Room { Name = "Room18", Description = "You are in Grand Hall" };
+            static Room room19 = new Room { Name = "Room19", Description = "You are in Sanctum" };
+            static Room room1001 = new Room { Name = "S-Room1", Description = "You are in Secret Casino" };
+            static Room room1002 = new Room { Name = "S-Room2", Description = "You are in Secret Casino" };
+            static Room room1003 = new Room { Name = "S-Room3", Description = "You are in Secret Casino" };
+            static Room room1004 = new Room { Name = "Room4", Description = "You are in Secret Casino" };
+            static Room room1005 = new Room { Name = "Room5", Description = "You are in Secret Casino" };
+            static Room room1006 = new Room { Name = "Room6", Description = "You are in Secret Casino" };
+            static Room room1007 = new Room { Name = "Room7", Description = "You are in Secret Casino" };
 
             static Room currentRoom = room1;
 
