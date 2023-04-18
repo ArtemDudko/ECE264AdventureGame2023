@@ -15,3 +15,5 @@
 &6  &Side Ally              &You've entered an ally. There's nothing here.  &You get the feeling there's something here, but you aren't sure how to find it.
 
 &S1 Secret Casino           &Wow, a casino!  
+
+&7	feglf
