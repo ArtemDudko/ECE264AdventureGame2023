@@ -6,7 +6,7 @@
 
 &2    &Back Ally					  &You enter the back ally    &That guy in the hood, who is he?.
 
-&3    &Helio City Square N			  &You continue through the square    &Hey, a coin. Everything's digital in Uprall, so why is this here.
+&3    &Helio City Square N			  &You continue through the square    &Hey, a coin. Everything's digital in Uprall, so why is this here?
 
 &4	  &Corner Street				  &You reach a road leading east    &I have a feeling I'm being watched. Wait, is that a cyborg or and android? I can't even tell.
 
@@ -34,7 +34,7 @@
 
 &14	  &Firioris building office		  &You walk into an office  &Weird that guy had no ID...oh well.
 
-&15	  &Branching Hallway			  &You enter a room.		&I only see one door here, but this room is way, but the carpet splits three ways? Maybe there's something behind these walls?
+&15	  &Branching Hallway			  &You enter a room.		&I only see one door here, but the carpet splits three ways? Maybe there's something behind these walls?
 
 &1003 &Secret Casino				  &Wow, a casino!			&Hey, this place has blackjack! Maybe I can have some fun, I'm sure Zrkka won't mind.
 
