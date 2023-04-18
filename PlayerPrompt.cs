@@ -54,12 +54,12 @@ namespace Adventure //Defining Namespace
             static Room room18 = new Room { Name = "Room18", Description = "You are in Grand Hall" };
             static Room room19 = new Room { Name = "Room19", Description = "You are in Sanctum" };
             static Room room1001 = new Room { Name = "S-Room1", Description = "You are in Secret Casino" };
-            static Room room1002 = new Room { Name = "S-Room2", Description = "You are in Secret Casino" };
+            static Room room1002 = new Room { Name = "S-Room2", Description = "You are in Rooftop" };
             static Room room1003 = new Room { Name = "S-Room3", Description = "You are in Secret Casino" };
-            static Room room1004 = new Room { Name = "Room4", Description = "You are in Secret Casino" };
-            static Room room1005 = new Room { Name = "Room5", Description = "You are in Secret Casino" };
-            static Room room1006 = new Room { Name = "Room6", Description = "You are in Secret Casino" };
-            static Room room1007 = new Room { Name = "Room7", Description = "You are in Secret Casino" };
+            static Room room1004 = new Room { Name = "S-Room4", Description = "You are in Private Entrance" };
+            static Room room1005 = new Room { Name = "S-Room5", Description = "You are in Torture Chamber" };
+            static Room room1006 = new Room { Name = "S-Room6", Description = "You are in Competency Assessment Chamber" };
+            static Room room1007 = new Room { Name = "S-Room7", Description = "You are in Hidden Lift" };
 
             static Room currentRoom = room1;
 
