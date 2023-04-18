@@ -1,3 +1,17 @@
 ///the & sign will split our data so that we can use commas and keep one room to one line
 ///    id#,		Name,	Short Description,						Long Description
-///EX:	 &1		&Alley  &You find yourself in a dark alley.		&Upon closer inspection, there are footprints leading into the sewer
+///EX:	 &1		    &Alley  &You find yourself in a dark alley.		&Upon closer inspection, there are footprints leading into the sewer
+
+&1  &Helio City Square S    &You've made it to Helio City, Uprall's capital     &Out of the corner of your eye, you see a man in a dark cloak enter the ally next to you.
+
+&2  &Back Ally              &You enter the back ally    &You see the hooded man at the end of the ally.
+
+&3  &Helio City Square N    &You continue through the square    &You notice a shimmer on the ground, and find a strange coin, something rarely seen in Uprall.
+
+&4  &Corner Street          &You reach a road leading east    &You have a feeling someone is watching you, you look around and notice a...is that a cyborg or android?
+
+&5  &Academy Road           &You've reached a long road    &You see the Uprallan Academy in the distance, but there arent any classes today, maybe tomorrow you'll visit. 
+
+&6  &Side Ally              &You've entered an ally. There's nothing here.  &You get the feeling there's something here, but you aren't sure how to find it.
+
+&S1 Secret Casino           &Wow, a casino!  
