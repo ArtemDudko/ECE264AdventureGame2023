@@ -31,6 +31,12 @@ namespace ECE264AdventureGame2023
     {
         static void Main(string[] args)
         {
+            string[,] room_data = Rooms.LoadRooms();
+
+
+
+
+
             MyGlobals.Debug = GetYesNo("Would you like to enable Debug mode?");  //Check if this is on using ifs, debug messages are surrounded by brackets
             //EX:
             if (MyGlobals.Debug) Console.WriteLine("[Debug Mode Enabled]");
