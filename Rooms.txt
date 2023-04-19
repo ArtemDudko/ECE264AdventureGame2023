@@ -46,11 +46,11 @@
 
 &18	  &Grand Hall					  &You walk into a large room.  &Only one room on my right...and it's at the end of a literal chasm. Great. Now what?
 
-&1005 &Torture Chamber				  &You enter what appears to be a torture chamber  
+&1006 &Torture Chamber				  &You enter what appears to be a torture chamber  
 
-&1006 &Competency Assessment Chamber  &You find what appears to be a testing facility.
+&1007 &Competency Assessment Chamber  &You find what appears to be a testing facility.
 
-&1007 &Hidden Lift					  &You walk into an elevator	&Ok, this is it. Endgame time. I can only go forward...or back... //(If you go back, you will fail to finish your quest, but you will escape with your life)
+&1008 &Hidden Lift					  &You walk into an elevator	&Ok, this is it. Endgame time. I can only go forward...or back... //(If you go back, you will fail to finish your quest, but you will escape with your life)
 
 &19	  &Sanctum
 
