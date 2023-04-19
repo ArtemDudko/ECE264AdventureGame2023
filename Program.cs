@@ -35,6 +35,9 @@ namespace ECE264AdventureGame2023
             //EX:
             if (MyGlobals.Debug) Console.WriteLine("[Debug Mode Enabled]");
 
+
+            Console.WriteLine("Welcome to Cyber Conspiracy!");
+
             string playerName = WelcomePlayer();
             Console.WriteLine("Hi, " + playerName);
 
