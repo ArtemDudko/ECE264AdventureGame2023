@@ -30,9 +30,13 @@ namespace ECE264AdventureGame2023
     {
         static void Main(string[] args)
         {
+
             bool debug = GetYesNo("Would you like to enable Debug mode?");  //Check if this is on using ifs, debug messages are surrounded by brackets
             //EX:
             if (debug) Console.WriteLine("[Debug Mode Enabled]");
+
+
+            Console.WriteLine("Welcome to Cyber Conspiracy!");
 
             string playerName = WelcomePlayer();
             Console.WriteLine("Hi, " + playerName);
