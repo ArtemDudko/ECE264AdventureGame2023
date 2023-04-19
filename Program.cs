@@ -26,16 +26,36 @@ using System.Threading.Tasks;
 
 namespace ECE264AdventureGame2023
 {
-    class Program    ///Game.cs equivalent
+    class Program    //Game.cs equivalent
     {
         static void Main(string[] args)
         {
-            ///testdgdsfgsdfgsdgfg
-            //////test 2
+
+            bool debug = GetYesNo("Would you like to enable Debug mode?");  //Check if this is on using ifs, debug messages are surrounded by brackets
+            //EX:
+            if (debug) Console.WriteLine("[Debug Mode Enabled]");
+
+
             Console.WriteLine("Welcome to Cyber Conspiracy!");
-            Console.WriteLine("Welcome to Cyber Conspiracy!");
+
             string playerName = WelcomePlayer();
+            Console.WriteLine("Hi, " + playerName);
+
+
             int currentRoomID = 1;
+
+            while (true)   //game loop
+            { 
+                
+            
+            
+            
+            
+            
+                
+            }
+
+
 
 
 
@@ -91,6 +111,20 @@ namespace ECE264AdventureGame2023
             return response;
         }
 
+        static void GameOver(int gameOverNumber)
+        {
+            switch (gameOverNumber)
+            {
+                case 1:
+                    Console.WriteLine("Your connections were not strong enough to get you out of this bind, \nCyclone will make sure nobody hears of you.");
+                    break;
+                case 2:
+                    Console.WriteLine("'Sorry, but the house always wins, and you can no longer pay your debt.'");
+                    break;
+            }
+            Console.WriteLine("GAME OVER, YOU REACHED BAD ENDING #" + gameOverNumber + ", THANKS FOR PLAYING");
+
+        }
 
 
 
