@@ -6,7 +6,7 @@
 
 &&&1    &Helio City Square S			  &You've made it to Helio City, Uprall's capital     &Did I just see a guy go into that ally? Wonder who he is...
 
-&2    &Back Ally					  &You enter the back ally    &That guy in the hood, who is he?.
+&2    &Back Ally					  &You enter the back ally		&Nothing else here, I should probably leave. 
 
 &3    &Helio City Square N			  &You continue through the square    &Hey, a coin. Everything's digital in Uprall, so why is this here?
 
@@ -32,7 +32,7 @@
 
 &12	  &Firioris Building			  &You walked into the Firioris building foyer	&Ok, I'm in. Now what do I do?
 
-&13	  &Filioris Vault				  &You enter a vault		&The guy was guarding a vault, huh? Whelp, finders keepers.
+&13	  &Firioris Vault				  &You enter a vault		&The guy was guarding a vault, huh? Whelp, finders keepers.
 
 &14	  &Firioris building office		  &You walk into an office  &Weird that guy had no ID...oh well.
 
@@ -41,6 +41,8 @@
 &1003 &Secret Casino				  &Wow, a casino!			&Hey, this place has blackjack! Maybe I can have some fun, I'm sure Zrkka won't mind.
 
 &1004 &Private Entrance				  &You enter another hallway  &'Reactor' and 'Cybernetic storage'. These guys sure are creative, aren't they?
+
+&1005 &Cybernetics Room				  &You enter a dimly lit room.  &Man, this place is filled with cybernetics. Hey, a paper.
 
 &16	  &Pre-Reactor Hall				  &You continue down the hall  &I think DMN-14 said I should meet him in the reactor...right?
 
@@ -54,10 +56,12 @@
 
 &1008 &Hidden Lift					  &You walk into an elevator	&Ok, this is it. Endgame time. I can only go forward...or back... //(If you go back, you will fail to finish your quest, but you will escape with your life)
 
-&19	  &Sanctum
+&19	  &Sanctum						  &You've made it to the Sanctum
 
 
 /* 
+
+ROOMS--------------------
 
 Room1: Helio City Square
 2 exits (N,W)
@@ -100,11 +104,95 @@ W = Academy Road N (Room7)
 
 Room9: Courtyard
 4 exits (N,W,E,S)
-N = Fioris Building (Room12)
+N = Firioris Building (Room12)
 W = Side Street (Room10)
 E = Dead End (Room11)
 S = Academy Road N (Room7)
 
+Room10: Side Street
+2 exits (N,E)
+N = Firioris Vault (Room13)
+E = Courtyard (Room9)
 
+Room11: Dead End
+2 exits: (W,E)
+W = Courtyard (Room9)
+E = Rooftop (SRoom2)
+
+Room12: Firioris Building 
+4 exits (N,W,E,S)
+N = Branching Hallway (Room15)
+W = Firioris Vault (Room13)
+E = Firioris Building Office (Room14)
+S = Courtyard (Room9)
+
+Room13: Firioris Vault
+2 exits (E,S)
+E = Firioris Building (Room12)
+S = Side Street (Room10)
+
+Room14: Firioris Building Office (Room14)
+1 exits (W)
+W = Firioris Building (Room12)
+
+Room15: Branching Hallway 
+3 exits (N,W,E)
+N = Grand Hall (Room18)
+W = Secret Casino (SRoom3)
+E = Private Entrance (SRoom4)
+
+Room16: Pre-Reactor Hall
+2 exits (W,E)
+W  = Private Entrance (SRoom4)
+E = Reactor Core (Room17)
+
+Room17: Reactor Core
+1 exit (W)
+W = Pre-Reactor Hall (Room16)
+
+Room18: Grand Hall
+4 exits (N,W,E,S)
+N = Hidden Lift (SRoom8)
+W = Torture ChambeR (SRoom6)
+
+Room19: Sanctum
+0 exits (END)
+
+SECRET ROOMS---------------
+
+SRoom1: Secret Casino
+1 exit (E)
+E = Side Alley (Room6)
+
+SRoom2: Rooftop
+2 exits (N,E)
+N = Firioris Building Office (Room14)
+W = Dead End (Room11)
+
+SRoom3: Secret Casino
+1 exit (E)
+E = Branching Hallway(Room15)
+
+SRoom4: Private Entrance 
+3 exits (N,W,E)
+N = Cybernaetics Room (SRoom5)
+W = Branching Hallway (Room15)
+E = Pre-Reactor Hall (Room16)
+
+SRoom5: Cybernetics Room
+1 exit (S)
+S = private Entrance (SRoom4)
+
+SRoom6: Torture Chamber
+1 exit (E)
+E = Grand Hall (Room18)
+
+SRoom7: Competency Assesment Chamber
+1 exit (W)
+W = Grand Hall (Room18)
+
+SRoom8: Hidden Lift
+1 exit (N)
+N = Sanctum (Room19)
 
 */
