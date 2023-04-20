@@ -139,95 +139,13 @@ namespace ECE264AdventureGame2023
 
         static Room currentRoom = room1;
 
-        public static int Choices(int roomID)
-        {
-            while (true) //Infinitly Prompting the user until they wish to exit
-            {
-                //Informs the user their current location and describes the room
-                Console.WriteLine("You are in the " + currentRoom.Name);
-                Console.WriteLine(currentRoom.Description);
-                //Prompts the user to input the direction
-                Console.WriteLine("Which direction would you like to go?");
-                //Stores the direction
-                string input = Console.ReadLine();
-                Directions.Direction direction = Directions.GetDirection(input);
+        
 
-                //Moves according to the directions from room to room
-                switch (direction)
-                {
-                    case Directions.Direction.North:
-                        if (currentRoom == room1)
-                        {
-                            currentRoom = room2;
-                            Console.WriteLine("You move to the " + currentRoom.Name);
-                        }
-                        break;
-                    case Directions.Direction.South:
-                        if (currentRoom == room2)
-                        {
-                            currentRoom = room1;
-                            Console.WriteLine("You move to the " + currentRoom.Name);
-                        }
-                        break;
-                    case Directions.Direction.East:
-                        if (currentRoom == room1)
-                        {
-                            currentRoom = room3;
-                            Console.WriteLine("You move to the " + currentRoom.Name);
-                        }
 
-                        break;
-                    case Directions.Direction.West:
-                        if (currentRoom == room3)
-                        {
-                            currentRoom = room1;
-                            Console.WriteLine("You move to the " + currentRoom.Name);
-                        }
 
-                        break;
-                    case Directions.Direction.NorthEast:
-                        if (currentRoom == room1)
-                        {
-                            currentRoom = room4;
-                            Console.WriteLine("You move to the " + currentRoom.Name);
-                        }
-                        break;
-                    case Directions.Direction.SouthWest:
-                        if (currentRoom == room4)
-                        {
-                            currentRoom = room1;
-                            Console.WriteLine("You move to the " + currentRoom.Name);
-                        }
-                        break;
-                    case Directions.Direction.SouthEast:
-                        if (currentRoom == room1)
-                        {
-                            currentRoom = room5;
-                            Console.WriteLine("You move to the " + currentRoom.Name);
-                        }
-                        break;
-                    case Directions.Direction.NorthWest:
-                        if (currentRoom == room5)
-                        {
-                            currentRoom = room1;
-                            Console.WriteLine("You move to the " + currentRoom.Name);
-                        }
-                        break;
-                    default:
-                        Console.WriteLine("Invalid direction.");
-                        break;
-                }
+            
 
-                //Prompts the user if they wish to continue and exits if they wish to exit
-                if (GetYesNo("Would you like to exit the game?(Y or N): "))
-                {
-                    Console.WriteLine("Goodbye!");
-                    Environment.Exit(0);
-                }
-            } return 0;
-        }
-
-        // GET YES/NO OR Y/N RESPONSE. RETURN TRUE FOR YES/Y, FALSE FOR NO/N
+            // GET YES/NO OR Y/N RESPONSE. RETURN TRUE FOR YES/Y, FALSE FOR NO/N
         static bool GetYesNo(string prompt)
         {
             string[] valid = { "YES", "Y", "NO", "N" };
