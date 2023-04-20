@@ -27,7 +27,7 @@ using System.Threading.Tasks;
 
 namespace ECE264AdventureGame2023
 {
-    class Game    //Game.cs equivalent
+    class Program    //Game.cs equivalent
     {
         static void Main(string[] args)
         {
