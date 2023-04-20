@@ -33,8 +33,10 @@ namespace ECE264AdventureGame2023
         {
             string[,] room_data = Rooms.LoadRooms();        //load rooms.txt into 2d array, dimesnisons 4 rows by 100 coloumns
                                                             //order is same as in rooms.txt: roomid, room name, short desc, long desc
+            string[,] exit_data = Rooms.LoadExits();
 
-            
+
+
             MyGlobals.Debug = GetYesNo("Would you like to enable Debug mode?");  //Check if this is on using ifs, debug messages are surrounded by brackets
             //EX:
             if (MyGlobals.Debug) Console.WriteLine("[Debug Mode Enabled]");            
@@ -47,11 +49,12 @@ namespace ECE264AdventureGame2023
 
             //int currentRoomID = 1;
             int currentRoom = 1;
+            int chosen_exit_id;
             int playerAction = 0; //0 = start, 1 = move, 2 = look around
 
             while (true)   //game loop
             {
-                Console.WriteLine(room_data[nextRoom,2]);
+                Console.WriteLine(room_data[currentRoom, 2]);
                 //nextRoom = Rooms.Navigate(nextRoom);
                 
 
@@ -59,18 +62,19 @@ namespace ECE264AdventureGame2023
                 {
                     playerAction = GetPlayerAction("What would you like to do?");
                     if(playerAction == 2)
-                        Console.WriteLine(room_data[nextRoom, 3]);
+                        Console.WriteLine(room_data[currentRoom, 3]);
 
 
 
                 }
 
-                Console.WriteLine("Where would you like to go?: ");
-                Rooms.ListExits(currentRoom);
+                //Console.WriteLine("Where would you like to go?: ");
+                chosen_exit_id = Rooms.ListExits(currentRoom, exit_data);
+                currentRoom = chosen_exit_id;
 
 
 
-                nextRoom = int.Parse(Console.ReadLine());
+
 
 
 
@@ -87,8 +91,8 @@ namespace ECE264AdventureGame2023
 
 
 
-            Console.WriteLine("you're journey begins here, in the: {0}",Roomdata);
-            Console.WriteLine("you have the ability to move in 4 directions: North(N),South(S),East(E),West(W)");
+            //Console.WriteLine("you're journey begins here, in the: {0}",Roomdata);
+            //Console.WriteLine("you have the ability to move in 4 directions: North(N),South(S),East(E),West(W)");
 
 
             
@@ -117,14 +121,7 @@ namespace ECE264AdventureGame2023
         }
 
 
-        static bool GetYesNo(string prompt)
-        {
-            string[] valid = { "YES", "Y", "NO", "N" };
-            string ans;
-            ans = GetString(prompt, valid, "?Invalid response, please reenter");
-            return (ans == "YES" || ans == "Y");
-
-        }
+        
 
         static int GetPlayerAction(string prompt)
         {
@@ -143,7 +140,14 @@ namespace ECE264AdventureGame2023
 
         }
 
+        static bool GetYesNo(string prompt)
+        {
+            string[] valid = { "YES", "Y", "NO", "N" };
+            string ans;
+            ans = GetString(prompt, valid, "?Invalid response, please reenter");
+            return (ans == "YES" || ans == "Y");
 
+        }
         //Universal get string with prompt, valid values, and error message
         static string GetString(string prompt, string[] valid, string error)
         {
