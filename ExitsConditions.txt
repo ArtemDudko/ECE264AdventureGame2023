@@ -7,7 +7,9 @@
 ///EX:		&&9		&4			&Academy Road		&South  &0
 /* 
 
-Room1: Helio City Square
+ROOMS--------------------
+
+Room1: Helio City Square S
 2 exits (N,W)
 N = Helio City Square N (Room3)
 W = Back Alley (Room2)
@@ -48,17 +50,177 @@ W = Academy Road N (Room7)
 
 Room9: Courtyard
 4 exits (N,W,E,S)
-N = Fioris Building (Room12)
+N = Firioris Building (Room12)
 W = Side Street (Room10)
 E = Dead End (Room11)
 S = Academy Road N (Room7)
+
+Room10: Side Street
+2 exits (N,E)
+N = Firioris Vault (Room13)
+E = Courtyard (Room9)
+
+Room11: Dead End
+2 exits: (W,E)
+W = Courtyard (Room9)
+E = Rooftop (SRoom2)
+
+Room12: Firioris Building 
+4 exits (N,W,E,S)
+N = Branching Hallway (Room15)
+W = Firioris Vault (Room13)
+E = Firioris Building Office (Room14)
+S = Courtyard (Room9)
+
+Room13: Firioris Vault
+2 exits (E,S)
+E = Firioris Building (Room12)
+S = Side Street (Room10)
+
+Room14: Firioris Building Office (Room14)
+1 exits (W)
+W = Firioris Building (Room12)
+
+Room15: Branching Hallway 
+3 exits (N,W,E)
+N = Grand Hall (Room18)
+W = Secret Casino (SRoom3)
+E = Private Entrance (SRoom4)
+
+Room16: Pre-Reactor Hall
+2 exits (W,E)
+W  = Private Entrance (SRoom4)
+E = Reactor Core (Room17)
+
+Room17: Reactor Core
+1 exit (W)
+W = Pre-Reactor Hall (Room16)
+
+Room18: Grand Hall
+4 exits (N,W,E,S)
+N = Hidden Lift (SRoom8)
+W = Torture ChambeR (SRoom6)
+
+Room19: Sanctum
+0 exits (END)
+
+SECRET ROOMS---------------
+
+SRoom1: Secret Casino
+1 exit (E)
+E = Side Alley (Room6)
+
+SRoom2: Rooftop
+2 exits (N,E)
+N = Firioris Building Office (Room14)
+W = Dead End (Room11)
+
+SRoom3: Secret Casino
+1 exit (E)
+E = Branching Hallway(Room15)
+
+SRoom4: Private Entrance 
+3 exits (N,W,E)
+N = Cybernaetics Room (SRoom5)
+W = Branching Hallway (Room15)
+E = Pre-Reactor Hall (Room16)
+
+SRoom5: Cybernetics Room
+1 exit (S)
+S = private Entrance (SRoom4)
+
+SRoom6: Torture Chamber
+1 exit (E)
+E = Grand Hall (Room18)
+
+SRoom7: Competency Assesment Chamber
+1 exit (W)
+W = Grand Hall (Room18)
+
+SRoom8: Hidden Lift
+1 exit (N)
+N = Sanctum (Room19)
+
 */
 
 
 Array Format Below:
 
-&&&
-&&1			&1		&Helio City Square		&North  &0
-&&1			&2		&Back Alley				&West   &0
+&&&       Exit#     ExitID
+&&1			&1		&3	&Helio City Square S	&North  &0
+&&1			&2		&2  &Helio City Square S	&West   &0
 
-&&2			&1		&Helio City Square		&East   &0
+&&2			&1		&1  &Back Alley				&East   &0
+
+&&3			&1		&4  &Helio City Square N	&North  &0
+
+&&4         &1	    &5  &Corner Street			&West	&0
+&&4         &2      &3  &Corner Street          &South  &0
+
+&&5         &1	    &6  &Academy Road S		    &South  &0
+&&5         &2	    &7  &Academy Road S		    &North  &0
+&&5         &3	    &4  &Academy Road S		    &East   &0
+
+&&6         &1	    &1001  &Side Ally		    &East   &0
+&&6         &2	    &5     &Side Ally		    &North  &0
+
+&&1001      &1      &6     &Secret Casino	    &East	&0
+
+&&7         &1	    &9 &Academy Road N		    &North	&0 
+&&7         &2	    &8 &Academy Road N		    &East	&0 
+&&7         &3	    &5 &Academy Road N		    &South	&0 
+
+&&8         &1	    &7 &Shelter				    &West	&0
+
+&&9         &1	    &12 &Courtyard			    &North	&0
+&&9         &2	    &10 &Courtyard			    &West	&0
+&&9         &3	    &11 &Courtyard			    &East	&0
+&&9         &4	    &7  &Courtyard			    &South	&0
+
+&&10        &1	    &13 &Side Street			&North	&0
+&&10        &2	    &9  &Side Street			&East	&0
+
+&&11        &1      &9  &Dead End				&West	&0
+&&11        &2      &1002  &Dead End			&East	&0
+
+&&1002      &1      &14 &Rooftop			    &North  &0
+&&1002      &2      &11 &Rooftop			    &West	&0
+
+&&12        &1	    &15 &Firioris Building	    &North	&0
+&&12        &2	    &13 &Firioris Building	    &West	&0
+&&12        &3	    &14 &Firioris Building	    &East	&0
+&&12        &4	    &9  &Firioris Building	    &South	&0
+
+&&13        &1	    &12 &Firioris Vault			&West   &0
+
+&&14        &1	    &12 &Firioris building office &West &0
+
+&&15        &1	    &18 &Branching Hallway	    &North	&0
+&&15        &2	    &1003 &Branching Hallway	&West	&0
+&&15        &3	    &1004 &Branching Hallway	&East	&0
+&&15        &4	    &12 &Branching Hallway	    &South	&0
+
+&&1003      &1      &15 &Secret Casino			&East	&0
+
+&&1004      &1      &1005 &Private Entrance	    &North  &0
+&&1004      &2      &15 &Private Entrance	    &West   &0
+&&1004      &3      &16 &Private Entrance	    &East   &0
+
+&&16        &1	    &1004 &Pre-Reactor Hall		&West   &0
+&&16        &2	    &17 &Pre-Reactor Hall		&East   &0
+
+
+&&17        &1	    &16 &Reactor Core		    &West	&0
+
+&&18        &1      &1008 &Grand Hall			 &North &0
+&&18        &2	    &1006 &Grand Hall			 &West  &0
+&&18        &3	    &1007 &Grand Hall			 &East  &0
+&&18        &4	    &15 &Grand Hall			     &South &0
+
+&&1006      &1      &18 &Torture Chamber		 &East	&0
+
+&&1007      &1      &18 &Competency Assessment Chamber &West &0
+
+&&1008      &1      &19 &Hidden Lift			 &North	&0
+
+&&19        &0	    &19 &Sanctum                 &None  &0
