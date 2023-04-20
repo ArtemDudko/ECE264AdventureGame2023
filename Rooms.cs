@@ -59,6 +59,11 @@ namespace ECE264AdventureGame2023
             return room_data;
         }
 
+        public static void ListExits(int current_room, )
+        {
+
+        }
+
 
         //public static string[,] ()
 

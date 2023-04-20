@@ -46,7 +46,7 @@ namespace ECE264AdventureGame2023
 
 
             //int currentRoomID = 1;
-            int nextRoom = 1;
+            int currentRoom = 1;
             int playerAction = 0; //0 = start, 1 = move, 2 = look around
 
             while (true)   //game loop
@@ -65,7 +65,11 @@ namespace ECE264AdventureGame2023
 
                 }
 
-                Console.WriteLine("Where would you like to go? (Enter RoomID): ");
+                Console.WriteLine("Where would you like to go?: ");
+                Rooms.ListExits(currentRoom);
+
+
+
                 nextRoom = int.Parse(Console.ReadLine());
 
 
