@@ -49,18 +49,24 @@ namespace ECE264AdventureGame2023
             var raw_exit_data_array = sb.ToString().Split("&"); //1d string array with all &'s splitting the data
 
             string[,] exit_data = new string[100, 11];
-            int exit_count = 0;
+            int data_point = 0;
             int room_count = 0;
                 
             for (int row = 0; row < 100; row++)
             {                                         
 
                 for (int col = 0; col < 11; col++)
-                {              
+                {           
+                    
+
+
                     if (row * 11 + col + 1 > raw_exit_data_array.Length) 
                     {
                     break;
                     }
+
+                    
+                    
 
                     exit_data[row, col] = raw_exit_data_array[row * 11 + col]; 
                     
@@ -81,28 +87,34 @@ namespace ECE264AdventureGame2023
         */
 
 
-        public static int ListExits(int current_room, string[,] exit_data)
+        public static int ListExits(int current_room_id, string[,] exit_data)
         {
             List<string> valid_exits = new List<string>();
-            int i;
+            int row;
             Console.WriteLine("Here are your exits: ");
-            for (i = 1; i < 100; i++)
+
+            
+            int last_exit_row = 0;
+            for (row = 1; row < 100; row++)
             {
-                if (exit_data[i, 1] == current_room.ToString())
+                if (exit_data[row, 1] == current_room_id.ToString())    //sine there are multiples of 
                 {
+                    
+                    last_exit_row = row;
                     //Int32.TryParse(l, out length);
                     //if (MyGlobals.Debug) Console.WriteLine("");
                     //if (exit_data[i, 4] == )
-                    //Format: &null &1			&1		&3 &Helio City Square		&North  &0 &0 &0 &0 &0
-                    Console.WriteLine("Exit #{0}: {1} to {2}, roomID {3}", exit_data[i, 2], exit_data[i, 5], exit_data[i, 4], exit_data[i, 3]);
-                    valid_exits.Append(exit_data[i, 5]);
+                    //Format: &"" &1			&1		&3	&Helio City Square S	&North  &0
+                    Console.WriteLine("Exit #{0}: {1} to {2}, roomID {3}", exit_data[row, 2], exit_data[row, 5], exit_data[row, 4], exit_data[row, 3]);
+                    valid_exits.Append(exit_data[row, 5]);
+                    
 
                 }
             }
             Console.WriteLine();
             int chosen_direction;
             chosen_direction = GetPlayerDirection("Where would you like to go?", valid_exits); //returns 0 thru 3 ot modify current line of data reading
-            int chosen_exit_id = Int32.Parse(exit_data[i + chosen_direction, 3]);
+            int chosen_exit_id = Int32.Parse(exit_data[last_exit_row - valid_exits.Count + chosen_direction, 3]);
             
             //currentRoom = int.Parse(Console.ReadLine());
 

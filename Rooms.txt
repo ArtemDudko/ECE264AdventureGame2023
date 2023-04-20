@@ -4,7 +4,8 @@
 
 
 
-&&&1    &Helio City Square S			  &You've made it to Helio City, Uprall's capital     &Did I just see a guy go into that ally? Wonder who he is...
+&&&
+&1    &Helio City Square S			  &You've made it to Helio City, Uprall's capital     &Did I just see a guy go into that ally? Wonder who he is...
 
 &2    &Back Ally					  &You enter the back ally		&Nothing else here, I should probably leave. 
 
