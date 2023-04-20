@@ -30,6 +30,9 @@ namespace ECE264AdventureGame2023
     {
         static void Main(string[] args)
         {
+
+            string RoomList = File.ReadAllText("Rooms.txt");
+
             ///testdgdsfgsdfgsdgfg
             //////test 2
             Console.WriteLine("Welcome to Cyber Conspiracy!");
