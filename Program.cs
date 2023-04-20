@@ -31,6 +31,7 @@ namespace ECE264AdventureGame2023
     {
         static void Main(string[] args)
         {
+
             string[,] room_data = Rooms.LoadRooms();
 
 
@@ -83,10 +84,12 @@ namespace ECE264AdventureGame2023
 
 
 
+            Console.WriteLine("you're journey begins here, in the: {0}",Roomdata);
+            Console.WriteLine("you have the ability to move in 4 directions: North(N),South(S),East(E),West(W)");
 
 
-
-
+            
+            //use method choices for movement from player prompt.cs
 
 
 
