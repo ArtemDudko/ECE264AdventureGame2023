@@ -2,11 +2,9 @@
 //ECE264 - Advneture Game Final Project
 //Referneces:
 /*
- * For working on github;
- * pull new changes;
- * make more changes;
- * commit new changes with summary message;
- * push changes to the master;
+ *      <<GITHUB>>
+ * FOR WORKING ON YOUR BRANCH:
+ * 
  * 
  * 
  * 
@@ -24,23 +22,67 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
+
+
+
 namespace ECE264AdventureGame2023
 {
-    class Program    ///Game.cs equivalent
+    class Program    //Game.cs equivalent
     {
         static void Main(string[] args)
         {
 
-            string RoomList = File.ReadAllText("Rooms.txt");
+            string[,] room_data = Rooms.LoadRooms();
 
-            ///testdgdsfgsdfgsdgfg
-            //////test 2
+
+
+
+
+            MyGlobals.Debug = GetYesNo("Would you like to enable Debug mode?");  //Check if this is on using ifs, debug messages are surrounded by brackets
+            //EX:
+            if (MyGlobals.Debug) Console.WriteLine("[Debug Mode Enabled]");
+
+
             Console.WriteLine("Welcome to Cyber Conspiracy!");
-            
+
             string playerName = WelcomePlayer();
-            int currentRoomID = 1;
-            
-            string[][] Roomdata;
+            Console.WriteLine("Hi, " + playerName);
+
+
+            //int currentRoomID = 1;
+            int nextRoom = 1;
+            int playerAction = 0; //0 = start, 1 = move, 2 = look around
+
+            while (true)   //game loop
+            {
+                Console.WriteLine(room_data[nextRoom,2]);
+                //nextRoom = Rooms.Navigate(nextRoom);
+                
+
+                while(!(playerAction == 1))
+                {
+                    playerAction = GetPlayerAction("What would you like to do?");
+                    if(playerAction == 2)
+                        Console.WriteLine(room_data[nextRoom, 3]);
+                }
+
+                Console.WriteLine("Where would you like to go? (Enter RoomID): ");
+                nextRoom = int.Parse(Console.ReadLine());
+
+
+
+
+
+
+
+
+
+
+
+
+            }
+
+
 
             Console.WriteLine("you're journey begins here, in the: {0}",Roomdata);
             Console.WriteLine("you have the ability to move in 4 directions: North(N),South(S),East(E),West(W)");
@@ -79,6 +121,24 @@ namespace ECE264AdventureGame2023
 
         }
 
+        static int GetPlayerAction(string prompt)
+        {
+            int player_action = 0;
+            string[] valid = { "MOVE", "M", "LOOK", "L", "LOOK AROUND", "EXPLORE" };
+            string[] move = {"MOVE", "M"};
+            string[] look_around = { "LOOK", "L", "LOOK AROUND", "EXPLORE" };
+            string ans = GetString(prompt, valid, "?Invalid response, please reenter");
+            if (move.Contains(ans))
+                player_action = 1;
+            else if (look_around.Contains(ans))
+                player_action = 2;
+            
+
+            return player_action;
+
+        }
+
+
         //Universal get string with prompt, valid values, and error message
         static string GetString(string prompt, string[] valid, string error)
         {
@@ -98,8 +158,26 @@ namespace ECE264AdventureGame2023
             return response;
         }
 
+        static void GameOver(int gameOverNumber)
+        {
+            switch (gameOverNumber)
+            {
+                case 1:
+                    Console.WriteLine("Your connections were not strong enough to get you out of this bind, \nCyclone will make sure nobody hears of you.");
+                    break;
+                case 2:
+                    Console.WriteLine("'Sorry, but the house always wins, and you can no longer pay your debt.'");
+                    break;
+            }
+            Console.WriteLine("GAME OVER, YOU REACHED BAD ENDING #" + gameOverNumber + ", THANKS FOR PLAYING");
 
-
+        }
+        //global variables
+        public static class MyGlobals
+        {
+            //public const string Prefix = "ID_"; // cannot change
+            public static bool Debug = false; // can change because not const
+        }
 
 
 
