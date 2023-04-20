@@ -27,7 +27,7 @@ using System.Threading.Tasks;
 
 namespace ECE264AdventureGame2023
 {
-    class Program    //Game.cs equivalent
+    class Game    //Game.cs equivalent
     {
         static void Main(string[] args)
         {
@@ -50,21 +50,35 @@ namespace ECE264AdventureGame2023
 
             //int currentRoomID = 1;
             int nextRoom = 1;
+            int playerAction = 0; //0 = start, 1 = move, 2 = look around
 
             while (true)   //game loop
-
             {
-                nextRoom = Rooms.Navigate(nextRoom, debug);
-
-
-
-
-            
-            
-            
-            
-            
+                Console.WriteLine(room_data[nextRoom,2]);
+                //nextRoom = Rooms.Navigate(nextRoom);
                 
+
+                while(!(playerAction == 1))
+                {
+                    playerAction = GetPlayerAction("What would you like to do?");
+                    if(playerAction == 2)
+                        Console.WriteLine(room_data[nextRoom, 3]);
+                }
+
+                Console.WriteLine("Where would you like to go? (Enter RoomID): ");
+                nextRoom = int.Parse(Console.ReadLine());
+
+
+
+
+
+
+
+
+
+
+
+
             }
 
 
@@ -103,6 +117,24 @@ namespace ECE264AdventureGame2023
             return (ans == "YES" || ans == "Y");
 
         }
+
+        static int GetPlayerAction(string prompt)
+        {
+            int player_action = 0;
+            string[] valid = { "MOVE", "M", "LOOK", "L", "LOOK AROUND", "EXPLORE" };
+            string[] move = {"MOVE", "M"};
+            string[] look_around = { "LOOK", "L", "LOOK AROUND", "EXPLORE" };
+            string ans = GetString(prompt, valid, "?Invalid response, please reenter");
+            if (move.Contains(ans))
+                player_action = 1;
+            else if (look_around.Contains(ans))
+                player_action = 2;
+            
+
+            return player_action;
+
+        }
+
 
         //Universal get string with prompt, valid values, and error message
         static string GetString(string prompt, string[] valid, string error)
