@@ -2,11 +2,9 @@
 //ECE264 - Advneture Game Final Project
 //Referneces:
 /*
- * For working on github;
- * pull new changes;
- * make more changes;
- * commit new changes with summary message;
- * push changes to the master;
+ *      <<GITHUB>>
+ * FOR WORKING ON YOUR BRANCH:
+ * 
  * 
  * 
  * 
@@ -24,16 +22,52 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
+
+
+
 namespace ECE264AdventureGame2023
 {
-    class Program    ///Game.cs equivalent
+    class Program    //Game.cs equivalent
     {
         static void Main(string[] args)
         {
+            string[,] room_data = Rooms.LoadRooms();
+
+
+
+
+
+            MyGlobals.Debug = GetYesNo("Would you like to enable Debug mode?");  //Check if this is on using ifs, debug messages are surrounded by brackets
+            //EX:
+            if (MyGlobals.Debug) Console.WriteLine("[Debug Mode Enabled]");
+
+
             Console.WriteLine("Welcome to Cyber Conspiracy!");
-            Console.WriteLine("Welcome to Cyber Conspiracy!");
+
             string playerName = WelcomePlayer();
-            int currentRoomID = 1;
+            Console.WriteLine("Hi, " + playerName);
+
+
+            //int currentRoomID = 1;
+            int nextRoom = 1;
+
+            while (true)   //game loop
+
+            {
+                nextRoom = Rooms.Navigate(nextRoom, debug);
+
+
+
+
+            
+            
+            
+            
+            
+                
+            }
+
+
 
 
 
@@ -89,8 +123,26 @@ namespace ECE264AdventureGame2023
             return response;
         }
 
+        static void GameOver(int gameOverNumber)
+        {
+            switch (gameOverNumber)
+            {
+                case 1:
+                    Console.WriteLine("Your connections were not strong enough to get you out of this bind, \nCyclone will make sure nobody hears of you.");
+                    break;
+                case 2:
+                    Console.WriteLine("'Sorry, but the house always wins, and you can no longer pay your debt.'");
+                    break;
+            }
+            Console.WriteLine("GAME OVER, YOU REACHED BAD ENDING #" + gameOverNumber + ", THANKS FOR PLAYING");
 
-
+        }
+        //global variables
+        public static class MyGlobals
+        {
+            //public const string Prefix = "ID_"; // cannot change
+            public static bool Debug = false; // can change because not const
+        }
 
 
 
