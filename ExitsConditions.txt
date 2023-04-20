@@ -1,7 +1,7 @@
 ///the & sign will split our data so that we can use commas and keep one exit to one line
-///    room id#,	Option #,	Name,	Cardinal Direction, Exit Consition id #1 (always present, enter 0 if no condition), Exit Condition id n... as many as are needed
+///    room id#,	exit #,	  Name,	   Cardinal Direction,   Exit Consition id #1 (always present, enter 0 if no condition), Exit Condition id n... as many as are needed
 																						
-///EX:		&&9		&1			&Fioris Building	&North  &0
+///EX:		&&9		&1			&Fioris Building	&North  &45 &3 &
 ///EX:		&&9		&2			&Side Street		&West  &0
 ///EX:		&&9		&3			&Dead End			&East  &0
 ///EX:		&&9		&4			&Academy Road		&South  &0
@@ -59,5 +59,6 @@ Array Format Below:
 
 &&&
 &&1			&1		&Helio City Square		&North  &0
-&&1			&1		&Back Alley				&West   &0
-&&1			&2		&Helio City Square		&East   &0
+&&1			&2		&Back Alley				&West   &0
+
+&&2			&1		&Helio City Square		&East   &0
