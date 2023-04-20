@@ -1,11 +1,4 @@
 ///the & sign will split our data so that we can use commas and keep one exit to one line
-///    room id#,	exit #,	  Name,	   Cardinal Direction,   Exit Consition id #1 (always present, enter 0 if no condition), Exit Condition id n... as many as are needed
-																						
-///EX:		&&9		&1			&Fioris Building	&North  &45 &3 &
-///EX:		&&9		&2			&Side Street		&West  &0
-///EX:		&&9		&3			&Dead End			&East  &0
-///EX:		&&9		&4			&Academy Road		&South  &0
-/* 
 
 Room1: Helio City Square
 2 exits (N,W)
@@ -52,13 +45,20 @@ N = Fioris Building (Room12)
 W = Side Street (Room10)
 E = Dead End (Room11)
 S = Academy Road N (Room7)
-*/
+
 
 
 Array Format Below:
+///    room id#,	exit #,	  Name,	   Cardinal Direction,   Exit Consition id #1 (always present, enter 0 if no condition), Exit Condition id n... as many as are needed
+																						
+///EX:		&&9		&1			&Fioris Building	&North  &45 &3
+///EX:		&&9		&2			&Side Street		&West  &0
+///EX:		&&9		&3			&Dead End			&East  &0
+///EX:		&&9		&4			&Academy Road		&South  &0
+
 
 &&&
-&&1			&1		&Helio City Square		&North  &0
+&&1			&1		&Helio City Square		&North  &0 &0 &0 &0 &0
 &&1			&2		&Back Alley				&West   &0
 
 &&2			&1		&Helio City Square		&East   &0
