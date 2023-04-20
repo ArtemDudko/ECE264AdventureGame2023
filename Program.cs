@@ -48,13 +48,17 @@ namespace ECE264AdventureGame2023
             Console.WriteLine("Hi, " + playerName);
 
 
-            int currentRoomID = 1;
+            //int currentRoomID = 1;
+            int nextRoom = 1;
 
             while (true)   //game loop
-            { 
-                //enter room
-                //make choice
-                //
+
+            {
+                nextRoom = Rooms.Navigate(nextRoom, debug);
+
+
+
+
             
             
             
