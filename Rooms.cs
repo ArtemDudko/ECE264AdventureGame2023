@@ -9,7 +9,7 @@ namespace ECE264AdventureGame2023
     class Rooms
     {
         string raw_exit_trigger_data = File.ReadAllText("ExitTriggers.txt");
-        
+        //int test = 1;
         public static string[,] LoadRooms()
         {
             //load Rooms.txt and process
@@ -32,8 +32,49 @@ namespace ECE264AdventureGame2023
                     if (item_count == raw_room_data_array.Length) return room_data;
                 }
             }
+            //test = 2;
             return room_data;
         }
+        public static string[,] LoadExits()
+        {
+            //load Rooms.txt and process
+            string raw_room_data = File.ReadAllText("U:\\ECE264\\Adventure23\\Rooms.txt");
+            raw_room_data = raw_room_data.Remove(0, raw_room_data.IndexOf("&&&") + 3);
+            StringBuilder sb = new StringBuilder(raw_room_data);
+            sb = sb.Replace("\n", "");
+            sb = sb.Replace("\t", "");
+            sb = sb.Replace("\r", "");
+            var raw_room_data_array = sb.ToString().Split('&');
+
+            string[,] room_data = new string[100, 4];
+            int item_count = 0;
+            for (int i = 0; i < 100; i++)
+            {
+                for (int k = 0; k < 4; k++)
+                {
+                    room_data[i, k] = raw_room_data_array[item_count];
+                    item_count++;
+                    if (item_count == raw_room_data_array.Length) return room_data;
+                }
+            }
+            return room_data;
+        }
+        /*
+        public static bool[] LoadExitTriggers()
+        {
+            string raw_exit_trigger_data = File.ReadAllText("U:\\ECE264\\Adventure23\\Rooms.txt");
+
+
+            return
+        }
+        */
+
+
+        public static void ListExits(int current_room)
+        {
+
+        }
+
 
         //public static string[,] ()
 

@@ -31,26 +31,22 @@ namespace ECE264AdventureGame2023
     {
         static void Main(string[] args)
         {
+            string[,] room_data = Rooms.LoadRooms();        //load rooms.txt into 2d array, dimesnisons 4 rows by 100 coloumns
+                                                            //order is same as in rooms.txt: roomid, room name, short desc, long desc
 
-            string[,] room_data = Rooms.LoadRooms();
-
-
-
-
-
+            
             MyGlobals.Debug = GetYesNo("Would you like to enable Debug mode?");  //Check if this is on using ifs, debug messages are surrounded by brackets
             //EX:
-            if (MyGlobals.Debug) Console.WriteLine("[Debug Mode Enabled]");
+            if (MyGlobals.Debug) Console.WriteLine("[Debug Mode Enabled]");            
 
 
-            Console.WriteLine("Welcome to Cyber Conspiracy!");
 
-            string playerName = WelcomePlayer();
-            Console.WriteLine("Hi, " + playerName);
+            string playerName = WelcomePlayer("Please enter your name: "); //welcome and get name
+            
 
 
             //int currentRoomID = 1;
-            int nextRoom = 1;
+            int currentRoom = 1;
             int playerAction = 0; //0 = start, 1 = move, 2 = look around
 
             while (true)   //game loop
@@ -64,9 +60,16 @@ namespace ECE264AdventureGame2023
                     playerAction = GetPlayerAction("What would you like to do?");
                     if(playerAction == 2)
                         Console.WriteLine(room_data[nextRoom, 3]);
+
+
+
                 }
 
-                Console.WriteLine("Where would you like to go? (Enter RoomID): ");
+                Console.WriteLine("Where would you like to go?: ");
+                Rooms.ListExits(currentRoom);
+
+
+
                 nextRoom = int.Parse(Console.ReadLine());
 
 
@@ -103,15 +106,17 @@ namespace ECE264AdventureGame2023
 
 
 
-        static string WelcomePlayer()
+        static string WelcomePlayer(string prompt)
         {
             ///Insert other introductory stuff here
             Console.WriteLine("Welcome to Cyber Conspiracy!");
-            Console.WriteLine("Please enter your name: ");            
-            string userInput = Console.ReadLine();
+            Console.WriteLine(prompt);
+           string userInput =  Console.ReadLine();            
+            Console.WriteLine("Hi, " + userInput);
             return userInput;
-
         }
+
+
         static bool GetYesNo(string prompt)
         {
             string[] valid = { "YES", "Y", "NO", "N" };
