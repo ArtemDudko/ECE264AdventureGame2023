@@ -6,7 +6,7 @@
 
 &&&1    &Helio City Square S			  &You've made it to Helio City, Uprall's capital     &Did I just see a guy go into that ally? Wonder who he is...
 
-&2    &Back Ally					  &You enter the back ally    &That guy in the hood, who is he?.
+&2    &Back Ally					  &You enter the back ally		&Nothing else here, I should probably leave. 
 
 &3    &Helio City Square N			  &You continue through the square    &Hey, a coin. Everything's digital in Uprall, so why is this here?
 
@@ -32,7 +32,7 @@
 
 &12	  &Firioris Building			  &You walked into the Firioris building foyer	&Ok, I'm in. Now what do I do?
 
-&13	  &Filioris Vault				  &You enter a vault		&The guy was guarding a vault, huh? Whelp, finders keepers.
+&13	  &Firioris Vault				  &You enter a vault		&The guy was guarding a vault, huh? Whelp, finders keepers.
 
 &14	  &Firioris building office		  &You walk into an office  &Weird that guy had no ID...oh well.
 
@@ -41,6 +41,8 @@
 &1003 &Secret Casino				  &Wow, a casino!			&Hey, this place has blackjack! Maybe I can have some fun, I'm sure Zrkka won't mind.
 
 &1004 &Private Entrance				  &You enter another hallway  &'Reactor' and 'Cybernetic storage'. These guys sure are creative, aren't they?
+
+&1005 &Cybernetics Room				  &You enter a dimly lit room.  &Man, this place is filled with cybernetics. Hey, a paper.
 
 &16	  &Pre-Reactor Hall				  &You continue down the hall  &I think DMN-14 said I should meet him in the reactor...right?
 
@@ -54,7 +56,7 @@
 
 &1008 &Hidden Lift					  &You walk into an elevator	&Ok, this is it. Endgame time. I can only go forward...or back... //(If you go back, you will fail to finish your quest, but you will escape with your life)
 
-&19	  &Sanctum
+&19	  &Sanctum						  &You've made it to the Sanctum
 
 
 /* 
