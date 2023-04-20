@@ -31,48 +31,72 @@ namespace ECE264AdventureGame2023
     {
         static void Main(string[] args)
         {
-            string[,] room_data = Rooms.LoadRooms();
-
-
+            string[,] room_data = Rooms.LoadRooms();        //load rooms.txt into 2d array, dimesnisons 4 rows by 100 coloumns
+                                                            //order is same as in rooms.txt: roomid, room name, short desc, long desc
+            string[,] exit_data = Rooms.LoadExits();
 
 
 
             MyGlobals.Debug = GetYesNo("Would you like to enable Debug mode?");  //Check if this is on using ifs, debug messages are surrounded by brackets
             //EX:
-            if (MyGlobals.Debug) Console.WriteLine("[Debug Mode Enabled]");
+            if (MyGlobals.Debug) Console.WriteLine("[Debug Mode Enabled]");            
 
 
-            Console.WriteLine("Welcome to Cyber Conspiracy!");
 
-            string playerName = WelcomePlayer();
-            Console.WriteLine("Hi, " + playerName);
+            string playerName = WelcomePlayer("Please enter your name: "); //welcome and get name
+            
 
 
             //int currentRoomID = 1;
-            int nextRoom = 1;
+            int currentRoom = 1;
+            int chosen_exit_id;
+            int playerAction = 0; //0 = start, 1 = move, 2 = look around
 
             while (true)   //game loop
-
             {
-                nextRoom = Rooms.Navigate(nextRoom, debug);
-
-
-
-
-            
-            
-            
-            
-            
+                Console.WriteLine(room_data[currentRoom, 2]);
+                //nextRoom = Rooms.Navigate(nextRoom);
                 
+
+                while(!(playerAction == 1))
+                {
+                    playerAction = GetPlayerAction("What would you like to do?");
+                    if(playerAction == 2)
+                        Console.WriteLine(room_data[currentRoom, 3]);
+
+
+
+                }
+
+                //Console.WriteLine("Where would you like to go?: ");
+                chosen_exit_id = Rooms.ListExits(currentRoom, exit_data);
+                currentRoom = chosen_exit_id;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             }
 
 
 
+            //Console.WriteLine("you're journey begins here, in the: {0}",Roomdata);
+            //Console.WriteLine("you have the ability to move in 4 directions: North(N),South(S),East(E),West(W)");
 
 
-
-
+            
+            //use method choices for movement from player prompt.cs
 
 
 
@@ -86,15 +110,36 @@ namespace ECE264AdventureGame2023
 
 
 
-        static string WelcomePlayer()
+        static string WelcomePlayer(string prompt)
         {
             ///Insert other introductory stuff here
             Console.WriteLine("Welcome to Cyber Conspiracy!");
-            Console.WriteLine("Please enter your name: ");            
-            string userInput = Console.ReadLine();
+            Console.WriteLine(prompt);
+           string userInput =  Console.ReadLine();            
+            Console.WriteLine("Hi, " + userInput);
             return userInput;
+        }
+
+
+        
+
+        static int GetPlayerAction(string prompt)
+        {
+            int player_action = 0;
+            string[] valid = { "MOVE", "M", "LOOK", "L", "LOOK AROUND", "EXPLORE" };
+            string[] move = {"MOVE", "M"};
+            string[] look_around = { "LOOK", "L", "LOOK AROUND", "EXPLORE" };
+            string ans = GetString(prompt, valid, "?Invalid response, please reenter");
+            if (move.Contains(ans))
+                player_action = 1;
+            else if (look_around.Contains(ans))
+                player_action = 2;
+            
+
+            return player_action;
 
         }
+
         static bool GetYesNo(string prompt)
         {
             string[] valid = { "YES", "Y", "NO", "N" };
@@ -103,7 +148,6 @@ namespace ECE264AdventureGame2023
             return (ans == "YES" || ans == "Y");
 
         }
-
         //Universal get string with prompt, valid values, and error message
         static string GetString(string prompt, string[] valid, string error)
         {

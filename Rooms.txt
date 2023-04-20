@@ -2,7 +2,9 @@
 ///    id#,		Name,	Short Description,						Long Description
 ///EX:	 &1		    &Alley  &You find yourself in a dark alley.		&Upon closer inspection, there are footprints leading into the sewer
 
-&1    &Helio City Square S			  &You've made it to Helio City, Uprall's capital     &Did I just see a guy go into that ally? Wonder who he is...
+
+
+&&&1    &Helio City Square S			  &You've made it to Helio City, Uprall's capital     &Did I just see a guy go into that ally? Wonder who he is...
 
 &2    &Back Ally					  &You enter the back ally		&Nothing else here, I should probably leave. 
 
@@ -26,7 +28,7 @@
 
 &11   &Dead End				     	  &You've reached a dead end		&Damn, a dead end. Maybe I can climb to the top of this building with the right tool.
 
-&1002 &Rooftop						  &You grappled to the rooftop		
+&1002 &Rooftop						  &You grappled to the rooftop		&
 
 &12	  &Firioris Building			  &You walked into the Firioris building foyer	&Ok, I'm in. Now what do I do?
 
@@ -44,15 +46,67 @@
 
 &16	  &Pre-Reactor Hall				  &You continue down the hall  &I think DMN-14 said I should meet him in the reactor...right?
 
-&17	  &Reactor Core					  &You enter the reactor	
+&17	  &Reactor Core					  &You enter the reactor									&
 
 &18	  &Grand Hall					  &You walk into a large room.  &Only one room on my right...and it's at the end of a literal chasm. Great. Now what?
 
-&1006 &Torture Chamber				  &You enter what appears to be a torture chamber  
+&1006 &Torture Chamber				  &You enter what appears to be a torture chamber			&
 
-&1007 &Competency Assessment Chamber  &You find what appears to be a testing facility.
+&1007 &Competency Assessment Chamber  &You find what appears to be a testing facility.			&
 
 &1008 &Hidden Lift					  &You walk into an elevator	&Ok, this is it. Endgame time. I can only go forward...or back... //(If you go back, you will fail to finish your quest, but you will escape with your life)
 
 &19	  &Sanctum						  &You've made it to the Sanctum
 
+
+/* 
+
+Room1: Helio City Square
+2 exits (N,W)
+N = Helio City Square N (Room3)
+W = Back Alley (Room2)
+
+Room2: Back Alley
+1 exit (E)
+E = Helio City Square (Room1)
+
+Room3: Helio City Square N
+1 exit (N)
+N = Corner Street (Room4)
+
+Room4: Corner Street
+2 exits (E,S)
+E = Academy Road S (Room5)
+S = Helio City Square N (Room3)
+
+Room5: Academy Road S 
+3 exits (W,S,E)
+W = Academy Road N (Room7)
+S = Side Ally (Room6)
+E = Corner Street (Room4)
+
+Room6: Side Alley
+2 exits (N,W)
+N = Academy Road S (Room5)
+W = Secret Casino (SRoom1)
+
+Room7: Academy Road N
+3 exits (N,E,S)
+N = Courtyard (Room9)
+E = Shelter (Room8)
+S = Academy Road S (Room5)
+
+Room8: Shelter
+1 exit (W)
+W = Academy Road N (Room7)
+
+Room9: Courtyard
+4 exits (N,W,E,S)
+N = Fioris Building (Room12)
+W = Side Street (Room10)
+E = Dead End (Room11)
+S = Academy Road N (Room7)
+
+
+
+*/
