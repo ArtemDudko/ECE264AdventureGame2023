@@ -1,81 +1,18 @@
-///the & sign will split our data so that we can use commas and keep one room to one line
-///    id#,		Name,	Short Description,						Long Description
-///EX:	 &1		    &Alley  &You find yourself in a dark alley.		&Upon closer inspection, there are footprints leading into the sewer
+///the & sign will split our data so that we can use commas and still keep one room to one line
 
-
-
-&&&
-&1    &Helio City Square S			  &You've made it to Helio City, Uprall's capital     &Did I just see a guy go into that ally? Wonder who he is...
-
-&2    &Back Ally					  &You enter the back ally		&Nothing else here, I should probably leave. 
-
-&3    &Helio City Square N			  &You continue through the square    &Hey, a coin. Everything's digital in Uprall, so why is this here?
-
-&4	  &Corner Street				  &You reach a road leading east    &I have a feeling I'm being watched. Wait, is that a cyborg or and android? I can't even tell.
-
-&5	  &Academy Road S				  &You've reached a long road    &Hey, the Uprallan Academy. It's closed today, maybe I'll sit in on a lecture tomorrow.
-
-&6	  &Side Ally					  &You've entered an empty ally.  &I have a feeling something's here, but I don't know how I'd be able to find it.
-
-&1001 &Secret Casino				  &Wow, a casino!			&Hey, this place has blackjack! Maybe I can have some fun?
-
-&7	  &Academy Road N				  &You continue down the long road	&Those two guys to my left are staring at me. Not comforting at all. There's also a shop. Wonder what they've got 
-
-&8	  &Shelter						  &You enter a shelter	&Huh, lotta folks here. Maybe I can strike up a conversation with some of them.
-
-&9	  &Courtyard					  &You enter what appears to be a courtyard		&The Filioris Building. This is it. Maybe I can go in through the front? Or maybe the streets on my left and right?
-
-&10	  &Side Street					  &You find your way into an ally		&That guy is clearly standing guard for the Filioris building, maybe I can sneak past him. Or maybe...
-
-&11   &Dead End				     	  &You've reached a dead end		&Damn, a dead end. Maybe I can climb to the top of this building with the right tool.
-
-&1002 &Rooftop						  &You grappled to the rooftop		&
-
-&12	  &Firioris Building			  &You walked into the Firioris building foyer	&Ok, I'm in. Now what do I do?
-
-&13	  &Firioris Vault				  &You enter a vault		&The guy was guarding a vault, huh? Whelp, finders keepers.
-
-&14	  &Firioris building office		  &You walk into an office  &Weird that guy had no ID...oh well.
-
-&15	  &Branching Hallway			  &You enter a room.		&I only see one door here, but the carpet splits three ways? Maybe there's something behind these walls?
-
-&1003 &Secret Casino				  &Wow, a casino!			&Hey, this place has blackjack! Maybe I can have some fun, I'm sure Zrkka won't mind.
-
-&1004 &Private Entrance				  &You enter another hallway  &'Reactor' and 'Cybernetic storage'. These guys sure are creative, aren't they?
-
-&1005 &Cybernetics Room				  &You enter a dimly lit room.  &Man, this place is filled with cybernetics. Hey, a paper.
-
-&16	  &Pre-Reactor Hall				  &You continue down the hall  &I think DMN-14 said I should meet him in the reactor...right?
-
-&17	  &Reactor Core					  &You enter the reactor									&
-
-&18	  &Grand Hall					  &You walk into a large room.  &Only one room on my right...and it's at the end of a literal chasm. Great. Now what?
-
-&1006 &Torture Chamber				  &You enter what appears to be a torture chamber			&
-
-&1007 &Competency Assessment Chamber  &You find what appears to be a testing facility.			&
-
-&1008 &Hidden Lift					  &You walk into an elevator	&Ok, this is it. Endgame time. I can only go forward...or back... //(If you go back, you will fail to finish your quest, but you will escape with your life)
-
-&19	  &Sanctum						  &You've made it to the Sanctum
-
-
-/* 
-
-ROOMS--------------------
-
-Room1: Helio City Square
+Room1: Helio City Square S
 2 exits (N,W)
 N = Helio City Square N (Room3)
 W = Back Alley (Room2)
 
 Room2: Back Alley
 1 exit (E)
-E = Helio City Square (Room1)
+E = Helio City Square S (Room1)
 
 Room3: Helio City Square N
 1 exit (N)
 N = Corner Street (Room4)
+
 
 Room4: Corner Street
 2 exits (E,S)
@@ -85,7 +22,7 @@ S = Helio City Square N (Room3)
 Room5: Academy Road S 
 3 exits (W,S,E)
 W = Academy Road N (Room7)
-S = Side Ally (Room6)
+S = Side Alley (Room6)
 E = Corner Street (Room4)
 
 Room6: Side Alley
@@ -196,4 +133,60 @@ SRoom8: Hidden Lift
 1 exit (N)
 N = Sanctum (Room19)
 
-*/
+RoomID		RoomName						ShortDesc											LongDesc
+
+Begin Data After Triple &:
+&&&1		&Helio City Square (South)		&You've made it to Helio City, Uprall's capital		&Did I just see a guy go into that alley? Wonder who he is...
+
+&2			&Back Alley						&You enter the back alley							&Nothing else here, I should probably leave. 
+
+&3			&Helio City Square (North)		&You continue through the square					&Hey, a coin. Everything's digital in Uprall, so why is this here?
+
+&4			&Corner Street					&You reach a road leading east						&I have a feeling I'm being watched. Wait, is that a cyborg or and android? I can't even tell.
+
+&5			&Academy Road (South)			&You've reached a long road							&Hey, the Uprallan Academy. It's closed today, maybe I'll sit in on a lecture tomorrow.
+
+&6			&Side Alley						&You've entered an empty alley.						&I have a feeling something's here, but I don't know how I'd be able to find it.
+
+&1001		&Secret Casino					&Wow, a casino!										&Hey, this place has blackjack! Maybe I can have some fun?
+
+&7			&Academy Road (North)			&You continue down the long road					&Those two guys to my left are staring at me. Not comforting at all. There's also a shop. Wonder what they've got 
+
+&8			&Shelter						&You enter a shelter								&Huh, lotta folks here. Maybe I can strike up a conversation with some of them.
+
+&9			&Courtyard						&You enter what appears to be a courtyard			&The Filioris Building. This is it. Maybe I can go in through the front? Or maybe the streets on my left and right?
+
+&10			&Side Street					&You find your way into an alley					&That guy is clearly standing guard for the Filioris building, maybe I can sneak past him. Or maybe...
+
+&11			&Dead End						&You've reached a dead end							&Damn, a dead end. Maybe I can climb to the top of this building with the right tool.
+
+&1002		&Rooftop						&You grappled to the rooftop						&
+
+&12			&Firioris Building				&You walked into the Firioris building foyer		&Ok, I'm in. Now what do I do?
+
+&13			&Firioris Vault					&You enter a vault									&The guy was guarding a vault, huh? Whelp, finders keepers.
+
+&14			&Firioris building office		&You walk into an office							&Weird that guy had no ID...oh well.
+
+&15			&Branching Hallway				&You enter a room.									&I only see one door here, but the carpet splits three ways? Maybe there's something behind these walls?
+
+&1003		&Secret Casino					&Wow, a casino!										&Hey, this place has blackjack! Maybe I can have some fun, I'm sure Zrkka won't mind.
+
+&1004		&Private Entrance				&You enter another hallway							&'Reactor' and 'Cybernetic storage'. These guys sure are creative, aren't they?
+
+&1005		&Cybernetics Room				&You enter a dimly lit room.						&Man, this place is filled with cybernetics. Hey, a paper.
+
+&16			&Pre-Reactor Hall				&You continue down the hall							&I think DMN-14 said I should meet him in the reactor...right?
+
+&17			&Reactor Core					&You enter the reactor								&
+
+&18			&Grand Hall						&You walk into a large room.						&Only one room on my right...and it's at the end of a literal chasm. Great. Now what?
+
+&1006		&Torture Chamber				&You enter what appears to be a torture chamber		&
+
+&1007		&Competency Assessment Chamber  &You find what appears to be a testing facility.	&
+
+&1008		&Hidden Lift					&You walk into an elevator							&Ok, this is it. Endgame time. I can only go forward...or back... //(If you go back, you will fail to finish your quest, but you will escape with your life)
+
+&19			&Sanctum						&You've made it to the Sanctum						&
+

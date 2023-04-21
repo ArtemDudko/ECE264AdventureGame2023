@@ -31,23 +31,35 @@ namespace ECE264AdventureGame2023
     {
         static void Main(string[] args)
         {
-            string[,] room_data = Rooms.LoadRooms();        //load rooms.txt into 2d array, dimesnisons 4 rows by 100 coloumns
+            string root_folder = "C:\\Users\\adudk\\source\\repos\\ArtemDudko\\ECE264AdventureGame2023";
+
+            string[,] room_data = Rooms.LoadRooms(root_folder);        //load rooms.txt into 2d array, dimesnisons 4 rows by 100 coloumns
                                                             //order is same as in rooms.txt: roomid, room name, short desc, long desc
-            string[,] exit_data = Rooms.LoadExits();
+            string[,] exit_data = Rooms.LoadExits(root_folder);        //loads exitsConditions.txt into a 11 row by 100 col array
+
+            Dictionary<int, bool> trigger_data_dic = PlayerPrompt.LoadTriggers(root_folder);     //load a dictionary of triggers, corresponding with: (ID:STATE), id is a int, state is a bool
+
+            string[,] item_data = Inventory.LoadItems(root_folder);
 
 
-
-            MyGlobals.Debug = GetYesNo("Would you like to enable Debug mode?");  //Check if this is on using ifs, debug messages are surrounded by brackets
+            Console.ForegroundColor = ConsoleColor.White;
+            MyGlobals.Debug = GetYesNo("Would you like to enable Debug mode? ");  //Check if this is on using ifs, debug messages are surrounded by brackets
             //EX:
-            if (MyGlobals.Debug) Console.WriteLine("[Debug Mode Enabled]");            
+            if (MyGlobals.Debug){Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("[Debug Mode Enabled]"); Console.ForegroundColor = ConsoleColor.White;}
+                
 
-
-
-            string playerName = WelcomePlayer("Please enter your name: "); //welcome and get name
+            //welcome and get name
             
-
-
-            //int currentRoomID = 1;
+            Console.Write("Please enter your name: ");
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            string playerName = Console.ReadLine();
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("Hi, " + playerName);
+            Console.WriteLine("Welcome to Cyber Conspiracy!");
+            Console.WriteLine("Try moving around or picking up items to progress. At the start of any room, type HELP to list your commands.\n");
+            
+            //setup stuff
             int currentRoom = 1;
             int chosen_exit_id;
             int playerAction = 0; //0 = start, 1 = move, 2 = look around
@@ -56,37 +68,72 @@ namespace ECE264AdventureGame2023
             {
                 Console.WriteLine(room_data[currentRoom, 2]);
                 //nextRoom = Rooms.Navigate(nextRoom);
-                
 
+                playerAction = 0;       //reset action to trigger loop
                 while(!(playerAction == 1))
                 {
-                    playerAction = GetPlayerAction("What would you like to do?");
-                    if(playerAction == 2)
-                        Console.WriteLine(room_data[currentRoom, 3]);
+                    
+
+
+                    //constantly prompt player to make a choice, once they want to move, 
+                    playerAction = GetPlayerAction("What would you like to do? ");
+                    switch(playerAction)
+                    {
+                        //move
+                        case 1:     
+                            Console.WriteLine("Here are your options:");
+                            //prompt room.cs to give the player their current exits, and then move the player to a new room
+                            chosen_exit_id = Rooms.ListExits(currentRoom, room_data[currentRoom, 1], exit_data);
+                            currentRoom = chosen_exit_id;
+
+
+
+                            //once the player moves, rinse and repeat
+                            if (MyGlobals.Debug){ Console.ForegroundColor = ConsoleColor.Cyan; 
+                                Console.WriteLine("[Current Room is: {0}, RoomID:{1}]", currentRoom, room_data[currentRoom, 1]); Console.ForegroundColor = ConsoleColor.White; }
+                            break;
+                        //display long desc
+                        case 2:
+                            Console.Write("You take a closer look. ");
+                            Console.WriteLine(room_data[currentRoom, 3]);
+                            Inventory.ListFloorItems(currentRoom, item_data);
+
+                            break;
+                        case 3:
+                            Console.WriteLine("Here are your commands:");
+                            Console.WriteLine("HELP - Replay this command.");
+                            Console.WriteLine("MOVE/M/GO - Choose an exit from your current location with a cardinal direction.");
+                            Console.WriteLine("LOOK/EXAMINE/EXPLORE/E - Get a better description of the area, sometimes enhanced by items.");
+                            Console.WriteLine("INVENTORY/INV/I - List items in your inventory.");
+                            Console.WriteLine("USE [ITEM] - Make use of an item in your room.");
+                            Console.WriteLine("TAKE/PICKUP - Take all items from the room and stow it.");
+                            Console.WriteLine("DROP/LEAVE - Drop a specific [ITEM] in the room from your inventory.");
+                            Console.WriteLine("EXIT/QUIT - Quit the game.");
+                            break;
+                        //take items
+                        case 4:
+                            item_data = Inventory.TakeItems(currentRoom, item_data);
+                            break;
+                        //drop items
+                        case 5:
+                            item_data = Inventory.DropItem(currentRoom, item_data);
+                            break;
+                        //check inventory
+                        case 6:
+                            Inventory.ListInventory(item_data);
+                            break;
+
+
+                    }
+                        
+
+               
+
 
 
 
                 }
-
-                //Console.WriteLine("Where would you like to go?: ");
-                chosen_exit_id = Rooms.ListExits(currentRoom, exit_data);
-                currentRoom = chosen_exit_id;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                
             }
 
 
@@ -110,15 +157,7 @@ namespace ECE264AdventureGame2023
 
 
 
-        static string WelcomePlayer(string prompt)
-        {
-            ///Insert other introductory stuff here
-            Console.WriteLine("Welcome to Cyber Conspiracy!");
-            Console.WriteLine(prompt);
-           string userInput =  Console.ReadLine();            
-            Console.WriteLine("Hi, " + userInput);
-            return userInput;
-        }
+        
 
 
         
@@ -126,18 +165,33 @@ namespace ECE264AdventureGame2023
         static int GetPlayerAction(string prompt)
         {
             int player_action = 0;
-            string[] valid = { "MOVE", "M", "LOOK", "L", "LOOK AROUND", "EXPLORE" };
-            string[] move = {"MOVE", "M"};
-            string[] look_around = { "LOOK", "L", "LOOK AROUND", "EXPLORE" };
-            string ans = GetString(prompt, valid, "?Invalid response, please reenter");
-            if (move.Contains(ans))
-                player_action = 1;
-            else if (look_around.Contains(ans))
-                player_action = 2;
+            string[] valid = { "MOVE", "M", "GO", "LOOK", "L", "E", "LOOK AROUND", "EXPLORE","HELP", "INVENTORY", "INV", "I", "DROP", "D", "TAKE", "T", "PICKUP" };
             
+            string[] move = {"MOVE", "M","GO"};
+            string[] look_around = { "LOOK", "L", "LOOK AROUND", "EXPLORE", "E","EXAMINE" };
+            string[] help = { "HELP" };
+            string[] take = { "TAKE","T","PICKUP" };
+            string[] drop = { "DROP", "D"};
+            string[] check_inventory = { "INVENTORY", "INV", "I" };
+
+
+
+            string userInput = GetString(prompt, valid, "?Invalid response, please reenter");
+
+            if (move.Contains(userInput))
+                player_action = 1;
+            else if (look_around.Contains(userInput))
+                player_action = 2;
+            else if (help.Contains(userInput))
+                player_action = 3;
+            else if (take.Contains(userInput))
+                player_action = 4;
+            else if (drop.Contains(userInput))
+                player_action = 5;
+            else if (check_inventory.Contains(userInput))
+                player_action = 6;
 
             return player_action;
-
         }
 
         static bool GetYesNo(string prompt)
@@ -146,7 +200,6 @@ namespace ECE264AdventureGame2023
             string ans;
             ans = GetString(prompt, valid, "?Invalid response, please reenter");
             return (ans == "YES" || ans == "Y");
-
         }
         //Universal get string with prompt, valid values, and error message
         static string GetString(string prompt, string[] valid, string error)
@@ -158,8 +211,11 @@ namespace ECE264AdventureGame2023
             bool OK = false;
             do
             {
+                
                 Console.Write(prompt);
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
                 response = Console.ReadLine().ToUpper();
+                Console.ForegroundColor = ConsoleColor.White;
                 foreach (string s in valid) if (response == s.ToUpper()) OK = true;
                 if (!OK) Console.WriteLine(error);
 
@@ -177,6 +233,8 @@ namespace ECE264AdventureGame2023
                 case 2:
                     Console.WriteLine("'Sorry, but the house always wins, and you can no longer pay your debt.'");
                     break;
+
+
             }
             Console.WriteLine("GAME OVER, YOU REACHED BAD ENDING #" + gameOverNumber + ", THANKS FOR PLAYING");
 
