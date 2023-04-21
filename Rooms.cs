@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ECE264AdventureGame2023.PlayerPrompt.Directions;
 
 namespace ECE264AdventureGame2023
 {
@@ -13,7 +14,7 @@ namespace ECE264AdventureGame2023
         public static string[,] LoadRooms()
         {
             //load Rooms.txt and process
-            string raw_room_data = File.ReadAllText("U:\\ECE264\\Adventure23\\Rooms.txt");
+            string raw_room_data = File.ReadAllText("C:\\Users\\adudk\\source\\repos\\ArtemDudko\\ECE264AdventureGame2023\\Rooms.txt");
             raw_room_data = raw_room_data.Remove(0, raw_room_data.IndexOf("&&&") + 3);
             StringBuilder sb = new StringBuilder(raw_room_data);
             sb = sb.Replace("\n", "");
@@ -39,7 +40,7 @@ namespace ECE264AdventureGame2023
         public static string[,] LoadExits()
         {
             //load Rooms.txt and process
-            string raw_exit_data = File.ReadAllText("U:\\ECE264\\Adventure23\\ExitsConditions.txt");
+            string raw_exit_data = File.ReadAllText("C:\\Users\\adudk\\source\\repos\\ArtemDudko\\ECE264AdventureGame2023\\ExitsConditions.txt");
             raw_exit_data = raw_exit_data.Remove(0, raw_exit_data.IndexOf("&&&") + 3);
             StringBuilder sb = new StringBuilder(raw_exit_data);
             sb = sb.Replace("\n", "");
@@ -53,21 +54,13 @@ namespace ECE264AdventureGame2023
             int room_count = 0;
                 
             for (int row = 0; row < 100; row++)
-            {                                         
-
+            {                                   
                 for (int col = 0; col < 11; col++)
-                {           
-                    
-
-
+                {                            
                     if (row * 11 + col + 1 > raw_exit_data_array.Length) 
                     {
                     break;
                     }
-
-                    
-                    
-
                     exit_data[row, col] = raw_exit_data_array[row * 11 + col]; 
                     
                 }
@@ -90,12 +83,10 @@ namespace ECE264AdventureGame2023
         public static int ListExits(int current_room_id, string[,] exit_data)
         {
             List<string> valid_exits = new List<string>();
-            int row;
-            Console.WriteLine("Here are your exits: ");
-
-            
+            int row;       
             int last_exit_row = 0;
-            for (row = 1; row < 100; row++)
+
+            for (row = 0; row < 100; row++)
             {
                 if (exit_data[row, 1] == current_room_id.ToString())    //sine there are multiples of 
                 {
@@ -106,14 +97,15 @@ namespace ECE264AdventureGame2023
                     //if (exit_data[i, 4] == )
                     //Format: &"" &1			&1		&3	&Helio City Square S	&North  &0
                     Console.WriteLine("Exit #{0}: {1} to {2}, roomID {3}", exit_data[row, 2], exit_data[row, 5], exit_data[row, 4], exit_data[row, 3]);
-                    valid_exits.Append(exit_data[row, 5]);
+                    valid_exits.Add(exit_data[row, 5].Trim());
                     
 
                 }
+                if (valid_exits.Count >= 4) break;
             }
-            Console.WriteLine();
+            
             int chosen_direction;
-            chosen_direction = GetPlayerDirection("Where would you like to go?", valid_exits); //returns 0 thru 3 ot modify current line of data reading
+            chosen_direction = GetPlayerDirection("Which direction?\n", valid_exits); //returns 0 thru 3 to modify current line of data reading
             int chosen_exit_id = Int32.Parse(exit_data[last_exit_row - valid_exits.Count + chosen_direction, 3]);
             
             //currentRoom = int.Parse(Console.ReadLine());
@@ -246,21 +238,43 @@ namespace ECE264AdventureGame2023
 
         static int GetPlayerDirection(string prompt, List<string> valid_exits)
         {
-            string[] valid = { "N", "NORTH", "S", "SOUTH", "E", "EAST", "W", "WEST" };
-            string ans;
-            int exit_number = 0;
+            string[] valid_cardinal = { "N", "NORTH", "S", "SOUTH", "E", "EAST", "W", "WEST" };
+            string[] valid_exits_array = valid_exits.ToArray();
 
-            ans = GetString(prompt, valid, "?Invalid response, please reenter");
+            string userInput;
+            bool OKdirection = false;
+            bool OKexit = false;
+            
+            do
+            {
+                Console.Write(prompt);
+                userInput = Console.ReadLine().ToUpper();
+                foreach (string s in valid_cardinal) 
+                    if (userInput == s.ToUpper()) 
+                        OKdirection = true;
+                foreach (string s in valid_exits_array) 
+                    if (userInput == s.ToUpper()) 
+                        OKexit = true;
 
+                if (!OKdirection)
+                { Console.WriteLine("?Invalid response, please reenter"); }
+                else if (!OKexit)
+                {
+                    Console.WriteLine("?Invalid exit, please reenter");
+                    OKdirection = false;
+                }
+            } while (!OKdirection && !OKexit);   
+
+            
+            int exit_number = 0;            
             foreach (string s in valid_exits)
             {
-                if (ans == s)
+                if (userInput == s)
                 {
                     break;
                 }
                 exit_number++;
             }
-
             return exit_number;
 
         }

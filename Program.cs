@@ -33,21 +33,21 @@ namespace ECE264AdventureGame2023
         {
             string[,] room_data = Rooms.LoadRooms();        //load rooms.txt into 2d array, dimesnisons 4 rows by 100 coloumns
                                                             //order is same as in rooms.txt: roomid, room name, short desc, long desc
-            string[,] exit_data = Rooms.LoadExits();
-
-
+            string[,] exit_data = Rooms.LoadExits();        //loads exitsConditions.txt into a 11 row by 100 col array
 
             MyGlobals.Debug = GetYesNo("Would you like to enable Debug mode?");  //Check if this is on using ifs, debug messages are surrounded by brackets
             //EX:
-            if (MyGlobals.Debug) Console.WriteLine("[Debug Mode Enabled]");            
+            if (MyGlobals.Debug) Console.WriteLine("[Debug Mode Enabled]");
 
-
-
-            string playerName = WelcomePlayer("Please enter your name: "); //welcome and get name
+            //welcome and get name
             
-
-
-            //int currentRoomID = 1;
+            Console.WriteLine("Please enter your name: ");
+            string playerName = Console.ReadLine();
+            Console.WriteLine("Hi, " + playerName);
+            Console.WriteLine("Welcome to Cyber Conspiracy!");
+            Console.WriteLine("Try moving around or picking up items to progress. At the start of any room, type help to list your commands.");
+            
+            //setup stuff
             int currentRoom = 1;
             int chosen_exit_id;
             int playerAction = 0; //0 = start, 1 = move, 2 = look around
@@ -56,29 +56,23 @@ namespace ECE264AdventureGame2023
             {
                 Console.WriteLine(room_data[currentRoom, 2]);
                 //nextRoom = Rooms.Navigate(nextRoom);
-                
 
+                playerAction = 0;       //reset action to trigger loop
                 while(!(playerAction == 1))
                 {
-                    playerAction = GetPlayerAction("What would you like to do?");
+                    playerAction = GetPlayerAction("What would you like to do?\n");
                     if(playerAction == 2)
-                        Console.WriteLine(room_data[currentRoom, 3]);
+                        Console.WriteLine(room_data[currentRoom, 3]);   //display long desc
+
 
 
 
                 }
 
-                //Console.WriteLine("Where would you like to go?: ");
+                Console.WriteLine("Here are your options:");
+
                 chosen_exit_id = Rooms.ListExits(currentRoom, exit_data);
                 currentRoom = chosen_exit_id;
-
-
-
-
-
-
-
-
 
 
 
@@ -110,15 +104,7 @@ namespace ECE264AdventureGame2023
 
 
 
-        static string WelcomePlayer(string prompt)
-        {
-            ///Insert other introductory stuff here
-            Console.WriteLine("Welcome to Cyber Conspiracy!");
-            Console.WriteLine(prompt);
-           string userInput =  Console.ReadLine();            
-            Console.WriteLine("Hi, " + userInput);
-            return userInput;
-        }
+        
 
 
         
@@ -129,15 +115,18 @@ namespace ECE264AdventureGame2023
             string[] valid = { "MOVE", "M", "LOOK", "L", "LOOK AROUND", "EXPLORE" };
             string[] move = {"MOVE", "M"};
             string[] look_around = { "LOOK", "L", "LOOK AROUND", "EXPLORE" };
+            string[] help = { "HELP" };
+
             string ans = GetString(prompt, valid, "?Invalid response, please reenter");
+
             if (move.Contains(ans))
                 player_action = 1;
             else if (look_around.Contains(ans))
                 player_action = 2;
-            
+            else if (help.Contains(ans))
+                player_action = 3;
 
             return player_action;
-
         }
 
         static bool GetYesNo(string prompt)
@@ -146,7 +135,6 @@ namespace ECE264AdventureGame2023
             string ans;
             ans = GetString(prompt, valid, "?Invalid response, please reenter");
             return (ans == "YES" || ans == "Y");
-
         }
         //Universal get string with prompt, valid values, and error message
         static string GetString(string prompt, string[] valid, string error)
@@ -177,6 +165,8 @@ namespace ECE264AdventureGame2023
                 case 2:
                     Console.WriteLine("'Sorry, but the house always wins, and you can no longer pay your debt.'");
                     break;
+
+
             }
             Console.WriteLine("GAME OVER, YOU REACHED BAD ENDING #" + gameOverNumber + ", THANKS FOR PLAYING");
 
