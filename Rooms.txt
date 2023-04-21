@@ -1,56 +1,192 @@
-///the & sign will split our data so that we can use commas and keep one room to one line
-///    id#,		Name,	Short Description,						Long Description
-///EX:	 &1		    &Alley  &You find yourself in a dark alley.		&Upon closer inspection, there are footprints leading into the sewer
+///the & sign will split our data so that we can use commas and still keep one room to one line
 
-&1    &Helio City Square S			  &You've made it to Helio City, Uprall's capital     &Did I just see a guy go into that ally? Wonder who he is...
+Room1: Helio City Square S
+2 exits (N,W)
+N = Helio City Square N (Room3)
+W = Back Alley (Room2)
 
-&2    &Back Ally					  &You enter the back ally    &That guy in the hood, who is he?.
+Room2: Back Alley
+1 exit (E)
+E = Helio City Square S (Room1)
 
-&3    &Helio City Square N			  &You continue through the square    &Hey, a coin. Everything's digital in Uprall, so why is this here?
+Room3: Helio City Square N
+1 exit (N)
+N = Corner Street (Room4)
 
-&4	  &Corner Street				  &You reach a road leading east    &I have a feeling I'm being watched. Wait, is that a cyborg or and android? I can't even tell.
 
-&5	  &Academy Road S				  &You've reached a long road    &Hey, the Uprallan Academy. It's closed today, maybe I'll sit in on a lecture tomorrow.
+Room4: Corner Street
+2 exits (E,S)
+E = Academy Road S (Room5)
+S = Helio City Square N (Room3)
 
-&6	  &Side Ally					  &You've entered an empty ally.  &I have a feeling something's here, but I don't know how I'd be able to find it.
+Room5: Academy Road S 
+3 exits (W,S,E)
+W = Academy Road N (Room7)
+S = Side Alley (Room6)
+E = Corner Street (Room4)
 
-&1001 &Secret Casino				  &Wow, a casino!			&Hey, this place has blackjack! Maybe I can have some fun?
+Room6: Side Alley
+2 exits (N,W)
+N = Academy Road S (Room5)
+W = Secret Casino (SRoom1)
 
-&7	  &Academy Road N				  &You continue down the long road	&Those two guys to my left are staring at me. Not comforting at all. There's also a shop. Wonder what they've got 
+Room7: Academy Road N
+3 exits (N,E,S)
+N = Courtyard (Room9)
+E = Shelter (Room8)
+S = Academy Road S (Room5)
 
-&8	  &Shelter						  &You enter a shelter	&Huh, lotta folks here. Maybe I can strike up a conversation with some of them.
+Room8: Shelter
+1 exit (W)
+W = Academy Road N (Room7)
 
-&9	  &Courtyard					  &You enter what appears to be a courtyard		&The Filioris Building. This is it. Maybe I can go in through the front? Or maybe the streets on my left and right?
+Room9: Courtyard
+4 exits (N,W,E,S)
+N = Firioris Building (Room12)
+W = Side Street (Room10)
+E = Dead End (Room11)
+S = Academy Road N (Room7)
 
-&10	  &Side Street					  &You find your way into an ally		&That guy is clearly standing guard for the Filioris building, maybe I can sneak past him. Or maybe...
+Room10: Side Street
+2 exits (N,E)
+N = Firioris Vault (Room13)
+E = Courtyard (Room9)
 
-&11   &Dead End				     	  &You've reached a dead end		&Damn, a dead end. Maybe I can climb to the top of this building with the right tool.
+Room11: Dead End
+2 exits: (W,E)
+W = Courtyard (Room9)
+E = Rooftop (SRoom2)
 
-&1002 &Rooftop						  &You grappled to the rooftop		
+Room12: Firioris Building 
+4 exits (N,W,E,S)
+N = Branching Hallway (Room15)
+W = Firioris Vault (Room13)
+E = Firioris Building Office (Room14)
+S = Courtyard (Room9)
 
-&12	  &Firioris Building			  &You walked into the Firioris building foyer	&Ok, I'm in. Now what do I do?
+Room13: Firioris Vault
+2 exits (E,S)
+E = Firioris Building (Room12)
+S = Side Street (Room10)
 
-&13	  &Filioris Vault				  &You enter a vault		&The guy was guarding a vault, huh? Whelp, finders keepers.
+Room14: Firioris Building Office (Room14)
+1 exits (W)
+W = Firioris Building (Room12)
 
-&14	  &Firioris building office		  &You walk into an office  &Weird that guy had no ID...oh well.
+Room15: Branching Hallway 
+3 exits (N,W,E)
+N = Grand Hall (Room18)
+W = Secret Casino (SRoom3)
+E = Private Entrance (SRoom4)
 
-&15	  &Branching Hallway			  &You enter a room.		&I only see one door here, but the carpet splits three ways? Maybe there's something behind these walls?
+Room16: Pre-Reactor Hall
+2 exits (W,E)
+W  = Private Entrance (SRoom4)
+E = Reactor Core (Room17)
 
-&1003 &Secret Casino				  &Wow, a casino!			&Hey, this place has blackjack! Maybe I can have some fun, I'm sure Zrkka won't mind.
+Room17: Reactor Core
+1 exit (W)
+W = Pre-Reactor Hall (Room16)
 
-&1004 &Private Entrance				  &You enter another hallway  &'Reactor' and 'Cybernetic storage'. These guys sure are creative, aren't they?
+Room18: Grand Hall
+4 exits (N,W,E,S)
+N = Hidden Lift (SRoom8)
+W = Torture ChambeR (SRoom6)
 
-&16	  &Pre-Reactor Hall				  &You continue down the hall  &I think DMN-14 said I should meet him in the reactor...right?
+Room19: Sanctum
+0 exits (END)
 
-&17	  &Reactor Core					  &You enter the reactor	
+SECRET ROOMS---------------
 
-&18	  &Grand Hall					  &You walk into a large room.  &Only one room on my right...and it's at the end of a literal chasm. Great. Now what?
+SRoom1: Secret Casino
+1 exit (E)
+E = Side Alley (Room6)
 
-&1006 &Torture Chamber				  &You enter what appears to be a torture chamber  
+SRoom2: Rooftop
+2 exits (N,E)
+N = Firioris Building Office (Room14)
+W = Dead End (Room11)
 
-&1007 &Competency Assessment Chamber  &You find what appears to be a testing facility.
+SRoom3: Secret Casino
+1 exit (E)
+E = Branching Hallway(Room15)
 
-&1008 &Hidden Lift					  &You walk into an elevator	&Ok, this is it. Endgame time. I can only go forward...or back... //(If you go back, you will fail to finish your quest, but you will escape with your life)
+SRoom4: Private Entrance 
+3 exits (N,W,E)
+N = Cybernaetics Room (SRoom5)
+W = Branching Hallway (Room15)
+E = Pre-Reactor Hall (Room16)
 
-&19	  &Sanctum
+SRoom5: Cybernetics Room
+1 exit (S)
+S = private Entrance (SRoom4)
+
+SRoom6: Torture Chamber
+1 exit (E)
+E = Grand Hall (Room18)
+
+SRoom7: Competency Assesment Chamber
+1 exit (W)
+W = Grand Hall (Room18)
+
+SRoom8: Hidden Lift
+1 exit (N)
+N = Sanctum (Room19)
+
+RoomID		RoomName						ShortDesc											LongDesc
+
+Begin Data After Triple &:
+&&&1		&Helio City Square (South)		&You've made it to Helio City, Uprall's capital		&Did I just see a guy go into that alley? Wonder who he is...
+
+&2			&Back Alley						&You enter the back alley							&Nothing else here, I should probably leave. 
+
+&3			&Helio City Square (North)		&You continue through the square					&Hey, a coin. Everything's digital in Uprall, so why is this here?
+
+&4			&Corner Street					&You reach a road leading east						&I have a feeling I'm being watched. Wait, is that a cyborg or and android? I can't even tell.
+
+&5			&Academy Road (South)			&You've reached a long road							&Hey, the Uprallan Academy. It's closed today, maybe I'll sit in on a lecture tomorrow.
+
+&6			&Side Alley						&You've entered an empty alley.						&I have a feeling something's here, but I don't know how I'd be able to find it.
+
+&1001		&Secret Casino					&Wow, a casino!										&Hey, this place has blackjack! Maybe I can have some fun?
+
+&7			&Academy Road (North)			&You continue down the long road					&Those two guys to my left are staring at me. Not comforting at all. There's also a shop. Wonder what they've got 
+
+&8			&Shelter						&You enter a shelter								&Huh, lotta folks here. Maybe I can strike up a conversation with some of them.
+
+&9			&Courtyard						&You enter what appears to be a courtyard			&The Filioris Building. This is it. Maybe I can go in through the front? Or maybe the streets on my left and right?
+
+&10			&Side Street					&You find your way into an alley					&That guy is clearly standing guard for the Filioris building, maybe I can sneak past him. Or maybe...
+
+&11			&Dead End						&You've reached a dead end							&Damn, a dead end. Maybe I can climb to the top of this building with the right tool.
+
+&1002		&Rooftop						&You grappled to the rooftop						&
+
+&12			&Firioris Building				&You walked into the Firioris building foyer		&Ok, I'm in. Now what do I do?
+
+&13			&Firioris Vault					&You enter a vault									&The guy was guarding a vault, huh? Whelp, finders keepers.
+
+&14			&Firioris building office		&You walk into an office							&Weird that guy had no ID...oh well.
+
+&15			&Branching Hallway				&You enter a room.									&I only see one door here, but the carpet splits three ways? Maybe there's something behind these walls?
+
+&1003		&Secret Casino					&Wow, a casino!										&Hey, this place has blackjack! Maybe I can have some fun, I'm sure Zrkka won't mind.
+
+&1004		&Private Entrance				&You enter another hallway							&'Reactor' and 'Cybernetic storage'. These guys sure are creative, aren't they?
+
+&1005		&Cybernetics Room				&You enter a dimly lit room.						&Man, this place is filled with cybernetics. Hey, a paper.
+
+&16			&Pre-Reactor Hall				&You continue down the hall							&I think DMN-14 said I should meet him in the reactor...right?
+
+&17			&Reactor Core					&You enter the reactor								&
+
+&18			&Grand Hall						&You walk into a large room.						&Only one room on my right...and it's at the end of a literal chasm. Great. Now what?
+
+&1006		&Torture Chamber				&You enter what appears to be a torture chamber		&
+
+&1007		&Competency Assessment Chamber  &You find what appears to be a testing facility.	&
+
+&1008		&Hidden Lift					&You walk into an elevator							&Ok, this is it. Endgame time. I can only go forward...or back... //(If you go back, you will fail to finish your quest, but you will escape with your life)
+
+&19			&Sanctum						&You've made it to the Sanctum						&
 
