@@ -199,33 +199,33 @@ Array Format Below:
 
 &&14        &1	    &12 &Firioris building      &West   &0
 
-&&15        &1	    &18 &Branching Hallway	    &North	&0
-&&15        &2	    &1003 &Branching Hallway	&West	&0
-&&15        &3	    &1004 &Branching Hallway	&East	&0
-&&15        &4	    &12 &Branching Hallway	    &South	&0
+&&15        &1	    &18 &Grand hall	            &North	&0
+&&15        &2	    &1003 &Secret Casino	    &West	&0
+&&15        &3	    &1004 &Private Entrance 	&East	&0
+&&15        &4	    &12 &Firioris Building	    &South	&0
 
-&&1003      &1      &15 &Secret Casino			&East	&0
+&&1003      &1      &15 &Branching Hallway		&East	&0
 
-&&1004      &1      &1005 &Private Entrance	    &North  &0
-&&1004      &2      &15 &Private Entrance	    &West   &0
-&&1004      &3      &16 &Private Entrance	    &East   &0
+&&1004      &1      &1005 &Cybernetics Room	    &North  &0
+&&1004      &2      &15 &Branching Hallway	    &West   &0
+&&1004      &3      &16 &Pre-Reactor Hall	    &East   &0
 
-&&16        &1	    &1004 &Pre-Reactor Hall		&West   &0
-&&16        &2	    &17 &Pre-Reactor Hall		&East   &0
+&&16        &1	    &1004 &private Entrance		&West   &0
+&&16        &2	    &17 &Reactor Core    		&East   &0
 
 
-&&17        &1	    &16 &Reactor Core		    &West	&0
+&&17        &1	    &16 &Pre-Reactor Hall		 &West	&0
 
-&&18        &1      &1008 &Grand Hall			 &North &0
-&&18        &2	    &1006 &Grand Hall			 &West  &0
-&&18        &3	    &1007 &Grand Hall			 &East  &0
-&&18        &4	    &15 &Grand Hall			     &South &0
+&&18        &1      &1008 &Hidden Lift  		 &North &0
+&&18        &2	    &1006 &Toture Chamber		 &West  &0
+&&18        &3	    &1007 &Competency Assessment Chamber &East  &0
+&&18        &4	    &15 &Branching Hallway		 &South &0
 
-&&1006      &1      &18 &Torture Chamber		 &East	&0
+&&1006      &1      &18 &Grand Hall		         &East	&0
 
-&&1007      &1      &18 &Competency Assessment Chamber &West &0
+&&1007      &1      &18 &Grand Hall              &West  &0
 
-&&1008      &1      &19 &Hidden Lift			 &North	&0
+&&1008      &1      &19 &Sanctum    			 &North	&0
 
 
 &&19        &0	    &19 &Sanctum                 &None  &0
