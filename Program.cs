@@ -31,7 +31,7 @@ namespace ECE264AdventureGame2023
     {
         static void Main(string[] args)
         {
-            string root_folder = "C:\\Users\\adudk\\source\\repos\\ArtemDudko\\ECE264AdventureGame2023";
+            string root_folder = "C:\\AdventureGame264 GitHub";
 
             string[,] room_data = Rooms.LoadRooms(root_folder);        //load rooms.txt into 2d array, dimesnisons 4 rows by 100 coloumns
                                                             //order is same as in rooms.txt: roomid, room name, short desc, long desc
@@ -60,7 +60,7 @@ namespace ECE264AdventureGame2023
             Console.WriteLine("Try moving around or picking up items to progress. At the start of any room, type HELP to list your commands.\n");
             
             //setup stuff
-            int currentRoom = 1;
+            int currentRoom = 6;
             int chosen_exit_id;
             int playerAction = 0; //0 = start, 1 = move, 2 = look around
 

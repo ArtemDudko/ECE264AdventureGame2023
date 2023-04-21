@@ -171,7 +171,7 @@ Begin Data After Triple &:
 &roomID&5			&2	    &6		&Side Alley					&South			&0	&0	&0	&0	&0
 &roomID&5			&3	    &4		&Corner Street				&East			&0	&0	&0	&0	&0
 
-&roomID&6			&1	    &1001   &Secret Casino				&West			&0	&0	&0	&0	&0
+&roomID&6			&1	    &21     &Secret Casino				&West			&0	&0	&0	&0	&0
 &roomID&6			&2	    &5      &Academy Road S				&North			&0	&0	&0	&0	&0
 
 
@@ -190,7 +190,7 @@ Begin Data After Triple &:
 &roomID&10			&2	    &9		&Courtyard					&East			&0	&0	&0	&0	&0
 
 &roomID&11			&1      &9		&Courtyard					&West			&0	&0	&0	&0	&0
-&roomID&11			&2      &1002	&Rooftop					&East			&0	&0	&0	&0	&0
+&roomID&11			&2      &22  	&Rooftop					&East			&0	&0	&0	&0	&0
 
 
 &roomID&12			&1	    &15		&Branching Hallway			&North			&0	&0	&0	&0	&0
@@ -204,36 +204,36 @@ Begin Data After Triple &:
 &roomID&14			&1	    &12		&Firioris Building			&West			&0	&0	&0	&0	&0
 
 &roomID&15			&1	    &18		&Grand Hall					&North			&0	&0	&0	&0	&0
-&roomID&15			&2	    &1003	&Secret Casino				&West			&0	&0	&0	&0	&0
-&roomID&15			&3	    &1004	&Private Entrance			&East			&0	&0	&0	&0	&0
+&roomID&15			&2	    &23	    &Secret Casino				&West			&0	&0	&0	&0	&0
+&roomID&15			&3	    &24	    &Private Entrance			&East			&0	&0	&0	&0	&0
 
-&roomID&16			&1	    &1004	&Private Entrance			&West			&0	&0	&0	&0	&0
+&roomID&16			&1	    &24 	&Private Entrance			&West			&0	&0	&0	&0	&0
 &roomID&16			&2	    &17		&Reactor Core				&East			&0	&0	&0	&0	&0
 
 &roomID&17			&1	    &16		&Pre-Reactor Hall		    &West			&0	&0	&0	&0	&0
 
-&roomID&18			&1		&1008	&Hidden Lift				&North			&0	&0	&0	&0	&0
-&roomID&18			&2	    &1006	&Torture Chamber			&West			&0	&0	&0	&0	&0
-&roomID&18			&3	    &1007	&Grand Hall?				&East			&0	&0	&0	&0	&0
+&roomID&18			&1		&28	    &Hidden Lift				&North			&0	&0	&0	&0	&0
+&roomID&18			&2	    &26  	&Torture Chamber			&West			&0	&0	&0	&0	&0
+&roomID&18			&3	    &27  	&Grand Hall?				&East			&0	&0	&0	&0	&0
 &roomID&18			&4	    &15		&Grand Hall?				&South			&0	&0	&0	&0	&0
 
 &roomID&19			&0	    &19		&Sanctum					&None			&0	&0	&0	&0	&0
 
-&roomID&1001		&1      &6		&Side Ally					&East			&0	&0	&0	&0	&0
+&roomID&21		    &1      &6		&Side Ally					&East			&0	&0	&0	&0	&0
 
-&roomID&1002		&1      &14		&Firioris Building Office	&North			&0	&0	&0	&0	&0
-&roomID&1002		&2      &11		&Dead End					&West			&0	&0	&0	&0	&0
+&roomID&22		    &1      &14		&Firioris Building Office	&North			&0	&0	&0	&0	&0
+&roomID&22		    &2      &11		&Dead End					&West			&0	&0	&0	&0	&0
 
-&roomID&1003		&1		&15		&Branching Hallway			&East			&0	&0	&0	&0	&0
+&roomID&23		    &1		&15		&Branching Hallway			&East			&0	&0	&0	&0	&0
 
-&roomID&1004		&1		&1005	&Cybernaetics Room			&North			&0	&0	&0	&0	&0
-&roomID&1004		&2		&15		&Branching Hallway			&West			&0	&0	&0	&0	&0
-&roomID&1004		&3		&16		&Pre-Reactor Hall			&East			&0	&0	&0	&0	&0
+&roomID&24		   &1		&25	    &Cybernaetics Room			&North			&0	&0	&0	&0	&0
+&roomID&24		   &2		&15		&Branching Hallway			&West			&0	&0	&0	&0	&0
+&roomID&24		   &3		&16		&Pre-Reactor Hall			&East			&0	&0	&0	&0	&0
 
-&roomID&1005		&1		&1004	&Private Entrance			&South			&0	&0	&0	&0	&0
+&roomID&25		   &1		&24	    &Private Entrance			&South			&0	&0	&0	&0	&0
 
-&roomID&1006		&1		&18		&Grand Hall					&East			&0	&0	&0	&0	&0
+&roomID&26		   &1		&18		&Grand Hall					&East			&0	&0	&0	&0	&0
 
-&roomID&1007		&1		&18		&Grand Hall					&West			&0	&0	&0	&0	&0
+&roomID&27		   &1		&18		&Grand Hall					&West			&0	&0	&0	&0	&0
 
-&roomID&1008		&1		&19		&Sanctum					&North			&0	&0	&0	&0	&0
+&roomID&28		   &1		&19		&Sanctum					&North			&0	&0	&0	&0	&0
