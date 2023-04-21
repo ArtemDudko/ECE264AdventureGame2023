@@ -1,6 +1,4 @@
-///the & sign will split our data so that we can use commas and keep one room to one line
-///    id#,		Name,	Short Description,						Long Description
-///EX:	 &1		    &Alley  &You find yourself in a dark alley.		&Upon closer inspection, there are footprints leading into the sewer
+///the & sign will split our data so that we can use commas and still keep one room to one line
 
 Room1: Helio City Square S
 2 exits (N,W)
@@ -135,57 +133,60 @@ SRoom8: Hidden Lift
 1 exit (N)
 N = Sanctum (Room19)
 
-&&&1  &Helio City Square (South)	  &You've made it to Helio City, Uprall's capital		&Did I just see a guy go into that alley? Wonder who he is...
+RoomID		RoomName						ShortDesc											LongDesc
 
-&2    &Back Alley					  &You enter the back alley								&Nothing else here, I should probably leave. 
+Begin Data After Triple &:
+&&&1		&Helio City Square (South)		&You've made it to Helio City, Uprall's capital		&Did I just see a guy go into that alley? Wonder who he is...
 
-&3    &Helio City Square (North)	  &You continue through the square						&Hey, a coin. Everything's digital in Uprall, so why is this here?
+&2			&Back Alley						&You enter the back alley							&Nothing else here, I should probably leave. 
 
-&4	  &Corner Street				  &You reach a road leading east						&I have a feeling I'm being watched. Wait, is that a cyborg or and android? I can't even tell.
+&3			&Helio City Square (North)		&You continue through the square					&Hey, a coin. Everything's digital in Uprall, so why is this here?
 
-&5	  &Academy Road (South)			  &You've reached a long road							&Hey, the Uprallan Academy. It's closed today, maybe I'll sit in on a lecture tomorrow.
+&4			&Corner Street					&You reach a road leading east						&I have a feeling I'm being watched. Wait, is that a cyborg or and android? I can't even tell.
 
-&6	  &Side Alley					  &You've entered an empty alley.						&I have a feeling something's here, but I don't know how I'd be able to find it.
+&5			&Academy Road (South)			&You've reached a long road							&Hey, the Uprallan Academy. It's closed today, maybe I'll sit in on a lecture tomorrow.
 
-&1001 &Secret Casino				  &Wow, a casino!										&Hey, this place has blackjack! Maybe I can have some fun?
+&6			&Side Alley						&You've entered an empty alley.						&I have a feeling something's here, but I don't know how I'd be able to find it.
 
-&7	  &Academy Road (North)			  &You continue down the long road						&Those two guys to my left are staring at me. Not comforting at all. There's also a shop. Wonder what they've got 
+&1001		&Secret Casino					&Wow, a casino!										&Hey, this place has blackjack! Maybe I can have some fun?
 
-&8	  &Shelter						  &You enter a shelter									&Huh, lotta folks here. Maybe I can strike up a conversation with some of them.
+&7			&Academy Road (North)			&You continue down the long road					&Those two guys to my left are staring at me. Not comforting at all. There's also a shop. Wonder what they've got 
 
-&9	  &Courtyard					  &You enter what appears to be a courtyard				&The Filioris Building. This is it. Maybe I can go in through the front? Or maybe the streets on my left and right?
+&8			&Shelter						&You enter a shelter								&Huh, lotta folks here. Maybe I can strike up a conversation with some of them.
 
-&10	  &Side Street					  &You find your way into an alley						&That guy is clearly standing guard for the Filioris building, maybe I can sneak past him. Or maybe...
+&9			&Courtyard						&You enter what appears to be a courtyard			&The Filioris Building. This is it. Maybe I can go in through the front? Or maybe the streets on my left and right?
 
-&11   &Dead End				     	  &You've reached a dead end							&Damn, a dead end. Maybe I can climb to the top of this building with the right tool.
+&10			&Side Street					&You find your way into an alley					&That guy is clearly standing guard for the Filioris building, maybe I can sneak past him. Or maybe...
 
-&1002 &Rooftop						  &You grappled to the rooftop							&
+&11			&Dead End						&You've reached a dead end							&Damn, a dead end. Maybe I can climb to the top of this building with the right tool.
 
-&12	  &Firioris Building			  &You walked into the Firioris building foyer			&Ok, I'm in. Now what do I do?
+&1002		&Rooftop						&You grappled to the rooftop						&
 
-&13	  &Firioris Vault				  &You enter a vault									&The guy was guarding a vault, huh? Whelp, finders keepers.
+&12			&Firioris Building				&You walked into the Firioris building foyer		&Ok, I'm in. Now what do I do?
 
-&14	  &Firioris building office		  &You walk into an office								&Weird that guy had no ID...oh well.
+&13			&Firioris Vault					&You enter a vault									&The guy was guarding a vault, huh? Whelp, finders keepers.
 
-&15	  &Branching Hallway			  &You enter a room.									&I only see one door here, but the carpet splits three ways? Maybe there's something behind these walls?
+&14			&Firioris building office		&You walk into an office							&Weird that guy had no ID...oh well.
 
-&1003 &Secret Casino				  &Wow, a casino!										&Hey, this place has blackjack! Maybe I can have some fun, I'm sure Zrkka won't mind.
+&15			&Branching Hallway				&You enter a room.									&I only see one door here, but the carpet splits three ways? Maybe there's something behind these walls?
 
-&1004 &Private Entrance				  &You enter another hallway							&'Reactor' and 'Cybernetic storage'. These guys sure are creative, aren't they?
+&1003		&Secret Casino					&Wow, a casino!										&Hey, this place has blackjack! Maybe I can have some fun, I'm sure Zrkka won't mind.
 
-&1005 &Cybernetics Room				  &You enter a dimly lit room.							&Man, this place is filled with cybernetics. Hey, a paper.
+&1004		&Private Entrance				&You enter another hallway							&'Reactor' and 'Cybernetic storage'. These guys sure are creative, aren't they?
 
-&16	  &Pre-Reactor Hall				  &You continue down the hall							&I think DMN-14 said I should meet him in the reactor...right?
+&1005		&Cybernetics Room				&You enter a dimly lit room.						&Man, this place is filled with cybernetics. Hey, a paper.
 
-&17	  &Reactor Core					  &You enter the reactor								&
+&16			&Pre-Reactor Hall				&You continue down the hall							&I think DMN-14 said I should meet him in the reactor...right?
 
-&18	  &Grand Hall					  &You walk into a large room.							&Only one room on my right...and it's at the end of a literal chasm. Great. Now what?
+&17			&Reactor Core					&You enter the reactor								&
 
-&1006 &Torture Chamber				  &You enter what appears to be a torture chamber		&
+&18			&Grand Hall						&You walk into a large room.						&Only one room on my right...and it's at the end of a literal chasm. Great. Now what?
 
-&1007 &Competency Assessment Chamber  &You find what appears to be a testing facility.		&
+&1006		&Torture Chamber				&You enter what appears to be a torture chamber		&
 
-&1008 &Hidden Lift					  &You walk into an elevator							&Ok, this is it. Endgame time. I can only go forward...or back... //(If you go back, you will fail to finish your quest, but you will escape with your life)
+&1007		&Competency Assessment Chamber  &You find what appears to be a testing facility.	&
 
-&19	  &Sanctum						  &You've made it to the Sanctum						&
+&1008		&Hidden Lift					&You walk into an elevator							&Ok, this is it. Endgame time. I can only go forward...or back... //(If you go back, you will fail to finish your quest, but you will escape with your life)
+
+&19			&Sanctum						&You've made it to the Sanctum						&
 

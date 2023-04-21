@@ -31,9 +31,17 @@ namespace ECE264AdventureGame2023
     {
         static void Main(string[] args)
         {
-            string[,] room_data = Rooms.LoadRooms();        //load rooms.txt into 2d array, dimesnisons 4 rows by 100 coloumns
+            string root_folder = "C:\\Users\\adudk\\source\\repos\\ArtemDudko\\ECE264AdventureGame2023";
+
+            string[,] room_data = Rooms.LoadRooms(root_folder);        //load rooms.txt into 2d array, dimesnisons 4 rows by 100 coloumns
                                                             //order is same as in rooms.txt: roomid, room name, short desc, long desc
-            string[,] exit_data = Rooms.LoadExits();        //loads exitsConditions.txt into a 11 row by 100 col array
+            string[,] exit_data = Rooms.LoadExits(root_folder);        //loads exitsConditions.txt into a 11 row by 100 col array
+
+            Dictionary<int, bool> trigger_data_dic = PlayerPrompt.LoadTriggers(root_folder);     //load a dictionary of triggers, corresponding with: (ID:STATE), id is a int, state is a bool
+
+            string[,] item_data = Inventory.LoadItems(root_folder);
+
+
             Console.ForegroundColor = ConsoleColor.White;
             MyGlobals.Debug = GetYesNo("Would you like to enable Debug mode? ");  //Check if this is on using ifs, debug messages are surrounded by brackets
             //EX:
@@ -64,6 +72,9 @@ namespace ECE264AdventureGame2023
                 playerAction = 0;       //reset action to trigger loop
                 while(!(playerAction == 1))
                 {
+                    
+
+
                     //constantly prompt player to make a choice, once they want to move, 
                     playerAction = GetPlayerAction("What would you like to do? ");
                     switch(playerAction)
@@ -76,23 +87,43 @@ namespace ECE264AdventureGame2023
                             currentRoom = chosen_exit_id;
 
 
+
                             //once the player moves, rinse and repeat
                             if (MyGlobals.Debug){ Console.ForegroundColor = ConsoleColor.Cyan; 
                                 Console.WriteLine("[Current Room is: {0}, RoomID:{1}]", currentRoom, room_data[currentRoom, 1]); Console.ForegroundColor = ConsoleColor.White; }
                             break;
                         //display long desc
-                        case 2:     
-                            Console.WriteLine(room_data[currentRoom, 3]);   
+                        case 2:
+                            Console.Write("You take a closer look. ");
+                            Console.WriteLine(room_data[currentRoom, 3]);
+                            Inventory.ListFloorItems(currentRoom, item_data);
+
                             break;
                         case 3:
                             Console.WriteLine("Here are your commands:");
                             Console.WriteLine("HELP - Replay this command.");
                             Console.WriteLine("MOVE/M/GO - Choose an exit from your current location with a cardinal direction.");
                             Console.WriteLine("LOOK/EXAMINE/EXPLORE/E - Get a better description of the area, sometimes enhanced by items.");
-                            Console.WriteLine("TAKE/PICKUP [ITEM] - Take an [ITEM] from the room and stow it.");
-                            Console.WriteLine("DROP/LEAVE [ITEM] - Drop an [ITEM] in the room from your inventory.");
+                            Console.WriteLine("INVENTORY/INV/I - List items in your inventory.");
+                            Console.WriteLine("USE [ITEM] - Make use of an item in your room.");
+                            Console.WriteLine("TAKE/PICKUP - Take all items from the room and stow it.");
+                            Console.WriteLine("DROP/LEAVE - Drop a specific [ITEM] in the room from your inventory.");
                             Console.WriteLine("EXIT/QUIT - Quit the game.");
                             break;
+                        //take items
+                        case 4:
+                            item_data = Inventory.TakeItems(currentRoom, item_data);
+                            break;
+                        //drop items
+                        case 5:
+                            item_data = Inventory.DropItem(currentRoom, item_data);
+                            break;
+                        //check inventory
+                        case 6:
+                            Inventory.ListInventory(item_data);
+                            break;
+
+
                     }
                         
 
@@ -134,10 +165,16 @@ namespace ECE264AdventureGame2023
         static int GetPlayerAction(string prompt)
         {
             int player_action = 0;
-            string[] valid = { "MOVE", "M", "GO", "LOOK", "L", "E", "LOOK AROUND", "EXPLORE","HELP" };
+            string[] valid = { "MOVE", "M", "GO", "LOOK", "L", "E", "LOOK AROUND", "EXPLORE","HELP", "INVENTORY", "INV", "I", "DROP", "D", "TAKE", "T", "PICKUP" };
+            
             string[] move = {"MOVE", "M","GO"};
             string[] look_around = { "LOOK", "L", "LOOK AROUND", "EXPLORE", "E","EXAMINE" };
             string[] help = { "HELP" };
+            string[] take = { "TAKE","T","PICKUP" };
+            string[] drop = { "DROP", "D"};
+            string[] check_inventory = { "INVENTORY", "INV", "I" };
+
+
 
             string userInput = GetString(prompt, valid, "?Invalid response, please reenter");
 
@@ -147,6 +184,12 @@ namespace ECE264AdventureGame2023
                 player_action = 2;
             else if (help.Contains(userInput))
                 player_action = 3;
+            else if (take.Contains(userInput))
+                player_action = 4;
+            else if (drop.Contains(userInput))
+                player_action = 5;
+            else if (check_inventory.Contains(userInput))
+                player_action = 6;
 
             return player_action;
         }

@@ -3,6 +3,8 @@
 ///EX:	 &1		&Coin  &1  ///(in this case it is the alley)
 ///Items.txt is three coloumns wide
 
+Begin Data After Triple &:
+
 &&&1	&Cyber Lens						&2
 &2		&Zrkka's Information			&2
 &3		&Coin							&3

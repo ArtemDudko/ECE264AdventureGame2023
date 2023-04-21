@@ -12,11 +12,11 @@ namespace ECE264AdventureGame2023
     {
         string raw_exit_trigger_data = File.ReadAllText("ExitTriggers.txt");
         //int test = 1;
-        public static string[,] LoadRooms()
+        public static string[,] LoadRooms(string root_folder)
         {
             //load Rooms.txt and process
-            string raw_room_data = File.ReadAllText("C:\\Users\\adudk\\source\\repos\\ArtemDudko\\ECE264AdventureGame2023\\Rooms.txt");
-            raw_room_data = raw_room_data.Remove(0, raw_room_data.IndexOf("&&&") + 3);
+            string raw_room_data = File.ReadAllText(root_folder + "\\Rooms.txt");
+            raw_room_data = raw_room_data.Remove(0, raw_room_data.IndexOf("&&&") + 3);      //remove unnecessary stuff
             StringBuilder sb = new StringBuilder(raw_room_data);
             sb = sb.Replace("\n", "");
             sb = sb.Replace("\t", "");
@@ -38,10 +38,10 @@ namespace ECE264AdventureGame2023
             return room_data;
         }
 
-        public static string[,] LoadExits()
+        public static string[,] LoadExits(string root_folder)
         {
             //load Rooms.txt and process
-            string raw_exit_data = File.ReadAllText("C:\\Users\\adudk\\source\\repos\\ArtemDudko\\ECE264AdventureGame2023\\ExitsConditions.txt");
+            string raw_exit_data = File.ReadAllText(root_folder + "\\ExitConditions.txt");
             raw_exit_data = raw_exit_data.Remove(0, raw_exit_data.IndexOf("&&&") + 3);
             StringBuilder sb = new StringBuilder(raw_exit_data);
             sb = sb.Replace("\n", "");

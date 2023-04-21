@@ -9,47 +9,67 @@ namespace ECE264AdventureGame2023
 {
     class PlayerPrompt
     {
+        public static Dictionary<int, bool> LoadTriggers(string root_folder)
+        {
+            //load Rooms.txt and process
+            
+            string raw_trigger_data = File.ReadAllText(root_folder + "\\Triggers.txt");
+            raw_trigger_data = raw_trigger_data.Remove(0, raw_trigger_data.IndexOf("&&&") + 3);      //remove unnecessary stuff
+            StringBuilder sb = new StringBuilder(raw_trigger_data);
+            sb = sb.Replace("\n", "");
+            sb = sb.Replace("\t", "");
+            sb = sb.Replace("\r", "");
+            var raw_trigger_data_array = sb.ToString().Split('&');
+            var trigger_data_dic = new Dictionary<int, bool>() { };
+            for (int trigger_id = 1; trigger_id < raw_trigger_data_array.Length / 2; trigger_id++)
+            {
+                trigger_data_dic.Add(trigger_id, bool.Parse(raw_trigger_data_array[trigger_id * 2 - 1]));
+            }
+            return trigger_data_dic;
 
-        /*
-         
-        need to make big ass switch case statement
-        
-        0-99 will be room discovery
-
-        100-199 will be dialogue and interactions in rooms
-
-        200-299 will be events
-
-        300-399 will be secret interactions
-
-        400-499 will be 
-         
-         
-         */
-
-        //Libraries
-
-
+        }
 
 
-        //Declaring Rooms and CurrentRoom to be in
+            /*
 
-        //-Prior to entering room 1:-
-        //PA: Hello. Welcome to the Uprall Transport Hub. Please enter your name"
-        //player prompt for name
-        //PA: Hello (player name), where would you like to go?
-        //present choices for {Helio City} {I don't know where}
+            need to make big ass switch case statement
 
-        // -if {Helio City}: -
-           //You: Helio City, please
-           //PA: Travelling to Helio City,please take your seat.
-           //-enter room 1-
+            0-99 will be room discovery
 
-        //-if {I don't know where}-
+            100-199 will be dialogue and interactions in rooms
+
+            200-299 will be events
+
+            300-399 will be secret interactions
+
+            400-499 will be 
+
+
+             */
+
+            //Libraries
+
+
+
+
+            //Declaring Rooms and CurrentRoom to be in
+
+            //-Prior to entering room 1:-
+            //PA: Hello. Welcome to the Uprall Transport Hub. Please enter your name"
+            //player prompt for name
+            //PA: Hello (player name), where would you like to go?
+            //present choices for {Helio City} {I don't know where}
+
+            // -if {Helio City}: -
+            //You: Helio City, please
+            //PA: Travelling to Helio City,please take your seat.
+            //-enter room 1-
+
+            //-if {I don't know where}-
             //You: Uh, I'm not really sure. Maybe I'll visit Uprall some other time.
             //PA: Thank you, have a good day
             //Ending 0: The Road Untravelled
-        static Room room1 = new Room { Name = "Room1", Description = "You've made it to Helio City, Uprall's capital" };
+            static Room room1 = new Room { Name = "Room1", Description = "You've made it to Helio City, Uprall's capital" };
 
         static Room room2 = new Room { Name = "Room2", Description = "You enter the back ally" };
         /*You: That guy in the hood. Who is he?
