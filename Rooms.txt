@@ -2,18 +2,19 @@
 ///    id#,		Name,	Short Description,						Long Description
 ///EX:	 &1		    &Alley  &You find yourself in a dark alley.		&Upon closer inspection, there are footprints leading into the sewer
 
-Room1: Helio City Square
+Room1: Helio City Square S
 2 exits (N,W)
 N = Helio City Square N (Room3)
 W = Back Alley (Room2)
 
 Room2: Back Alley
 1 exit (E)
-E = Helio City Square (Room1)
+E = Helio City Square S (Room1)
 
 Room3: Helio City Square N
 1 exit (N)
 N = Corner Street (Room4)
+
 
 Room4: Corner Street
 2 exits (E,S)

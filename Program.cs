@@ -34,18 +34,22 @@ namespace ECE264AdventureGame2023
             string[,] room_data = Rooms.LoadRooms();        //load rooms.txt into 2d array, dimesnisons 4 rows by 100 coloumns
                                                             //order is same as in rooms.txt: roomid, room name, short desc, long desc
             string[,] exit_data = Rooms.LoadExits();        //loads exitsConditions.txt into a 11 row by 100 col array
-
-            MyGlobals.Debug = GetYesNo("Would you like to enable Debug mode?");  //Check if this is on using ifs, debug messages are surrounded by brackets
+            Console.ForegroundColor = ConsoleColor.White;
+            MyGlobals.Debug = GetYesNo("Would you like to enable Debug mode? ");  //Check if this is on using ifs, debug messages are surrounded by brackets
             //EX:
-            if (MyGlobals.Debug) Console.WriteLine("[Debug Mode Enabled]");
+            if (MyGlobals.Debug){Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("[Debug Mode Enabled]"); Console.ForegroundColor = ConsoleColor.White;}
+                
 
             //welcome and get name
             
-            Console.WriteLine("Please enter your name: ");
+            Console.Write("Please enter your name: ");
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
             string playerName = Console.ReadLine();
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Hi, " + playerName);
             Console.WriteLine("Welcome to Cyber Conspiracy!");
-            Console.WriteLine("Try moving around or picking up items to progress. At the start of any room, type help to list your commands.");
+            Console.WriteLine("Try moving around or picking up items to progress. At the start of any room, type HELP to list your commands.\n");
             
             //setup stuff
             int currentRoom = 1;
@@ -60,27 +64,45 @@ namespace ECE264AdventureGame2023
                 playerAction = 0;       //reset action to trigger loop
                 while(!(playerAction == 1))
                 {
-                    playerAction = GetPlayerAction("What would you like to do?\n");
-                    if(playerAction == 2)
-                        Console.WriteLine(room_data[currentRoom, 3]);   //display long desc
+                    //constantly prompt player to make a choice, once they want to move, 
+                    playerAction = GetPlayerAction("What would you like to do? ");
+                    switch(playerAction)
+                    {
+                        //move
+                        case 1:     
+                            Console.WriteLine("Here are your options:");
+                            //prompt room.cs to give the player their current exits, and then move the player to a new room
+                            chosen_exit_id = Rooms.ListExits(currentRoom, room_data[currentRoom, 1], exit_data);
+                            currentRoom = chosen_exit_id;
+
+
+                            //once the player moves, rinse and repeat
+                            if (MyGlobals.Debug){ Console.ForegroundColor = ConsoleColor.Cyan; 
+                                Console.WriteLine("[Current Room is: {0}, RoomID:{1}]", currentRoom, room_data[currentRoom, 1]); Console.ForegroundColor = ConsoleColor.White; }
+                            break;
+                        //display long desc
+                        case 2:     
+                            Console.WriteLine(room_data[currentRoom, 3]);   
+                            break;
+                        case 3:
+                            Console.WriteLine("Here are your commands:");
+                            Console.WriteLine("HELP - Replay this command.");
+                            Console.WriteLine("MOVE/M/GO - Choose an exit from your current location with a cardinal direction.");
+                            Console.WriteLine("LOOK/EXAMINE/EXPLORE/E - Get a better description of the area, sometimes enhanced by items.");
+                            Console.WriteLine("TAKE/PICKUP [ITEM] - Take an [ITEM] from the room and stow it.");
+                            Console.WriteLine("DROP/LEAVE [ITEM] - Drop an [ITEM] in the room from your inventory.");
+                            Console.WriteLine("EXIT/QUIT - Quit the game.");
+                            break;
+                    }
+                        
+
+               
 
 
 
 
                 }
-
-                Console.WriteLine("Here are your options:");
-
-                chosen_exit_id = Rooms.ListExits(currentRoom, exit_data);
-                currentRoom = chosen_exit_id;
-
-
-
-
-
-
-
-
+                
             }
 
 
@@ -112,18 +134,18 @@ namespace ECE264AdventureGame2023
         static int GetPlayerAction(string prompt)
         {
             int player_action = 0;
-            string[] valid = { "MOVE", "M", "LOOK", "L", "LOOK AROUND", "EXPLORE" };
-            string[] move = {"MOVE", "M"};
-            string[] look_around = { "LOOK", "L", "LOOK AROUND", "EXPLORE" };
+            string[] valid = { "MOVE", "M", "GO", "LOOK", "L", "E", "LOOK AROUND", "EXPLORE","HELP" };
+            string[] move = {"MOVE", "M","GO"};
+            string[] look_around = { "LOOK", "L", "LOOK AROUND", "EXPLORE", "E","EXAMINE" };
             string[] help = { "HELP" };
 
-            string ans = GetString(prompt, valid, "?Invalid response, please reenter");
+            string userInput = GetString(prompt, valid, "?Invalid response, please reenter");
 
-            if (move.Contains(ans))
+            if (move.Contains(userInput))
                 player_action = 1;
-            else if (look_around.Contains(ans))
+            else if (look_around.Contains(userInput))
                 player_action = 2;
-            else if (help.Contains(ans))
+            else if (help.Contains(userInput))
                 player_action = 3;
 
             return player_action;
@@ -146,8 +168,11 @@ namespace ECE264AdventureGame2023
             bool OK = false;
             do
             {
+                
                 Console.Write(prompt);
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
                 response = Console.ReadLine().ToUpper();
+                Console.ForegroundColor = ConsoleColor.White;
                 foreach (string s in valid) if (response == s.ToUpper()) OK = true;
                 if (!OK) Console.WriteLine(error);
 
