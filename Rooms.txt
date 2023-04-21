@@ -148,8 +148,6 @@ Begin Data After Triple &:
 
 &6			&Side Alley						&You've entered an empty alley.						&I have a feeling something's here, but I don't know how I'd be able to find it.
 
-&1001		&Secret Casino					&Wow, a casino!										&Hey, this place has blackjack! Maybe I can have some fun?
-
 &7			&Academy Road (North)			&You continue down the long road					&Those two guys to my left are staring at me. Not comforting at all. There's also a shop. Wonder what they've got 
 
 &8			&Shelter						&You enter a shelter								&Huh, lotta folks here. Maybe I can strike up a conversation with some of them.
@@ -160,8 +158,6 @@ Begin Data After Triple &:
 
 &11			&Dead End						&You've reached a dead end							&Damn, a dead end. Maybe I can climb to the top of this building with the right tool.
 
-&1002		&Rooftop						&You grappled to the rooftop						&
-
 &12			&Firioris Building				&You walked into the Firioris building foyer		&Ok, I'm in. Now what do I do?
 
 &13			&Firioris Vault					&You enter a vault									&The guy was guarding a vault, huh? Whelp, finders keepers.
@@ -170,23 +166,28 @@ Begin Data After Triple &:
 
 &15			&Branching Hallway				&You enter a room.									&I only see one door here, but the carpet splits three ways? Maybe there's something behind these walls?
 
-&1003		&Secret Casino					&Wow, a casino!										&Hey, this place has blackjack! Maybe I can have some fun, I'm sure Zrkka won't mind.
-
-&1004		&Private Entrance				&You enter another hallway							&'Reactor' and 'Cybernetic storage'. These guys sure are creative, aren't they?
-
-&1005		&Cybernetics Room				&You enter a dimly lit room.						&Man, this place is filled with cybernetics. Hey, a paper.
-
 &16			&Pre-Reactor Hall				&You continue down the hall							&I think DMN-14 said I should meet him in the reactor...right?
 
 &17			&Reactor Core					&You enter the reactor								&
 
 &18			&Grand Hall						&You walk into a large room.						&Only one room on my right...and it's at the end of a literal chasm. Great. Now what?
 
-&1006		&Torture Chamber				&You enter what appears to be a torture chamber		&
-
-&1007		&Competency Assessment Chamber  &You find what appears to be a testing facility.	&
-
-&1008		&Hidden Lift					&You walk into an elevator							&Ok, this is it. Endgame time. I can only go forward...or back... //(If you go back, you will fail to finish your quest, but you will escape with your life)
-
 &19			&Sanctum						&You've made it to the Sanctum						&
 
+&20         &								&													&
+
+&21		    &Secret Casino					&Wow, a casino!										&Hey, this place has blackjack! Maybe I can have some fun?
+
+&22		    &Rooftop						&You grappled to the rooftop						&
+
+&23  		&Secret Casino					&Wow, a casino!										&Hey, this place has blackjack! Maybe I can have some fun, I'm sure Zrkka won't mind.
+
+&24  		&Private Entrance				&You enter another hallway							&'Reactor' and 'Cybernetic storage'. These guys sure are creative, aren't they?
+
+&25  		&Cybernetics Room				&You enter a dimly lit room.						&Man, this place is filled with cybernetics. Hey, a paper.
+
+&26  		&Torture Chamber				&You enter what appears to be a torture chamber		&
+
+&27  		&Competency Assessment Chamber  &You find what appears to be a testing facility.	&
+
+&28  		&Hidden Lift					&You walk into an elevator							&Ok, this is it. Endgame time. I can only go forward...or back... //(If you go back, you will fail to finish your quest, but you will escape with your life)
