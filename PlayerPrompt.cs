@@ -50,7 +50,10 @@ namespace ECE264AdventureGame2023
 
         //-if {I don't know where}-
             //You: Uh, I'm not really sure. Maybe I'll visit Uprall some other time.
-            //PA: Thank you, have a good day
+            //PA: Thank you, have a good day.
+            .
+            .
+            .
             //Ending 0: The Road Untravelled
         static Room room1 = new Room { Name = "Room1", Description = "You've made it to Helio City, Uprall's capital" };
 
@@ -159,6 +162,9 @@ namespace ECE264AdventureGame2023
 
                     -if cyber lens is not in your inventory-
                     You feel the pain of cyclone's daggers as you collapse to the ground. Cyclone walking away with the coin is the last thing you see.
+                    .
+                    .
+                    .
                     Bad End: Cold And Alone
 
                     -if cyber lens is in your inventory-
@@ -213,6 +219,21 @@ namespace ECE264AdventureGame2023
                     Drayton: Take care of that, I dont have many.
                     You: Will do.
                     Drayton walks away, leaving you alone with his gift.
+                    
+                    -if room is inspected so you notice the vendor-
+                    -approach the vendor-
+                       TJ: Hey there, welcome to my shop. Name's TJ. What would you like?
+                        -presented with options-
+                            {Prototype Wrist Blasters}
+                                -option to buy for 3200 credits-
+                                {Yes}
+                                    You got the prototype wrist blasters!
+                                {No}
+                            {Matter Deflection Apparatus}
+                                -option to buy for 2900 credits-
+                                {Yes}
+                                    You Got the matter deflection apparatus!
+                                {No}
          */
 
         static Room room8 = new Room { Name = "Room8", Description = "You enter a shelter" };
@@ -238,49 +259,397 @@ namespace ECE264AdventureGame2023
                 -if cyber lens is NOT in inventory-
                     You: Ah, the Firioris building. This place is huge! Uprall is such a neat place. Maybe tomorrow I'll see that academy.
                     You keep walking through the city, completely oblivious to anything that may or may not be happening in the nation of Uprall.
+                    .
+                    .
+                    .
                     Ending 1: Sightseeing
 
-                -if cyber lens IS in inventory-
-                    You: The Firioris building. Zrkka should be here soon. I guess I'll just wait here.
-                    You find a place to rest while waiting for Zrkka. You're nervous, but you are prepared for whatever happens next...
-                    Ending 2: Ready to go.
+                
          */
 
         static Room room10 = new Room { Name = "Room10", Description = "You find your way into an ally" };
 
+        /*
+            -when you go north and approach the guard-
+            Guard: Can I help you?
+            You: Uh, yeah, I'm just trying to get in there.
+            Guard: Do you really think I'd just let you walk in?
+            You: Maybe?
+            Guard: You'd have to pay a pretty penny to get in here pal.
+            Pay 750 credits for entry?
+            -present options-
+                {Yes}
+                You: Yeah, here, sure.
+                Guard: Heh, well alright. Don't let anybody see you, got it?
+                You: Yeah, of course.
+                -enter into room 13-
+                
+                {No}
+                You: I don't have the kind of money.
+                Guard: Then get lost.
+                
+                -stay in room-
+        */
+        
         static Room room11 = new Room { Name = "Room11", Description = "You've reached a dead end" };
+        
+        /*
+        
+        -If Hookshot is selected in the inventory while in this room-
+            You grapple the roof of a building, allowing you to climb to the top
+        
+        */
 
         static Room room12 = new Room { Name = "Room12", Description = "You walked into the Firioris building foyer" };
+        
+         
+        /*
+        -This happens if you attempt to go north without having the secret coin in your inventory
+        
+        You try to enter the elevator door in front you , but...
+        You: Ah, nothing's working! There's gotta be some key I need, but I dont have it!
+        You ponder for a while what to do next.
+        You: That's it, I can't do this, I'm just gonna leave it to Zrkka, and move on with my life.
+        You leave the Filioris Building, and Uprall.
+        .
+        .
+        .
+        Ending 2: Leave it to the Pros.
+        
+        
+        -This happens if you attempt to go north with the secret coin-
+        The private elevator in front of you opens.
+        
+        -travel to room 15-
+        */
 
         static Room room13 = new Room { Name = "Room13", Description = "You enter a vault" };
+        
+        /*
+        
+        -This room cannot be entered from room 12 unless you entered room 12 through this room-
+        
+        You: Easier than I thought. Ooh, some loot.
+        You recieved 1200 credits
+        You: I'd call this a net gain.
+        You pocket the money, unaware of the camera watching your every move.
+        */
 
         static Room room14 = new Room { Name = "Room14", Description = "You walk into an office" };
-
+        
+        /*
+        -This room cannot be entered from room 12 unless you entered room 12 through this room-
+        
+        You: Ok, looks like im in an office. Hey a wallet...with no Id? But there is money!
+        You recieved 700 credits
+        You pocket the money, unaware of the camera watching your every move.
+        */
+        
         static Room room15 = new Room { Name = "Room15", Description = "You enter a room" };
+       
+        /*
+        -this event is triggered by using the cyber lens in your inventory-
+        
+        You see two doors to your right and left
+        
+        -allows access to west and east directions-
+        */
 
         static Room room16 = new Room { Name = "Room16", Description = "You continue down the hall" };
+        
+        
 
         static Room room17 = new Room { Name = "Room17", Description = "You enter the reactor" };
 
+        /*
+               You: Ok, the Reactor.
+               Almost as soon as you enter, you hear faint explosions. 
+               You: Oh yeah, DMN-14 said he was going to going to blow up the reactor and that I shouldn't...go...in there...uh oh.
+               Almost on cue, the floor below you erupts in flames as you begin to plummet below.
+               
+               -The following events trigger if you do NOT have the hookshot in your inventory-
+                    -The following event is triggered if you do NOT have the Matter Deflection apparatus in you inventory
+                    Without anything to protect you, you dive into the flames, unable to escape. You should've listened better.
+                    .
+                    .
+                    .
+                    Bad End: Oops
+                    
+                    -The following event is triggered if you do havbe the Matter deflection apparatus-
+                    Using the Matter deflector apparatus, you manage to protect youself as an explosion launches you back to a safer height.
+                    You: That was a close one.
+                    DMN-14: Clearly you did not heed my warnings.
+                    You: Yeah...my bad.
+                    Zrkka: You could've been killed.
+                    DMN-14: And yet you are still alive. That means you are still capable of assisting us. 
+                    DMN-14: In the coming rooms, you will likely come face to face with Jeanne. Keep an eye out for her.
+                    Zrkka: She's dangerous. Very dangerous. Without any enhancmeents, she'll try to either kill you, or cyberize you.
+                    You: She sounds charming. I'll be careful
+                    
+              -The following event is triggered if you DO have the hookshot-
+                    You fall into the flames, until you remember you have Drayton's hookshot.
+                    You hook yourself to safety, but as you climb, an explosion launches you up. 
+                    You feel an extremely sharp pain as you writhe on the floor
+                    Zrkka: Holy...sit still, sit still!
+                    You: Agh! Zrkka, what the hell happened?
+                    Zrkka: I'll be right back, I need to grab something.
+                    DMN-14: You have been injured.
+                    You: Clearly.
+                    DMN-14: You do not understand. This is more than a burn or broken bone.
+                    You look down...
+                    And notice your left arm has been completely blown off.
+                    DMN-14: It would appear that you are in shock, and therefore are numb to the pain. This will not last long, however.
+                    Zrkka appears again with a silver prosthetic, which he begins to graft onto you.
+                    Zrkka: I'm sure you didn't expect to become a cyborg today, did you?
+                    You: This is...way too much.
+                    DMN-14: I zympathize with you, {name}, however, it is important that we carry on with our mission. 
+                    DMN-14: I am transmitting to your arm some crucial information regarding Uprall. 
+                    DMN-14: I belive it wil lassist you, should you need to take the competance assessment.
+                    Zrkka: But beyond that, you'll probably come across Jeanne's torture chamber. And with that arm, she just might find use for you.
+                    You: Is that bad?
+                    Zrkka and DMN-14 laugh for a moment
+                    Zrkka: Very.
+                    DMN-14: Pray you find a way past her.
+                    You: I see. Thanks guys...not concerning at all.
+                    
+                    -after this event, you are moved to room 16 and cannot reenter, if you try:-
+                    You cannot enter the reactor
+                   
+        */
+        
         static Room room18 = new Room { Name = "Room18", Description = "You walk into a large room" };
+        
+        /*
+                -This prompt will occur every time you enter the room, unless Jeanne's Key is in your inventory-
+                No matter where you look, you can't seem to find any way forward. Do you wish to give up?
+                
+                -present choices-
+                    {Yes}
+                        You: I've done way to much for these guys. I've put myself in so much danger, and I'm no closer to finishing this. 
+                        You: That's it, I'm done, they can do this themselves.
+                        .
+                        .
+                        .
+                        Ending 3: I'm out
+                   {No}
+                   
+                -prompt when cyber lens is used-
+                    You see a door in front of you. 
+                    A password is required
+                    
+                    -allow the player to type in a password-
+                    
+                    -if password is wrong-
+                    Incorrect
+                    
+                    -if password is correct-
+                    Correct.
+                    Please provide member authentication
+                    
+                    -player must use the official intiate badge in their inventory-
+                    
+                    To access this area, you must be a high ranking member. Please provide Identification.
+                    
+                    -player must use Jeanne's Key in their inventory-
+                    
+                    Welcome, Jeanne. High-rank Key must be provided
+                    
+                    -player must use secret coin in their inventory-
+                    
+                    Thank you, you may enter the elevator.
+                    
+                    -allows player to go north-
+                    
+                    
+        
+        */
+        
 
         static Room room19 = new Room { Name = "Room19", Description = "You've made it to the Sanctum" };
+        
+        /*
+        
+        As you walk forward, you see a large table with five figure sitting at it. Here they are, the Cyber Directors
+        .
+        .
+        .
+        Directive Head 1: We've been waiting for you, {name}
+        You: How do you know my name?
+        The second director gestures to a wall of monitors
+        Directive head 2: We've been watching your every move.
+        Your heart drops as you notice Cyclone step out of the shadows
+        Cyclone: Hello again. {name}, was it? I need to make sure the get the name on your tombstone right.
+        Directive Head 1: Now, now, cyclone. Settle down. We wouldn't want our guest here to be frightened now, would we?
+        You feel your heartbeat quicken. Zrkka should know where you are, why hasn't he shown up yet?
+        Director 3: We'll give you a choice, {name}, you either leave now, and forget all of this happened, or you can stay, and die a pointless death.
+        .
+        .
+        .
+        What will you do?
+        -present choice-
+            {Leave}
+                You: Look, you're right. I'm in way over my head, I'm going to leave.
+                As you turn around and walk away, you feel some relief at the fact that you are leaving alive.
+                A shame you couldn't hear Cyclone lifting his daggers.
+                .
+                .
+                .
+                Bad End: Silenced
+                
+            {Stay}
+                You: I've come to far to bail out now.
+                Directive Head 4: You are quite foolish.
+                Directive Head 5: Jeanne, if you would.
+                From behind you, you hear the elevator open, and feel something wrap around you, holding you in place.
+                Jeanne: I would like my key back now.
+                Directive Head 2: It is truly a shame, but you must understand, you are a nuisance that must be eradicated.
+                Directive Head 1: Goodbye, {name}.
+                .
+                .
+                .
+                Almost as if by fate, you hear gunfire and explosions coming from down below.
+                Soon after, Zrkka and DMN-14 break into the sanctum, and without any words, attack Jeanne and Cyclone.
+                Directive Head 3: We must leave! cyclone, Jeanne, eliminate them!
+                With that, the directive heads use teleportation technology to leave the area. 
+                Zrkka: Get to safety! We got this!
+                You: Are you-
+                Zrkka: Go! Now!
+                So you run.
+                .
+                .
+                .
+                You exit the filioris building and enter its courtyard, and eventually see Zrkka and DMN-14 leap out of an upper floor window and crash into the ground.
+                You run to help them.
+                You: Are you guys ok?
+                Zrkka: I'm fine, 14?
+                DMN-14: Superficial damage. No system errors detected.
+                You: That's a relief. so, what happens now?
+                Zrkka: Well, we stopped their operations in this area at least. But Uprall's a big place. They've gotta have another front somewhere. 
+                You: Well, then we gotta stop them.
+                DMN-14: 'We'?
+                You: Yeah, like you said, I'm in it now.
+                Zrkka smiled at this.
+                Zrkka: That you are. Alright then, welcome to the team....
+                .
+                .
+                .
+                True End: Conspiricy Theorist
+                
+        
+        */
 
         static Room room1001 = new Room { Name = "S-Room1", Description = "Wow, a casino!" };
+        
+        /*
+                You: Hey, this place has blackjack! Maybe I can have some fun.
+                Dealer Viall: Welcome to the Casino. My Name is Viall, and I'll be your dealer this afternoon.
+                
+                -initialize blackjack game-
+                -when player leaves-
+                
+                Dealer Viall: Thank you for playing, feel free to stop by anytime.
+                
+                -if player at ANY point has less than 0 credits-
+                
+                Dealer Viall: Ooh, that's unfortunate. It looks like you still owe, and without the funds, we'll have to make due with your limbs and organs. Brace yourself, cuz this will hurt.
+                You: Wait, wha-
+                Maybe next time you'll be careful when you gamble.
+                .
+                .
+                .
+                Bad End: The House Always Wins
+        */
 
         static Room room1002 = new Room { Name = "S-Room2", Description = "You grappled to the rooftop" };
 
+        /*
+        meeting with DMN
+        */
+        
+        
         static Room room1003 = new Room { Name = "S-Room3", Description = "Wow, a casino!" };
+        
+         /*     You: Hey, this place has blackjack! Maybe I can have some fun, I'm sure Zrkka won't mind.
+                Dealer Viall: Welcome to the Casino. My Name is Viall, and I'll be your dealer this evening.
+                
+                -initialize blackjack game-
+                -when player leaves-
+                
+                Dealer Viall: Thank you for playing, feel free to stop by anytime.
+                
+                -if player at ANY point has less than 0 credits-
+                
+                Dealer Viall: Ooh, that's unfortunate. It looks like you still owe, and without the funds, we'll have to make due with your limbs and organs. Brace yourself, cuz this will hurt.
+                You: Wait, wha-
+                Maybe next time you'll be careful when you gamble.
+                .
+                .
+                .
+                Bad End: The House Always Wins
+        */
 
         static Room room1004 = new Room { Name = "S-Room4", Description = "You enter another hallway" };
-
+        /*
+        -going north prompts you for the password-
+        -if password 'freewill' is entered, you go to S-Room5, must be entered every time you wish to go to the room-
+        -if password is not entered, player cannot enter to the room-
+        */
+        
         static Room room1005 = new Room { Name = "S-Room5", Description = "You enter a dimly lit room" };
-
+        
+        /*
+        -after inspecting the room, you get Jeanne's document-
+        */
+        
         static Room room1006 = new Room { Name = "S-Room5", Description = "You enter what appears to be a torture chamber" };
 
+        
         static Room room1007 = new Room { Name = "S-Room6", Description = "You find what appears to be a testing facility." };
 
+        
         static Room room1008 = new Room { Name = "S-Room7", Description = "You walk into an elevator" };
+        
+        /*
+        You: Ok, this is it. Endgame time. I can only go forward...or back...
+        If you go back, you will fail to finish your quest, but you will escape with your life
+        
+        -present choice-
+            {Go Back}
+            You: No, no, no, I can't do this. I'm not capable of this! I can't do this, I can't! I'm sorry Zrkka, but I can't do this!.
+            .
+            .
+            .
+            Ending 5: Overwhelmed
+            
+            {Press on}
+            You: No, I've come to far to turn back now. Let's do this!
+            The elevator doors opens...
+            -enter room 19-
+
+        */
+        
+   /////////////////////////////////     /////////////////////////////////     /////////////////////////////////     /////////////////////////////////     
+        /*
+            -occurs the first time a player has more than 1000 credits Will not prompt anymore after this one instance-
+            You: This is a lot of money I've got here, should I just cut my losses and leave?
+            
+            -present choices-
+                {Yes}
+                    You: Ah, whatever happens here happens. I'm outta here!
+                    Ending 6: I'm rich!
+                {No}
+                    You: Nah, I'm not done here in Uprall yet.
+        */
+  /////////////////////////////////     /////////////////////////////////     /////////////////////////////////     /////////////////////////////////
+   
+        
+  /////////////////////////////////     /////////////////////////////////     /////////////////////////////////     /////////////////////////////////    
+        
+  /////////////////////////////////     /////////////////////////////////     /////////////////////////////////     /////////////////////////////////         
+        
+  /////////////////////////////////     /////////////////////////////////     /////////////////////////////////     /////////////////////////////////           
+        
+  /////////////////////////////////     /////////////////////////////////     /////////////////////////////////     /////////////////////////////////   
 
         static Room currentRoom = room1;
 
