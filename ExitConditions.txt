@@ -1,0 +1,239 @@
+///the & sign will split our data so that we can use commas and keep one exit to one line
+
+ROOMS--------------------
+
+Room1: Helio City Square S
+2 exits (N,W)
+N = Helio City Square N (Room3)
+W = Back Alley (Room2)
+
+Room2: Back Alley
+1 exit (E)
+E = Helio City Square (Room1)
+
+Room3: Helio City Square N
+1 exit (N)
+N = Corner Street (Room4)
+
+Room4: Corner Street
+2 exits (E,S)
+E = Academy Road S (Room5)
+S = Helio City Square N (Room3)
+
+Room5: Academy Road S 
+3 exits (W,S,E)
+W = Academy Road N (Room7)
+S = Side Ally (Room6)
+E = Corner Street (Room4)
+
+Room6: Side Alley
+2 exits (N,W)
+N = Academy Road S (Room5)
+W = Secret Casino (SRoom1)
+
+Room7: Academy Road N
+3 exits (N,E,S)
+N = Courtyard (Room9)
+E = Shelter (Room8)
+S = Academy Road S (Room5)
+
+Room8: Shelter
+1 exit (W)
+W = Academy Road N (Room7)
+
+Room9: Courtyard
+4 exits (N,W,E,S)
+N = Firioris Building (Room12)
+W = Side Street (Room10)
+E = Dead End (Room11)
+S = Academy Road N (Room7)
+
+
+Room10: Side Street
+2 exits (N,E)
+N = Firioris Vault (Room13)
+E = Courtyard (Room9)
+
+Room11: Dead End
+2 exits: (W,E)
+W = Courtyard (Room9)
+E = Rooftop (SRoom2)
+
+Room12: Firioris Building 
+4 exits (N,W,E,S)
+N = Branching Hallway (Room15)
+W = Firioris Vault (Room13)
+E = Firioris Building Office (Room14)
+S = Courtyard (Room9)
+
+Room13: Firioris Vault
+2 exits (E,S)
+E = Firioris Building (Room12)
+S = Side Street (Room10)
+
+Room14: Firioris Building Office (Room14)
+1 exits (W)
+W = Firioris Building (Room12)
+
+Room15: Branching Hallway 
+3 exits (N,W,E)
+N = Grand Hall (Room18)
+W = Secret Casino (SRoom3)
+E = Private Entrance (SRoom4)
+&roomID&15        &4	    &12 &Branching Hallway	    &South	&0		&0	&0	&0	&0????????
+
+
+Room16: Pre-Reactor Hall
+2 exits (W,E)
+W  = Private Entrance (SRoom4)
+E = Reactor Core (Room17)
+
+Room17: Reactor Core
+1 exit (W)
+W = Pre-Reactor Hall (Room16)
+
+Room18: Grand Hall
+4 exits (N,W,E,S)
+N = Hidden Lift (SRoom8)
+W = Torture ChambeR (SRoom6)
+
+Room19: Sanctum
+0 exits (END)
+
+SECRET ROOMS---------------
+
+SRoom1: Secret Casino
+1 exit (E)
+E = Side Alley (Room6)
+
+SRoom2: Rooftop
+2 exits (N,E)
+N = Firioris Building Office (Room14)
+W = Dead End (Room11)
+
+SRoom3: Secret Casino
+1 exit (E)
+E = Branching Hallway(Room15)
+
+SRoom4: Private Entrance 
+3 exits (N,W,E)
+N = Cybernaetics Room (SRoom5)
+W = Branching Hallway (Room15)
+E = Pre-Reactor Hall (Room16)
+
+SRoom5: Cybernetics Room
+1 exit (S)
+S = private Entrance (SRoom4)
+
+SRoom6: Torture Chamber
+1 exit (E)
+E = Grand Hall (Room18)
+
+SRoom7: Competency Assesment Chamber
+1 exit (W)
+W = Grand Hall (Room18)
+
+SRoom8: Hidden Lift
+1 exit (N)
+N = Sanctum (Room19)
+
+
+
+
+
+
+Array Format Below:
+///    room id#,	exit #,	  Name,	   Cardinal Direction,   Exit Consition id #1 (always present, enter 0 if no condition), Exit Condition id n... as many as are needed
+																						
+///EX:		&&9		&1			&Fioris Building	&North  &45 &3
+///EX:		&&9		&2			&Side Street		&West  &0
+///EX:		&&9		&3			&Dead End			&East  &0
+///EX:		&&9		&4			&Academy Road		&South  &0 
+
+
+
+
+
+RoomID# 			Exit#   ExitID	ExitName					ExitDirection	ExitTriggers 1-5
+
+Begin Data After Triple &:
+&&&roomID&1			&1		&3		&Helio City Square N		&North			&0	&0	&0	&0	&0
+&roomID&1			&2		&2		&Back Alley					&West			&0	&0	&0	&0	&0
+
+&roomID&2			&1		&1		&Helio City Square S		&East			&0	&0	&0	&0	&0
+
+&roomID&3			&1		&4		&Corner Street				&North			&0	&0	&0	&0	&0
+
+&roomID&4			&1	    &5		&Academy Road S				&West			&0	&0	&0	&0	&0
+&roomID&4			&2      &3		&Helio City Square N		&South			&0	&0	&0	&0	&0
+
+&roomID&5			&1	    &7		&Academy Road N				&West			&0	&0	&0	&0	&0
+&roomID&5			&2	    &6		&Side Alley					&South			&0	&0	&0	&0	&0
+&roomID&5			&3	    &4		&Corner Street				&East			&0	&0	&0	&0	&0
+
+&roomID&6			&1	    &21     &Secret Casino				&West			&0	&0	&0	&0	&0
+&roomID&6			&2	    &5      &Academy Road S				&North			&0	&0	&0	&0	&0
+
+
+&roomID&7			&1	    &9		&Courtyard					&North			&0 	&0	&0	&0	&0
+&roomID&7			&2	    &8		&Shelter					&East			&0 	&0	&0	&0	&0
+&roomID&7			&3	    &5		&Academy Road S				&South			&0 	&0	&0	&0	&0
+
+&roomID&8			&1	    &7		&Academy Road N				&West			&0	&0	&0	&0	&0
+
+&roomID&9			&1	    &12		&Firiroris Building			&North			&0	&0	&0	&0	&0
+&roomID&9			&2	    &10		&Side Street				&West			&0	&0	&0	&0	&0
+&roomID&9			&3	    &11		&Dead End					&East			&0	&0	&0	&0	&0
+&roomID&9			&4	    &7		&Academy Road N				&South			&0	&0	&0	&0	&0
+
+&roomID&10			&1	    &13		&Firioris Vault				&North			&0	&0	&0	&0	&0
+&roomID&10			&2	    &9		&Courtyard					&East			&0	&0	&0	&0	&0
+
+&roomID&11			&1      &9		&Courtyard					&West			&0	&0	&0	&0	&0
+&roomID&11			&2      &22  	&Rooftop					&East			&0	&0	&0	&0	&0
+
+
+&roomID&12			&1	    &15		&Branching Hallway			&North			&0	&0	&0	&0	&0
+&roomID&12			&2	    &13		&Firioris Vault				&West			&0	&0	&0	&0	&0
+&roomID&12			&3	    &14		&Firioris Building Office	&East			&0	&0	&0	&0	&0
+&roomID&12			&4	    &9		&Courtyard					&South			&0	&0	&0	&0	&0
+
+&roomID&13			&1	    &12		&Firioris Building			&East			&0	&0	&0	&0	&0
+&roomID&13			&2	    &10		&Side Street				&South			&0	&0	&0	&0	&0
+
+&roomID&14			&1	    &12		&Firioris Building			&West			&0	&0	&0	&0	&0
+
+&roomID&15			&1	    &18		&Grand Hall					&North			&0	&0	&0	&0	&0
+&roomID&15			&2	    &23	    &Secret Casino				&West			&0	&0	&0	&0	&0
+&roomID&15			&3	    &24	    &Private Entrance			&East			&0	&0	&0	&0	&0
+
+&roomID&16			&1	    &24 	&Private Entrance			&West			&0	&0	&0	&0	&0
+&roomID&16			&2	    &17		&Reactor Core				&East			&0	&0	&0	&0	&0
+
+&roomID&17			&1	    &16		&Pre-Reactor Hall		    &West			&0	&0	&0	&0	&0
+
+&roomID&18			&1		&28	    &Hidden Lift				&North			&0	&0	&0	&0	&0
+&roomID&18			&2	    &26  	&Torture Chamber			&West			&0	&0	&0	&0	&0
+&roomID&18			&3	    &27  	&Grand Hall?				&East			&0	&0	&0	&0	&0
+&roomID&18			&4	    &15		&Grand Hall?				&South			&0	&0	&0	&0	&0
+
+&roomID&19			&0	    &19		&Sanctum					&None			&0	&0	&0	&0	&0
+
+&roomID&21		    &1      &6		&Side Ally					&East			&0	&0	&0	&0	&0
+
+&roomID&22		    &1      &14		&Firioris Building Office	&North			&0	&0	&0	&0	&0
+&roomID&22		    &2      &11		&Dead End					&West			&0	&0	&0	&0	&0
+
+&roomID&23		    &1		&15		&Branching Hallway			&East			&0	&0	&0	&0	&0
+
+&roomID&24		   &1		&25	    &Cybernaetics Room			&North			&0	&0	&0	&0	&0
+&roomID&24		   &2		&15		&Branching Hallway			&West			&0	&0	&0	&0	&0
+&roomID&24		   &3		&16		&Pre-Reactor Hall			&East			&0	&0	&0	&0	&0
+
+&roomID&25		   &1		&24	    &Private Entrance			&South			&0	&0	&0	&0	&0
+
+&roomID&26		   &1		&18		&Grand Hall					&East			&0	&0	&0	&0	&0
+
+&roomID&27		   &1		&18		&Grand Hall					&West			&0	&0	&0	&0	&0
+
+&roomID&28		   &1		&19		&Sanctum					&North			&0	&0	&0	&0	&0

@@ -1,0 +1,42 @@
+Reader ignores text between & signs and before the triple & signs
+triggers usually start as false and prevent you from entering secret doors or making secret dialogue
+They serve as the player either having done something to gain access or knowing something secret to gain access to new places or dialogue
+They will be loaded into a bool array, and switched when their codition is met in game
+
+1-100 = exit triggers
+
+
+Begin Data After Triple &:
+
+&&&		Trigger 0 Below: Always True.&
+True
+
+&		label trigger 1 like this ^^^, and do others in a similar manner:   Trigger 1: done by accepting coin&
+False
+
+&		Trigger 2: Done by accepting x dialogue from x character&
+False
+
+&		Trigger 3: Done by having x item from x room&
+False
+
+&Trigger 4: &
+False
+
+&Trigger 5: &
+False
+
+&Trigger 6: &
+False
+
+&Trigger 7: &
+False
+
+&Trigger 8: &
+False
+
+&Trigger 9: &
+False
+
+&Trigger 10: &
+False
