@@ -8,7 +8,7 @@
 &4		&Hook Shot	&7
 &5		&Password	&1002
 &6		&Cyber Arm	&19
-&7		&Uprall Info Sheet	&19
+&7		&Uprall Informational Data	&19
 &8		&Jeanne's Document	&1005
 &9		&Official Initiate Badge	&1007
 &10		&Jeanne's Key	&1006
