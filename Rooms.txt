@@ -14,7 +14,7 @@
 
 &6	  &Side Ally					  &You've entered an empty ally.  &I have a feeling something's here, but I don't know how I'd be able to find it.
 
-&1001 &Secret Casino				  &Wow, a casino!			&Hey, this place has blackjack! Maybe I can have some fun?
+&1001 &Secret Casino				  &Wow, a casino!			
 
 &7	  &Academy Road N				  &You continue down the long road	&Those two guys to my left are staring at me. Not comforting at all. There's also a shop. Wonder what they've got 
 
@@ -36,7 +36,7 @@
 
 &15	  &Branching Hallway			  &You enter a room.		&I only see one door here, but the carpet splits three ways? Maybe there's something behind these walls?
 
-&1003 &Secret Casino				  &Wow, a casino!			&Hey, this place has blackjack! Maybe I can have some fun, I'm sure Zrkka won't mind.
+&1003 &Secret Casino				  &Wow, a casino!			
 
 &1004 &Private Entrance				  &You enter another hallway  &'Reactor' and 'Cybernetic storage'. These guys sure are creative, aren't they?
 
@@ -52,7 +52,6 @@
 
 &1007 &Competency Assessment Chamber  &You find what appears to be a testing facility.
 
-&1008 &Hidden Lift					  &You walk into an elevator	&Ok, this is it. Endgame time. I can only go forward...or back... //(If you go back, you will fail to finish your quest, but you will escape with your life)
-
+&1008 &Hidden Lift					  &You walk into an elevator	
 &19	  &Sanctum						  &You've made it to the Sanctum
 
