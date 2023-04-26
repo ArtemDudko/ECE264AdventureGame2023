@@ -71,7 +71,9 @@ namespace ECE264AdventureGame2023
                 //You: I'm just passing through. My name's {name}
                 //???: Just passing through huh? Getting seen with me is dangerous here in Uprall.
                 //You: And who exactly are you?
-
+            .
+            .
+            .
         //???: ...You can call me Zrkka.
           Zrrka stares at you for a short time, and eventually asks;
         //Zrkka: 'The Steel Reaper'. Does that name mean anything to you?
@@ -101,6 +103,9 @@ namespace ECE264AdventureGame2023
                 You: Wait...you said I'm roped up in all this now?
                 Zrkka: They've got eyes everywhere, and since you're here with me, they're after you now. So your best bet is to help me out.
                 You: Yeah...I guess so.
+                .
+                .
+                .
                 Zrkka: Here, take this. It'll help you see things in Uprall that they don't want you to see. It'll come in handy, I'm sure.
                 You recieved the Cyber Lens!
                 Zrkka: A friend of mine is patrolling the city as well. It's likely you'll run into him. He'll need your trust, or else he'll kill you. 
@@ -108,7 +113,7 @@ namespace ECE264AdventureGame2023
                 Zrkka: He'll ask you a question, you give him the answer. The answer is '112'.
                 You: 112. Got It. How will I know this friend of yours.
                 Zrkka: Oh, you'll know. His bite is a lot worse than his bark.
-                With a chuckle, Zrkka left the ally by jumping over a large gate.
+                With a chuckle, Zrkka leaves the ally by jumping over a large gate.
                 */
 
         static Room room3 = new Room { Name = "Room3", Description = "You continue through the square" };
@@ -310,7 +315,7 @@ namespace ECE264AdventureGame2023
         You: Ah, nothing's working! There's gotta be some key I need, but I dont have it!
         You ponder for a while what to do next.
         You: That's it, I can't do this, I'm just gonna leave it to Zrkka, and move on with my life.
-        You leave the Filioris Building, and Uprall.
+        You leave the Firioris Building, and Uprall.
         .
         .
         .
@@ -402,15 +407,18 @@ namespace ECE264AdventureGame2023
                     Zrkka appears again with a silver prosthetic, which he begins to graft onto you.
                     Zrkka: I'm sure you didn't expect to become a cyborg today, did you?
                     You: This is...way too much.
-                    DMN-14: I zympathize with you, {name}, however, it is important that we carry on with our mission. 
+                    DMN-14: I sympathize with you, {name}, however, it is important that we carry on with our mission. 
                     DMN-14: I am transmitting to your arm some crucial information regarding Uprall. 
-                    DMN-14: I belive it wil lassist you, should you need to take the competance assessment.
+                    DMN-14: I belive it will assist you, should you need to take the competance assessment.
                     Zrkka: But beyond that, you'll probably come across Jeanne's torture chamber. And with that arm, she just might find use for you.
                     You: Is that bad?
                     Zrkka and DMN-14 laugh for a moment
                     Zrkka: Very.
                     DMN-14: Pray you find a way past her.
                     You: I see. Thanks guys...not concerning at all.
+                    
+                    You Got the Cyber Arm!
+                    You Got the Uprall Informational Data!
                     
                     -after this event, you are moved to room 16 and cannot reenter, if you try:-
                     You cannot enter the reactor
@@ -433,8 +441,33 @@ namespace ECE264AdventureGame2023
                         Ending 3: I'm out
                    {No}
                    
+                   -Prompt When Hookshit is used-
+                   You use the grappling hook to grab onto a railing at the end of the gap. You should be able to get over there now
+                   -allow access to S-Room7-
+                   
                 -prompt when cyber lens is used-
-                    You see a door in front of you. 
+                    You see a door in front of you, and to your left. 
+                    
+                    -allows access to S-room6 and 8
+                    
+                    
+                    
+                    -if player tries to go west-
+                     A password is required
+                    
+                    -allow the player to type in a password-
+                    
+                    -if password is wrong-
+                    Incorrect
+                    
+                    -if password is correct-
+                    Correct.
+                    
+                    -plsyer enters S-Room6-
+                    
+                    
+                    
+                    -if player then tries to go north-
                     A password is required
                     
                     -allow the player to type in a password-
@@ -518,7 +551,7 @@ namespace ECE264AdventureGame2023
                 .
                 .
                 .
-                You exit the filioris building and enter its courtyard, and eventually see Zrkka and DMN-14 leap out of an upper floor window and crash into the ground.
+                You exit the firioris building and enter its courtyard, and eventually see Zrkka and DMN-14 leap out of an upper floor window and crash into the ground.
                 You run to help them.
                 You: Are you guys ok?
                 Zrkka: I'm fine, 14?
@@ -563,7 +596,56 @@ namespace ECE264AdventureGame2023
         static Room room1002 = new Room { Name = "S-Room2", Description = "You grappled to the rooftop" };
 
         /*
-        meeting with DMN
+        You walk forward and see a robot dog. It takes notice and turns toward you.
+        .
+        .
+        .
+        ???: Halt.
+        You stop walking as soon as you notice a large machine gun mounted on its back.
+        ???: I am giving you one chance only; State your business, or leave.
+        -Present choices-
+            {Leave}
+            You: Ok, I'm going.
+            -you go back to room 11 and can no longer access this room-
+            
+        {Stay}
+        You: Uh, my name is {name}. I was sent here by Zrkka.
+        The dog aims the gun at you.
+        ???: If this is true, then he would have given you the answer to this question:
+        .
+        .
+        .
+        ???: On our first mission to The Red Stone, it was far hotter than either of us had experienced before. What was the temperature reading in degrees?
+        
+        -player types in their response, only numbers will be allowed-
+            -if player does NOT type in 112-
+                ???: Incorrect. I cannot allow any chances. I am sorry. You must die.
+                Before you can even get a word out, he lets out a barrage of shots. You collapse immediately.
+                .
+                .
+                .
+                Bad End: No chances
+            -if player DOES type in 112-
+                ???: Correct. You appear trustworthy. I am DMN-14. It is a pleasure to meet you.
+                Your heart is still beating from having a gun pointed at you.
+                You:...pleasure's all mine.
+                Zrkka: I see you've two met.
+                DMN-14: Zrkka. Welcome back. I trust your scouting mission was successful?
+                Zrkka: Yup, got some nice intel. However, since they'll be looking for me, I'll need you to infiltrate my friend.
+                You: Me?
+                DMN-14: Hmm. It would be the safest and wisest course of action. In the event you are caught, you can always play coy and act like you dont know anything.
+                You: So it'd be the truth.
+                DMN-14: While humor has its purposes, this is not one of them.
+                .
+                .
+                .
+                DMN-14: Some rooms will be password protected. to open them, you must use the phrase 'freewill'. It is an ironic name considering the directive's goals.
+                You: Yeah...so, that building there?
+                DMN-14: Correct. You will go in through this offcie building. Zrkka and I will assault the reactor, leading any unsavory personel away from you.
+                DMN-14: I would not recommend going enar the reactor.
+                You: Yep yep, got it. Ok, let's go, i guess.
+                You Got the Password!
+                -player enters room 14 automatically-
         */
         
         
@@ -599,13 +681,189 @@ namespace ECE264AdventureGame2023
         
         /*
         -after inspecting the room, you get Jeanne's document-
+        You got Jeanne's Document
         */
         
         static Room room1006 = new Room { Name = "S-Room5", Description = "You enter what appears to be a torture chamber" };
 
+        /*
+        You walk a few steps before you are face to face with a menacing looking woman. She doesn't look like a cyborg, but you can tell that she is.
+        
+        -this event triggers if you enter the room WITHOUT the cyber arm-
+        ???: You are not a cyborg. 
+        You: No, I am not. You must be Jeanne.
+        Jeanne: It appears I have a fan.
+        You: Not really, if not for Zrkka, I wouldn't even know who you are.
+        Jeanne: You are with Zrkka? Hahahaha, ahh, c'est magnifique! It will be fun breaking you.
+        
+        -the following event is triggered if the prototype wrist blasters are NOT in your inventory-
+        Jeanne attacks you, and there is no way for you to fight back.
+        She tortured you for what seemed like days. When she was finally convinced you didn't know anything, she left you for dead, your will finally broken.
+        .
+        .
+        .
+        Bad End: Broken will
+        
+        -The following event is triggered if the wrist blasters ARE in your inventory-
+        Jeanne attacked you, but thanks to your wrist blasters, you were able to fight her off. 
+        You take Jeanne's key off her unconscious body, and book it out of there before she had a chance to wake up.
+        You got Jeanne's Key!
+        
+        -this event triggers if you enter the room WITH the cyber arm-
+        ???: A cyborg? Are you a lost new recruit? Who are you?
+        -present choices-
+            {I'm here to stop you}
+                You: I'm here to put a stop to whatever you're doing, Jeanne!
+                Jeanne: You know my name? You must be with Zrkka! I will break you.
+                Jeanne grabbed her spear and ran straight at you
+                
+                -this event triggered if you do NOT have the prototype wrist blasters-
+                You knew almost immediately that was a mistake. The spear drove it home.
+                .
+                .
+                .
+                Bad End: Big Mistake
+                
+                -this event is triggered if you DO have the wrist blasters-
+                You try to fight Jeanne off with the wrist blasters you bought earlier, and you put up quite a fight. Jeanne had to call for reinforcements to assist her.
+                At that moment, you come up with an idea; you can distract all of the guards, so Zrkka and DMN-14 can accomplish their mission.
+                You run out of the room, and blast your way past everyone that comes your way.
+                .
+                .
+                .
+                Ending 4: Gung-ho
+            {I'm here to serve the directive}
+                You: I am here to serve the directive, lady Jeanne.
+                Jeanne: I see. Then I suppose you have been briefed on everything you need to know. Let's test that then, hm?
+                .
+                .
+                .
+                Jeanne: I am among the top enforcers in the directive, but there is one who is considered my superior. What is his name?
+                    -present choices-
+                        {Voris- The Superior Cyborg} //<-- correct
+                        {Cyclone- The Cyber Storm}
+                        {Aurelius- the Dying Shadow}
+                        
+                Jeanne: We recently had an escapee, tenacious little thing. What was her name?
+                    -present choices-
+                        {Marina}
+                        {Frolic}
+                        {Celia} //<-- correct
+                        
+                Jeanne: The traitor and his pet lap dog. Surely you've heard of them. What are their names?
+                    -present choices-
+                        {Mirio and Marina- The Reason Within Madness and The Star of Cindren}
+                        {Zrkka and DMN-14- The Steel Reaper and The Gun Wolf} //<-- correct
+                        {A'sher and Morris- The Savior King and The Heir of Shinaran}
+                        
+               -This event triggers if at any point the players gets a SINGLE question wrong-
+               You feel something grab at you, holding you in place.
+               Jeanne: Wrong! I knew you were with Zrkka. 
+               You struggle to get free, which only makes Jeanne laugh.
+               Jeanne: You said you were here to serve the directive? Then that's exactly what you'll do.
+               All you can do is scream as she takes you away. 
+               .
+               .
+               .
+               Soon all that remains of you is the cybernetic husk used to control your consciousness. 
+               Your first mission as the newest directive initiate; eliminate Zrrka, The Steel Reaper.
+               You will fail and die, of course, but at least they can make an example out of you.
+               .
+               .
+               .
+               Bad End: Eternal Service
+               
+               -this event triggers if the player gets all question right-
+               Jeanne: Well done. I suppose I can trust you. I have some important information to give to the directors. 
+               Jeanne: However, I am a bit busy, so I will give you this key for you to access the elevator. 
+               You Got Jeanne's Key!
+               Jeanne: Now run along.
+               
+               -player exits to room 18 and can NOT reenter-
+
+        
+        
+        */
         
         static Room room1007 = new Room { Name = "S-Room6", Description = "You find what appears to be a testing facility." };
 
+        /*
+        -This event only plays on the first visit-
+        
+        You enter a chamber and see a young cyborg about to enter a room. He waves at you.
+        Nik: Hey there buddy. Name's Nik, how are you?
+        You: {name}. Im doing well, thanks.
+        Nik: You here for the test too?
+        You: Uh, yeah. For sure.
+        Nik: I'm sure you'll do great. Anyway, I'm up, nice to meet a new recruit!
+        You: Yeah, you as well.
+        .
+        .
+        .
+        You enter the test room
+        PA: Welcome. To ensure that we let quality members into our directive, it is important we test your knowledge, so as to not allow lesser beings into the directive.
+        You: 'Lesser beings'? Sheesh..
+        .
+        .
+        .
+        PA: Question 1: What is the Capital of Uprall?
+            -present choices-
+            {Morico City}
+            {Helio City} //<--- correct answer
+            {Kiro City}
+            .
+            .
+            .
+        PA: Question 2: Which nations border Uprall?
+            -present choices-
+            {Shinaran}
+            {Cindren and Beleran}
+            {Beleran and Sakanata} //<-- correct
+            .
+            .
+            .
+        PA: Question 3: What is the percentage of cybernetic citizens in Uprall?
+            -present choices-
+            {47%}
+            {52%} //<-- correct
+            {88%}
+            .
+            .
+            .
+        PA: Question 4: What is the name of this building that you are taking this test in?
+            {Firioris} //<-- correct
+            {Murcurius}
+            {Helio}
+            .
+            .
+            .
+        PA: Final Question: Who is the official body of leadership in Uprall?
+            -present choices-
+            {A President}
+            {A Dictator}
+            {A Council} //<-- correct
+            .
+            .
+            .
+        PA: Caluclating score, please wait...
+        .
+        .
+        .
+        PA: Your score is {score}       //score is determined by however many answers correct, 20% for each correct answer
+        
+        -triggered if player score is < 60-
+        PA: We are sorry, but we cannot allow lesser beings such as yourself inside our directive. Or inside society. We will purge you now. Goodbye.
+        You: Whoa whoa, wai-
+        .
+        .
+        .
+        Bad End: Incomptetance.
+        
+        -triggered if player score is >= 60-
+        PA: Well done, you have passed. Here is your Official Initiate Badge. Now please vacate the room for the next initiate.
+        You got the Official Initiate Badge!
+       
+        */
         
         static Room room1008 = new Room { Name = "S-Room7", Description = "You walk into an elevator" };
         
@@ -641,13 +899,33 @@ namespace ECE264AdventureGame2023
                     You: Nah, I'm not done here in Uprall yet.
         */
   /////////////////////////////////     /////////////////////////////////     /////////////////////////////////     /////////////////////////////////
-   
+   /*
+   -Selecting 'Password" in inventory shows this text-
+   The password for the Firioris building DMN-14 gave you; 'freewill'
+   */
         
   /////////////////////////////////     /////////////////////////////////     /////////////////////////////////     /////////////////////////////////    
+   /*
+   -Selecting "Uprall Informational Data" in inventory-
+   Uprall is a nation laying on the borders of Beleran and Sakanata. The Uprallan Council govern the nation from the cpital of Helio city. 
+   Uprall is the most technilogically advanced place in the world, sporting a 52% cyborg rate for its citizens. Whiel you're here, enjoy the bright 
+   lights, the funky tunes, and most importantly, enjoy the future.
+   */
+        
         
   /////////////////////////////////     /////////////////////////////////     /////////////////////////////////     /////////////////////////////////         
-        
+  /*
+  -selecting Jeanne's document-
+  This is not good. Voris will be expecting a report soon. That little brat, Celia, somehow the only one to manage to escape this place. Escape me. 
+  I don't know how she did it. But I wouldn't be surprised if she went running to that traitor Zrkka, and his pet. That DMN unit, number 14 I think?
+  */
+      
   /////////////////////////////////     /////////////////////////////////     /////////////////////////////////     /////////////////////////////////           
+  /*
+  -if you at any point use the cyber lens while the coin is in your inventory-
+  You find some strange markings on the coin, you decide it might be worth something.
+  The Coin turned into The Secret Coin!
+  */
         
   /////////////////////////////////     /////////////////////////////////     /////////////////////////////////     /////////////////////////////////   
 
