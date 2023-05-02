@@ -101,7 +101,6 @@ namespace ECE264AdventureGame2023
                         
                         
                     }
-
                     if (playerInput == "I DON'T KNOW WHERE")
                     {
                         YouSay("Uh, I'm not really sure. Maybe I'll visit Uprall some other time.");
@@ -348,13 +347,13 @@ namespace ECE264AdventureGame2023
                     {
                         YouSay("Sorry, but I'd rather not.");
                         CycloneSays("I would change my mind if I were you.");
-                        Narr("As he speaks, he walks toward you, revealing what appear to be daggers. In fear, you run into a side ally, hoping for a way to escape."
-                            \n\n);
+                        Narr("As he speaks, he walks toward you, revealing what appear to be daggers. In fear, you run into a side ally, hoping for a way to escape."+
+                            
                         "You run into a dead end, unable to escape as Cyclone slowly approaches you." +
                         "Cyclone: I gave you a chance. Oh well.");
                         Console.WriteLine("Out of nowhere, Zrkka drops into the ally and grabs cyclone, giving you an opportunity to escape.");
                         ZrkkaSays("Go!");
-                       "\nWithout thinking, you run past the two cyborgs and into the open street."
+                        Narr("\nWithout thinking, you run past the two cyborgs and into the open street.");
 
                     }
                     else
@@ -372,13 +371,61 @@ namespace ECE264AdventureGame2023
 
                     return trigger_switch; 
                 case 6:
-                    PlayBlackJack(ref money);
+                    if(triggers[106])
+                    {
+                        Narr("You remember that there is a secret entrance to a casino here.");
+                    }
+                    
                     return trigger_switch; 
                 case 7:
                     return trigger_switch; 
                 case 8:
                     return trigger_switch;
                 case 9:
+                    return trigger_switch;
+
+                /*
+            You: Hey, this place has blackjack! Maybe I can have some fun.
+            Dealer Viall: Welcome to the Casino. My Name is Viall, and I'll be your dealer this afternoon.
+
+            -initialize blackjack game-
+            -when player leaves-
+
+            Dealer Viall: Thank you for playing, feel free to stop by anytime.
+
+            -if player at ANY point has less than 0 credits-
+
+            Dealer Viall: Ooh, that's unfortunate. It looks like you still owe, and without the funds, we'll have to make due with your limbs and organs. Brace yourself, cuz this will hurt.
+            You: Wait, wha-
+            Maybe next time you'll be careful when you gamble.
+            .
+            .
+            .
+            Bad End: The House Always Wins
+    */
+
+                case 21:
+                    YouSay("Hey, this place has blackjack! Maybe I can have some fun.");
+                    ViallSays("Welcome to the Casino. My Name is Viall, and I'll be your dealer this afternoon.");
+
+                    PlayBlackJack(ref money);
+                    if(money >= 0)
+                    {
+                        ViallSays("Thank you for playing, feel free to stop by anytime.");
+                    }
+                    else
+                    {
+                        ViallSays("Ooh, that's unfortunate. It looks like you still owe, and without the funds, we'll have to make due with your limbs and organs. Brace yourself, cuz this will hurt.");
+                        YouSay("Wait, wha-");
+                        Narr("Maybe next time you'll be careful when you gamble." +
+                            "\n\n.\n\n.\n\n.");
+                        trigger_switch.Add(150);
+                        trigger_switch.Add(150 + 10);       //bad end 10: house always wins
+                        
+                    }
+
+
+                    
                     return trigger_switch;
                 
 
@@ -518,17 +565,17 @@ namespace ECE264AdventureGame2023
                         Console.ForegroundColor = ConsoleColor.DarkMagenta;
                         Console.WriteLine("???: A cyborg? Are you a lost new recruit? Who are you?");
                         string[] valid26a = { "I'm here to stop you", "No" };
-                        playerInput = Program.GetString("\n[I'm here to stop you] \n[No]\n", valid2b, error_prompt);
+                        playerInput = Program.GetString("\n[I'm here to stop you] \n[No]\n", valid26a, error_prompt);
                         if (playerInput == "I'M HERE TO STOP YOU\n")
                         {
                             
                             YouSay("I'm here to put a stop to whatever you're doing, Jeanne!");
                             JeanneSays("You know my name? You must be with Zrkka! I will break you.");
                             Narr("Jeanne grabbed her spear and ran straight at you");
-                            if ()
+                            if (true)
                             {
                                 YouSay("");
-                                JeanneSays("")
+                                JeanneSays("");
                             }
                         }
                     }
@@ -639,7 +686,14 @@ namespace ECE264AdventureGame2023
 
 
 
-                case 4:
+                case 6:
+                    if (item_data[1,2] == "0")
+                    {
+                        Narr("A door appears in front of you at the end of the ally");
+                        trigger_switch.Add(106);
+                    }
+                        
+
 
                     return trigger_switch;
 
@@ -1865,7 +1919,7 @@ namespace ECE264AdventureGame2023
                         Console.WriteLine("Don't forget, Billy the Bone Breaker is on collection duty...");
                     break;
                 }
-                //Console.Write("You bet: " + bet.ToString());
+                
 
                 if (deckQueue.Count < 4)    //empty deck check
                 {
