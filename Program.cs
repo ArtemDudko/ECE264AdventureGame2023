@@ -34,7 +34,9 @@ namespace ECE264AdventureGame2023
     {
         static void Main(string[] args)
         {
-            string root_folder = "C:\\ECE264AdventureGame2023"; //CHANGE ME TO ROOT FOLDER
+
+            string root_folder = "C:\\AdventureGame264 GitHub"; //CHANGE ME TO ROOT FOLDER
+
 
 
             
@@ -62,7 +64,7 @@ namespace ECE264AdventureGame2023
             int currentRoom = 1;
             int chosen_exit_id;
             int playerAction = 0; //0 = start, 1 = move, 2 = look around
-            int money = 0;
+            int money = 150;
 
             Console.ForegroundColor = ConsoleColor.Blue;
             //font: slant
@@ -92,7 +94,7 @@ namespace ECE264AdventureGame2023
 
             while (true)   //main game loop
             {
-                Console.WriteLine(room_data[currentRoom, 2]);
+                
                 
 
                 playerAction = 0;       //reset action to trigger loop
@@ -112,7 +114,7 @@ namespace ECE264AdventureGame2023
                         }
                         GameOver(ending);
                     }
-                        
+                    Console.WriteLine(room_data[currentRoom, 2]);
 
 
 
@@ -122,9 +124,9 @@ namespace ECE264AdventureGame2023
                     {
                         //move
                         case 1:     
-                            Console.WriteLine("Here are your options:");
+                            Console.WriteLine("Here are your options:\n");
                             //prompt room.cs to give the player their current exits, and then move the player to a new room
-                            chosen_exit_id = Rooms.ListExits(currentRoom, room_data[currentRoom, 1], exit_data);
+                            chosen_exit_id = Rooms.ListExits(currentRoom, room_data[currentRoom, 1], exit_data, trigger_data, item_data);
                             currentRoom = chosen_exit_id;
 
 
@@ -178,6 +180,10 @@ namespace ECE264AdventureGame2023
                         case 6:
                             Inventory.ListInventory(item_data);
                             break;
+                        case 7:
+                            
+                            break;
+
 
 
                     }
@@ -287,8 +293,17 @@ namespace ECE264AdventureGame2023
             switch (gameOverNumber)
             {
                 case 1:
+                    //font: ogre
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Ending 0: The Road Untravelled");
+                    Console.WriteLine("Ending 0:");
+                    Console.WriteLine("  _____  _           ___                _   _   _       _                         _  _          _ ");
+                    Console.WriteLine(" |_   _|| |_   ___  | _ \\ ___  __ _  __| | | | | | _ _ | |_  _ _  __ _ __ __ ___ | || | ___  __| |");
+                    Console.WriteLine("   | |  | ' \\ / -_) |   // _ \\/ _` |/ _` | | |_| || ' \\|  _|| '_|/ _` |\\ V // -_)| || |/ -_)/ _` |");
+                    Console.WriteLine("   |_|  |_||_|\\___| |_|_\\\\___/\\__,_|\\__,_|  \\___/ |_||_|\\__||_|  \\__,_| \\_/ \\___||_||_|\\___|\\__,_|");
+
+
+
+
                     break;
 
                 case 2:
@@ -332,8 +347,17 @@ namespace ECE264AdventureGame2023
                     break;
 
                 case 10:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Bad End: The House Always Wins");
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("Bad End 10:\n");
+                    Console.WriteLine("▄▄▄█████▓ ██░ ██ ▓█████     ██░ ██  ▒█████   █    ██  ██████ ▓█████     ▄▄▄       ██▓     █     █░ ▄▄▄     ▓██   ██▓  ██████     █     █░ ██▓ ███▄    █   ██████ ");
+                    Console.WriteLine("▓  ██▒ ▓▒▓██░ ██▒▓█   ▀    ▓██░ ██▒▒██▒  ██▒ ██  ▓██▒██    ▒ ▓█   ▀    ▒████▄    ▓██▒    ▓█░ █ ░█░▒████▄    ▒██  ██▒▒██    ▒    ▓█░ █ ░█░▓██▒ ██ ▀█   █ ▒██    ▒ ");
+                    Console.WriteLine("▒ ▓██░ ▒░▒██▀▀██░▒███      ▒██▀▀██░▒██░  ██▒▓██  ▒██░ ▓██▄   ▒███      ▒██  ▀█▄  ▒██░    ▒█░ █ ░█ ▒██  ▀█▄   ▒██ ██░░ ▓██▄      ▒█░ █ ░█ ▒██▒▓██  ▀█ ██▒░ ▓██▄   ");
+                    Console.WriteLine("░ ▓██▓ ░ ░▓█ ░██ ▒▓█  ▄    ░▓█ ░██ ▒██   ██░▓▓█  ░██░ ▒   ██▒▒▓█  ▄    ░██▄▄▄▄██ ▒██░    ░█░ █ ░█ ░██▄▄▄▄██  ░ ▐██▓░  ▒   ██▒   ░█░ █ ░█ ░██░▓██▒  ▐▌██▒  ▒   ██▒");
+                    Console.WriteLine("  ▒██▒ ░ ░▓█▒░██▓░▒████▒   ░▓█▒░██▓░ ████▓▒░▒▒█████▓▒██████▒▒░▒████▒    ▓█   ▓██▒░██████▒░░██▒██▓  ▓█   ▓██▒ ░ ██▒▓░▒██████▒▒   ░░██▒██▓ ░██░▒██░   ▓██░▒██████▒▒");
+                    Console.WriteLine("  ▒ ░░    ▒ ░░▒░▒░░ ▒░ ░    ▒ ░░▒░▒░ ▒░▒░▒░ ░▒▓▒ ▒ ▒▒ ▒▓▒ ▒ ░░░ ▒░ ░    ▒▒   ▓▒█░░ ▒░▓  ░░ ▓░▒ ▒   ▒▒   ▓▒█░  ██▒▒▒ ▒ ▒▓▒ ▒ ░   ░ ▓░▒ ▒  ░▓  ░ ▒░   ▒ ▒ ▒ ▒▓▒ ▒ ░");
+                    Console.WriteLine("    ░     ▒ ░▒░ ░ ░ ░  ░    ▒ ░▒░ ░  ░ ▒ ▒░ ░░▒░ ░ ░░ ░▒  ░ ░ ░ ░  ░     ▒   ▒▒ ░░ ░ ▒  ░  ▒ ░ ░    ▒   ▒▒ ░▓██ ░▒░ ░ ░▒  ░ ░     ▒ ░ ░   ▒ ░░ ░░   ░ ▒░░ ░▒  ░ ░");
+                    Console.WriteLine("  ░       ░  ░░ ░   ░       ░  ░░ ░░ ░ ░ ▒   ░░░ ░ ░░  ░  ░     ░        ░   ▒     ░ ░     ░   ░    ░   ▒   ▒ ▒ ░░  ░  ░  ░       ░   ░   ▒ ░   ░   ░ ░ ░  ░  ░  ");
+                    Console.WriteLine("          ░  ░  ░   ░  ░    ░  ░  ░    ░ ░     ░          ░     ░  ░         ░  ░    ░  ░    ░          ░  ░░ ░           ░         ░     ░           ░       ░  ");
                     break;
 
                 case 11:

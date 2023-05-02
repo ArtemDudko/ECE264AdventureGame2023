@@ -66,21 +66,10 @@ namespace ECE264AdventureGame2023
                 }
             }
             return exit_data;
-        }
+        }        
 
 
-        /*
-        public static bool[] LoadExitTriggers()
-        {
-            string raw_exit_trigger_data = File.ReadAllText("U:\\ECE264\\Adventure23\\Rooms.txt");
-
-
-            return
-        }
-        */
-
-
-        public static int ListExits(int current_room_id, string current_room_name, string[,] exit_data)
+        public static int ListExits(int current_room_id, string current_room_name, string[,] exit_data, List<bool> triggers, string[,] item_data)
         {
             List<string> valid_exits = new List<string>();
             int row;       
@@ -88,12 +77,31 @@ namespace ECE264AdventureGame2023
 
             for (row = 0; row < 100; row++)
             {
-                if (exit_data[row, 1] == current_room_id.ToString())    //sine there are multiples of 
+                if (exit_data[row, 1] == current_room_id.ToString())    //since there are multiples of 
                 {
-                    last_exit_row = row;                   
-                    //Format: &"" &1			&1		&3	&Helio City Square S	&North  &0
-                    Console.WriteLine("Exit #{0}: {1} to {2}, roomID {3}", exit_data[row, 2], exit_data[row, 5], exit_data[row, 4], exit_data[row, 3]);
-                    valid_exits.Add(exit_data[row, 5].Trim().ToUpper());                   
+                    last_exit_row = row;
+                    int[] specific_exit_triggers = new int[5];
+                    bool enterable = true;
+
+                    //triggers has five strings in the array, the number of the string meaning that trigger in trigger data has to be true
+                    for (int i = 6; i < 9; i++)
+                        if (triggers[Int32.Parse(exit_data[row, i])] == false)
+                            enterable = false;
+
+                    for (int i = 9; i < 11; i++)
+                        if (item_data[Int32.Parse(exit_data[row, i]), 2] == "0")
+                            enterable = false;
+
+                    if (enterable)
+                    {
+                        //Format: &"" &1			&1		&3	&Helio City Square S	&North  &0
+                        Console.WriteLine("[Exit #{0}: {1} to {2}, roomID {3}]", exit_data[row, 2], exit_data[row, 5], exit_data[row, 4], exit_data[row, 3]);
+                        valid_exits.Add(exit_data[row, 5].Trim().ToUpper());
+                    }
+                    else
+                        Console.WriteLine("[?????] - Option Locked");
+
+
 
                 }
                 if (valid_exits.Count >= 4) break;
