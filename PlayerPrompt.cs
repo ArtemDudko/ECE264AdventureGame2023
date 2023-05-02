@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using static ECE264AdventureGame2023.PlayerPrompt.Directions;
+using static ECE264AdventureGame2023.Program;
 
 namespace ECE264AdventureGame2023
 {
     class PlayerPrompt
     {
+        /*
         public static Dictionary<int, bool> LoadTriggers(string root_folder)
         {
             //load Rooms.txt and process
@@ -20,63 +24,256 @@ namespace ECE264AdventureGame2023
             sb = sb.Replace("\t", "");
             sb = sb.Replace("\r", "");
             var raw_trigger_data_array = sb.ToString().Split('&');
-            var trigger_data_dic = new Dictionary<int, bool>() { };
+
+            
+
+
+            var trigger_data_dic = new Dictionary<bool, string>() { };
             for (int trigger_id = 1; trigger_id < raw_trigger_data_array.Length / 2; trigger_id++)
             {
-                trigger_data_dic.Add(trigger_id, bool.Parse(raw_trigger_data_array[trigger_id * 2 - 1]));
+                trigger_data_dic.Add(bool.Parse(raw_trigger_data_array[trigger_id * 2 - 1]),trigger_id);
             }
             return trigger_data_dic;
 
+        }*/
+
+
+        /*
+
+        need to make big ass switch case statement
+
+        0-99 will be room discovery
+
+        100-199 will be dialogue and interactions in rooms
+
+        200-299 will be events
+
+        300-399 will be secret interactions
+
+        400-499 will be 
+
+
+         */
+
+        //Libraries
+
+
+
+
+        //Declaring Rooms and CurrentRoom to be in
+        public static List<int> FirstEntry(int NewRoom, List<bool> triggers)
+        {
+            
+            
+            var trigger_switch = new List<int>(0);
+            string playerInput;
+            string error_prompt = "error, reenter choice,(caps specific)";
+            switch (NewRoom)
+            {
+
+
+                //welcome and get name
+                //-Prior to entering room 1:-
+                //PA: Hello. Welcome to the Uprall Transport Hub. Please enter your name"
+                //player prompt for name
+                //PA: Hello (player name), where would you like to go?
+                //present choices for {Helio City} {I don't know where}
+
+                // -if {Helio City}: -
+                //You: Helio City, please
+                //PA: Travelling to Helio City, please take your seat.
+                //-enter room 1-
+
+                //-if {I don't know where}-
+                //You: Uh, I'm not really sure. Maybe I'll visit Uprall some other time.
+                //PA: Thank you, have a good day.
+                //Ending 0: The Road Untravelled
+
+                
+                case 1:
+                string[] valid1 = { "Helio City", "I don't know where" };
+                    playerInput = Program.GetString("PA: Hello" + MyGlobals.playerName + ", where would you like to go? \n[Helio City] \n[I don't know where]\n", valid1,error_prompt);
+                    if (playerInput == "HELIO CITY")
+                    {
+                        Console.WriteLine("You: Helio City, please");
+                        Console.WriteLine("PA: Travelling to Helio City, please take your seat.");
+                    }
+                    if (playerInput == "I DON'T KNOW WHERE")
+                    {
+                        Console.WriteLine("You: Uh, I'm not really sure. Maybe I'll visit Uprall some other time.");
+                        Console.WriteLine("PA: Thank you, have a good day.");
+                        trigger_switch.Add(150);
+                        trigger_switch.Add(151);
+                    }
+
+                    return trigger_switch;
+
+                /*You: That guy in the hood. Who is he?
+                  As you step toward him, he turns around and sharpens his gaze
+                  ???: Who are you?
+
+                  -present choice-
+                    //{I'm nobody}
+                        //You: Oh, uh, I'm just nobody
+                        //???: Uh huh. And a "nobody" followed a hooded man into a back ally? Is "nobody" stupid?
+                        //You: Uh, no. Curiosity I guess. My name's {name}. Can I ask yours?
+                    //{I'm passing through}
+                        //You: I'm just passing through. My name's {name}
+                        //???: Just passing through huh? Getting seen with me is dangerous here in Uprall.
+                        //You: And who exactly are you?
+                    .
+                    .
+                    .
+                //???: ...You can call me Zrkka.
+                  Zrrka stares at you for a short time, and eventually asks;
+                //Zrkka: 'The Steel Reaper'. Does that name mean anything to you?
+
+                //-present choice- 
+                    //{Yes}
+                        //You: Yes, I know exactly who that is.
+                        //Zrkka: In that case...
+                        //Zrrka extends his arm toward you, sharp blades extending out from his wrist.
+                        //Zrrka: Their reach has gone farther than I thought. You're clearly a new recruit, so let me give you some advice: Don't follow me, if you value your life.
+                          You: What are you-?
+                          Zrkka walks toward you, blades extended
+                          Zrkka: If I were you, I'd keep walking.
+                          You: Ok, ok, I'm going.
+                          Zrkka keeps his eye on you as he leaves the ally by climbing over a gate. Given the gate's height, he clearly wasn't human.
+                          You: Ok then...moving on.
+                   {No}
+                        You: No, it doesn't. Is...that some kind of superhero?
+                        Zrkka stares at you some more, you notice his eyes glow red.
+                        Zrkka: Heartbeat stable, minimal perspiration. Unless you're a professional liar, you're telling me the truth.
+                        You: Are you the Steel Reaper?
+                        Zrkka: I suppose since you're here, you've gotten yourself roped into everything. Yes, I am.
+                        Zrkka removes his hood to reveal an almost completely cybernetic body
+                        Zrkka: I used to be a member of the Cyber Directive, a group of Uprallans who belive they can cyberize the whole world, so they can bend it to their will. 
+                        You: 'Used to be'? Why'd you quit?
+                        Zrkka: During a mission, something went wrong, and I got my autonomy back. Whatever control they had over me is gone, and now I fight back against them.
+                        You: Wait...you said I'm roped up in all this now?
+                        Zrkka: They've got eyes everywhere, and since you're here with me, they're after you now. So your best bet is to help me out.
+                        You: Yeah...I guess so.
+                        .
+                        .
+                        .
+                        Zrkka: Here, take this. It'll help you see things in Uprall that they don't want you to see. It'll come in handy, I'm sure.
+                        You recieved the Cyber Lens!
+                        Zrkka: A friend of mine is patrolling the city as well. It's likely you'll run into him. He'll need your trust, or else he'll kill you. 
+                        You: That's comforting. How do I get his trust?
+                        Zrkka: He'll ask you a question, you give him the answer. The answer is '112'.
+                        You: 112. Got It. How will I know this friend of yours.
+                        Zrkka: Oh, you'll know. His bite is a lot worse than his bark.
+                        With a chuckle, Zrkka leaves the ally by jumping over a large gate.
+                        */
+
+
+                case 2:
+                    string[] valid2a = { "I'm nobody", "I'm passing through" };
+                    playerInput = Program.GetString("You: That guy in the hood. Who is he? " +
+                        "\nAs you step toward him, he turns around and sharpens his gaze" +
+                        "\n???: Who are you ? " +
+                        "\n[I'm nobody] \n[I'm passing through]\n", valid2a, error_prompt);
+                    if (playerInput == "I'M NOBODY")
+                    {
+                        Console.WriteLine("You: Oh, uh, I'm just nobody " +
+                            "\n???: Uh huh. And a 'nobody' followed a hooded man into a back ally? Is 'nobody' stupid?" +
+                            "\nYou: Uh, no. Curiosity I guess. My name's " + MyGlobals.playerName + "Can I ask yours?");
+                    }
+                    if (playerInput == "I'M PASSING THROUGH")
+                    {
+                        Console.WriteLine("You: I'm just passing through. My name's " + MyGlobals.playerName +
+                            "\n???: Just passing through huh? Getting seen with me is dangerous here in Uprall." +
+                            "\nYou: And who exactly are you?");
+                        
+                    }
+                    Console.WriteLine("???: ...You can call me Zrkka." +
+                        "\nZrrka stares at you for a short time, and eventually asks:" +
+                        "\nZrkka: 'The Steel Reaper'. Does that name mean anything to you?");
+
+                    string[] valid2b = { "Yes", "No" };
+                    playerInput = Program.GetString("\n[Yes] \n[No]\n", valid2b, error_prompt);
+                    if (playerInput == "YES")
+                    {
+                        Console.WriteLine("You: Yes, I know exactly who that is." +
+                            "\nZrkka: In that case..." +
+                            "\nZrrka extends his arm toward you, sharp blades extending out from his wrist." +
+                            "\nTheir reach has gone farther than I thought. You're clearly a new recruit, so let me give you some advice: Don't follow me, if you value your life." +
+                            "\nYou: What are you-?\r\n                          Zrkka walks toward you, blades extended" +
+                            "\nZrkka: If I were you, I'd keep walking." +
+                            "\nYou: Ok, ok, I'm going." +
+                            "\nZrkka keeps his eye on you as he leaves the ally by climbing over a gate. Given the gate's height, he clearly wasn't human." +
+                            "\nYou: Ok then...moving on.");
+                    }
+                    if (playerInput == "NO")
+                    {
+                        Console.WriteLine("You: No, it doesn't. Is...that some kind of superhero?" +
+                            "\nZrkka stares at you some more, you notice his eyes glow red." +
+                            "\nZrkka: Heartbeat stable, minimal perspiration. Unless you're a professional liar, you're telling me the truth." +
+                            "\nYou: Are you the Steel Reaper?" +
+                            "\nZrkka: I suppose since you're here, you've gotten yourself roped into everything. Yes, I am." +
+                            "\nZrkka removes his hood to reveal an almost completely cybernetic body" +
+                            "\nZrkka: I used to be a member of the Cyber Directive, a group of Uprallans who belive they can cyberize the whole world, so they can bend it to their will. " +
+                            "\nYou: 'Used to be'? Why'd you quit?" +
+                            "\nZrkka: During a mission, something went wrong, and I got my autonomy back. Whatever control they had over me is gone, and now I fight back against them." +
+                            "\nYou: Wait...you said I'm roped up in all this now?" +
+                            "\nZrkka: They've got eyes everywhere, and since you're here with me, they're after you now. So your best bet is to help me out." +
+                            "\nYou: Yeah...I guess so." +
+                            "\n.\n.\n." +
+                            "\nZrkka: Here, take this. It'll help you see things in Uprall that they don't want you to see. It'll come in handy, I'm sure." +
+                            "\nYou recieved the Cyber Lens!" +
+                            "\nZrkka: A friend of mine is patrolling the city as well. It's likely you'll run into him. He'll need your trust, or else he'll kill you. " +
+                            "\nYou: That's comforting. How do I get his trust?" +
+                            "\nZrkka: He'll ask you a question, you give him the answer. The answer is '112'." +
+                            "\nYou: 112. Got It. How will I know this friend of yours." +
+                            "\nZrkka: Oh, you'll know. His bite is a lot worse than his bark." +
+                            "\nWith a chuckle, Zrkka leaves the ally by jumping over a large gate.");
+                    }
+
+
+
+
+
+
+                        return trigger_switch;
+                case 3:
+                    return trigger_switch; 
+                case 4:
+                    return trigger_switch; 
+                case 5:
+                    return trigger_switch; 
+                case 6:
+                    return trigger_switch; 
+                case 7:
+                    return trigger_switch; 
+                case 8:
+                    return trigger_switch;
+                case 9:
+                    return trigger_switch;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            }
+            return trigger_switch;
         }
 
-
-            /*
-
-            need to make big ass switch case statement
-
-            0-99 will be room discovery
-
-            100-199 will be dialogue and interactions in rooms
-
-            200-299 will be events
-
-            300-399 will be secret interactions
-
-            400-499 will be 
-
-
-             */
-
-            //Libraries
+        //public static 
+        
 
 
 
 
-            //Declaring Rooms and CurrentRoom to be in
-
-
-
-
-
-        //-Prior to entering room 1:-
-        //PA: Hello. Welcome to the Uprall Transport Hub. Please enter your name"
-        //player prompt for name
-        //PA: Hello (player name), where would you like to go?
-        //present choices for {Helio City} {I don't know where}
-
-
-            // -if {Helio City}: -
-            //You: Helio City, please
-            //PA: Travelling to Helio City,please take your seat.
-            //-enter room 1-
-
-            //-if {I don't know where}-
-            //You: Uh, I'm not really sure. Maybe I'll visit Uprall some other time.
-            //PA: Thank you, have a good day.
-            .
-            .
-            .
-            //Ending 0: The Road Untravelled
             static Room room1 = new Room { Name = "Room1", Description = "You've made it to Helio City, Uprall's capital" };
 
         static Room room2 = new Room { Name = "Room2", Description = "You enter the back ally" };
@@ -969,7 +1166,7 @@ namespace ECE264AdventureGame2023
         }
 
         // UNIVERSAL GET STRING WITH PROMPT, VALID VALUES, AND ERROR MESSAGE
-        static string GetString(string prompt, string[] valid, string error)
+        /*static string GetString(string prompt, string[] valid, string error)
         {
             // prompt=user prompt, valid=array of valid responses, error=msg to display on invalid entry
             // ALL STRINGS RETURNED UPPER CASE. ALL valid[] ENTRIES MUST BE IN UPPER CASE
@@ -983,7 +1180,9 @@ namespace ECE264AdventureGame2023
                 if (!OK) Console.WriteLine(error);
             } while (!OK);
             return response;
-        }
+        }*/
+
+
 
         class Room //Room being created as a class
         {

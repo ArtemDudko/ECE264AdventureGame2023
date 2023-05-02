@@ -2,12 +2,15 @@
 //ECE264 - Advneture Game Final Project
 //Referneces:
 /*
- *      <<GITHUB>>
- * FOR WORKING ON YOUR BRANCH:
+ *READ ME:
+ *
+ *PLEASE ENTER DIRECTORY WHERE FOLDER IS STORED TO RUN THE GAME AS 'root_folder' VARIABLE BEFORE LAUNCHING. 
  * 
  * 
  * 
- * 
+ * dialogue and other stuff on entering room for hte firs t time
+ * talk feature
+ * trigger options, and something to check them
  * 
  */
 
@@ -31,15 +34,33 @@ namespace ECE264AdventureGame2023
     {
         static void Main(string[] args)
         {
-            string root_folder = "C:\\AdventureGame264 GitHub";
+            string root_folder = "C:\\Users\\adudk\\source\\repos\\ArtemDudko\\ECE264AdventureGame2023"; //CHANGE ME TO ROOT FOLDER
+
+
+
+
+
 
             string[,] room_data = Rooms.LoadRooms(root_folder);        //load rooms.txt into 2d array, dimesnisons 4 rows by 100 coloumns
                                                             //order is same as in rooms.txt: roomid, room name, short desc, long desc
             string[,] exit_data = Rooms.LoadExits(root_folder);        //loads exitsConditions.txt into a 11 row by 100 col array
 
-            Dictionary<int, bool> trigger_data_dic = PlayerPrompt.LoadTriggers(root_folder);     //load a dictionary of triggers, corresponding with: (ID:STATE), id is a int, state is a bool
+            //Dictionary<bool, string> trigger_data_dic = PlayerPrompt.LoadTriggers(root_folder);     //load a dictionary of triggers, corresponding with: (ID:STATE), id is a int, state is a bool
+            
+            var trigger_data = new List<bool>(); //read triggers for most interactions
+            for (int i = 0; i < 500; i++)
+                trigger_data.Add(false);
+            trigger_data[0] = true;
 
+
+
+
+            var trigger_switch = new List<int>();
             string[,] item_data = Inventory.LoadItems(root_folder);
+            int ending = 0;
+
+
+
 
 
             Console.ForegroundColor = ConsoleColor.White;
@@ -47,22 +68,39 @@ namespace ECE264AdventureGame2023
             //EX:
             if (MyGlobals.Debug){Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("[Debug Mode Enabled]"); Console.ForegroundColor = ConsoleColor.White;}
-                
+
 
             //welcome and get name
-            
-            Console.Write("Please enter your name: ");
+            //-Prior to entering room 1:-
+            //PA: Hello. Welcome to the Uprall Transport Hub. Please enter your name"
+            //player prompt for name
+            //PA: Hello (player name), where would you like to go?
+            //present choices for {Helio City} {I don't know where}
+
+
+
+            Console.Write("PA: Hello. Welcome to the Uprall Transport Hub. Please enter your name: ");
             Console.ForegroundColor = ConsoleColor.DarkBlue;
-            string playerName = Console.ReadLine();
+            MyGlobals.playerName = Console.ReadLine();
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("Hi, " + playerName);
-            Console.WriteLine("Welcome to Cyber Conspiracy!");
-            Console.WriteLine("Try moving around or picking up items to progress. At the start of any room, type HELP to list your commands.\n");
+            //Console.WriteLine("PA: Hello " + MyGlobals.playerName + ", where would you like to go?");
+            //Console.WriteLine("Welcome to Cyber Conspiracy!");
+            //Console.WriteLine("Try moving around or picking up items to progress. At the start of any room, type HELP to list your commands.\n");
             
             //setup stuff
-            int currentRoom = 6;
+            int currentRoom = 1;
             int chosen_exit_id;
             int playerAction = 0; //0 = start, 1 = move, 2 = look around
+
+            trigger_switch = PlayerPrompt.FirstEntry(currentRoom, trigger_data);
+            foreach(var flip in trigger_switch) trigger_data[flip] = true;
+            
+
+
+
+
+
+
 
             while (true)   //game loop
             {
@@ -72,11 +110,26 @@ namespace ECE264AdventureGame2023
                 playerAction = 0;       //reset action to trigger loop
                 while(!(playerAction == 1))
                 {
-                    
+
+
+                    //check for ending
+                    if (trigger_data[150])
+                    {
+                        for (int i = 151; i<199; i++)
+                        {
+                            if (trigger_data[i])
+                            {
+                                ending = 1; break;
+                            }
+                        }
+                        GameOver(ending);
+                    }
+                        
+
 
 
                     //constantly prompt player to make a choice, once they want to move, 
-                    playerAction = GetPlayerAction("What would you like to do? ");
+                    playerAction = GetPlayerAction("\nWhat would you like to do? ");
                     switch(playerAction)
                     {
                         //move
@@ -91,6 +144,17 @@ namespace ECE264AdventureGame2023
                             //once the player moves, rinse and repeat
                             if (MyGlobals.Debug){ Console.ForegroundColor = ConsoleColor.Cyan; 
                                 Console.WriteLine("[Current Room is: {0}, RoomID:{1}]", currentRoom, room_data[currentRoom, 1]); Console.ForegroundColor = ConsoleColor.White; }
+
+                            if (!trigger_data[currentRoom + 100])    //if a player has not been to a room
+                            {
+                                trigger_data[currentRoom + 100] = true;
+                                //prompt player for first time and mess with triggers
+                                trigger_switch = PlayerPrompt.FirstEntry(currentRoom, trigger_data);
+
+                            }
+
+
+
                             break;
                         //display long desc
                         case 2:
@@ -202,7 +266,7 @@ namespace ECE264AdventureGame2023
             return (ans == "YES" || ans == "Y");
         }
         //Universal get string with prompt, valid values, and error message
-        static string GetString(string prompt, string[] valid, string error)
+        public static string GetString(string prompt, string[] valid, string error)
         {
             //prompt = user prompt, valid = array of valid responses
             //error = msg to display on invalid entry
@@ -225,10 +289,11 @@ namespace ECE264AdventureGame2023
 
         static void GameOver(int gameOverNumber)
         {
+
             switch (gameOverNumber)
             {
                 case 1:
-                    Console.WriteLine("Your connections were not strong enough to get you out of this bind, \nCyclone will make sure nobody hears of you.");
+                    Console.WriteLine("Ending 0: The Road Untravelled");
                     break;
                 case 2:
                     Console.WriteLine("'Sorry, but the house always wins, and you can no longer pay your debt.'");
@@ -236,14 +301,15 @@ namespace ECE264AdventureGame2023
 
 
             }
-            Console.WriteLine("GAME OVER, YOU REACHED BAD ENDING #" + gameOverNumber + ", THANKS FOR PLAYING");
-
+            //Console.WriteLine("GAME OVER, YOU REACHED BAD ENDING #" + gameOverNumber + ", THANKS FOR PLAYING");
+            Environment.Exit(0);
         }
         //global variables
         public static class MyGlobals
         {
             //public const string Prefix = "ID_"; // cannot change
             public static bool Debug = false; // can change because not const
+            public static string playerName;
         }
 
 
