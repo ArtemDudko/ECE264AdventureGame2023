@@ -899,10 +899,10 @@ namespace ECE264AdventureGame2023
 
                 case 7:
 
-                    if (item_data[4, 2] != 0)
+                    if (item_data[4, 2] != "0")
                     {
-                        string[] valid3a = { "Approach the men", "See the Vendor" };
-                        playerInput = Program.GetString("\n[Take Coin] \n[Leave Coin]\n", valid3a, error_prompt);
+                        string[] valid7aa = { "Approach the men", "See the Vendor" };
+                        playerInput = Program.GetString("\n[Take Coin] \n[Leave Coin]\n", valid7aa, error_prompt);
                         if (playerInput == "APPROACH THE MEN")
                         {
                             Narr("You approach the two men talking with each other.One of them directs the other away, and walks towards you as well. His spiky hair and small jacket stand out.");
@@ -953,21 +953,7 @@ namespace ECE264AdventureGame2023
                         }
                         if (playerInput == "SEE THE VENDOR")
                         {
-                            TJSays("Hey there, welcome to my shop. Name's TJ. What would you like?");
-
-                            string[] valid3a = { "Prototype Wrist Blasters", "Matter Deflection Apparatus" };
-                            playerInput = Program.GetString("\n[Take Coin] \n[Leave Coin]\n", valid3a, error_prompt);
-                            if (playerInput == "APPROACH THE MEN")
-                            { Prototype Wrist Blasters}
-                            -option to buy for 3200 credits -
-                                                    { Yes}
-                            You got the prototype wrist blasters!
-                                            { No}
-                            { Matter Deflection Apparatus}
-                            -option to buy for 2900 credits -
-                                                    { Yes}
-                            You Got the matter deflection apparatus!
-                                            { No}
+                            
                         }
 
 
@@ -976,53 +962,18 @@ namespace ECE264AdventureGame2023
                               
                     }
 
-                   else if (item_data[4, 2] == 0)
-                   string[] valid3a = {"See the Vendor"};
-                    playerInput = Program.GetString("\n[Take Coin] \n[Leave Coin]\n", valid3a, error_prompt);                    
-                    if (playerInput == "SEE THE VENDOR")
+                   else if (item_data[4, 2] == "0")
                     {
-                        Narr("You decide it's best to leave it.");
+                        string[] valid7b = { "See the Vendor" };
+                        playerInput = Program.GetString("\n[Take Coin] \n[Leave Coin]\n", valid7b, error_prompt);
+                        if (playerInput == "SEE THE VENDOR")
+                        {
+                            Narr("You decide it's best to leave it.");
+                        }
                     }
+                   
 
                     
-                    You approach the two men talking with each other.One of them directs the other away, and walks towards you as well.His spiky hair and small jacket stand out.
-                                ???: Can I help you?
-                                You: No shirt with a jacket three sizes too small.Interesting choice. 
-                                ???: In The Crags its hard to find quality clothes, but I wouln't expect you to know that.
-                                You: The what?
-                                ???: The Crags...you're not from around here are you?
-                                You: No, I'm not. My name's { name}, what's yours?
-                                ???: ...Drayton.Name's Drayton.
-                                You: Sounds bad down in The Crags
-                                Drayton: It is.Half the people there are missing a limb or two.It's dangerous down there, but most of its citizens are poor, so they can't afford the replacements the people in these parts get.
-                                You: Replacements?
-                                Drayton: You don't know? In Uprall, if you're rich enough, you can get missing limbs replaced with cybernetic prosthetics.Whether through medical amputation or grievous injury.
-                                Drayton: Hell, some get replacements by choice.I wouldn't be surprised if at least half the citizens of Uprall are cyborgs by now.
-                                You: Wow.
-                                Drayton: Yup.Crazy business, huh? Anyway, maybe someday you'd like to check out the lesser side of things. Me and my buddy Zix would be happy to put you up.
-                                You: Maybe, if I have time.
-                                Drayton: Well, anyway, you'll need this to even have a hope of navigating down there.
-                                You got the Hookshot!
-                                Drayton: Take care of that, I dont have many.
-                                You: Will do.
-                                Drayton walks away, leaving you alone with his gift.
-
-                                //-if room is inspected so you notice the vendor-
-                                - approach the vendor-
-                                   TJ: Hey there, welcome to my shop.Name's TJ. What would you like?
-                                    - presented with options-
-                                        { Prototype Wrist Blasters}
-                    -option to buy for 3200 credits -
-                                            { Yes}
-                    You got the prototype wrist blasters!
-                                            { No}
-                    { Matter Deflection Apparatus}
-                    -option to buy for 2900 credits -
-                                            { Yes}
-                    You Got the matter deflection apparatus!
-                                            { No}
-
-
                     return trigger_switch;
 
 
