@@ -3,9 +3,15 @@
 ///EX:	 &1		&Coin  &1  ///(in this case it is the alley)
 ///Items.txt is three coloumns wide
 
-Cyber arm is accesses as item_data [6,1], location would be [6,2]
 
 
+data is stored in [ROWS,COLOUMNS]
+Cyber arm is accesses as item_data [6,1], location would be 6,2
+
+
+
+
+ITEM ID		ITEM NAME						ITEM LOCATION
 &&&0		&Placeholder					&999
 &1			&Cyber Lens						&2
 &2			&Coin							&3
