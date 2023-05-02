@@ -351,8 +351,10 @@ namespace ECE264AdventureGame2023
                     {
                         YouSay("Sorry, but I'd rather not.");
                         CycloneSays("I would change my mind if I were you.");
-                        Narr("As he speaks, he walks toward you, revealing what appear to be daggers. In fear, you run into a side ally, hoping for a way to escape."
-                            \n\n);
+                        Narr("As he speaks, he walks toward you, revealing what appear to be daggers. In fear, you run into a side ally, hoping for a way to escape.");
+                        Narr("\n\n." +
+                            "\n\n." +
+                            "\n\n.\n\n");
                         "You run into a dead end, unable to escape as Cyclone slowly approaches you." +
                         "Cyclone: I gave you a chance. Oh well.");
                         Console.WriteLine("Out of nowhere, Zrkka drops into the ally and grabs cyclone, giving you an opportunity to escape.");
