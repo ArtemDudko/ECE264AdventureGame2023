@@ -595,7 +595,7 @@ namespace ECE264AdventureGame2023
 
 
             }
-            return trigger_switch;
+            return trigger_switch;  
         }
 
 
@@ -672,8 +672,6 @@ namespace ECE264AdventureGame2023
 
 
                             }
-
-
 
                             return trigger_switch;
                         }
