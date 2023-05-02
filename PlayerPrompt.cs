@@ -61,7 +61,7 @@ namespace ECE264AdventureGame2023
 
 
         //Declaring Rooms and CurrentRoom to be in
-        public static List<int> FirstEntry(int NewRoom, List<bool> triggers)
+        public static List<int> FirstEntry(int NewRoom, List<bool> triggers, string[,] item_data)
         {
             
             
@@ -235,9 +235,127 @@ namespace ECE264AdventureGame2023
 
 
                         return trigger_switch;
+
+                /*
+         -Occurs upon entering the room every time you enter, unless the coin or secret coin is in inventory-
+            As you walk through the square, you notice a coin shining on the ground.
+            You: Hey, a coin. Everything is supposed to be digital in Uprall. What's this doing here?
+            -present choice-
+            {take coin}
+                You recieved the coin!
+            {Leave coin}
+         * 
+         * 
+         -occurs if room is inspected with coin or secret coin in inventory- 
+            -given option to approach vendor-
+            -if vendor is approached-
+            Abhi: Hello there, my name is Abhi, I am a humble vendor here in Uprall. How are you?
+            You: I am doing fine, thank you. Can you tell me anything about this coin?
+            Abhi: Of course! Let me see it! Oh, yes, yes, this coin is made of fine material! I will sell it to you for 500 credits!
+            -present choice-
+                {Sell the coin}
+                    You: Yeah, sure, here ya go. 
+                    You lost the coin!
+                    You gain 500 credits!
+                    Abhi: Pleasure doing business with you!
+                {Don't sell the coin}
+                    You: Actually, I think I'll hold onto it. A memento of my time here, I suppose. Thank you!
+                    Abhi: Of course! Take care now!        
+         */
+
                 case 3:
-                    return trigger_switch; 
+                    Console.WriteLine("As you walk through the square, you notice a coin shining on the ground." +
+                        "\nYou: Hey, a coin. Everything is supposed to be digital in Uprall. What's this doing here?");
+
+
+                    return trigger_switch;
+
+
+                /*
+        -occurs when you try to go East WITH the coin or secret coin in inventory-
+            Out of nowhere, a cyborg steps out of the shadows
+            ???: That coin you've got there doesn't belong to you. I would like it back, if you don't mind.
+            You: Who are you?
+            ???: Not that it matters, but my name is Cyclone. 
+            Cyclone: Now, be good and give me the coin.      
+        -present choice-
+            {Yes}
+                You: Uh, yeah, sure, here.
+                Cyclone: Good. Now, just pretend you never saw me, got it?
+                You: Yeah, sure. You got it.
+                With a wicked smile, Cyclone leaves.
+            {No}
+                You: Sorry, but I'd rather not.
+                Cyclone: I would change my mind if I were you.
+                As he speaks, he walks toward you, revealing what appear to be daggers. In fear, you run into a side ally, hoping for a way to escape.
+                You run into a dead end, unable to escape as Cyclone slowly approaches you.
+                Cyclone: I gave you a chance. Oh well.
+
+                -if cyber lens is not in your inventory-
+                You feel the pain of cyclone's daggers as you collapse to the ground. Cyclone walking away with the coin is the last thing you see.
+                .
+                .
+                .
+                Bad End: Cold And Alone
+
+                -if cyber lens is in your inventory-
+                Out of nowhere, Zrkka drops into the ally and grabs cyclone, giving you an opportunity to escape.
+                Zrkka: Go!
+                Without thinking, you run past the two cyborgs and into the open street.
+                -travel to room 5-*/
+            
+         
+     
                 case 4:
+                    Console.WriteLine("Out of nowhere, a cyborg steps out of the shadows" +
+                        "\n???: That coin you've got there doesn't belong to you. I would like it back, if you don't mind." +
+                        "\nYou: Who are you?" +
+                        "\n???: Not that it matters, but my name is Cyclone. " +
+                        "\nCyclone: Now, be good and give me the coin.");
+                    string[] valid4a = { "Yes", "No" };
+                    playerInput = Program.GetString("\n[Yes] \n[No]\n",valid4a,error_prompt);
+
+                    Console.WriteLine("You: Sorry, but I'd rather not." +
+                        "\nCyclone: I would change my mind if I were you." +
+                        "\nAs he speaks, he walks toward you, revealing what appear to be daggers. In fear, you run into a side ally, hoping for a way to escape." +
+                        "\nYou run into a dead end, unable to escape as Cyclone slowly approaches you." +
+                        "\nCyclone: I gave you a chance. Oh well.");
+
+
+
+                    if(playerInput == "YES")
+                    {
+                        Console.WriteLine("You: Uh, yeah, sure, here." +
+                            "\nCyclone: Good. Now, just pretend you never saw me, got it?" +
+                            "\nYou: Yeah, sure. You got it." +
+                            "\nWith a wicked smile, Cyclone leaves.");
+                    }
+                    if(playerInput == "NO" && item_data[0,2] == "0")//if has cyber lens
+                    {
+                        Console.WriteLine("Out of nowhere, Zrkka drops into the ally and grabs cyclone, giving you an opportunity to escape." +
+                            "\nZrkka: Go!" +
+                            "\nWithout thinking, you run past the two cyborgs and into the open street.");
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("You feel the pain of cyclone's daggers as you collapse to the ground. Cyclone walking away with the coin is the last thing you see." +
+                            "\n.\n.\n.");
+                        trigger_switch.Add(150);
+                        trigger_switch.Add(152);
+                    }
+
+
+
+
+
+
+
+
+
+
+
+
                     return trigger_switch; 
                 case 5:
                     return trigger_switch; 

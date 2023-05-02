@@ -92,7 +92,7 @@ namespace ECE264AdventureGame2023
             int chosen_exit_id;
             int playerAction = 0; //0 = start, 1 = move, 2 = look around
 
-            trigger_switch = PlayerPrompt.FirstEntry(currentRoom, trigger_data);
+            trigger_switch = PlayerPrompt.FirstEntry(currentRoom, trigger_data, item_data);
             foreach(var flip in trigger_switch) trigger_data[flip] = true;
             
 
@@ -119,7 +119,7 @@ namespace ECE264AdventureGame2023
                         {
                             if (trigger_data[i])
                             {
-                                ending = 1; break;
+                                ending = i - 150; break;
                             }
                         }
                         GameOver(ending);
@@ -149,8 +149,8 @@ namespace ECE264AdventureGame2023
                             {
                                 trigger_data[currentRoom + 100] = true;
                                 //prompt player for first time and mess with triggers
-                                trigger_switch = PlayerPrompt.FirstEntry(currentRoom, trigger_data);
-
+                                trigger_switch = PlayerPrompt.FirstEntry(currentRoom, trigger_data, item_data);
+                                foreach (var flip in trigger_switch) trigger_data[flip] = true;
                             }
 
 
@@ -296,7 +296,7 @@ namespace ECE264AdventureGame2023
                     Console.WriteLine("Ending 0: The Road Untravelled");
                     break;
                 case 2:
-                    Console.WriteLine("'Sorry, but the house always wins, and you can no longer pay your debt.'");
+                    Console.WriteLine("Bad End: Cold And Alone");
                     break;
 
 
