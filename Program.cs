@@ -37,12 +37,9 @@ namespace ECE264AdventureGame2023
             string root_folder = "C:\\AdventureGame264 GitHub"; //CHANGE ME TO ROOT FOLDER
 
 
-
-
-
-
+            
             string[,] room_data = Rooms.LoadRooms(root_folder);        //load rooms.txt into 2d array, dimesnisons 4 rows by 100 coloumns
-                                                            //order is same as in rooms.txt: roomid, room name, short desc, long desc
+                                                            
             string[,] exit_data = Rooms.LoadExits(root_folder);        //loads exitsConditions.txt into a 11 row by 100 col array
 
             var trigger_data = new List<bool>(); //read triggers for most interactions
@@ -67,27 +64,36 @@ namespace ECE264AdventureGame2023
             int playerAction = 0; //0 = start, 1 = move, 2 = look around
             int money = 0;
 
+            Console.ForegroundColor = ConsoleColor.Blue;
+            //font: slant
+            Console.WriteLine("Welcome to...");
+            Console.WriteLine("     ______      __                 ______                       _                      ");
+            Console.WriteLine("    / ____/_  __/ /_  ___  _____   / ____/___  ____  _________  (_)________ ________  __");
+            Console.WriteLine("   / /   / / / / __ \\/ _ \\/ ___/  / /   / __ \\/ __ \\/ ___/ __ \\/ / ___/ __ `/ ___/ / / /");
+            Console.WriteLine("  / /___/ /_/ / /_/ /  __/ /     / /___/ /_/ / / / (__  ) /_/ / / /  / /_/ / /__/ /_/ / ");
+            Console.WriteLine("  \\____/\\__, /_.___/\\___/_/      \\____/\\____/_/ /_/____/ .___/_/_/   \\__,_/\\___/\\__, /  ");
+            Console.WriteLine("       /____/                                         /_/                      /____/   \n");
+            Console.ForegroundColor = ConsoleColor.White;
 
 
+
+
+            //GAME START
             Console.Write("PA: Hello. Welcome to the Uprall Transport Hub. Please enter your name: ");
             Console.ForegroundColor = ConsoleColor.DarkBlue;
             MyGlobals.playerName = Console.ReadLine();
             Console.ForegroundColor = ConsoleColor.White;
-            
-            
-            
-
-
+                        
             trigger_switch = PlayerPrompt.FirstEntry(currentRoom, trigger_data, ref item_data, ref money);
             foreach(var flip in trigger_switch) trigger_data[flip] = true;
             
 
 
 
-            while (true)   //game loop
+            while (true)   //main game loop
             {
                 Console.WriteLine(room_data[currentRoom, 2]);
-                //nextRoom = Rooms.Navigate(nextRoom);
+                
 
                 playerAction = 0;       //reset action to trigger loop
                 while(!(playerAction == 1))
@@ -139,9 +145,14 @@ namespace ECE264AdventureGame2023
                             break;
                         //display long desc
                         case 2:
-                            Console.Write("You take a closer look. ");
-                            Console.WriteLine(room_data[currentRoom, 3]);
-                            Inventory.ListFloorItems(currentRoom, item_data);
+                            Console.ForegroundColor = ConsoleColor.DarkBlue;
+                            Console.WriteLine("\nYou: " + room_data[currentRoom, 3] +"\n");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            //Inventory.ListFloorItems(currentRoom, item_data);
+
+                            trigger_switch = PlayerPrompt.ExtraExamine(currentRoom, trigger_data, ref item_data, ref money); //if the player examines in a certain room with certain conditions, trigger dialogue
+                            foreach (var flip in trigger_switch) trigger_data[flip] = true;
+
 
                             break;
                         case 3:
@@ -270,16 +281,95 @@ namespace ECE264AdventureGame2023
 
         static void GameOver(int gameOverNumber)
         {
-
+            //Cases 1-7 are normal endings (text in green)
+            //case 8 is true ending (text is white)
+            //cases 9-17 are bad endings (deaths) (text in red)
             switch (gameOverNumber)
             {
                 case 1:
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Ending 0: The Road Untravelled");
                     break;
+
                 case 2:
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Ending 1: Sightseeing");
+                    break;
+
+                case 3:
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Ending 2: Leave It To The Pros");
+                    break;
+
+                case 4:
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Ending 3: I'm Out");
+                    break;
+
+                case 5:
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Ending 4: Gung Ho");
+                    break;
+
+                case 6:
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Ending 5: Overwhelmed");
+                    break;
+
+                case 7:
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Ending 6: I'm Rich");
+                    break;
+
+                case 8:
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine("True Ending: Conspiracy Theorist");
+                    break;
+
+                case 9:
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Bad End: Cold And Alone");
                     break;
 
+                case 10:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Bad End: The House Always Wins");
+                    break;
+
+                case 11:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Bad End: No Chances");
+                    break;
+
+                case 12:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Bad End: Oops.");
+                    break;
+
+                case 13:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Bad End: Incompetence.");
+                    break;
+
+                case 14:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Bad End: Broken Will");
+                    break;
+
+                case 15:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Bad End: Big Mistake");
+                    break;
+
+                case 16:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Bad End: Eternal Service");
+                    break;
+
+                case 17:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Bad End: Silenced");
+                    break;
 
             }
             //Console.WriteLine("GAME OVER, YOU REACHED BAD ENDING #" + gameOverNumber + ", THANKS FOR PLAYING");

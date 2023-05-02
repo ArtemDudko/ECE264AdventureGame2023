@@ -42,7 +42,6 @@ namespace ECE264AdventureGame2023
 
 
         /*
-
         need to make big ass switch case statement
 
         0-49 will be room discovery, extra stuff for entering a room for the first time
@@ -56,11 +55,9 @@ namespace ECE264AdventureGame2023
         300-399 will be secret interactions
 
         400-499 will be 
-
-
          */
 
-        //Libraries
+        
 
 
 
@@ -98,8 +95,8 @@ namespace ECE264AdventureGame2023
                 case 1:
                     trigger_switch.Add(101);    //mark room as visited
                     string[] valid1 = { "Helio City", "I don't know where" };
-                    Narr("PA: Hello" + MyGlobals.playerName + ", where would you like to go? ");
-                    playerInput = Program.GetString("\n[Helio City] \n[I don't know where]\n", valid1, error_prompt);
+                    Narr("PA: Hello " + MyGlobals.playerName + ", where would you like to go? ");
+                    playerInput = Program.GetString("\n[Helio City] \n[I don't know where]\n", valid1,error_prompt);
                     if (playerInput == "HELIO CITY")
                     {
                         YouSay("You: Helio City, please");
@@ -259,7 +256,7 @@ namespace ECE264AdventureGame2023
                         ZrkkaSays("He'll ask you a question, you give him the answer. The answer is '112'.");
                         YouSay("112. Got It. How will I know this friend of yours?");
                         ZrkkaSays("Oh, you'll know. His bite is a lot worse than his bark.");
-                        Narr("With a chuckle, Zrkka leaves the ally by jumping over a large gate.");
+                        Narr("With a chuckle, Zrkka leaves the ally by jumping over a large gate.\n");
                     }
                     return trigger_switch;
 
@@ -332,11 +329,17 @@ namespace ECE264AdventureGame2023
 
 
                 case 4:
-                    Console.WriteLine("Out of nowhere, a cyborg steps out of the shadows" +
-                        "???: That coin you've got there doesn't belong to you. I would like it back, if you don't mind." +
-                        "You: Who are you?" +
-                        "???: Not that it matters, but my name is Cyclone. " +
-                        "Cyclone: Now, be good and give me the coin.");
+                    return trigger_switch; 
+
+                case 5:
+                    //enter with coin
+                    Narr("Out of nowhere, a cyborg steps out of the shadows");
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("???: That coin you've got there doesn't belong to you.I would like it back, if you don't mind.");
+                    YouSay("Who are you?");
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("???: Not that it matters, but my name is Cyclone.");
+                    CycloneSays("Now, be good and give me the coin.");
                     string[] valid4a = { "Yes", "No" };
                     playerInput = Program.GetString("\n[Yes] \n[No]\n", valid4a, error_prompt);
 
@@ -357,15 +360,26 @@ namespace ECE264AdventureGame2023
                     }
                     if (playerInput == "NO" && item_data[1, 2] == "0")//if has cyber lens
                     {
-                        Console.WriteLine("Out of nowhere, Zrkka drops into the ally and grabs cyclone, giving you an opportunity to escape." +
-                            "\nZrkka: Go!" +
-                            "\nWithout thinking, you run past the two cyborgs and into the open street.");
+                        YouSay("Sorry, but I'd rather not.");
+                        CycloneSays("I would change my mind if I were you.");
+                        Narr("As he speaks, he walks toward you, revealing what appear to be daggers. In fear, you run into a side ally, hoping for a way to escape."
+                            \n\n);
+                        "You run into a dead end, unable to escape as Cyclone slowly approaches you." +
+                        "Cyclone: I gave you a chance. Oh well.");
+                        Console.WriteLine("Out of nowhere, Zrkka drops into the ally and grabs cyclone, giving you an opportunity to escape.");
+                        ZrkkaSays("Go!");
+                       "\nWithout thinking, you run past the two cyborgs and into the open street."
 
                     }
                     else
                     {
+                        Console.WriteLine("You: Sorry, but I'd rather not." +
+                        "Cyclone: I would change my mind if I were you." +
+                        "As he speaks, he walks toward you, revealing what appear to be daggers. In fear, you run into a side ally, hoping for a way to escape." +
+                        "You run into a dead end, unable to escape as Cyclone slowly approaches you." +
+                        "Cyclone: I gave you a chance. Oh well.");
                         Console.WriteLine("You feel the pain of cyclone's daggers as you collapse to the ground. Cyclone walking away with the coin is the last thing you see." +
-                            "\n.\n.\n.");
+                            "\n\n.\n.\n.\n\n");
                         trigger_switch.Add(150);
                         trigger_switch.Add(152);
                     }
@@ -392,7 +406,7 @@ namespace ECE264AdventureGame2023
                     return trigger_switch;
                 case 9:
                     return trigger_switch;
-
+                
 
                 /*
                         You walk a few steps before you are face to face with a menacing looking woman. She doesn't look like a cyborg, but you can tell that she is.
@@ -753,9 +767,11 @@ namespace ECE264AdventureGame2023
 
 
                 case 3:
-                    Narr("Looking closer, you also notice a vendor selling some wares. Ask him what he's selling?");
-                    string[] valid3a = { "Yes", "No" };
-                    playerInput = Program.GetString("\n[Yes] \n[No]\n", valid3a, error_prompt);
+                    if (item_data[2,2] == "0" || item_data[3, 2] == "0")
+                    {
+                        Narr("Looking closer, you also notice a vendor selling some wares. Ask him what he's selling?");
+                        string[] valid3a = { "Yes", "No" };
+                        playerInput = Program.GetString("\n[Yes] \n[No]\n", valid3a, error_prompt);
 
                         //Console.WriteLine("");
 
@@ -779,6 +795,8 @@ namespace ECE264AdventureGame2023
                         
                             return trigger_switch;
                         }
+                    }
+                    
                     return trigger_switch;
 
 
@@ -789,20 +807,9 @@ namespace ECE264AdventureGame2023
                 case 4:
 
                     return trigger_switch;
+
+                
             }         
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
             return trigger_switch;
@@ -1299,7 +1306,7 @@ namespace ECE264AdventureGame2023
                 .
                 Almost as if by fate, you hear gunfire and explosions coming from down below.
                 Soon after, Zrkka and DMN-14 break into the sanctum, and without any words, attack Jeanne and Cyclone.
-                Directive Head 3: We must leave! cyclone, Jeanne, eliminate them!
+                Directive Head 3: We must leave! Cyclone, Jeanne, eliminate them!
                 With that, the directive heads use teleportation technology to leave the area. 
                 Zrkka: Get to safety! We got this!
                 You: Are you-
@@ -1852,6 +1859,30 @@ namespace ECE264AdventureGame2023
             public string Description { get; set; }
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         internal static class Directions //Directions being declared as a class
         {
             public enum Direction
@@ -1918,5 +1949,275 @@ namespace ECE264AdventureGame2023
             }
 
         }
+
+
+        static int GetWager(string prompt, string errorNotInt)
+        {
+
+            int result;
+            string userInput;
+            bool OKInt = false;
+
+            Console.Write(prompt);
+            do
+            {
+                userInput = Console.ReadLine();
+                OKInt = Int32.TryParse(userInput, out result);
+                if (!OKInt || result > 250 || result < 0)
+                    Console.WriteLine(errorNotInt);
+            } while (!OKInt || result > 250 || result < 0);
+            return result;
+        }
+
+        //BLACKJACK STUFF AFTER THIS
+
+        //MAIN
+        /* 500$ start, hand max 250
+             * dealer and player play, one of dealer cards is visible
+             * deal 21 or 5 cards
+             * Aces 1 or 11
+             * 0 bet exits program
+             * start in debug mode and remove visibilty later
+             * 
+             * Seeds:
+             * 5 draws an ace for testing
+             */
+
+        static void PlayBlackJack(ref int money)
+        {
+
+
+            int bet;
+            //int money = 500;
+            int pSum, dSum, pHSize, dHSize;       //player sum of cards, player hand size, dealer hand size
+
+            List<string> pHand = new List<string>();
+            List<string> dHand = new List<string>();
+
+
+            bool playerHit, fiveCardCharlie;
+            Queue<string> deckQueue = new Queue<string>();
+
+            Console.Write("Enter Seed: ");
+            int seed = Int32.Parse(Console.ReadLine());
+            List<string> freshDeck = new List<string>();     //enter seed for rng
+            freshDeck = NewDeckShuffle(seed);
+
+
+
+            for (int i = 0; i < freshDeck.Count; i++)                //initial shuffle
+                deckQueue.Enqueue(freshDeck[i]);
+
+
+
+            while (true)
+            {
+                //reset lists and bools                
+                pHand.Clear();
+                dHand.Clear();
+                fiveCardCharlie = false;
+
+                //get bet
+                Console.WriteLine("\nYou have {0}$. ", money);
+                bet = GetWager("Please bet 0-250$: ", "Invalid bet, please re-enter: ");
+                if (bet == 0)
+                {
+                    if (money > 500)
+                        Console.WriteLine("Congrats! Come back soon!");
+                    else if (money >= 0)
+                        Console.WriteLine("You win some you lose some...");
+                    else
+                        Console.WriteLine("Don't forget, Billy the Bone Breaker is on collection duty...");
+                    break;
+                }
+                //Console.Write("You bet: " + bet.ToString());
+
+                if (deckQueue.Count < 4)    //empty deck check
+                {
+                    freshDeck = NewDeckShuffle(seed);
+                    for (int i = 0; i < freshDeck.Count; i++)
+                        deckQueue.Enqueue(freshDeck[i]);
+                }
+
+
+                //initial deal
+                //pHSize = 2;
+                //dHSize = 2;
+                pHand.Add(deckQueue.Dequeue());
+                dHand.Add(deckQueue.Dequeue());
+                pHand.Add(deckQueue.Dequeue());
+                dHand.Add(deckQueue.Dequeue());
+                pSum = SumHand(pHand);
+                dSum = SumHand(dHand);
+                Console.WriteLine("Dealer has a [{0}], you drew [{1}]-[{2}]", dHand[0], pHand[0], pHand[1]);
+
+                do
+                {
+                    if (deckQueue.Count == 0)    //empty deck check
+                    {
+                        freshDeck = NewDeckShuffle(seed);
+                        for (int i = 0; i < freshDeck.Count; i++)
+                            deckQueue.Enqueue(freshDeck[i]);
+                    }
+
+
+                    pSum = SumHand(pHand);      //calculate player sum
+                    Console.Write("Your hand:");
+                    for (int i = 0; i < pHand.Count; i++)
+                    {
+                        Console.Write("[{0}]", pHand[i]);
+                    }
+                    Console.Write(", summing to: {0}\n", pSum);
+
+                    if (pSum > 21)      //break if player busts
+                    {
+                        break;
+                    }
+
+                    if (pHand.Count >= 5)        //also break if player draws 5
+                    {
+                        fiveCardCharlie = true;
+                        break;
+                    }
+
+
+                    //check for loss/win
+                    playerHit = HitOrStay("Hit or Stay? ");
+                    if (playerHit)
+                    {
+                        pHand.Add(deckQueue.Dequeue());
+                        Console.WriteLine("You got a: {0}", pHand[pHand.Count - 1]);
+                    }
+
+                } while (playerHit);
+
+                //show hands and deal to dealer
+                Console.WriteLine("Dealer had: {0}-{1}", dHand[0], dHand[1]);
+
+                //dealer logic: stop if fcc, or if player already busted, or if dealer drew 18 pts, or if dealer 
+                //already drew more than the player
+                while (!fiveCardCharlie && (dSum < pSum) && (pSum <= 21) && (dSum < 18))
+                {
+                    if (deckQueue.Count == 0)    //empty deck check
+                    {
+                        freshDeck = NewDeckShuffle(seed);
+                        for (int i = 0; i < freshDeck.Count; i++)
+                            deckQueue.Enqueue(freshDeck[i]);
+                    }
+
+                    dHand.Add(deckQueue.Dequeue());
+                    dSum = SumHand(dHand);
+                    Console.WriteLine("Dealer drew a {0} for a total of {1}", dHand[dHand.Count - 1], dSum);
+                }
+
+                if (fiveCardCharlie)
+                {
+                    Console.WriteLine("Five Card Charlie! You win {0}$", bet);
+                    money += bet;
+                }
+                else if (pSum > 21)
+                {
+                    Console.WriteLine("It seems that you have busted! You lose {0}$", bet);
+                    money -= bet;
+                }
+                else if (dSum > 21)
+                {
+                    Console.WriteLine("Dealer busted! You win {0}$", bet);
+                    money += bet;
+                }
+                else if (dSum < pSum)
+                {
+                    Console.WriteLine("Player Wins! You win {0}$", bet);
+                    money += bet;
+                }
+                else
+                {
+                    Console.WriteLine("Dealer Wins! You lose {0}$", bet);
+                    money -= bet;
+                }
+
+            }
+            
+        }
+
+
+        public static List<string> NewDeckShuffle(int seed)
+        {
+
+            List<string> defaultDeck = new List<string> { //"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A",
+                                     "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A",
+                                     "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A",
+                                     "A", "A", "A", "A", "A", "A", "A", "9", "10", "J", "Q", "K", "A",
+                                     "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" };
+
+            List<string> shuffledDeck = new List<string>();
+            Random rnd = new Random(seed);
+
+            int temp;
+            int deckSize = defaultDeck.Count;
+
+            for (int i = 0; i < deckSize; i++)
+            {
+                temp = rnd.Next(0, defaultDeck.Count - 1);      //choose random number from remaining list
+                shuffledDeck.Add(defaultDeck[temp]);            //move card
+                defaultDeck.RemoveAt(temp);                     //remove from default deck
+            }
+
+
+            Console.Write("Resetting deck... New deck order: ");
+            for (int i = 0; (i < shuffledDeck.Count); i++)
+            {
+                Console.Write("[{0}]", shuffledDeck[i]);
+            }
+
+            return shuffledDeck;
+
+        }
+
+        public static int SumHand(List<string> hand)
+        {
+            int total = 0;
+            int aces = 0;
+            //string card;
+
+            foreach (string card in hand)
+            {
+                if (card == "A")
+                {
+                    aces++;
+                }
+                else if ((card == "J") || (card == "Q") || (card == "K"))
+                {
+                    total += 10;
+                }
+                else
+                {
+                    total += Int32.Parse(card);
+                }
+            }
+
+            //ace calc. assume aces are ones            
+            if (aces > 0 && (total + (aces - 1) + 11 <= 21))       //room for one ace to be 11, others are 1 but total is under 21
+            {
+                total = total + aces + 10;
+            }
+            else //if none of the aces can be 11    
+            {
+                total = total + aces;
+            }
+
+            return total;
+        }
+
+        static bool HitOrStay(string prompt)
+        {
+            string[] valid = { "HIT", "H", "STAY", "S", "STAND" };
+            string ans;
+            ans = GetString(prompt, valid, "?Invalid response, please reenter");
+            return (ans == "HIT" || ans == "H");
+
+        }
+
+        
     }
 }  
