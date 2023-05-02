@@ -89,7 +89,7 @@ namespace ECE264AdventureGame2023
                 case 1:
                     trigger_switch.Add(101);    //mark room as visited
                     string[] valid1 = { "Helio City", "I don't know where" };
-                    Narr("PA: Hello" + MyGlobals.playerName + ", where would you like to go? ");
+                    Narr("PA: Hello " + MyGlobals.playerName + ", where would you like to go? ");
                     playerInput = Program.GetString("\n[Helio City] \n[I don't know where]\n", valid1,error_prompt);
                     if (playerInput == "HELIO CITY")
                     {
