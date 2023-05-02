@@ -89,7 +89,7 @@ namespace ECE264AdventureGame2023
                 case 1:
                     trigger_switch.Add(101);    //mark room as visited
                     string[] valid1 = { "Helio City", "I don't know where" };
-                    Narr("PA: Hello" + MyGlobals.playerName + ", where would you like to go? ");
+                    Narr("PA: Hello " + MyGlobals.playerName + ", where would you like to go? ");
                     playerInput = Program.GetString("\n[Helio City] \n[I don't know where]\n", valid1,error_prompt);
                     if (playerInput == "HELIO CITY")
                     {
@@ -250,7 +250,7 @@ namespace ECE264AdventureGame2023
                         ZrkkaSays("He'll ask you a question, you give him the answer. The answer is '112'.");
                         YouSay("112. Got It. How will I know this friend of yours?");
                         ZrkkaSays("Oh, you'll know. His bite is a lot worse than his bark.");
-                        Narr("With a chuckle, Zrkka leaves the ally by jumping over a large gate.");
+                        Narr("With a chuckle, Zrkka leaves the ally by jumping over a large gate.\n");
                     }
                         return trigger_switch;
 
@@ -323,57 +323,53 @@ namespace ECE264AdventureGame2023
          
      
                 case 4:
-                    Console.WriteLine("Out of nowhere, a cyborg steps out of the shadows" +
-                        "???: That coin you've got there doesn't belong to you. I would like it back, if you don't mind." +
-                        "You: Who are you?" +
-                        "???: Not that it matters, but my name is Cyclone. " +
-                        "Cyclone: Now, be good and give me the coin.");
+                    return trigger_switch; 
+
+                case 5:
+                    //enter with coin
+                    Narr("Out of nowhere, a cyborg steps out of the shadows");
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("???: That coin you've got there doesn't belong to you.I would like it back, if you don't mind.");
+                    YouSay("Who are you?");
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("???: Not that it matters, but my name is Cyclone.");
+                    CycloneSays("Now, be good and give me the coin.");
                     string[] valid4a = { "Yes", "No" };
-                    playerInput = Program.GetString("\n[Yes] \n[No]\n",valid4a,error_prompt);
+                    playerInput = Program.GetString("\n[Yes] \n[No]\n", valid4a, error_prompt);
 
-                    Console.WriteLine("You: Sorry, but I'd rather not." +
-                        "Cyclone: I would change my mind if I were you." +
-                        "As he speaks, he walks toward you, revealing what appear to be daggers. In fear, you run into a side ally, hoping for a way to escape." +
-                        "You run into a dead end, unable to escape as Cyclone slowly approaches you." +
-                        "Cyclone: I gave you a chance. Oh well.");
-
-
-
-                    if(playerInput == "YES")
+                    if (playerInput == "YES")
                     {
                         Console.WriteLine("You: Uh, yeah, sure, here." +
                             "\nCyclone: Good. Now, just pretend you never saw me, got it?" +
                             "\nYou: Yeah, sure. You got it." +
                             "\nWith a wicked smile, Cyclone leaves.");
                     }
-                    if(playerInput == "NO" && item_data[1,2] == "0")//if has cyber lens
+                    if (playerInput == "NO" && item_data[1, 2] == "0")//if has cyber lens
                     {
-                        Console.WriteLine("Out of nowhere, Zrkka drops into the ally and grabs cyclone, giving you an opportunity to escape." +
-                            "\nZrkka: Go!" +
-                            "\nWithout thinking, you run past the two cyborgs and into the open street.");
+                        YouSay("Sorry, but I'd rather not.");
+                        CycloneSays("I would change my mind if I were you.");
+                        Narr("As he speaks, he walks toward you, revealing what appear to be daggers. In fear, you run into a side ally, hoping for a way to escape."
+                            \n\n);
+                        "You run into a dead end, unable to escape as Cyclone slowly approaches you." +
+                        "Cyclone: I gave you a chance. Oh well.");
+                        Console.WriteLine("Out of nowhere, Zrkka drops into the ally and grabs cyclone, giving you an opportunity to escape.");
+                        ZrkkaSays("Go!");
+                       "\nWithout thinking, you run past the two cyborgs and into the open street."
 
                     }
                     else
                     {
+                        Console.WriteLine("You: Sorry, but I'd rather not." +
+                        "Cyclone: I would change my mind if I were you." +
+                        "As he speaks, he walks toward you, revealing what appear to be daggers. In fear, you run into a side ally, hoping for a way to escape." +
+                        "You run into a dead end, unable to escape as Cyclone slowly approaches you." +
+                        "Cyclone: I gave you a chance. Oh well.");
                         Console.WriteLine("You feel the pain of cyclone's daggers as you collapse to the ground. Cyclone walking away with the coin is the last thing you see." +
-                            "\n.\n.\n.");
+                            "\n\n.\n.\n.\n\n");
                         trigger_switch.Add(150);
                         trigger_switch.Add(152);
                     }
 
-
-
-
-
-
-
-
-
-
-
-
-                    return trigger_switch; 
-                case 5:
                     return trigger_switch; 
                 case 6:
                     PlayBlackJack(ref money);
@@ -1145,7 +1141,7 @@ namespace ECE264AdventureGame2023
                 .
                 Almost as if by fate, you hear gunfire and explosions coming from down below.
                 Soon after, Zrkka and DMN-14 break into the sanctum, and without any words, attack Jeanne and Cyclone.
-                Directive Head 3: We must leave! cyclone, Jeanne, eliminate them!
+                Directive Head 3: We must leave! Cyclone, Jeanne, eliminate them!
                 With that, the directive heads use teleportation technology to leave the area. 
                 Zrkka: Get to safety! We got this!
                 You: Are you-
