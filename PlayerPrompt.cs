@@ -90,8 +90,10 @@ namespace ECE264AdventureGame2023
 
                 
                 case 1:
-                string[] valid1 = { "Helio City", "I don't know where" };
-                    playerInput = Program.GetString("PA: Hello" + MyGlobals.playerName + ", where would you like to go? \n[Helio City] \n[I don't know where]\n", valid1,error_prompt);
+                    trigger_switch.Add(101);    //mark room as visited
+                    string[] valid1 = { "Helio City", "I don't know where" };
+                    Narr("PA: Hello" + MyGlobals.playerName + ", where would you like to go? ");
+                    playerInput = Program.GetString("\n[Helio City] \n[I don't know where]\n", valid1,error_prompt);
                     if (playerInput == "HELIO CITY")
                     {
                         YouSay("You: Helio City, please");
@@ -169,6 +171,7 @@ namespace ECE264AdventureGame2023
 
 
                 case 2:
+                    trigger_switch.Add(102);    //mark room as visited
                     string[] valid2a = { "I'm nobody", "I'm passing through" };
                     playerInput = Program.GetString("You: That guy in the hood. Who is he? " +
                         "\nAs you step toward him, he turns around and sharpens his gaze" +
@@ -182,9 +185,14 @@ namespace ECE264AdventureGame2023
                     }
                     if (playerInput == "I'M PASSING THROUGH")
                     {
-                        Console.WriteLine("You: I'm just passing through. My name's " + MyGlobals.playerName +
-                            "\n???: Just passing through huh? Getting seen with me is dangerous here in Uprall." +
-                            "\nYou: And who exactly are you?");
+                        YouSay("I'm just passing through. My name's " + MyGlobals.playerName );
+                        Console.ForegroundColor = ConsoleColor.DarkGray;
+                        Console.WriteLine("???: Just passing through huh? Getting seen with me is dangerous here in Uprall.");
+                        YouSay("And who exactly are you?");
+
+
+
+                          
                         
                     }
                     Console.WriteLine("???: ...You can call me Zrkka." +
@@ -195,15 +203,18 @@ namespace ECE264AdventureGame2023
                     playerInput = Program.GetString("\n[Yes] \n[No]\n", valid2b, error_prompt);
                     if (playerInput == "YES")
                     {
-                        Console.WriteLine("You: Yes, I know exactly who that is." +
-                            "\nZrkka: In that case..." +
-                            "\nZrrka extends his arm toward you, sharp blades extending out from his wrist." +
-                            "\nTheir reach has gone farther than I thought. You're clearly a new recruit, so let me give you some advice: Don't follow me, if you value your life." +
-                            "\nYou: What are you-?\r\n                          Zrkka walks toward you, blades extended" +
-                            "\nZrkka: If I were you, I'd keep walking." +
-                            "\nYou: Ok, ok, I'm going." +
-                            "\nZrkka keeps his eye on you as he leaves the ally by climbing over a gate. Given the gate's height, he clearly wasn't human." +
-                            "\nYou: Ok then...moving on.");
+                        YouSay("Yes, I know exactly who that is.");
+                        
+                        ZrkkaSays("In that case...");
+
+
+                        Console.WriteLine("\nZrrka extends his arm toward you, sharp blades extending out from his wrist." +
+                        "\nTheir reach has gone farther than I thought. You're clearly a new recruit, so let me give you some advice: Don't follow me, if you value your life." +
+                        "\nYou: What are you-?\r\n                          Zrkka walks toward you, blades extended" +
+                        "\nZrkka: If I were you, I'd keep walking." +
+                        "\nYou: Ok, ok, I'm going." +
+                        "\nZrkka keeps his eye on you as he leaves the ally by climbing over a gate. Given the gate's height, he clearly wasn't human." +
+                        "\nYou: Ok then...moving on.");
                     }
                     if (playerInput == "NO")
                     {
@@ -244,6 +255,7 @@ namespace ECE264AdventureGame2023
          */
 
                 case 3:
+                    trigger_switch.Add(103);    //mark room as visited
                     Narr("As you walk through the square, you notice a coin shining on the ground." +
                         "\nEverything is supposed to be digital in Uprall. What's this doing here?");
 
@@ -1368,7 +1380,7 @@ namespace ECE264AdventureGame2023
 
 
         //dialogue colors, copy the one below and modify color for new character
-        static void ZrikkaSays(string dialogue)
+        static void ZrkkaSays(string dialogue)
         {            
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine("Zrikka: " + dialogue);
@@ -1391,7 +1403,7 @@ namespace ECE264AdventureGame2023
         static void Narr(string dialogue)
         {
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("PA System: " + dialogue);
+            Console.WriteLine(dialogue);
             Console.ForegroundColor = ConsoleColor.White;
         }
 
