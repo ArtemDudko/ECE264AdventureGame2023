@@ -139,7 +139,7 @@ RoomID		RoomName						ShortDesc											LongDesc
 Begin Data After Triple &:
 &&&1		&Helio City Square (South)		&You've made it to Helio City, Uprall's capital		&Did I just see a guy go into that alley? Wonder who he is...
 
-&2			&Back Alley						&You enter the back alley							&Nothing else here, I should probably leave. 
+&2			&Back Alley						&You are in the back alley							&Nothing else here, I should probably leave. 
 
 &3			&Helio City Square (North)		&You continue through the square					&Hey, a coin. Everything's digital in Uprall, so why is this here?
 
