@@ -62,8 +62,8 @@ namespace ECE264AdventureGame2023
         //Declaring Rooms and CurrentRoom to be in
         public static List<int> FirstEntry(int NewRoom, List<bool> triggers, ref string[,] item_data, ref int money)
         {
-            
-            
+
+
             var trigger_switch = new List<int>(0);
             string playerInput;
             string error_prompt = "error, reenter choice,(caps specific)";
@@ -88,12 +88,12 @@ namespace ECE264AdventureGame2023
                 PA: Thank you, have a good day.
                 Ending 0: The Road Untravelled*/
 
-                
+
                 case 1:
                     trigger_switch.Add(101);    //mark room as visited
                     string[] valid1 = { "Helio City", "I don't know where" };
                     Narr("PA: Hello" + MyGlobals.playerName + ", where would you like to go? ");
-                    playerInput = Program.GetString("\n[Helio City] \n[I don't know where]\n", valid1,error_prompt);
+                    playerInput = Program.GetString("\n[Helio City] \n[I don't know where]\n", valid1, error_prompt);
                     if (playerInput == "HELIO CITY")
                     {
                         YouSay("You: Helio City, please");
@@ -101,8 +101,8 @@ namespace ECE264AdventureGame2023
                             "\n\n." +
                             "\n\n." +
                             "\n\n.\n\n");
-                        
-                        
+
+
                     }
 
                     if (playerInput == "I DON'T KNOW WHERE")
@@ -183,7 +183,7 @@ namespace ECE264AdventureGame2023
                     Console.WriteLine("\n???: Who are you ? ");
                     Console.ForegroundColor = ConsoleColor.White;
 
-                    playerInput = Program.GetString("\n[I'm nobody] \n[I'm passing through]\n", valid2a, error_prompt); 
+                    playerInput = Program.GetString("\n[I'm nobody] \n[I'm passing through]\n", valid2a, error_prompt);
                     if (playerInput == "I'M NOBODY")
                     {
                         YouSay("Oh, uh, I'm just nobody.");
@@ -200,8 +200,8 @@ namespace ECE264AdventureGame2023
 
 
 
-                          
-                        
+
+
                     }
                     Console.ForegroundColor = ConsoleColor.DarkGray;
                     Console.WriteLine("???: ...You can call me Zrkka.");
@@ -216,7 +216,7 @@ namespace ECE264AdventureGame2023
                     if (playerInput == "YES\n")
                     {
                         YouSay("Yes, I know exactly who that is.");
-                        
+
                         ZrkkaSays("In that case...");
 
 
@@ -255,7 +255,7 @@ namespace ECE264AdventureGame2023
                         ZrkkaSays("Oh, you'll know. His bite is a lot worse than his bark.");
                         Narr("With a chuckle, Zrkka leaves the ally by jumping over a large gate.");
                     }
-                        return trigger_switch;
+                    return trigger_switch;
 
                 /*
          -Occurs upon entering the room every time you enter, unless the coin or secret coin is in inventory-
@@ -287,7 +287,7 @@ namespace ECE264AdventureGame2023
                     }
 
 
-                        return trigger_switch;
+                    return trigger_switch;
 
 
                 /*
@@ -322,9 +322,9 @@ namespace ECE264AdventureGame2023
                 Zrkka: Go!
                 Without thinking, you run past the two cyborgs and into the open street.
                 -travel to room 5-*/
-            
-         
-     
+
+
+
                 case 4:
                     Console.WriteLine("Out of nowhere, a cyborg steps out of the shadows" +
                         "???: That coin you've got there doesn't belong to you. I would like it back, if you don't mind." +
@@ -332,7 +332,7 @@ namespace ECE264AdventureGame2023
                         "???: Not that it matters, but my name is Cyclone. " +
                         "Cyclone: Now, be good and give me the coin.");
                     string[] valid4a = { "Yes", "No" };
-                    playerInput = Program.GetString("\n[Yes] \n[No]\n",valid4a,error_prompt);
+                    playerInput = Program.GetString("\n[Yes] \n[No]\n", valid4a, error_prompt);
 
                     Console.WriteLine("You: Sorry, but I'd rather not." +
                         "Cyclone: I would change my mind if I were you." +
@@ -342,14 +342,14 @@ namespace ECE264AdventureGame2023
 
 
 
-                    if(playerInput == "YES")
+                    if (playerInput == "YES")
                     {
                         Console.WriteLine("You: Uh, yeah, sure, here." +
                             "\nCyclone: Good. Now, just pretend you never saw me, got it?" +
                             "\nYou: Yeah, sure. You got it." +
                             "\nWith a wicked smile, Cyclone leaves.");
                     }
-                    if(playerInput == "NO" && item_data[1,2] == "0")//if has cyber lens
+                    if (playerInput == "NO" && item_data[1, 2] == "0")//if has cyber lens
                     {
                         Console.WriteLine("Out of nowhere, Zrkka drops into the ally and grabs cyclone, giving you an opportunity to escape." +
                             "\nZrkka: Go!" +
@@ -375,13 +375,13 @@ namespace ECE264AdventureGame2023
 
 
 
-                    return trigger_switch; 
+                    return trigger_switch;
                 case 5:
-                    return trigger_switch; 
+                    return trigger_switch;
                 case 6:
-                    return trigger_switch; 
+                    return trigger_switch;
                 case 7:
-                    return trigger_switch; 
+                    return trigger_switch;
                 case 8:
                     return trigger_switch;
                 case 9:
@@ -488,7 +488,7 @@ namespace ECE264AdventureGame2023
                         */
                 case 26:
                     Narr("You walk a few steps before you are face to face with a menacing looking woman. She doesn't look like a cyborg, but you can tell that she is.");
-                    if (item_data[6,2] != "0") //if missing cyber arm
+                    if (item_data[6, 2] != "0") //if missing cyber arm
                     {
                         Console.ForegroundColor = ConsoleColor.DarkMagenta;
                         Console.WriteLine("???: You are not a cyborg.");
@@ -496,30 +496,30 @@ namespace ECE264AdventureGame2023
                         JeanneSays("It appears I have a fan.");
                         YouSay("Not really, if not for Zrkka, I wouldn't even know who you are.");
                         JeanneSays("You are with Zrkka? Hahahaha, ahh, c'est magnifique! It will be fun breaking you.");
-                        if (item_data[11,2] != "0") 
+                        if (item_data[11, 2] != "0")
                         {
                             Narr("Jeanne attacks you, and there is no way for you to fight back.\r\n" +
                                 "She tortured you for what seemed like days. When she was finally convinced you didn't know anything, she left you for dead, your will finally broken.\r\n" +
                                 "                            " +
                                 ".\r\n" +
-                                ".\r\n" + 
+                                ".\r\n" +
                                 ".\r\n");
 
 
                             trigger_switch.Add(150);        //trigger game over
                             trigger_switch.Add(150 + 14); //trigger ending 14
                         }
-                        
-                        if (item_data[11,2] == "0") 
+
+                        if (item_data[11, 2] == "0")
                         {
                             Narr("Jeanne attacked you, but thanks to your wrist blasters, you were able to fight her off. \r\n" +
                                 "You take Jeanne's key off her unconscious body, and book it out of there before she had a chance to wake up.\r\n" +
                                 "You got Jeanne's Key!");
                         }
-                        
+
                     }
 
-                    else if(item_data[6,2] == "0")
+                    else if (item_data[6, 2] == "0")
                     {
                         Console.ForegroundColor = ConsoleColor.DarkMagenta;
                         Console.WriteLine("???: A cyborg? Are you a lost new recruit? Who are you?");
@@ -527,35 +527,47 @@ namespace ECE264AdventureGame2023
                         playerInput = Program.GetString("\n[I'm here to stop you] \n[No]\n", valid2b, error_prompt);
                         if (playerInput == "I'M HERE TO STOP YOU\n")
                         {
-                            
+
                             YouSay("I'm here to put a stop to whatever you're doing, Jeanne!");
                             JeanneSays("You know my name? You must be with Zrkka! I will break you.");
                             Narr("Jeanne grabbed her spear and ran straight at you");
-                            if ()
+                            if (item_data[11,2] != "0")
                             {
+                                Narr("You knew almost immediately that was a mistake. The spear drove it home. " +
+                                    ".\r\n                                " +
+                                    ".\r\n                                " +
+                                    ".\r\n                                " +
+                                    "Bad End: Big Mistake");
+                                trigger_switch.Add(150);        //trigger game over
+                                trigger_switch.Add(150 + 15); //trigger ending 15
                                 YouSay("");
-                                JeanneSays("")
+                                JeanneSays("");
                             }
                         }
+
                     }
-                    return trigger_switch;
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             }
             return trigger_switch;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
+    
+            return trigger_switch;
+        
+
 
 
 
