@@ -398,18 +398,18 @@ namespace ECE264AdventureGame2023
                         You: Not really, if not for Zrkka, I wouldn't even know who you are.
                         Jeanne: You are with Zrkka? Hahahaha, ahh, c'est magnifique! It will be fun breaking you.
 
-                        -the following event is triggered if the prototype wrist blasters are NOT in your inventory-
-                        Jeanne attacks you, and there is no way for you to fight back.
-                        She tortured you for what seemed like days. When she was finally convinced you didn't know anything, she left you for dead, your will finally broken.
-                        .
-                        .
-                        .
-                        Bad End: Broken will
+                            -the following event is triggered if the prototype wrist blasters are NOT in your inventory-
+                            Jeanne attacks you, and there is no way for you to fight back.
+                            She tortured you for what seemed like days. When she was finally convinced you didn't know anything, she left you for dead, your will finally broken.
+                            .
+                            .
+                            .
+                            Bad End: Broken will
 
-                        -The following event is triggered if the wrist blasters ARE in your inventory-
-                        Jeanne attacked you, but thanks to your wrist blasters, you were able to fight her off. 
-                        You take Jeanne's key off her unconscious body, and book it out of there before she had a chance to wake up.
-                        You got Jeanne's Key!
+                            -The following event is triggered if the wrist blasters ARE in your inventory-
+                            Jeanne attacked you, but thanks to your wrist blasters, you were able to fight her off. 
+                            You take Jeanne's key off her unconscious body, and book it out of there before she had a chance to wake up.
+                            You got Jeanne's Key!
 
                         -this event triggers if you enter the room WITH the cyber arm-
                         ???: A cyborg? Are you a lost new recruit? Who are you?
@@ -493,8 +493,51 @@ namespace ECE264AdventureGame2023
                         Console.ForegroundColor = ConsoleColor.DarkMagenta;
                         Console.WriteLine("???: You are not a cyborg.");
                         YouSay("No, I am not. You must be Jeanne.");
+                        JeanneSays("It appears I have a fan.");
+                        YouSay("Not really, if not for Zrkka, I wouldn't even know who you are.");
+                        JeanneSays("You are with Zrkka? Hahahaha, ahh, c'est magnifique! It will be fun breaking you.");
+                        if (item_data[11,2] != "0") 
+                        {
+                            Narr("Jeanne attacks you, and there is no way for you to fight back.\r\n" +
+                                "She tortured you for what seemed like days. When she was finally convinced you didn't know anything, she left you for dead, your will finally broken.\r\n" +
+                                "                            " +
+                                ".\r\n" +
+                                ".\r\n" + 
+                                ".\r\n");
+
+
+                            trigger_switch.Add(150);        //trigger game over
+                            trigger_switch.Add(150 + 14); //trigger ending 14
+                        }
+                        
+                        if (item_data[11,2] == "0") 
+                        {
+                            Narr("Jeanne attacked you, but thanks to your wrist blasters, you were able to fight her off. \r\n" +
+                                "You take Jeanne's key off her unconscious body, and book it out of there before she had a chance to wake up.\r\n" +
+                                "You got Jeanne's Key!");
+                        }
+                        
                     }
 
+                    else if(item_data[6,2] == "0")
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                        Console.WriteLine("???: A cyborg? Are you a lost new recruit? Who are you?");
+                        string[] valid26a = { "I'm here to stop you", "No" };
+                        playerInput = Program.GetString("\n[I'm here to stop you] \n[No]\n", valid2b, error_prompt);
+                        if (playerInput == "I'M HERE TO STOP YOU\n")
+                        {
+                            
+                            YouSay("I'm here to put a stop to whatever you're doing, Jeanne!");
+                            JeanneSays("You know my name? You must be with Zrkka! I will break you.");
+                            Narr("Jeanne grabbed her spear and ran straight at you");
+                            if ()
+                            {
+                                YouSay("");
+                                JeanneSays("")
+                            }
+                        }
+                    }
                     return trigger_switch;
 
 
