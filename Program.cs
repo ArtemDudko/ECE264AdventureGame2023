@@ -34,7 +34,7 @@ namespace ECE264AdventureGame2023
     {
         static void Main(string[] args)
         {
-            string root_folder = "C:\\Users\\adudk\\source\\repos\\ArtemDudko\\ECE264AdventureGame2023"; //CHANGE ME TO ROOT FOLDER
+            string root_folder = "C:\\ECE264AdventureGame2023"; //CHANGE ME TO ROOT FOLDER
 
 
 
@@ -45,23 +45,14 @@ namespace ECE264AdventureGame2023
                                                             //order is same as in rooms.txt: roomid, room name, short desc, long desc
             string[,] exit_data = Rooms.LoadExits(root_folder);        //loads exitsConditions.txt into a 11 row by 100 col array
 
-            //Dictionary<bool, string> trigger_data_dic = PlayerPrompt.LoadTriggers(root_folder);     //load a dictionary of triggers, corresponding with: (ID:STATE), id is a int, state is a bool
-            
             var trigger_data = new List<bool>(); //read triggers for most interactions
             for (int i = 0; i < 500; i++)
                 trigger_data.Add(false);
             trigger_data[0] = true;
 
-
-
-
             var trigger_switch = new List<int>();
             string[,] item_data = Inventory.LoadItems(root_folder);
             int ending = 0;
-
-
-
-
 
             Console.ForegroundColor = ConsoleColor.White;
             MyGlobals.Debug = GetYesNo("Would you like to enable Debug mode? ");  //Check if this is on using ifs, debug messages are surrounded by brackets
@@ -70,12 +61,11 @@ namespace ECE264AdventureGame2023
                 Console.WriteLine("[Debug Mode Enabled]"); Console.ForegroundColor = ConsoleColor.White;}
 
 
-            //welcome and get name
-            //-Prior to entering room 1:-
-            //PA: Hello. Welcome to the Uprall Transport Hub. Please enter your name"
-            //player prompt for name
-            //PA: Hello (player name), where would you like to go?
-            //present choices for {Helio City} {I don't know where}
+            //setup stuff
+            int currentRoom = 1;
+            int chosen_exit_id;
+            int playerAction = 0; //0 = start, 1 = move, 2 = look around
+            int money = 0;
 
 
 
@@ -83,22 +73,14 @@ namespace ECE264AdventureGame2023
             Console.ForegroundColor = ConsoleColor.DarkBlue;
             MyGlobals.playerName = Console.ReadLine();
             Console.ForegroundColor = ConsoleColor.White;
-            //Console.WriteLine("PA: Hello " + MyGlobals.playerName + ", where would you like to go?");
-            //Console.WriteLine("Welcome to Cyber Conspiracy!");
-            //Console.WriteLine("Try moving around or picking up items to progress. At the start of any room, type HELP to list your commands.\n");
             
-            //setup stuff
-            int currentRoom = 1;
-            int chosen_exit_id;
-            int playerAction = 0; //0 = start, 1 = move, 2 = look around
+            
+            
 
-            trigger_switch = PlayerPrompt.FirstEntry(currentRoom, trigger_data, item_data);
+
+            trigger_switch = PlayerPrompt.FirstEntry(currentRoom, trigger_data, ref item_data, ref money);
             foreach(var flip in trigger_switch) trigger_data[flip] = true;
             
-
-
-
-
 
 
 
@@ -147,9 +129,8 @@ namespace ECE264AdventureGame2023
 
                             if (!trigger_data[currentRoom + 100])    //if a player has not been to a room
                             {
-                                trigger_data[currentRoom + 100] = true;
                                 //prompt player for first time and mess with triggers
-                                trigger_switch = PlayerPrompt.FirstEntry(currentRoom, trigger_data, item_data);
+                                trigger_switch = PlayerPrompt.FirstEntry(currentRoom, trigger_data, ref item_data, ref money);
                                 foreach (var flip in trigger_switch) trigger_data[flip] = true;
                             }
 
