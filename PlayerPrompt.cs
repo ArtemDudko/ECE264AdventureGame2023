@@ -23,10 +23,7 @@ namespace ECE264AdventureGame2023
             sb = sb.Replace("\n", "");
             sb = sb.Replace("\t", "");
             sb = sb.Replace("\r", "");
-            var raw_trigger_data_array = sb.ToString().Split('&');
-
-            
-
+            var raw_trigger_data_array = sb.ToString().Split('&');        
 
             var trigger_data_dic = new Dictionary<bool, string>() { };
             for (int trigger_id = 1; trigger_id < raw_trigger_data_array.Length / 2; trigger_id++)
@@ -42,7 +39,9 @@ namespace ECE264AdventureGame2023
 
         need to make big ass switch case statement
 
-        0-99 will be room discovery
+        0-49 will be room discovery, extra stuff for entering a room for the first time
+
+        50-99 will be extended examine prompts if conditions are met
 
         100-199 will be dialogue and interactions in rooms
 
@@ -61,7 +60,7 @@ namespace ECE264AdventureGame2023
 
 
         //Declaring Rooms and CurrentRoom to be in
-        public static List<int> FirstEntry(int NewRoom, List<bool> triggers, string[,] item_data)
+        public static List<int> FirstEntry(int NewRoom, List<bool> triggers, ref string[,] item_data, ref int money)
         {
             
             
@@ -72,22 +71,22 @@ namespace ECE264AdventureGame2023
             {
 
 
-                //welcome and get name
-                //-Prior to entering room 1:-
-                //PA: Hello. Welcome to the Uprall Transport Hub. Please enter your name"
-                //player prompt for name
-                //PA: Hello (player name), where would you like to go?
-                //present choices for {Helio City} {I don't know where}
+                /*welcome and get name
+                -Prior to entering room 1:-
+                PA: Hello. Welcome to the Uprall Transport Hub. Please enter your name"
+                player prompt for name
+                PA: Hello (player name), where would you like to go?
+                present choices for {Helio City} {I don't know where}
 
-                // -if {Helio City}: -
-                //You: Helio City, please
-                //PA: Travelling to Helio City, please take your seat.
-                //-enter room 1-
+                 -if {Helio City}: -
+                You: Helio City, please
+                PA: Travelling to Helio City, please take your seat.
+                -enter room 1-
 
-                //-if {I don't know where}-
-                //You: Uh, I'm not really sure. Maybe I'll visit Uprall some other time.
-                //PA: Thank you, have a good day.
-                //Ending 0: The Road Untravelled
+                -if {I don't know where}-
+                You: Uh, I'm not really sure. Maybe I'll visit Uprall some other time.
+                PA: Thank you, have a good day.
+                Ending 0: The Road Untravelled*/
 
                 
                 case 1:
@@ -95,12 +94,14 @@ namespace ECE264AdventureGame2023
                     playerInput = Program.GetString("PA: Hello" + MyGlobals.playerName + ", where would you like to go? \n[Helio City] \n[I don't know where]\n", valid1,error_prompt);
                     if (playerInput == "HELIO CITY")
                     {
-                        Console.WriteLine("You: Helio City, please");
-                        Console.WriteLine("PA: Travelling to Helio City, please take your seat.");
+                        YouSay("You: Helio City, please");
+                        Narr("PA: Travelling to Helio City, please take your seat.");
+                        
                     }
+
                     if (playerInput == "I DON'T KNOW WHERE")
                     {
-                        Console.WriteLine("You: Uh, I'm not really sure. Maybe I'll visit Uprall some other time.");
+                        YouSay("Uh, I'm not really sure. Maybe I'll visit Uprall some other time.");
                         Console.WriteLine("PA: Thank you, have a good day.");
                         trigger_switch.Add(150);
                         trigger_switch.Add(151);
@@ -228,12 +229,6 @@ namespace ECE264AdventureGame2023
                             "\nZrkka: Oh, you'll know. His bite is a lot worse than his bark." +
                             "\nWith a chuckle, Zrkka leaves the ally by jumping over a large gate.");
                     }
-
-
-
-
-
-
                         return trigger_switch;
 
                 /*
@@ -245,30 +240,27 @@ namespace ECE264AdventureGame2023
                 You recieved the coin!
             {Leave coin}
          * 
-         * 
-         -occurs if room is inspected with coin or secret coin in inventory- 
-            -given option to approach vendor-
-            -if vendor is approached-
-            Abhi: Hello there, my name is Abhi, I am a humble vendor here in Uprall. How are you?
-            You: I am doing fine, thank you. Can you tell me anything about this coin?
-            Abhi: Of course! Let me see it! Oh, yes, yes, this coin is made of fine material! I will sell it to you for 500 credits!
-            -present choice-
-                {Sell the coin}
-                    You: Yeah, sure, here ya go. 
-                    You lost the coin!
-                    You gain 500 credits!
-                    Abhi: Pleasure doing business with you!
-                {Don't sell the coin}
-                    You: Actually, I think I'll hold onto it. A memento of my time here, I suppose. Thank you!
-                    Abhi: Of course! Take care now!        
+         *                 
          */
 
                 case 3:
-                    Console.WriteLine("As you walk through the square, you notice a coin shining on the ground." +
-                        "\nYou: Hey, a coin. Everything is supposed to be digital in Uprall. What's this doing here?");
+                    Narr("As you walk through the square, you notice a coin shining on the ground." +
+                        "\nEverything is supposed to be digital in Uprall. What's this doing here?");
+
+                    string[] valid3a = { "Take Coin", "Leave Coin" };
+                    playerInput = Program.GetString("\n[Take Coin] \n[Leave Coin]\n", valid3a, error_prompt);
+                    if (playerInput == "Take Coin")
+                    {
+                        Narr("You recieved the coin!");
+                        item_data[2, 2] = "0";      //setting location to 0 is adding to player inventory
+                    }
+                    if (playerInput == "Leave Coin")
+                    {
+                        Narr("You decide it's best to leave it.");
+                    }
 
 
-                    return trigger_switch;
+                        return trigger_switch;
 
 
                 /*
@@ -386,7 +378,111 @@ namespace ECE264AdventureGame2023
             return trigger_switch;
         }
 
-        //public static 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public static List<int> ExtraExamine(int currentRoom, List<bool> triggers, ref string[,] item_data, ref int money)
+        {
+            var trigger_switch = new List<int>(0);
+            string playerInput;
+            string error_prompt = "error, reenter choice,(caps specific)";
+
+            switch (currentRoom)
+            {
+
+
+                /*
+            -occurs if room is inspected with coin or secret coin in inventory -
+            -given option to approach vendor-
+            -if vendor is approached -
+            Abhi: Hello there, my name is Abhi, I am a humble vendor here in Uprall.How are you?
+            You: I am doing fine, thank you. Can you tell me anything about this coin?
+            Abhi: Of course!Let me see it! Oh, yes, yes, this coin is made of fine material!I will sell it to you for 500 credits!
+            - present choice -
+                { Sell the coin}
+        You: Yeah, sure, here ya go.
+                    You lost the coin!
+                    You gain 500 credits!
+                    Abhi: Pleasure doing business with you!
+                {
+                Don't sell the coin}
+                    You: Actually, I think I'll hold onto it. A memento of my time here, I suppose. Thank you!
+                    Abhi: Of course!Take care now!*/
+
+
+                case 3:
+                    Narr("Looking closer, you also notice a vendor selling some wares. Ask him what he's selling?");
+                    string[] valid3a = { "Yes", "No" };
+                    playerInput = Program.GetString("\n[Yes] \n[No]\n", valid3a, error_prompt);
+
+                    //Console.WriteLine("");
+
+                    if (playerInput == "YES")
+                    {
+                        AbhiSays("Hello there, my name is Abhi, I am a humble vendor here in Uprall.How are you?");
+                        YouSay("I am doing fine, thank you. Can you tell me anything about this coin?");
+                        AbhiSays("Of course!Let me see it! Oh, yes, yes, this coin is made of fine material! I will sell it to you for 500 credits!");
+
+                        
+                        string[] valid3b = { "Yes", "No" };
+                        playerInput = Program.GetString("\n[Yes] \n[No]\n", valid3b, error_prompt);
+                        if (playerInput == "YES")
+                        {
+
+
+
+                        }
+
+
+
+                            return trigger_switch;
+                    }
+                    return trigger_switch;
+
+
+
+
+
+
+                case 4:
+
+                    return trigger_switch;
+            }         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            return trigger_switch;
+        }
         
 
 
@@ -1268,13 +1364,46 @@ namespace ECE264AdventureGame2023
 
         static Room currentRoom = room1;
 
+
+
+
+        //dialogue colors, copy the one below and modify color for new character
+        static void ZrikkaSays(string dialogue)
+        {            
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine("Zrikka: " + dialogue);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+        static void YouSay(string dialogue)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine("You: " + dialogue);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        static void CycloneSays(string dialogue)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Cyclone: " + dialogue);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        static void Narr(string dialogue)
+        {
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("PA System: " + dialogue);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
         
+        static void AbhiSays(string dialogue)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Vendor Abhi: " + dialogue);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
 
-
-
-            
-
-            // GET YES/NO OR Y/N RESPONSE. RETURN TRUE FOR YES/Y, FALSE FOR NO/N
+        // GET YES/NO OR Y/N RESPONSE. RETURN TRUE FOR YES/Y, FALSE FOR NO/N
         static bool GetYesNo(string prompt)
         {
             string[] valid = { "YES", "Y", "NO", "N" };

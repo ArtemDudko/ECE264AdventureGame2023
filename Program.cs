@@ -91,8 +91,10 @@ namespace ECE264AdventureGame2023
             int currentRoom = 1;
             int chosen_exit_id;
             int playerAction = 0; //0 = start, 1 = move, 2 = look around
+            int money = 0;
 
-            trigger_switch = PlayerPrompt.FirstEntry(currentRoom, trigger_data, item_data);
+
+            trigger_switch = PlayerPrompt.FirstEntry(currentRoom, trigger_data, item_data, money);
             foreach(var flip in trigger_switch) trigger_data[flip] = true;
             
 
@@ -149,7 +151,7 @@ namespace ECE264AdventureGame2023
                             {
                                 trigger_data[currentRoom + 100] = true;
                                 //prompt player for first time and mess with triggers
-                                trigger_switch = PlayerPrompt.FirstEntry(currentRoom, trigger_data, item_data);
+                                trigger_switch = PlayerPrompt.FirstEntry(currentRoom, trigger_data, item_data, money);
                                 foreach (var flip in trigger_switch) trigger_data[flip] = true;
                             }
 
