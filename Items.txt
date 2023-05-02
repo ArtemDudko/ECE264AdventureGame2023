@@ -3,16 +3,20 @@
 ///EX:	 &1		&Coin  &1  ///(in this case it is the alley)
 ///Items.txt is three coloumns wide
 
-&1		&Cyber Lens		&2
-&2		&Coin	&3
-&3		&Secret Coin	&999
-&4		&Hook Shot	&7
-&5		&Password	&1002
-&6		&Cyber Arm	&19
-&7		&Uprall Informational Data	&19
-&8		&Jeanne's Document	&1005
-&9		&Official Initiate Badge	&1007
-&10		&Jeanne's Key	&1006
-&11		&Prototype Wrist Blasters	&7
-&12		&Matter Deflection Apparatus	&7
+Cyber arm is accesses as item_data [6,1]
+
+
+&&&0		&Placeholder					&999
+&1			&Cyber Lens						&2
+&2			&Coin							&3
+&3			&Secret Coin					&999
+&4			&Hook Shot						&7
+&5			&Password						&22
+&6			&Cyber Arm						&19
+&7			&Uprall Informational Data		&19
+&8			&Jeanne's Document				&25
+&9			&Official Initiate Badge		&27
+&10			&Jeanne's Key					&26
+&11			&Prototype Wrist Blasters		&7
+&12			&Matter Deflection Apparatus	&7
 
