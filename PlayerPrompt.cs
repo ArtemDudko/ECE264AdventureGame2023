@@ -373,6 +373,115 @@ namespace ECE264AdventureGame2023
                     return trigger_switch;
 
 
+                /*
+                        You walk a few steps before you are face to face with a menacing looking woman. She doesn't look like a cyborg, but you can tell that she is.
+
+                        -this event triggers if you enter the room WITHOUT the cyber arm-
+                        ???: You are not a cyborg. 
+                        You: No, I am not. You must be Jeanne.
+                        Jeanne: It appears I have a fan.
+                        You: Not really, if not for Zrkka, I wouldn't even know who you are.
+                        Jeanne: You are with Zrkka? Hahahaha, ahh, c'est magnifique! It will be fun breaking you.
+
+                        -the following event is triggered if the prototype wrist blasters are NOT in your inventory-
+                        Jeanne attacks you, and there is no way for you to fight back.
+                        She tortured you for what seemed like days. When she was finally convinced you didn't know anything, she left you for dead, your will finally broken.
+                        .
+                        .
+                        .
+                        Bad End: Broken will
+
+                        -The following event is triggered if the wrist blasters ARE in your inventory-
+                        Jeanne attacked you, but thanks to your wrist blasters, you were able to fight her off. 
+                        You take Jeanne's key off her unconscious body, and book it out of there before she had a chance to wake up.
+                        You got Jeanne's Key!
+
+                        -this event triggers if you enter the room WITH the cyber arm-
+                        ???: A cyborg? Are you a lost new recruit? Who are you?
+                        -present choices-
+                            {I'm here to stop you}
+                                You: I'm here to put a stop to whatever you're doing, Jeanne!
+                                Jeanne: You know my name? You must be with Zrkka! I will break you.
+                                Jeanne grabbed her spear and ran straight at you
+
+                                -this event triggered if you do NOT have the prototype wrist blasters-
+                                You knew almost immediately that was a mistake. The spear drove it home.
+                                .
+                                .
+                                .
+                                Bad End: Big Mistake
+
+                                -this event is triggered if you DO have the wrist blasters-
+                                You try to fight Jeanne off with the wrist blasters you bought earlier, and you put up quite a fight. Jeanne had to call for reinforcements to assist her.
+                                At that moment, you come up with an idea; you can distract all of the guards, so Zrkka and DMN-14 can accomplish their mission.
+                                You run out of the room, and blast your way past everyone that comes your way.
+                                .
+                                .
+                                .
+                                Ending 4: Gung-ho
+                            {I'm here to serve the directive}
+                                You: I am here to serve the directive, lady Jeanne.
+                                Jeanne: I see. Then I suppose you have been briefed on everything you need to know. Let's test that then, hm?
+                                .
+                                .
+                                .
+                                Jeanne: I am among the top enforcers in the directive, but there is one who is considered my superior. What is his name?
+                                    -present choices-
+                                        {Voris- The Superior Cyborg} //<-- correct
+                                        {Cyclone- The Cyber Storm}
+                                        {Aurelius- the Dying Shadow}
+
+                                Jeanne: We recently had an escapee, tenacious little thing. What was her name?
+                                    -present choices-
+                                        {Marina}
+                                        {Frolic}
+                                        {Celia} //<-- correct
+
+                                Jeanne: The traitor and his pet lap dog. Surely you've heard of them. What are their names?
+                                    -present choices-
+                                        {Mirio and Marina- The Reason Within Madness and The Star of Cindren}
+                                        {Zrkka and DMN-14- The Steel Reaper and The Gun Wolf} //<-- correct
+                                        {A'sher and Morris- The Savior King and The Heir of Shinaran}
+
+                               -This event triggers if at any point the players gets a SINGLE question wrong-
+                               You feel something grab at you, holding you in place.
+                               Jeanne: Wrong! I knew you were with Zrkka. 
+                               You struggle to get free, which only makes Jeanne laugh.
+                               Jeanne: You said you were here to serve the directive? Then that's exactly what you'll do.
+                               All you can do is scream as she takes you away. 
+                               .
+                               .
+                               .
+                               Soon all that remains of you is the cybernetic husk used to control your consciousness. 
+                               Your first mission as the newest directive initiate; eliminate Zrrka, The Steel Reaper.
+                               You will fail and die, of course, but at least they can make an example out of you.
+                               .
+                               .
+                               .
+                               Bad End: Eternal Service
+
+                               -this event triggers if the player gets all question right-
+                               Jeanne: Well done. I suppose I can trust you. I have some important information to give to the directors. 
+                               Jeanne: However, I am a bit busy, so I will give you this key for you to access the elevator. 
+                               You Got Jeanne's Key!
+                               Jeanne: Now run along.
+
+                               -player exits to room 18 and can NOT reenter-
+
+
+
+                        */
+                case 26:
+                    Narr("You walk a few steps before you are face to face with a menacing looking woman. She doesn't look like a cyborg, but you can tell that she is.");
+                    if (item_data[6,2] != "0") //if missing cyber arm
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                        Console.WriteLine("???: You are not a cyborg.");
+                        YouSay("No, I am not. You must be Jeanne.");
+                    }
+
+                    return trigger_switch;
+
 
 
 
