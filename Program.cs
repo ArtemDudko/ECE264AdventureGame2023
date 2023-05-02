@@ -34,15 +34,12 @@ namespace ECE264AdventureGame2023
     {
         static void Main(string[] args)
         {
-            string root_folder = "C:\\ECE264AdventureGame2023"; //CHANGE ME TO ROOT FOLDER
+            string root_folder = "U:\\ECE264\\Adventure-ver4"; //CHANGE ME TO ROOT FOLDER
 
 
-
-
-
-
+            
             string[,] room_data = Rooms.LoadRooms(root_folder);        //load rooms.txt into 2d array, dimesnisons 4 rows by 100 coloumns
-                                                            //order is same as in rooms.txt: roomid, room name, short desc, long desc
+                                                            
             string[,] exit_data = Rooms.LoadExits(root_folder);        //loads exitsConditions.txt into a 11 row by 100 col array
 
             var trigger_data = new List<bool>(); //read triggers for most interactions
@@ -67,27 +64,36 @@ namespace ECE264AdventureGame2023
             int playerAction = 0; //0 = start, 1 = move, 2 = look around
             int money = 0;
 
+            Console.ForegroundColor = ConsoleColor.Blue;
+            //font: slant
+            Console.WriteLine("Welcome to...");
+            Console.WriteLine("     ______      __                 ______                       _                      ");
+            Console.WriteLine("    / ____/_  __/ /_  ___  _____   / ____/___  ____  _________  (_)________ ________  __");
+            Console.WriteLine("   / /   / / / / __ \\/ _ \\/ ___/  / /   / __ \\/ __ \\/ ___/ __ \\/ / ___/ __ `/ ___/ / / /");
+            Console.WriteLine("  / /___/ /_/ / /_/ /  __/ /     / /___/ /_/ / / / (__  ) /_/ / / /  / /_/ / /__/ /_/ / ");
+            Console.WriteLine("  \\____/\\__, /_.___/\\___/_/      \\____/\\____/_/ /_/____/ .___/_/_/   \\__,_/\\___/\\__, /  ");
+            Console.WriteLine("       /____/                                         /_/                      /____/   \n");
+            Console.ForegroundColor = ConsoleColor.White;
 
 
+
+
+            //GAME START
             Console.Write("PA: Hello. Welcome to the Uprall Transport Hub. Please enter your name: ");
             Console.ForegroundColor = ConsoleColor.DarkBlue;
             MyGlobals.playerName = Console.ReadLine();
             Console.ForegroundColor = ConsoleColor.White;
-            
-            
-            
-
-
+                        
             trigger_switch = PlayerPrompt.FirstEntry(currentRoom, trigger_data, ref item_data, ref money);
             foreach(var flip in trigger_switch) trigger_data[flip] = true;
             
 
 
 
-            while (true)   //game loop
+            while (true)   //main game loop
             {
                 Console.WriteLine(room_data[currentRoom, 2]);
-                //nextRoom = Rooms.Navigate(nextRoom);
+                
 
                 playerAction = 0;       //reset action to trigger loop
                 while(!(playerAction == 1))
@@ -142,6 +148,10 @@ namespace ECE264AdventureGame2023
                             Console.Write("You take a closer look. ");
                             Console.WriteLine(room_data[currentRoom, 3]);
                             Inventory.ListFloorItems(currentRoom, item_data);
+
+                            trigger_switch = PlayerPrompt.ExtraExamine(currentRoom, trigger_data, ref item_data, ref money); //if the player examines in a certain room with certain conditions, trigger dialogue
+                            foreach (var flip in trigger_switch) trigger_data[flip] = true;
+
 
                             break;
                         case 3:
