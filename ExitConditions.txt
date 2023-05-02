@@ -154,7 +154,7 @@ Array Format Below:
 
 
 
-RoomID# 			Exit#   ExitID	ExitName					ExitDirection	ExitTriggers 1-5
+RoomID# 			Exit#   ExitID	ExitName					ExitDirection	ExitTriggers 1-3 are actual triggers, triggers 4 and 5 are for itemIDs
 
 Begin Data After Triple &:
 &&&roomID&1			&1		&3		&Helio City Square N		&North			&0	&0	&0	&0	&0
@@ -171,7 +171,7 @@ Begin Data After Triple &:
 &roomID&5			&2	    &6		&Side Alley					&South			&0	&0	&0	&0	&0
 &roomID&5			&3	    &4		&Corner Street				&East			&0	&0	&0	&0	&0
 
-&roomID&6			&1	    &21     &Secret Casino				&West			&0	&0	&0	&0	&0
+&roomID&6			&1	    &21     &Secret Casino				&West			&106&0	&0	&0	&0
 &roomID&6			&2	    &5      &Academy Road S				&North			&0	&0	&0	&0	&0
 
 

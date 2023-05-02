@@ -12,7 +12,8 @@ Cyber arm is accesses as item_data [6,1], location would be 6,2
 
 
 ITEM ID		ITEM NAME						ITEM LOCATION
-&&&0		&Placeholder					&999
+
+&&&0		&PLACEHOLDER					&0
 &1			&Cyber Lens						&2
 &2			&Coin							&3
 &3			&Secret Coin					&999
