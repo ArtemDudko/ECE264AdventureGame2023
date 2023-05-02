@@ -3,13 +3,16 @@ triggers usually start as false and prevent you from entering secret doors or ma
 They serve as the player either having done something to gain access or knowing something secret to gain access to new places or dialogue
 They will be loaded into a bool array, and switched when their codition is met in game
 
-1-100 = exit triggers
-
+0-49 = exit triggers
+50-99 = dialogue triggers
+100-149 = first enter room trigger, roomid + 100 to store and check
+150-199 = endings, if 150 true, an ending has been reached
 
 Begin Data After Triple &:
 
-&&&		Trigger 0 Below: Always True.&
-True
+&&&	True &	Trigger 0: Always True.
+
+&
 
 &		label trigger 1 like this ^^^, and do others in a similar manner:   Trigger 1: done by accepting coin&
 False
@@ -18,25 +21,4 @@ False
 False
 
 &		Trigger 3: Done by having x item from x room&
-False
-
-&Trigger 4: &
-False
-
-&Trigger 5: &
-False
-
-&Trigger 6: &
-False
-
-&Trigger 7: &
-False
-
-&Trigger 8: &
-False
-
-&Trigger 9: &
-False
-
-&Trigger 10: &
 False
