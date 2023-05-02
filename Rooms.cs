@@ -89,7 +89,7 @@ namespace ECE264AdventureGame2023
                             enterable = false;
 
                     for (int i = 9; i < 11; i++)
-                        if (item_data[Int32.Parse(exit_data[row, i]), 2] == "0")
+                        if (item_data[Int32.Parse(exit_data[row, i]), 2] != "0")
                             enterable = false;
 
                     if (enterable)
