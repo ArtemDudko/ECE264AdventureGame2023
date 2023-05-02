@@ -1,7 +1,13 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Numerics;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -487,87 +493,214 @@ namespace ECE264AdventureGame2023
 
                         */
                 case 26:
-                    Narr("You walk a few steps before you are face to face with a menacing looking woman. She doesn't look like a cyborg, but you can tell that she is.");
-                    if (item_data[6, 2] != "0") //if missing cyber arm
-                    {
-                        Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                        Console.WriteLine("???: You are not a cyborg.");
-                        YouSay("No, I am not. You must be Jeanne.");
-                        JeanneSays("It appears I have a fan.");
-                        YouSay("Not really, if not for Zrkka, I wouldn't even know who you are.");
-                        JeanneSays("You are with Zrkka? Hahahaha, ahh, c'est magnifique! It will be fun breaking you.");
-                        if (item_data[11, 2] != "0")
+                    { 
+                        Narr("You walk a few steps before you are face to face with a menacing looking woman. She doesn't look like a cyborg, but you can tell that she is.");
+                        if (item_data[6, 2] != "0") //if missing cyber arm
                         {
-                            Narr("Jeanne attacks you, and there is no way for you to fight back.\r\n" +
-                                "She tortured you for what seemed like days. When she was finally convinced you didn't know anything, she left you for dead, your will finally broken.\r\n" +
-                                "                            " +
-                                ".\r\n" +
-                                ".\r\n" +
-                                ".\r\n");
-
-
-                            trigger_switch.Add(150);        //trigger game over
-                            trigger_switch.Add(150 + 14); //trigger ending 14
-                        }
-
-                        if (item_data[11, 2] == "0")
-                        {
-                            Narr("Jeanne attacked you, but thanks to your wrist blasters, you were able to fight her off. \r\n" +
-                                "You take Jeanne's key off her unconscious body, and book it out of there before she had a chance to wake up.\r\n" +
-                                "You got Jeanne's Key!");
-                        }
-
-                    }
-
-                    else if (item_data[6, 2] == "0")
-                    {
-                        Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                        Console.WriteLine("???: A cyborg? Are you a lost new recruit? Who are you?");
-                        string[] valid26a = { "I'm here to stop you", "No" };
-                        playerInput = Program.GetString("\n[I'm here to stop you] \n[No]\n", valid2b, error_prompt);
-                        if (playerInput == "I'M HERE TO STOP YOU\n")
-                        {
-
-                            YouSay("I'm here to put a stop to whatever you're doing, Jeanne!");
-                            JeanneSays("You know my name? You must be with Zrkka! I will break you.");
-                            Narr("Jeanne grabbed her spear and ran straight at you");
-                            if (item_data[11,2] != "0")
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                            Console.WriteLine("???: You are not a cyborg.");
+                            YouSay("No, I am not. You must be Jeanne.");
+                            JeanneSays("It appears I have a fan.");
+                            YouSay("Not really, if not for Zrkka, I wouldn't even know who you are.");
+                            JeanneSays("You are with Zrkka? Hahahaha, ahh, c'est magnifique! It will be fun breaking you.");
+                            if (item_data[11, 2] != "0")
                             {
-                                Narr("You knew almost immediately that was a mistake. The spear drove it home. " +
-                                    ".\r\n                                " +
-                                    ".\r\n                                " +
-                                    ".\r\n                                " +
-                                    "Bad End: Big Mistake");
+                                Narr("Jeanne attacks you, and there is no way for you to fight back.\r\n" +
+                                    "She tortured you for what seemed like days. When she was finally convinced you didn't know anything, she left you for dead, your will finally broken.\r\n" +
+                                    "                            " +
+                                    ".\r\n" +
+                                    ".\r\n" +
+                                    ".\r\n");
+
+
                                 trigger_switch.Add(150);        //trigger game over
-                                trigger_switch.Add(150 + 15); //trigger ending 15
-                                YouSay("");
-                                JeanneSays("");
+                                trigger_switch.Add(150 + 14); //trigger ending 14
                             }
+
+                            if (item_data[11, 2] == "0")
+                            {
+                                Narr("Jeanne attacked you, but thanks to your wrist blasters, you were able to fight her off. \r\n" +
+                                    "You take Jeanne's key off her unconscious body, and book it out of there before she had a chance to wake up.\r\n" +
+                                    "You got Jeanne's Key!");
+                            }
+
                         }
 
+                        else if (item_data[6, 2] == "0")
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                            Console.WriteLine("???: A cyborg? Are you a lost new recruit? Who are you?");
+                            string[] valid26a = { "I'm here to stop you", "No" };
+                            playerInput = Program.GetString("\n[I'm here to stop you] \n[No]\n", valid26a, error_prompt);
+                            if (playerInput == "I'M HERE TO STOP YOU\n")
+                            {
+
+                                YouSay("I'm here to put a stop to whatever you're doing, Jeanne!");
+                                JeanneSays("You know my name? You must be with Zrkka! I will break you.");
+                                Narr("Jeanne grabbed her spear and ran straight at you");
+                                if (item_data[11, 2] != "0")
+                                {
+                                    Narr("You knew almost immediately that was a mistake. The spear drove it home. " +
+                                        ".\r\n                                " +
+                                        ".\r\n                                " +
+                                        ".\r\n                                " +
+                                        "Bad End: Big Mistake");
+                                    trigger_switch.Add(150);        //trigger game over
+                                    trigger_switch.Add(150 + 15); //trigger ending 15
+                                    return trigger_switch;
+                                    
+                                }
+
+                                if (item_data[11, 2] != "0")
+                                {
+                                    Narr("You try to fight Jeanne off with the wrist blasters you bought earlier, and you put up quite a fight." +
+                                        " Jeanne had to call for reinforcements to assist her.\r\n" +
+                                        "At that moment, you come up with an idea; you can distract all of the guards, " +
+                                        "so Zrkka and DMN-14 can accomplish their mission.\r\n" +
+                                        "You run out of the room, and blast your way past everyone that comes your way.\r\n" +
+                                        "                                " +
+                                        ".\r\n" +
+                                        ".\r\n" +
+                                        ".\r\n" +
+                                        "Ending 4: Gung-ho");
+                                    trigger_switch.Add(150);        //trigger game over
+                                    trigger_switch.Add(150 + 4); //trigger ending 4
+                                    return trigger_switch;
+                                }
+                            }
+
+                            string[] valid26b = { "I'm here to serve the directive", "No" };
+                            playerInput = Program.GetString("\n[I'm here to serve the directive] \n[No]\n", valid26b, error_prompt);
+                            if (playerInput == "I'M HERE TO SERVE THE DIRECTIVE\n")
+                            {
+                                YouSay("I am here to serve the directive, lady Jeanne.");
+                                JeanneSays("I see. Then I suppose you have been briefed on everything you need to know. Let's test that then, hm?\r\n" +
+                                    ".\r\n                                " +
+                                    ".\r\n                                " +
+                                    ".\r\n");
+
+                                JeanneSays("I am among the top enforcers in the directive, but there is one who is considered my superior. " +
+                                    "What is his name?");
+                                //insert quiz1 here
+                                string[] valid26d = { "Voris - The Superior Cyborg\r\n " , "Cyclone - The Cyber Storm\r\n" , "Aurelius - the Dying Shadow\r\n" };
+                                playerInput = Program.GetString("\n[Voris - The Superior Cyborg] \n[Cyclone - The Cyber Storm]\n[Aurelius - the Dying Shadow]\n", valid26d, error_prompt);
+                                if (playerInput == "VORIS - THE SUPERIOR CYBORG\n")
+                                {
+                                    JeanneSays("Well done. I suppose I can trust you. I have some important information to give to the directors." +
+                                   "\nHowever, I am a bit busy, so I will give you this key for you to access the elevator.");
+                                    Narr("You Have Succeeded Where Most Fall! You Got Jeanne's Key!");
+                                    JeanneSays("Now run along.");
+                                }
+                                else
+                                {
+                                    Narr("You feel something grab at you, holding you in place.");
+                                    JeanneSays("Wrong! I knew you were with Zrkka.");
+                                    Narr("You struggle to get free, which only makes Jeanne laugh.");
+                                    JeanneSays("You said you were here to serve the directive? Then that's exactly what you'll do.");
+                                    Narr("All you can do is scream as she takes you away." +
+                                    ".\n" +
+                                    ".\n" +
+                                    ".\n" +
+                                    "\nSoon all that remains of you is the cybernetic husk used to control your consciousness. " +
+                                    "\nYour first mission as the newest directive initiate; eliminate Zrrka, The Steel Reaper." +
+                                    "\nYou will fail and die, of course, but at least they can make an example out of you." +
+                                    "\n." +
+                                    "\n." +
+                                    "\n." +
+                                    "\nBad End: Eternal Service");
+                                    trigger_switch.Add(150);        //trigger game over
+                                    trigger_switch.Add(150 + 16); //trigger ending 16
+                                    return trigger_switch;
+                                }
+                                JeanneSays("We recently had an escapee, tenacious little thing. What was her name?");
+                                //insert quiz2 here 
+
+                                string[] valid26e = { "Marina\r\n" , "Frolic\r\n" , "Celia\r\n" };
+                                playerInput = Program.GetString("\n[Marina] \n[Frolic]\n[Celia]\n", valid26e, error_prompt);
+                                if (playerInput == "CELIA\n")
+                                {
+                                    JeanneSays("Well done. I suppose I can trust you. I have some important information to give to the directors." +
+                                   "\nHowever, I am a bit busy, so I will give you this key for you to access the elevator.");
+                                    Narr("You Have Succeeded Where Most Fall! You Got Jeanne's Key!");
+                                    JeanneSays("Now run along.");
+                                }
+                                else
+                                {
+                                    Narr("You feel something grab at you, holding you in place.");
+                                    JeanneSays("Wrong! I knew you were with Zrkka.");
+                                    Narr("You struggle to get free, which only makes Jeanne laugh.");
+                                    JeanneSays("You said you were here to serve the directive? Then that's exactly what you'll do.");
+                                    Narr("All you can do is scream as she takes you away." +
+                                    ".\n" +
+                                    ".\n" +
+                                    ".\n" +
+                                    "\nSoon all that remains of you is the cybernetic husk used to control your consciousness. " +
+                                    "\nYour first mission as the newest directive initiate; eliminate Zrrka, The Steel Reaper." +
+                                    "\nYou will fail and die, of course, but at least they can make an example out of you." +
+                                    "\n." +
+                                    "\n." +
+                                    "\n." +
+                                    "\nBad End: Eternal Service");
+                                    trigger_switch.Add(150);        //trigger game over
+                                    trigger_switch.Add(150 + 16); //trigger ending 16
+                                    return trigger_switch;
+                                }
+
+                                JeanneSays("The traitor and his pet lap dog. Surely you've heard of them. What are their names?");
+                                //insert quiz3 here
+                                string[] valid26c = { "Mirio and Marina - The Reason Within Madness and The Star of Cindren" , "Zrkka and DMN-14 - The Steel Reaper and The Gun Wolf" , "A'sher and Morris - The Savior King and The Heir of Shinaran" };
+                                playerInput = Program.GetString("\n[Mirio and Marina - The Reason Within Madness and The Star of Cindren] \n[Zrkka and DMN-14 - The Steel Reaper and The Gun Wolf]\n[A'sher and Morris - The Savior King and The Heir of Shinaran]\n", valid26c, error_prompt);
+                                if (playerInput == "ZRKKA AND DMN-14 - THE STEEL REAPER AND THE GUN WOLF\n")
+                                {
+                                JeanneSays("Well done. I suppose I can trust you. I have some important information to give to the directors." + 
+                               "\nHowever, I am a bit busy, so I will give you this key for you to access the elevator.");
+                                    Narr("You Have Succeeded Where Most Fall! You Got Jeanne's Key!");
+                                    JeanneSays("Now run along.");
+                                }
+                                else 
+                                {
+                                    Narr("You feel something grab at you, holding you in place.");
+                                    JeanneSays("Wrong! I knew you were with Zrkka.");
+                                    Narr("You struggle to get free, which only makes Jeanne laugh.");
+                                    JeanneSays("You said you were here to serve the directive? Then that's exactly what you'll do.");
+                                    Narr("All you can do is scream as she takes you away." +
+                                    ".\n" +
+                                    ".\n" +
+                                    ".\n" +
+                                    "\nSoon all that remains of you is the cybernetic husk used to control your consciousness. " +
+                                    "\nYour first mission as the newest directive initiate; eliminate Zrrka, The Steel Reaper." +
+                                    "\nYou will fail and die, of course, but at least they can make an example out of you." +
+                                    "\n." +
+                                    "\n." +
+                                    "\n." +
+                                    "\nBad End: Eternal Service");
+                                    trigger_switch.Add(150);        //trigger game over
+                                    trigger_switch.Add(150 + 16); //trigger ending 16
+                                    return trigger_switch;
+                                }
+
+                            }
+                            return trigger_switch;
+                        }
+                        
                     }
+                    return trigger_switch;
+
+
+
+
+
+
+
+
+
+
 
             }
+
             return trigger_switch;
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         }
-    
-            return trigger_switch;
-        
-
 
 
 
@@ -624,28 +757,28 @@ namespace ECE264AdventureGame2023
                     string[] valid3a = { "Yes", "No" };
                     playerInput = Program.GetString("\n[Yes] \n[No]\n", valid3a, error_prompt);
 
-                    //Console.WriteLine("");
+                        //Console.WriteLine("");
 
-                    if (playerInput == "YES")
-                    {
-                        AbhiSays("Hello there, my name is Abhi, I am a humble vendor here in Uprall.How are you?");
-                        YouSay("I am doing fine, thank you. Can you tell me anything about this coin?");
-                        AbhiSays("Of course!Let me see it! Oh, yes, yes, this coin is made of fine material! I will sell it to you for 500 credits!");
-
-                        
-                        string[] valid3b = { "Yes", "No" };
-                        playerInput = Program.GetString("\n[Yes] \n[No]\n", valid3b, error_prompt);
                         if (playerInput == "YES")
                         {
+                            AbhiSays("Hello there, my name is Abhi, I am a humble vendor here in Uprall.How are you?");
+                            YouSay("I am doing fine, thank you. Can you tell me anything about this coin?");
+                            AbhiSays("Of course!Let me see it! Oh, yes, yes, this coin is made of fine material! I will sell it to you for 500 credits!");
+
+
+                            string[] valid3b = { "Yes", "No" };
+                            playerInput = Program.GetString("\n[Yes] \n[No]\n", valid3b, error_prompt);
+                            if (playerInput == "YES")
+                            {
 
 
 
-                        }
+                            }
 
 
-
+                        
                             return trigger_switch;
-                    }
+                        }
                     return trigger_switch;
 
 

@@ -8,6 +8,7 @@ They will be loaded into a bool array, and switched when their codition is met i
 100-149 = first enter room trigger, roomid + 100 to store and check
 150-199 = endings, if 150 true, an ending has been reached
 
+
 Begin Data After Triple &:
 
 &&&	True &	Trigger 0: Always True.
