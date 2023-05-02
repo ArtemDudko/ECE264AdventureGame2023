@@ -80,7 +80,7 @@ namespace ECE264AdventureGame2023
                 if (exit_data[row, 1] == current_room_id.ToString())    //since there are multiples of 
                 {
                     last_exit_row = row;
-                    int[] specific_exit_triggers = new int[5];
+                    
                     bool enterable = true;
 
                     //triggers has five strings in the array, the number of the string meaning that trigger in trigger data has to be true
@@ -89,7 +89,7 @@ namespace ECE264AdventureGame2023
                             enterable = false;
 
                     for (int i = 9; i < 11; i++)
-                        if (item_data[Int32.Parse(exit_data[row, i]), 2] == "0")
+                        if (item_data[Int32.Parse(exit_data[row, i]), 2] != "0")
                             enterable = false;
 
                     if (enterable)
@@ -108,9 +108,11 @@ namespace ECE264AdventureGame2023
             }
             
             int chosen_direction;
-            
+            Console.WriteLine("[S: Stay in current room]");
             chosen_direction = GetPlayerDirection("Which direction? ", valid_exits); //returns 0 thru 3 to modify current line of data reading
-            int chosen_exit_id = Int32.Parse(exit_data[last_exit_row + 1 - valid_exits.Count + chosen_direction, 3]);
+
+            int chosen_exit_id;
+            chosen_exit_id = Int32.Parse(exit_data[last_exit_row + 1 - valid_exits.Count + chosen_direction, 3]);
             
             //currentRoom = int.Parse(Console.ReadLine());
 
