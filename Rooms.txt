@@ -143,14 +143,14 @@ Begin Data After Triple &:
 
 &3			&Helio City Square (North)		&You continue through the square					&Hey, a coin. Everything's digital in Uprall, so why is this here?
 
-&4			&Corner Street					&You reach a road leading east						&I have a feeling I'm being watched. Wait, is that a cyborg or and android? I can't even tell.
+&4			&Corner Street					&You reach a road leading West						&I have a feeling I'm being watched. Wait, is that a cyborg or and android? I can't even tell.
 
 &5			&Academy Road (South)			&You've reached a long road							&Hey, the Uprallan Academy. It's closed today, maybe I'll sit in on a lecture tomorrow.
 
 &6			&Side Alley						&You've entered an empty alley.						&I have a feeling something's here, but I don't know how I'd be able to find it.
 
 
-&7			&Academy Road (North)			&You continue down the long road					&Those two guys to my left are staring at me. Not comforting at all. There's also a shop. Wonder what they've got 
+&7			&Academy Road (North)			&You continue down the long road					&Those two guys to my left are staring at me. Not comforting at all. There's also a shop. Wonder what they've got. 
 
 &8			&Shelter						&You enter a shelter								&Huh, lotta folks here. Maybe I can strike up a conversation with some of them.
 
