@@ -95,8 +95,13 @@ namespace ECE264AdventureGame2023
                 case 1:
                     trigger_switch.Add(101);    //mark room as visited
                     string[] valid1 = { "Helio City", "I don't know where" };
+<<<<<<< HEAD
+                    Narr("PA: Hello" + MyGlobals.playerName + ", where would you like to go? ");
+                    playerInput = Program.GetString("\n[Helio City] \n[I don't know where]\n", valid1, error_prompt);
+=======
                     Narr("PA: Hello " + MyGlobals.playerName + ", where would you like to go? ");
                     playerInput = Program.GetString("\n[Helio City] \n[I don't know where]\n", valid1,error_prompt);
+>>>>>>> 15c3b2f4c3270155654e800de8f1ed439b92443f
                     if (playerInput == "HELIO CITY")
                     {
                         YouSay("You: Helio City, please");
@@ -343,6 +348,7 @@ namespace ECE264AdventureGame2023
                     string[] valid4a = { "Yes", "No" };
                     playerInput = Program.GetString("\n[Yes] \n[No]\n", valid4a, error_prompt);
 
+<<<<<<< HEAD
                     Console.WriteLine("You: Sorry, but I'd rather not." +
                         "Cyclone: I would change my mind if I were you." +
                         "As he speaks, he walks toward you, revealing what appear to be daggers. In fear, you run into a side ally, hoping for a way to escape." +
@@ -351,6 +357,8 @@ namespace ECE264AdventureGame2023
 
 
 
+=======
+>>>>>>> 15c3b2f4c3270155654e800de8f1ed439b92443f
                     if (playerInput == "YES")
                     {
                         Console.WriteLine("You: Uh, yeah, sure, here." +
@@ -384,6 +392,7 @@ namespace ECE264AdventureGame2023
                         trigger_switch.Add(152);
                     }
 
+<<<<<<< HEAD
 
 
 
@@ -400,6 +409,12 @@ namespace ECE264AdventureGame2023
                     return trigger_switch;
                 case 6:
                     return trigger_switch;
+=======
+                    return trigger_switch; 
+                case 6:
+                    PlayBlackJack(ref money);
+                    return trigger_switch; 
+>>>>>>> 15c3b2f4c3270155654e800de8f1ed439b92443f
                 case 7:
                     return trigger_switch;
                 case 8:
@@ -407,6 +422,18 @@ namespace ECE264AdventureGame2023
                 case 9:
                     return trigger_switch;
                 
+                
+                
+                
+                case 25:
+                    {
+                       
+                        
+                        
+                        
+                        return trigger_switch;
+                    }
+                    
 
                 /*
                         You walk a few steps before you are face to face with a menacing looking woman. She doesn't look like a cyborg, but you can tell that she is.
@@ -767,11 +794,17 @@ namespace ECE264AdventureGame2023
 
 
                 case 3:
+<<<<<<< HEAD
+                    Narr("Looking closer, you also notice a vendor selling some wares. Ask him what he's selling?");
+                    string[] valid3a = { "Yes", "No" };
+                    playerInput = Program.GetString("\n[Yes] \n[No]\n", valid3a, error_prompt);
+=======
                     if (item_data[2,2] == "0" || item_data[3, 2] == "0")
                     {
                         Narr("Looking closer, you also notice a vendor selling some wares. Ask him what he's selling?");
                         string[] valid3a = { "Yes", "No" };
                         playerInput = Program.GetString("\n[Yes] \n[No]\n", valid3a, error_prompt);
+>>>>>>> 15c3b2f4c3270155654e800de8f1ed439b92443f
 
                         //Console.WriteLine("");
 
@@ -795,8 +828,10 @@ namespace ECE264AdventureGame2023
                         
                             return trigger_switch;
                         }
+
                     }
                     
+
                     return trigger_switch;
 
 
@@ -807,7 +842,8 @@ namespace ECE264AdventureGame2023
                 case 4:
 
                     return trigger_switch;
-
+                case 25:
+                    return trigger_switch;
                 
             }         
 
