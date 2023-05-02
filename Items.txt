@@ -4,8 +4,10 @@
 ///Items.txt is three coloumns wide
 
 
+
 data is stored in [ROWS,COLOUMNS]
 Cyber arm is accesses as item_data [6,1], location would be 6,2
+
 
 
 
