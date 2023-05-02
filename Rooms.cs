@@ -90,15 +90,10 @@ namespace ECE264AdventureGame2023
             {
                 if (exit_data[row, 1] == current_room_id.ToString())    //sine there are multiples of 
                 {
-                    
-                    last_exit_row = row;
-                    //Int32.TryParse(l, out length);
-                    //if (MyGlobals.Debug) Console.WriteLine("");
-                    //if (exit_data[i, 4] == )
+                    last_exit_row = row;                   
                     //Format: &"" &1			&1		&3	&Helio City Square S	&North  &0
                     Console.WriteLine("Exit #{0}: {1} to {2}, roomID {3}", exit_data[row, 2], exit_data[row, 5], exit_data[row, 4], exit_data[row, 3]);
-                    valid_exits.Add(exit_data[row, 5].Trim().ToUpper());
-                    
+                    valid_exits.Add(exit_data[row, 5].Trim().ToUpper());                   
 
                 }
                 if (valid_exits.Count >= 4) break;
