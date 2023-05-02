@@ -23,7 +23,7 @@ namespace ECE264AdventureGame2023
 
             string[,] item_data = new string[100, 3];
             int item_count = 0;
-            for (int row = 1; row < 100; row++) //index array starting at itemID
+            for (int row = 0; row < 100; row++) //index array starting at itemID
             {
                 for (int col = 0; col < 3; col++)
                 {

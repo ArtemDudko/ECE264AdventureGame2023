@@ -1,7 +1,13 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Numerics;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -59,8 +65,8 @@ namespace ECE264AdventureGame2023
         //Declaring Rooms and CurrentRoom to be in
         public static List<int> FirstEntry(int NewRoom, List<bool> triggers, ref string[,] item_data, ref int money)
         {
-            
-            
+
+
             var trigger_switch = new List<int>(0);
             string playerInput;
             string error_prompt = "error, reenter choice,(caps specific)";
@@ -85,7 +91,7 @@ namespace ECE264AdventureGame2023
                 PA: Thank you, have a good day.
                 Ending 0: The Road Untravelled*/
 
-                
+
                 case 1:
                     trigger_switch.Add(101);    //mark room as visited
                     string[] valid1 = { "Helio City", "I don't know where" };
@@ -98,8 +104,8 @@ namespace ECE264AdventureGame2023
                             "\n\n." +
                             "\n\n." +
                             "\n\n.\n\n");
-                        
-                        
+
+
                     }
                     if (playerInput == "I DON'T KNOW WHERE")
                     {
@@ -179,7 +185,7 @@ namespace ECE264AdventureGame2023
                     Console.WriteLine("\n???: Who are you ? ");
                     Console.ForegroundColor = ConsoleColor.White;
 
-                    playerInput = Program.GetString("\n[I'm nobody] \n[I'm passing through]\n", valid2a, error_prompt); 
+                    playerInput = Program.GetString("\n[I'm nobody] \n[I'm passing through]\n", valid2a, error_prompt);
                     if (playerInput == "I'M NOBODY")
                     {
                         YouSay("Oh, uh, I'm just nobody.");
@@ -196,8 +202,10 @@ namespace ECE264AdventureGame2023
 
 
 
-                          
-                        
+
+
+
+
                     }
                     Console.ForegroundColor = ConsoleColor.DarkGray;
                     Console.WriteLine("???: ...You can call me Zrkka.");
@@ -209,10 +217,10 @@ namespace ECE264AdventureGame2023
 
                     string[] valid2b = { "Yes", "No" };
                     playerInput = Program.GetString("\n[Yes] \n[No]\n", valid2b, error_prompt);
-                    if (playerInput == "YES\n")
+                    if (playerInput == "YES")
                     {
                         YouSay("Yes, I know exactly who that is.");
-                        
+
                         ZrkkaSays("In that case...");
 
 
@@ -223,7 +231,7 @@ namespace ECE264AdventureGame2023
                         ZrkkaSays("If I were you, I'd keep walking.");
                         YouSay("Ok, ok, I'm going.");
                         Narr("Zrkka keeps his eye on you as he leaves the ally by climbing over a gate. Given the gate's height, he clearly wasn't human.");
-                        YouSay("Ok then...moving on.");
+                        YouSay("Ok then...moving on.\n");
                     }
                     if (playerInput == "NO")
                     {
@@ -250,8 +258,9 @@ namespace ECE264AdventureGame2023
                         YouSay("112. Got It. How will I know this friend of yours?");
                         ZrkkaSays("Oh, you'll know. His bite is a lot worse than his bark.");
                         Narr("With a chuckle, Zrkka leaves the ally by jumping over a large gate.\n");
+                        item_data[1, 2] = "0";
                     }
-                        return trigger_switch;
+                    return trigger_switch;
 
                 /*
          -Occurs upon entering the room every time you enter, unless the coin or secret coin is in inventory-
@@ -272,18 +281,18 @@ namespace ECE264AdventureGame2023
 
                     string[] valid3a = { "Take Coin", "Leave Coin" };
                     playerInput = Program.GetString("\n[Take Coin] \n[Leave Coin]\n", valid3a, error_prompt);
-                    if (playerInput == "Take Coin")
+                    if (playerInput == "TAKE COIN")
                     {
                         Narr("You recieved the coin!");
                         item_data[2, 2] = "0";      //setting location to 0 is adding to player inventory
                     }
-                    if (playerInput == "Leave Coin")
+                    if (playerInput == "LEAVE COIN")
                     {
                         Narr("You decide it's best to leave it.");
                     }
 
 
-                        return trigger_switch;
+                    return trigger_switch;
 
 
                 /*
@@ -318,9 +327,9 @@ namespace ECE264AdventureGame2023
                 Zrkka: Go!
                 Without thinking, you run past the two cyborgs and into the open street.
                 -travel to room 5-*/
-            
-         
-     
+
+
+
                 case 4:
                     return trigger_switch; 
 
@@ -336,49 +345,81 @@ namespace ECE264AdventureGame2023
                     string[] valid4a = { "Yes", "No" };
                     playerInput = Program.GetString("\n[Yes] \n[No]\n", valid4a, error_prompt);
 
+                    Console.WriteLine("You: Sorry, but I'd rather not." +
+                        "Cyclone: I would change my mind if I were you." +
+                        "As he speaks, he walks toward you, revealing what appear to be daggers. In fear, you run into a side ally, hoping for a way to escape." +
+                        "You run into a dead end, unable to escape as Cyclone slowly approaches you." +
+                        "Cyclone: I gave you a chance. Oh well.");
+
+
+
                     if (playerInput == "YES")
                     {
-                        Console.WriteLine("You: Uh, yeah, sure, here." +
-                            "\nCyclone: Good. Now, just pretend you never saw me, got it?" +
-                            "\nYou: Yeah, sure. You got it." +
-                            "\nWith a wicked smile, Cyclone leaves.");
+                        Console.WriteLine("You: Uh, yeah, sure, here.");
+                        CycloneSays("Good. Now, just pretend you never saw me, got it?");
+                        YouSay("Yeah, sure. You got it.");
+                        Narr("With a wicked smile, Cyclone leaves.\n");
                     }
                     if (playerInput == "NO" && item_data[1, 2] == "0")//if has cyber lens
                     {
                         YouSay("Sorry, but I'd rather not.");
                         CycloneSays("I would change my mind if I were you.");
-                        Narr("As he speaks, he walks toward you, revealing what appear to be daggers. In fear, you run into a side ally, hoping for a way to escape."+
-                            
-                        "You run into a dead end, unable to escape as Cyclone slowly approaches you." +
-                        "Cyclone: I gave you a chance. Oh well.");
-                        Console.WriteLine("Out of nowhere, Zrkka drops into the ally and grabs cyclone, giving you an opportunity to escape.");
+
+                        Narr("As he speaks, he walks toward you, revealing what appear to be daggers. In fear, you run into a side ally, hoping for a way to escape.");
+                        Narr("\n\n." +
+                            "\n\n." +
+                            "\n\n.\n\n");
+                        Narr("You run into a dead end, unable to escape as Cyclone slowly approaches you.");
+                        CycloneSays("I gave you a chance. Oh well.");
+                        Narr("Out of nowhere, Zrkka drops into the ally and grabs cyclone, giving you an opportunity to escape.");
                         ZrkkaSays("Go!");
-                        Narr("\nWithout thinking, you run past the two cyborgs and into the open street.");
+                        Narr("Without thinking, you run past the two cyborgs and into the open street.");
+                        Narr("\n\n." +
+                            "\n\n." +
+                            "\n\n.\n\n");
+                        Narr("After some time, Zrkka walks out of the ally.");
+                        ZrkkaSays("I see you've met Cyclone.");
+                        YouSay("Is he a part of the directive?");
+                        ZrkkaSays("Yep.One of their enforcers. I'm gonna keep a closer eye on you, just in case.");
+                        Narr("Zrkka turns toward the ally.");
+                        ZrkkaSays("Oh, that ally should be safe for you to go into.I don't know why you would, but it's there.I need you to head to the Firioris building.That's their headquarters, and that's where we need to strike.");
+                        YouSay("Firioris building.Got it.");
 
                     }
-                    else
+                    else if (playerInput == "NO" && item_data[1, 2] != "0")
                     {
-                        Console.WriteLine("You: Sorry, but I'd rather not." +
-                        "Cyclone: I would change my mind if I were you." +
-                        "As he speaks, he walks toward you, revealing what appear to be daggers. In fear, you run into a side ally, hoping for a way to escape." +
-                        "You run into a dead end, unable to escape as Cyclone slowly approaches you." +
-                        "Cyclone: I gave you a chance. Oh well.");
-                        Console.WriteLine("You feel the pain of cyclone's daggers as you collapse to the ground. Cyclone walking away with the coin is the last thing you see." +
-                            "\n\n.\n.\n.\n\n");
-                        trigger_switch.Add(150);
-                        trigger_switch.Add(152);
+                        YouSay("Sorry, but I'd rather not.");
+                        CycloneSays("I would change my mind if I were you.");
+                        Narr("As he speaks, he walks toward you, revealing what appear to be daggers. In fear, you run into a side ally, hoping for a way to escape.");
+                        Narr("\n\n." +
+                            "\n\n." +
+                            "\n\n.\n\n");
+                        Narr("You run into a dead end, unable to escape as Cyclone slowly approaches you.");
+                        CycloneSays("I gave you a chance. Oh well.");
+                        Narr("You feel the pain of cyclone's daggers as you collapse to the ground. Cyclone walking away with the coin is the last thing you see.");
+                        Narr("\n\n.\n.\n.\n\n");
+                        trigger_switch.Add(150);        //triggers game over
+                        trigger_switch.Add(150 + 9);    //trigger ending 9
+                        return trigger_switch;
                     }
 
                     return trigger_switch; 
+
                 case 6:
+
                     if(triggers[106])
                     {
                         Narr("You remember that there is a secret entrance to a casino here.");
                     }
                     
+
                     return trigger_switch; 
+
                 case 7:
+
                     return trigger_switch; 
+
+
                 case 8:
                     return trigger_switch;
                 case 9:
@@ -527,39 +568,197 @@ namespace ECE264AdventureGame2023
 
 
                         */
+
                 case 26:
-                    Narr("You walk a few steps before you are face to face with a menacing looking woman. She doesn't look like a cyborg, but you can tell that she is.");
-                    if (item_data[6,2] != "0") //if missing cyber arm
-                    {
-                        Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                        Console.WriteLine("???: You are not a cyborg.");
-                        YouSay("No, I am not. You must be Jeanne.");
-                        JeanneSays("It appears I have a fan.");
-                        YouSay("Not really, if not for Zrkka, I wouldn't even know who you are.");
-                        JeanneSays("You are with Zrkka? Hahahaha, ahh, c'est magnifique! It will be fun breaking you.");
-                        if (item_data[11,2] != "0") 
+                    { 
+                        Narr("You walk a few steps before you are face to face with a menacing looking woman. She doesn't look like a cyborg, but you can tell that she is.");
+                        if (item_data[6, 2] != "0") //if missing cyber arm
+
                         {
-                            Narr("Jeanne attacks you, and there is no way for you to fight back.\r\n" +
-                                "She tortured you for what seemed like days. When she was finally convinced you didn't know anything, she left you for dead, your will finally broken.\r\n" +
-                                "                            " +
-                                ".\r\n" +
-                                ".\r\n" + 
-                                ".\r\n");
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                            Console.WriteLine("???: You are not a cyborg.");
+                            YouSay("No, I am not. You must be Jeanne.");
+                            JeanneSays("It appears I have a fan.");
+                            YouSay("Not really, if not for Zrkka, I wouldn't even know who you are.");
+                            JeanneSays("You are with Zrkka? Hahahaha, ahh, c'est magnifique! It will be fun breaking you.");
+                            if (item_data[11, 2] != "0")
+                            {
+                                Narr("Jeanne attacks you, and there is no way for you to fight back.\r\n" +
+                                    "She tortured you for what seemed like days. When she was finally convinced you didn't know anything, she left you for dead, your will finally broken.\r\n" +
+                                    "                            " +
+                                    ".\r\n" +
+                                    ".\r\n" +
+                                    ".\r\n");
 
 
-                            trigger_switch.Add(150);        //trigger game over
-                            trigger_switch.Add(150 + 14); //trigger ending 14
+                                trigger_switch.Add(150);        //trigger game over
+                                trigger_switch.Add(150 + 14); //trigger ending 14
+                            }
+
+                            if (item_data[11, 2] == "0")
+                            {
+                                Narr("Jeanne attacked you, but thanks to your wrist blasters, you were able to fight her off. \r\n" +
+                                    "You take Jeanne's key off her unconscious body, and book it out of there before she had a chance to wake up.\r\n" +
+                                    "You got Jeanne's Key!");
+                            }
+
                         }
-                        
-                        if (item_data[11,2] == "0") 
+
+
+                        else if (item_data[6, 2] == "0")
                         {
-                            Narr("Jeanne attacked you, but thanks to your wrist blasters, you were able to fight her off. \r\n" +
-                                "You take Jeanne's key off her unconscious body, and book it out of there before she had a chance to wake up.\r\n" +
-                                "You got Jeanne's Key!");
-                        }
-                        
-                    }
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                            Console.WriteLine("???: A cyborg? Are you a lost new recruit? Who are you?");
+                            string[] valid26a = { "I'm here to stop you", "No" };
+                            playerInput = Program.GetString("\n[I'm here to stop you] \n[No]\n", valid26a, error_prompt);
+                            if (playerInput == "I'M HERE TO STOP YOU\n")
+                            {
 
+                                YouSay("I'm here to put a stop to whatever you're doing, Jeanne!");
+                                JeanneSays("You know my name? You must be with Zrkka! I will break you.");
+                                Narr("Jeanne grabbed her spear and ran straight at you");
+                                if (item_data[11, 2] != "0")
+                                {
+                                    Narr("You knew almost immediately that was a mistake. The spear drove it home. " +
+                                        ".\r\n                                " +
+                                        ".\r\n                                " +
+                                        ".\r\n                                " +
+                                        "Bad End: Big Mistake");
+                                    trigger_switch.Add(150);        //trigger game over
+                                    trigger_switch.Add(150 + 15); //trigger ending 15
+                                    return trigger_switch;
+                                    
+                                }
+
+                                if (item_data[11, 2] != "0")
+                                {
+                                    Narr("You try to fight Jeanne off with the wrist blasters you bought earlier, and you put up quite a fight." +
+                                        " Jeanne had to call for reinforcements to assist her.\r\n" +
+                                        "At that moment, you come up with an idea; you can distract all of the guards, " +
+                                        "so Zrkka and DMN-14 can accomplish their mission.\r\n" +
+                                        "You run out of the room, and blast your way past everyone that comes your way.\r\n" +
+                                        "                                " +
+                                        ".\r\n" +
+                                        ".\r\n" +
+                                        ".\r\n" +
+                                        "Ending 4: Gung-ho");
+                                    trigger_switch.Add(150);        //trigger game over
+                                    trigger_switch.Add(150 + 4); //trigger ending 4
+                                    return trigger_switch;
+                                }
+                            }
+
+                            string[] valid26b = { "I'm here to serve the directive", "No" };
+                            playerInput = Program.GetString("\n[I'm here to serve the directive] \n[No]\n", valid26b, error_prompt);
+                            if (playerInput == "I'M HERE TO SERVE THE DIRECTIVE\n")
+                            {
+                                YouSay("I am here to serve the directive, lady Jeanne.");
+                                JeanneSays("I see. Then I suppose you have been briefed on everything you need to know. Let's test that then, hm?\r\n" +
+                                    ".\r\n                                " +
+                                    ".\r\n                                " +
+                                    ".\r\n");
+
+                                JeanneSays("I am among the top enforcers in the directive, but there is one who is considered my superior. " +
+                                    "What is his name?");
+                                //insert quiz1 here
+                                string[] valid26d = { "Voris - The Superior Cyborg\r\n " , "Cyclone - The Cyber Storm\r\n" , "Aurelius - the Dying Shadow\r\n" };
+                                playerInput = Program.GetString("\n[Voris - The Superior Cyborg] \n[Cyclone - The Cyber Storm]\n[Aurelius - the Dying Shadow]\n", valid26d, error_prompt);
+                                if (playerInput == "VORIS - THE SUPERIOR CYBORG\n")
+                                {
+                                    JeanneSays("Well done. I suppose I can trust you. I have some important information to give to the directors." +
+                                   "\nHowever, I am a bit busy, so I will give you this key for you to access the elevator.");
+                                    Narr("You Have Succeeded Where Most Fall! You Got Jeanne's Key!");
+                                    JeanneSays("Now run along.");
+                                }
+                                else
+                                {
+                                    Narr("You feel something grab at you, holding you in place.");
+                                    JeanneSays("Wrong! I knew you were with Zrkka.");
+                                    Narr("You struggle to get free, which only makes Jeanne laugh.");
+                                    JeanneSays("You said you were here to serve the directive? Then that's exactly what you'll do.");
+                                    Narr("All you can do is scream as she takes you away." +
+                                    ".\n" +
+                                    ".\n" +
+                                    ".\n" +
+                                    "\nSoon all that remains of you is the cybernetic husk used to control your consciousness. " +
+                                    "\nYour first mission as the newest directive initiate; eliminate Zrrka, The Steel Reaper." +
+                                    "\nYou will fail and die, of course, but at least they can make an example out of you." +
+                                    "\n." +
+                                    "\n." +
+                                    "\n." +
+                                    "\nBad End: Eternal Service");
+                                    trigger_switch.Add(150);        //trigger game over
+                                    trigger_switch.Add(150 + 16); //trigger ending 16
+                                    return trigger_switch;
+                                }
+                                JeanneSays("We recently had an escapee, tenacious little thing. What was her name?");
+                                //insert quiz2 here 
+
+                                string[] valid26e = { "Marina\r\n" , "Frolic\r\n" , "Celia\r\n" };
+                                playerInput = Program.GetString("\n[Marina] \n[Frolic]\n[Celia]\n", valid26e, error_prompt);
+                                if (playerInput == "CELIA\n")
+                                {
+                                    JeanneSays("Well done. I suppose I can trust you. I have some important information to give to the directors." +
+                                   "\nHowever, I am a bit busy, so I will give you this key for you to access the elevator.");
+                                    Narr("You Have Succeeded Where Most Fall! You Got Jeanne's Key!");
+                                    JeanneSays("Now run along.");
+                                }
+                                else
+                                {
+                                    Narr("You feel something grab at you, holding you in place.");
+                                    JeanneSays("Wrong! I knew you were with Zrkka.");
+                                    Narr("You struggle to get free, which only makes Jeanne laugh.");
+                                    JeanneSays("You said you were here to serve the directive? Then that's exactly what you'll do.");
+                                    Narr("All you can do is scream as she takes you away." +
+                                    ".\n" +
+                                    ".\n" +
+                                    ".\n" +
+                                    "\nSoon all that remains of you is the cybernetic husk used to control your consciousness. " +
+                                    "\nYour first mission as the newest directive initiate; eliminate Zrrka, The Steel Reaper." +
+                                    "\nYou will fail and die, of course, but at least they can make an example out of you." +
+                                    "\n." +
+                                    "\n." +
+                                    "\n." +
+                                    "\nBad End: Eternal Service");
+                                    trigger_switch.Add(150);        //trigger game over
+                                    trigger_switch.Add(150 + 16); //trigger ending 16
+                                    return trigger_switch;
+                                }
+
+                                JeanneSays("The traitor and his pet lap dog. Surely you've heard of them. What are their names?");
+                                //insert quiz3 here
+                                string[] valid26c = { "Mirio and Marina - The Reason Within Madness and The Star of Cindren" , "Zrkka and DMN-14 - The Steel Reaper and The Gun Wolf" , "A'sher and Morris - The Savior King and The Heir of Shinaran" };
+                                playerInput = Program.GetString("\n[Mirio and Marina - The Reason Within Madness and The Star of Cindren] \n[Zrkka and DMN-14 - The Steel Reaper and The Gun Wolf]\n[A'sher and Morris - The Savior King and The Heir of Shinaran]\n", valid26c, error_prompt);
+                                if (playerInput == "ZRKKA AND DMN-14 - THE STEEL REAPER AND THE GUN WOLF\n")
+                                {
+                                JeanneSays("Well done. I suppose I can trust you. I have some important information to give to the directors." + 
+                               "\nHowever, I am a bit busy, so I will give you this key for you to access the elevator.");
+                                    Narr("You Have Succeeded Where Most Fall! You Got Jeanne's Key!");
+                                    JeanneSays("Now run along.");
+                                }
+                                else 
+                                {
+                                    Narr("You feel something grab at you, holding you in place.");
+                                    JeanneSays("Wrong! I knew you were with Zrkka.");
+                                    Narr("You struggle to get free, which only makes Jeanne laugh.");
+                                    JeanneSays("You said you were here to serve the directive? Then that's exactly what you'll do.");
+                                    Narr("All you can do is scream as she takes you away." +
+                                    ".\n" +
+                                    ".\n" +
+                                    ".\n" +
+                                    "\nSoon all that remains of you is the cybernetic husk used to control your consciousness. " +
+                                    "\nYour first mission as the newest directive initiate; eliminate Zrrka, The Steel Reaper." +
+                                    "\nYou will fail and die, of course, but at least they can make an example out of you." +
+                                    "\n." +
+                                    "\n." +
+                                    "\n." +
+                                    "\nBad End: Eternal Service");
+                                    trigger_switch.Add(150);        //trigger game over
+                                    trigger_switch.Add(150 + 16); //trigger ending 16
+                                    return trigger_switch;
+                                }
+
+/*
                     else if(item_data[6,2] == "0")
                     {
                         Console.ForegroundColor = ConsoleColor.DarkMagenta;
@@ -575,14 +774,16 @@ namespace ECE264AdventureGame2023
                             if (true)
                             {
                                 YouSay("");
-                                JeanneSays("");
+                                JeanneSays("");*/
+
                             }
+                            return trigger_switch;
                         }
+
+                        
                     }
+
                     return trigger_switch;
-
-
-
 
 
 
@@ -596,6 +797,7 @@ namespace ECE264AdventureGame2023
 
             }
             return trigger_switch;  
+
         }
 
 
@@ -695,7 +897,135 @@ namespace ECE264AdventureGame2023
 
                     return trigger_switch;
 
-                
+                case 7:
+
+                    if (item_data[4, 2] != 0)
+                    {
+                        string[] valid3a = { "Approach the men", "See the Vendor" };
+                        playerInput = Program.GetString("\n[Take Coin] \n[Leave Coin]\n", valid3a, error_prompt);
+                        if (playerInput == "APPROACH THE MEN")
+                        {
+                            Narr("You approach the two men talking with each other.One of them directs the other away, and walks towards you as well. His spiky hair and small jacket stand out.");
+                            
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.WriteLine("\n???: Can I help you?");
+
+                            YouSay("No shirt with a jacket three sizes too small.Interesting choice.");
+
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.WriteLine("\n???: In The Crags its hard to find quality clothes, but I wouln't expect you to know that.");
+
+                            YouSay("The what?");
+
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.WriteLine("\n???: The Crags...you're not from around here are you?");
+
+                            YouSay("No, I'm not. My name's" +MyGlobals.playerName+ ", what's yours?");
+
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.WriteLine("\n???: ...Drayton. Name's Drayton.");
+
+                            YouSay("Sounds bad down in The Crags.");
+
+                            DraytonSays("It is. Half the people there are missing a limb or two. It's dangerous down there, but most of its citizens are poor, so they can't afford the replacements the people in these parts get.");
+
+                            YouSay("Replacements?");
+
+                            DraytonSays("You don't know? In Uprall, if you're rich enough, you can get missing limbs replaced with cybernetic prosthetics. Whether through medical amputation or grievous injury.");
+
+                            DraytonSays("Hell, some get replacements by choice. I wouldn't be surprised if at least half the citizens of Uprall are cyborgs by now.");
+
+                            YouSay("Wow.");
+
+                            DraytonSays("Yup.Crazy business, huh? Anyway, maybe someday you'd like to check out the lesser side of things. Me and my buddy Zix would be happy to put you up.");
+
+                            YouSay("Maybe, if I have time.");
+
+                            DraytonSays("Well, anyway, you'll need this to even have a hope of navigating down there.");
+
+                            Narr("You got the Hookshot!");
+
+                            DraytonSays("Take care of that, I dont have many.");
+
+                            YouSay("Will do.");
+
+                            Narr("Drayton walks away, leaving you alone with his gift.");
+                        }
+                        if (playerInput == "SEE THE VENDOR")
+                        {
+                            TJSays("Hey there, welcome to my shop. Name's TJ. What would you like?");
+
+                            string[] valid3a = { "Prototype Wrist Blasters", "Matter Deflection Apparatus" };
+                            playerInput = Program.GetString("\n[Take Coin] \n[Leave Coin]\n", valid3a, error_prompt);
+                            if (playerInput == "APPROACH THE MEN")
+                            { Prototype Wrist Blasters}
+                            -option to buy for 3200 credits -
+                                                    { Yes}
+                            You got the prototype wrist blasters!
+                                            { No}
+                            { Matter Deflection Apparatus}
+                            -option to buy for 2900 credits -
+                                                    { Yes}
+                            You Got the matter deflection apparatus!
+                                            { No}
+                        }
+
+
+                        
+
+                              
+                    }
+
+                   else if (item_data[4, 2] == 0)
+                   string[] valid3a = {"See the Vendor"};
+                    playerInput = Program.GetString("\n[Take Coin] \n[Leave Coin]\n", valid3a, error_prompt);                    
+                    if (playerInput == "SEE THE VENDOR")
+                    {
+                        Narr("You decide it's best to leave it.");
+                    }
+
+                    
+                    You approach the two men talking with each other.One of them directs the other away, and walks towards you as well.His spiky hair and small jacket stand out.
+                                ???: Can I help you?
+                                You: No shirt with a jacket three sizes too small.Interesting choice. 
+                                ???: In The Crags its hard to find quality clothes, but I wouln't expect you to know that.
+                                You: The what?
+                                ???: The Crags...you're not from around here are you?
+                                You: No, I'm not. My name's { name}, what's yours?
+                                ???: ...Drayton.Name's Drayton.
+                                You: Sounds bad down in The Crags
+                                Drayton: It is.Half the people there are missing a limb or two.It's dangerous down there, but most of its citizens are poor, so they can't afford the replacements the people in these parts get.
+                                You: Replacements?
+                                Drayton: You don't know? In Uprall, if you're rich enough, you can get missing limbs replaced with cybernetic prosthetics.Whether through medical amputation or grievous injury.
+                                Drayton: Hell, some get replacements by choice.I wouldn't be surprised if at least half the citizens of Uprall are cyborgs by now.
+                                You: Wow.
+                                Drayton: Yup.Crazy business, huh? Anyway, maybe someday you'd like to check out the lesser side of things. Me and my buddy Zix would be happy to put you up.
+                                You: Maybe, if I have time.
+                                Drayton: Well, anyway, you'll need this to even have a hope of navigating down there.
+                                You got the Hookshot!
+                                Drayton: Take care of that, I dont have many.
+                                You: Will do.
+                                Drayton walks away, leaving you alone with his gift.
+
+                                //-if room is inspected so you notice the vendor-
+                                - approach the vendor-
+                                   TJ: Hey there, welcome to my shop.Name's TJ. What would you like?
+                                    - presented with options-
+                                        { Prototype Wrist Blasters}
+                    -option to buy for 3200 credits -
+                                            { Yes}
+                    You got the prototype wrist blasters!
+                                            { No}
+                    { Matter Deflection Apparatus}
+                    -option to buy for 2900 credits -
+                                            { Yes}
+                    You Got the matter deflection apparatus!
+                                            { No}
+
+
+                    return trigger_switch;
+
+
             }         
 
 
