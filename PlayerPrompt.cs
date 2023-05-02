@@ -36,7 +36,6 @@ namespace ECE264AdventureGame2023
 
 
         /*
-
         need to make big ass switch case statement
 
         0-49 will be room discovery, extra stuff for entering a room for the first time
@@ -50,11 +49,9 @@ namespace ECE264AdventureGame2023
         300-399 will be secret interactions
 
         400-499 will be 
-
-
          */
 
-        //Libraries
+        
 
 
 
@@ -375,6 +372,7 @@ namespace ECE264AdventureGame2023
 
                     return trigger_switch; 
                 case 6:
+                    PlayBlackJack(ref money);
                     return trigger_switch; 
                 case 7:
                     return trigger_switch; 
@@ -382,7 +380,159 @@ namespace ECE264AdventureGame2023
                     return trigger_switch;
                 case 9:
                     return trigger_switch;
+                
 
+                /*
+                        You walk a few steps before you are face to face with a menacing looking woman. She doesn't look like a cyborg, but you can tell that she is.
+
+                        -this event triggers if you enter the room WITHOUT the cyber arm-
+                        ???: You are not a cyborg. 
+                        You: No, I am not. You must be Jeanne.
+                        Jeanne: It appears I have a fan.
+                        You: Not really, if not for Zrkka, I wouldn't even know who you are.
+                        Jeanne: You are with Zrkka? Hahahaha, ahh, c'est magnifique! It will be fun breaking you.
+
+                            -the following event is triggered if the prototype wrist blasters are NOT in your inventory-
+                            Jeanne attacks you, and there is no way for you to fight back.
+                            She tortured you for what seemed like days. When she was finally convinced you didn't know anything, she left you for dead, your will finally broken.
+                            .
+                            .
+                            .
+                            Bad End: Broken will
+
+                            -The following event is triggered if the wrist blasters ARE in your inventory-
+                            Jeanne attacked you, but thanks to your wrist blasters, you were able to fight her off. 
+                            You take Jeanne's key off her unconscious body, and book it out of there before she had a chance to wake up.
+                            You got Jeanne's Key!
+
+                        -this event triggers if you enter the room WITH the cyber arm-
+                        ???: A cyborg? Are you a lost new recruit? Who are you?
+                        -present choices-
+                            {I'm here to stop you}
+                                You: I'm here to put a stop to whatever you're doing, Jeanne!
+                                Jeanne: You know my name? You must be with Zrkka! I will break you.
+                                Jeanne grabbed her spear and ran straight at you
+
+                                -this event triggered if you do NOT have the prototype wrist blasters-
+                                You knew almost immediately that was a mistake. The spear drove it home.
+                                .
+                                .
+                                .
+                                Bad End: Big Mistake
+
+                                -this event is triggered if you DO have the wrist blasters-
+                                You try to fight Jeanne off with the wrist blasters you bought earlier, and you put up quite a fight. Jeanne had to call for reinforcements to assist her.
+                                At that moment, you come up with an idea; you can distract all of the guards, so Zrkka and DMN-14 can accomplish their mission.
+                                You run out of the room, and blast your way past everyone that comes your way.
+                                .
+                                .
+                                .
+                                Ending 4: Gung-ho
+                            {I'm here to serve the directive}
+                                You: I am here to serve the directive, lady Jeanne.
+                                Jeanne: I see. Then I suppose you have been briefed on everything you need to know. Let's test that then, hm?
+                                .
+                                .
+                                .
+                                Jeanne: I am among the top enforcers in the directive, but there is one who is considered my superior. What is his name?
+                                    -present choices-
+                                        {Voris- The Superior Cyborg} //<-- correct
+                                        {Cyclone- The Cyber Storm}
+                                        {Aurelius- the Dying Shadow}
+
+                                Jeanne: We recently had an escapee, tenacious little thing. What was her name?
+                                    -present choices-
+                                        {Marina}
+                                        {Frolic}
+                                        {Celia} //<-- correct
+
+                                Jeanne: The traitor and his pet lap dog. Surely you've heard of them. What are their names?
+                                    -present choices-
+                                        {Mirio and Marina- The Reason Within Madness and The Star of Cindren}
+                                        {Zrkka and DMN-14- The Steel Reaper and The Gun Wolf} //<-- correct
+                                        {A'sher and Morris- The Savior King and The Heir of Shinaran}
+
+                               -This event triggers if at any point the players gets a SINGLE question wrong-
+                               You feel something grab at you, holding you in place.
+                               Jeanne: Wrong! I knew you were with Zrkka. 
+                               You struggle to get free, which only makes Jeanne laugh.
+                               Jeanne: You said you were here to serve the directive? Then that's exactly what you'll do.
+                               All you can do is scream as she takes you away. 
+                               .
+                               .
+                               .
+                               Soon all that remains of you is the cybernetic husk used to control your consciousness. 
+                               Your first mission as the newest directive initiate; eliminate Zrrka, The Steel Reaper.
+                               You will fail and die, of course, but at least they can make an example out of you.
+                               .
+                               .
+                               .
+                               Bad End: Eternal Service
+
+                               -this event triggers if the player gets all question right-
+                               Jeanne: Well done. I suppose I can trust you. I have some important information to give to the directors. 
+                               Jeanne: However, I am a bit busy, so I will give you this key for you to access the elevator. 
+                               You Got Jeanne's Key!
+                               Jeanne: Now run along.
+
+                               -player exits to room 18 and can NOT reenter-
+
+
+
+                        */
+                case 26:
+                    Narr("You walk a few steps before you are face to face with a menacing looking woman. She doesn't look like a cyborg, but you can tell that she is.");
+                    if (item_data[6,2] != "0") //if missing cyber arm
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                        Console.WriteLine("???: You are not a cyborg.");
+                        YouSay("No, I am not. You must be Jeanne.");
+                        JeanneSays("It appears I have a fan.");
+                        YouSay("Not really, if not for Zrkka, I wouldn't even know who you are.");
+                        JeanneSays("You are with Zrkka? Hahahaha, ahh, c'est magnifique! It will be fun breaking you.");
+                        if (item_data[11,2] != "0") 
+                        {
+                            Narr("Jeanne attacks you, and there is no way for you to fight back.\r\n" +
+                                "She tortured you for what seemed like days. When she was finally convinced you didn't know anything, she left you for dead, your will finally broken.\r\n" +
+                                "                            " +
+                                ".\r\n" +
+                                ".\r\n" + 
+                                ".\r\n");
+
+
+                            trigger_switch.Add(150);        //trigger game over
+                            trigger_switch.Add(150 + 14); //trigger ending 14
+                        }
+                        
+                        if (item_data[11,2] == "0") 
+                        {
+                            Narr("Jeanne attacked you, but thanks to your wrist blasters, you were able to fight her off. \r\n" +
+                                "You take Jeanne's key off her unconscious body, and book it out of there before she had a chance to wake up.\r\n" +
+                                "You got Jeanne's Key!");
+                        }
+                        
+                    }
+
+                    else if(item_data[6,2] == "0")
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                        Console.WriteLine("???: A cyborg? Are you a lost new recruit? Who are you?");
+                        string[] valid26a = { "I'm here to stop you", "No" };
+                        playerInput = Program.GetString("\n[I'm here to stop you] \n[No]\n", valid2b, error_prompt);
+                        if (playerInput == "I'M HERE TO STOP YOU\n")
+                        {
+                            
+                            YouSay("I'm here to put a stop to whatever you're doing, Jeanne!");
+                            JeanneSays("You know my name? You must be with Zrkka! I will break you.");
+                            Narr("Jeanne grabbed her spear and ran straight at you");
+                            if ()
+                            {
+                                YouSay("");
+                                JeanneSays("")
+                            }
+                        }
+                    }
+                    return trigger_switch;
 
 
 
@@ -452,32 +602,36 @@ namespace ECE264AdventureGame2023
 
 
                 case 3:
-                    Narr("Looking closer, you also notice a vendor selling some wares. Ask him what he's selling?");
-                    string[] valid3a = { "Yes", "No" };
-                    playerInput = Program.GetString("\n[Yes] \n[No]\n", valid3a, error_prompt);
-
-                    //Console.WriteLine("");
-
-                    if (playerInput == "YES")
+                    if (item_data[2,2] == "0" || item_data[3, 2] == "0")
                     {
-                        AbhiSays("Hello there, my name is Abhi, I am a humble vendor here in Uprall.How are you?");
-                        YouSay("I am doing fine, thank you. Can you tell me anything about this coin?");
-                        AbhiSays("Of course!Let me see it! Oh, yes, yes, this coin is made of fine material! I will sell it to you for 500 credits!");
+                        Narr("Looking closer, you also notice a vendor selling some wares. Ask him what he's selling?");
+                        string[] valid3a = { "Yes", "No" };
+                        playerInput = Program.GetString("\n[Yes] \n[No]\n", valid3a, error_prompt);
 
-                        
-                        string[] valid3b = { "Yes", "No" };
-                        playerInput = Program.GetString("\n[Yes] \n[No]\n", valid3b, error_prompt);
+                        //Console.WriteLine("");
+
                         if (playerInput == "YES")
                         {
+                            AbhiSays("Hello there, my name is Abhi, I am a humble vendor here in Uprall.How are you?");
+                            YouSay("I am doing fine, thank you. Can you tell me anything about this coin?");
+                            AbhiSays("Of course!Let me see it! Oh, yes, yes, this coin is made of fine material! I will sell it to you for 500 credits!");
+
+
+                            string[] valid3b = { "Yes", "No" };
+                            playerInput = Program.GetString("\n[Yes] \n[No]\n", valid3b, error_prompt);
+                            if (playerInput == "YES")
+                            {
 
 
 
-                        }
+                            }
 
 
 
                             return trigger_switch;
+                        }
                     }
+                    
                     return trigger_switch;
 
 
@@ -488,20 +642,9 @@ namespace ECE264AdventureGame2023
                 case 4:
 
                     return trigger_switch;
+
+                
             }         
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
             return trigger_switch;
@@ -1551,6 +1694,30 @@ namespace ECE264AdventureGame2023
             public string Description { get; set; }
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         internal static class Directions //Directions being declared as a class
         {
             public enum Direction
@@ -1617,5 +1784,275 @@ namespace ECE264AdventureGame2023
             }
 
         }
+
+
+        static int GetWager(string prompt, string errorNotInt)
+        {
+
+            int result;
+            string userInput;
+            bool OKInt = false;
+
+            Console.Write(prompt);
+            do
+            {
+                userInput = Console.ReadLine();
+                OKInt = Int32.TryParse(userInput, out result);
+                if (!OKInt || result > 250 || result < 0)
+                    Console.WriteLine(errorNotInt);
+            } while (!OKInt || result > 250 || result < 0);
+            return result;
+        }
+
+        //BLACKJACK STUFF AFTER THIS
+
+        //MAIN
+        /* 500$ start, hand max 250
+             * dealer and player play, one of dealer cards is visible
+             * deal 21 or 5 cards
+             * Aces 1 or 11
+             * 0 bet exits program
+             * start in debug mode and remove visibilty later
+             * 
+             * Seeds:
+             * 5 draws an ace for testing
+             */
+
+        static void PlayBlackJack(ref int money)
+        {
+
+
+            int bet;
+            //int money = 500;
+            int pSum, dSum, pHSize, dHSize;       //player sum of cards, player hand size, dealer hand size
+
+            List<string> pHand = new List<string>();
+            List<string> dHand = new List<string>();
+
+
+            bool playerHit, fiveCardCharlie;
+            Queue<string> deckQueue = new Queue<string>();
+
+            Console.Write("Enter Seed: ");
+            int seed = Int32.Parse(Console.ReadLine());
+            List<string> freshDeck = new List<string>();     //enter seed for rng
+            freshDeck = NewDeckShuffle(seed);
+
+
+
+            for (int i = 0; i < freshDeck.Count; i++)                //initial shuffle
+                deckQueue.Enqueue(freshDeck[i]);
+
+
+
+            while (true)
+            {
+                //reset lists and bools                
+                pHand.Clear();
+                dHand.Clear();
+                fiveCardCharlie = false;
+
+                //get bet
+                Console.WriteLine("\nYou have {0}$. ", money);
+                bet = GetWager("Please bet 0-250$: ", "Invalid bet, please re-enter: ");
+                if (bet == 0)
+                {
+                    if (money > 500)
+                        Console.WriteLine("Congrats! Come back soon!");
+                    else if (money >= 0)
+                        Console.WriteLine("You win some you lose some...");
+                    else
+                        Console.WriteLine("Don't forget, Billy the Bone Breaker is on collection duty...");
+                    break;
+                }
+                //Console.Write("You bet: " + bet.ToString());
+
+                if (deckQueue.Count < 4)    //empty deck check
+                {
+                    freshDeck = NewDeckShuffle(seed);
+                    for (int i = 0; i < freshDeck.Count; i++)
+                        deckQueue.Enqueue(freshDeck[i]);
+                }
+
+
+                //initial deal
+                //pHSize = 2;
+                //dHSize = 2;
+                pHand.Add(deckQueue.Dequeue());
+                dHand.Add(deckQueue.Dequeue());
+                pHand.Add(deckQueue.Dequeue());
+                dHand.Add(deckQueue.Dequeue());
+                pSum = SumHand(pHand);
+                dSum = SumHand(dHand);
+                Console.WriteLine("Dealer has a [{0}], you drew [{1}]-[{2}]", dHand[0], pHand[0], pHand[1]);
+
+                do
+                {
+                    if (deckQueue.Count == 0)    //empty deck check
+                    {
+                        freshDeck = NewDeckShuffle(seed);
+                        for (int i = 0; i < freshDeck.Count; i++)
+                            deckQueue.Enqueue(freshDeck[i]);
+                    }
+
+
+                    pSum = SumHand(pHand);      //calculate player sum
+                    Console.Write("Your hand:");
+                    for (int i = 0; i < pHand.Count; i++)
+                    {
+                        Console.Write("[{0}]", pHand[i]);
+                    }
+                    Console.Write(", summing to: {0}\n", pSum);
+
+                    if (pSum > 21)      //break if player busts
+                    {
+                        break;
+                    }
+
+                    if (pHand.Count >= 5)        //also break if player draws 5
+                    {
+                        fiveCardCharlie = true;
+                        break;
+                    }
+
+
+                    //check for loss/win
+                    playerHit = HitOrStay("Hit or Stay? ");
+                    if (playerHit)
+                    {
+                        pHand.Add(deckQueue.Dequeue());
+                        Console.WriteLine("You got a: {0}", pHand[pHand.Count - 1]);
+                    }
+
+                } while (playerHit);
+
+                //show hands and deal to dealer
+                Console.WriteLine("Dealer had: {0}-{1}", dHand[0], dHand[1]);
+
+                //dealer logic: stop if fcc, or if player already busted, or if dealer drew 18 pts, or if dealer 
+                //already drew more than the player
+                while (!fiveCardCharlie && (dSum < pSum) && (pSum <= 21) && (dSum < 18))
+                {
+                    if (deckQueue.Count == 0)    //empty deck check
+                    {
+                        freshDeck = NewDeckShuffle(seed);
+                        for (int i = 0; i < freshDeck.Count; i++)
+                            deckQueue.Enqueue(freshDeck[i]);
+                    }
+
+                    dHand.Add(deckQueue.Dequeue());
+                    dSum = SumHand(dHand);
+                    Console.WriteLine("Dealer drew a {0} for a total of {1}", dHand[dHand.Count - 1], dSum);
+                }
+
+                if (fiveCardCharlie)
+                {
+                    Console.WriteLine("Five Card Charlie! You win {0}$", bet);
+                    money += bet;
+                }
+                else if (pSum > 21)
+                {
+                    Console.WriteLine("It seems that you have busted! You lose {0}$", bet);
+                    money -= bet;
+                }
+                else if (dSum > 21)
+                {
+                    Console.WriteLine("Dealer busted! You win {0}$", bet);
+                    money += bet;
+                }
+                else if (dSum < pSum)
+                {
+                    Console.WriteLine("Player Wins! You win {0}$", bet);
+                    money += bet;
+                }
+                else
+                {
+                    Console.WriteLine("Dealer Wins! You lose {0}$", bet);
+                    money -= bet;
+                }
+
+            }
+            
+        }
+
+
+        public static List<string> NewDeckShuffle(int seed)
+        {
+
+            List<string> defaultDeck = new List<string> { //"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A",
+                                     "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A",
+                                     "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A",
+                                     "A", "A", "A", "A", "A", "A", "A", "9", "10", "J", "Q", "K", "A",
+                                     "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" };
+
+            List<string> shuffledDeck = new List<string>();
+            Random rnd = new Random(seed);
+
+            int temp;
+            int deckSize = defaultDeck.Count;
+
+            for (int i = 0; i < deckSize; i++)
+            {
+                temp = rnd.Next(0, defaultDeck.Count - 1);      //choose random number from remaining list
+                shuffledDeck.Add(defaultDeck[temp]);            //move card
+                defaultDeck.RemoveAt(temp);                     //remove from default deck
+            }
+
+
+            Console.Write("Resetting deck... New deck order: ");
+            for (int i = 0; (i < shuffledDeck.Count); i++)
+            {
+                Console.Write("[{0}]", shuffledDeck[i]);
+            }
+
+            return shuffledDeck;
+
+        }
+
+        public static int SumHand(List<string> hand)
+        {
+            int total = 0;
+            int aces = 0;
+            //string card;
+
+            foreach (string card in hand)
+            {
+                if (card == "A")
+                {
+                    aces++;
+                }
+                else if ((card == "J") || (card == "Q") || (card == "K"))
+                {
+                    total += 10;
+                }
+                else
+                {
+                    total += Int32.Parse(card);
+                }
+            }
+
+            //ace calc. assume aces are ones            
+            if (aces > 0 && (total + (aces - 1) + 11 <= 21))       //room for one ace to be 11, others are 1 but total is under 21
+            {
+                total = total + aces + 10;
+            }
+            else //if none of the aces can be 11    
+            {
+                total = total + aces;
+            }
+
+            return total;
+        }
+
+        static bool HitOrStay(string prompt)
+        {
+            string[] valid = { "HIT", "H", "STAY", "S", "STAND" };
+            string ans;
+            ans = GetString(prompt, valid, "?Invalid response, please reenter");
+            return (ans == "HIT" || ans == "H");
+
+        }
+
+        
     }
 }  
