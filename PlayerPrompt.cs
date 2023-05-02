@@ -662,10 +662,10 @@ namespace ECE264AdventureGame2023
 
                 case 7:
 
-                    if (item_data[4, 2] != 0)
+                    if (item_data[4, 2] != "0")
                     {
-                        string[] valid3a = { "Approach the men", "See the Vendor" };
-                        playerInput = Program.GetString("\n[Take Coin] \n[Leave Coin]\n", valid3a, error_prompt);
+                        string[] valid7a = { "Approach the men", "See the Vendor" };
+                        playerInput = Program.GetString("\n[Approach the Men] \n[See the Vendor]\n", valid7a, error_prompt);
                         if (playerInput == "APPROACH THE MEN")
                         {
                             Narr("You approach the two men talking with each other.One of them directs the other away, and walks towards you as well. His spiky hair and small jacket stand out.");
@@ -683,7 +683,7 @@ namespace ECE264AdventureGame2023
                             Console.ForegroundColor = ConsoleColor.DarkYellow;
                             Console.WriteLine("\n???: The Crags...you're not from around here are you?");
 
-                            YouSay("No, I'm not. My name's" +MyGlobals.playerName+ ", what's yours?");
+                            YouSay("No, I'm not. My name's" + MyGlobals.playerName + ", what's yours?");
 
                             Console.ForegroundColor = ConsoleColor.DarkYellow;
                             Console.WriteLine("\n???: ...Drayton. Name's Drayton.");
@@ -717,15 +717,73 @@ namespace ECE264AdventureGame2023
                         if (playerInput == "SEE THE VENDOR")
                         {
                             TJSays("Hey there, welcome to my shop. Name's TJ. What would you like?");
+                            while (playerInput != "LEAVE")
+                            {
+                                string[] valid7b = { "Prototype Wrist Blasters", "Matter Deflection Apparatus", "Leave" };
+                                playerInput = Program.GetString("\n[Prototype Wrist Blasters] \n[Matter Deflection Apparatus] \n[Leave]\n", valid7b, error_prompt);
+                            
+                                if (playerInput == "PROTOTYPE WRIST BLASTERS")
+                                {
+                                    TJSays("Ah, I see you have an eye for violence. With these puppies, you could punch someone and kiss their guts goodbye! And I'll sell it" +
+                                                                        "to ya for only 3200 credits.");
+                                    YouSay("Only 3200 he says. Erm....");
 
-                            string[] valid3a = { "Prototype Wrist Blasters", "Matter Deflection Apparatus" };
-                            playerInput = Program.GetString("\n[Take Coin] \n[Leave Coin]\n", valid3a, error_prompt);
-                            if (playerInput == "APPROACH THE MEN")
-                            { Prototype Wrist Blasters}
-                            -option to buy for 3200 credits -
-                                                    { Yes}
+                                    string[] valid7c = { "Yes", "No" };
+                                    playerInput = Program.GetString("\n[Yes] \n[No]\n", valid7c, error_prompt);
+                                    if (playerInput == "YES")
+                                    {   
+                                        if (money >= 3200)
+                                        {
+                                            Narr("You got the Prototype Wrist Blasters!");
+                                            TJSays("Sweet, here you go.");
+                                            item_data[11, 2] = "0";
+
+                                            money = money - 3200;
+                                        }
+                                        else if(money < 3200)
+                                        {
+                                            TJSays("Look man, I can't afford sellng this any lower than that. Come back when you got the funds.");
+                                        }
+
+                                    }
+                                    else if (playerInput == "NO")
+                                    {
+                                        TJSays("Alright, if you change your mind, feel free to ask again.");
+                                    }
+                                }
+                                else if(playerInput == "MATTER DEFLECTION APPARATUS")
+                                {
+                                    TJSays("Going for the more protective gear?. I respect that, you could tank a truck and not get a scratch. and you" +
+                                          "hae it for 2900 credits.");
+                                    YouSay("2900? Expensive....");
+
+                                    string[] valid7d = { "Yes", "No" };
+                                    playerInput = Program.GetString("\n[Yes] \n[No]\n", valid7d, error_prompt);
+                                    if (playerInput == "YES")
+                                    {
+                                        if (money >= 2900)
+                                        {
+                                            Narr("You got the Matter Deflection Apparatus!");
+                                            TJSays("Sweet, here you go.");
+                                            item_data[12, 2] = "0";
+
+                                            money = money - 2900;
+                                        }
+                                        else if (money < 2900)
+                                        {
+                                            TJSays("Look man, I can't afford sellng this any lower than that. Come back when you got the funds.");
+                                        }
+
+                                    }
+                                }
+                            }
+                            
+                                
+                            { Yes}
                             You got the prototype wrist blasters!
                                             { No}
+
+
                             { Matter Deflection Apparatus}
                             -option to buy for 2900 credits -
                                                     { Yes}
