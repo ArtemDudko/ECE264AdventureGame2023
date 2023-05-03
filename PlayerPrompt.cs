@@ -899,14 +899,18 @@ namespace ECE264AdventureGame2023
                             "\n." +
                             "\n.");
         //PA: Question 1: What is the Capital of Uprall?
-        -present choices-
-        {Morico City}
-        {Helio City} //<--- correct answer
-        {Kiro City}
+        
+        string[] valid26e = { "Morico City\r\n", "Helio City\r\n", "Kiro City\r\n" };
+                    playerInput = Program.GetString("\n[Morico City] \n[Helio City]\n[Kiro City]\n", valid26e, error_prompt);
+                    if (playerInput == "HELIO CITY\n")
+                    { 
+                    
+                    }
+
         .
         .
         .
-    PA: Question 2: Which nations border Uprall?
+      //PA: Question 2: Which nations border Uprall?
         -present choices-
         {Shinaran}
         {Cindren and Beleran}
