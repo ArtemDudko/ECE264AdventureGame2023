@@ -212,10 +212,10 @@ Begin Data After Triple &:
 
 &roomID&17			&1	    &16		&Pre-Reactor Hall		    &West			&0	&0	&0	&0	&0
 
-&roomID&18			&1		&28	    &Hidden Lift				&North			&0	&0	&0	&0	&0
-&roomID&18			&2	    &26  	&Torture Chamber			&West			&0	&0	&0	&0	&0
-&roomID&18			&3	    &27  	&Grand Hall?				&East			&0	&0	&0	&0	&0
-&roomID&18			&4	    &15		&Grand Hall?				&South			&0	&0	&0	&0	&0
+&roomID&18			&1		&28	    &Hidden Lift				&North			&98	&0	&0	&0	&0
+&roomID&18			&2	    &26  	&Torture Chamber			&West			&98	&0	&0	&0	&0
+&roomID&18			&3	    &27  	&Competency Assessment Chamber&East			&0	&0	&0	&0	&0
+&roomID&18			&4	    &15		&Branching Hallway			&South			&0	&0	&0	&0	&0
 
 &roomID&19			&0	    &19		&Sanctum					&None			&0	&0	&0	&0	&0
 
@@ -232,8 +232,8 @@ Begin Data After Triple &:
 
 &roomID&25		   &1		&24	    &Private Entrance			&South			&0	&0	&0	&0	&0
 
-&roomID&26		   &1		&18		&Grand Hall					&East			&0	&0	&0	&0	&0
+&roomID&26		   &1		&18		&Grand Hall					&East			&97	&0	&0	&0	&0
 
-&roomID&27		   &1		&18		&Grand Hall					&West			&0	&0	&0	&0	&0
+&roomID&27		   &1		&18		&Grand Hall					&West			&99 &0	&0	&0	&0
 
-&roomID&28		   &1		&19		&Sanctum					&North			&0	&0	&0	&0	&0
+&roomID&28		   &1		&19		&Sanctum					&North			&96	&0	&0	&0	&0
