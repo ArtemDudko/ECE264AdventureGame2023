@@ -893,73 +893,91 @@ namespace ECE264AdventureGame2023
                            "\n." +
                            "\n.");
                     Narr("You enter the test room.\n");
-                    //PA: Welcome. To ensure that we let quality members into our directive, it is important we test your knowledge, so as to not allow lesser beings into the directive.
+                    OtherSay("PA: Welcome. To ensure that we let quality members into our directive,\n"+
+                        "it is important we test your knowledge, so as to not allow lesser beings into the directive.\n");
                     YouSay("'Lesser beings'? Sheesh...\n"+
                             "\n." +
                             "\n." +
                             "\n.");
-        //PA: Question 1: What is the Capital of Uprall?
-        
-        string[] valid26e = { "Morico City\r\n", "Helio City\r\n", "Kiro City\r\n" };
-                    playerInput = Program.GetString("\n[Morico City] \n[Helio City]\n[Kiro City]\n", valid26e, error_prompt);
+                    Othersay("PA: Question 1: What is the Capital of Uprall?");
+                    int Score = 0;
+                    string[] valid27a = { "Morico City\r\n", "Helio City\r\n", "Kiro City\r\n" };
+                    playerInput = Program.GetString("\n[Morico City] \n[Helio City]\n[Kiro City]\n", valid27a, error_prompt);
                     if (playerInput == "HELIO CITY\n")
-                    { 
-                    
+                    {
+                        OtherSay("PA: CORRECT");
+                        Score = Score + 25;
                     }
+                    else
+                    {
+                        OtherSay("PA: INCORRECT");
+                        Score = Score + 0;
+                    }
+                    "\n." +
+                    "\n." +
+                    "\n." );
+                    OtherSay("PA: Question 2: Which nations border Uprall?");
+                    string[] valid27a = { " Shinaran\r\n", "Cindren and Beleran\r\n", "Beleran and Sakanata\r\n" };
+                    playerInput = Program.GetString("\n[Morico City] \n[Helio City]\n[Beleran and Sakanata]\n", valid27a, error_prompt);
+                    if (playerInput == "BELERAN AND SAKANATA\n")
+                    {
+                        OtherSay("PA: CORRECT"); 
+                        Score = Score + 25;
+                    }
+                    else
+                    {
+                        OtherSay("PA: INCORRECT");
+                        Score = Score + 0;
+                    }
+                    "\n." +
+                    "\n." +
+                    "\n." +
 
-        .
-        .
-        .
-      //PA: Question 2: Which nations border Uprall?
-        -present choices-
-        {Shinaran}
-        {Cindren and Beleran}
-        {Beleran and Sakanata} //<-- correct
-        .
-        .
-        .
-    PA: Question 3: What is the percentage of cybernetic citizens in Uprall?
-        -present choices-
-        {47%}
-        {52%} //<-- correct
-        {88%}
-        .
-        .
-        .
-    PA: Question 4: What is the name of this building that you are taking this test in?
-        {Firioris} //<-- correct
-        {Murcurius}
-        {Helio}
-        .
-        .
-        .
-    PA: Final Question: Who is the official body of leadership in Uprall?
-        -present choices-
-        {A President}
-        {A Dictator}
-        {A Council} //<-- correct
-        .
-        .
-        .
-    PA: Caluclating score, please wait...
-    .
-    .
-    .
-    PA: Your score is {score}       //score is determined by however many answers correct, 20% for each correct answer
+                    //PA: Question 3: What is the percentage of cybernetic citizens in Uprall?
+                    string[] valid27a = { " 47%\r\n", "52%\r\n", "88%\r\n" };
+                    playerInput = Program.GetString("\n[47%] \n[52%]\n[88%]\n", valid27a, error_prompt);
+                    if (playerInput == "52%\n")
+                    {
+                        OtherSay("PA: CORRECT\n"); 
+                        Score = Score + 50;
+                    }
+                    else
+                    {
+                        OtherSay("PA: INCORRECT\n");
+                        Score = Score + 0;
+                    }
+                    "\n." +
+                        "\n." +
+                        "\n." );
 
-    -triggered if player score is < 60-
-    PA: We are sorry, but we cannot allow lesser beings such as yourself inside our directive. Or inside society. We will purge you now. Goodbye.
-    You: Whoa whoa, wai-
-    .
-    .
-    .
-    Bad End: Incomptetance.
+                    OtherSay("PA: Caluclating score, please wait...\n"+
+                    "\n." +
+                        "\n." +
+                        "\n." );
+                    OtherSay("PA: Your score is {0}",Score);       //score is determined by however many answers correct, 20% for each correct answer
 
-    -triggered if player score is >= 60-
-    PA: Well done, you have passed. Here is your Official Initiate Badge. Now please vacate the room for the next initiate.
-    You got the Official Initiate Badge!
+                    if (Score < 60) 
+                    {
+                        //PA: We are sorry, but we cannot allow lesser beings such as yourself inside our directive. Or inside society. We will purge you now. Goodbye.
+                        YouSay("Whoa whoa, wai-\n" +
+                                        "\n." +
+                                        "\n." +
+                                        "\n." +
 
 
+
+                        "Bad End: Incomptetance.\n");
+                        trigger_switch.Add(150);        //trigger game over
+                        trigger_switch.Add(150 + 13); //trigger ending 13
+
+                    }
+                    if (Score >= 60) 
+                    {
+                        //PA: Well done, you have passed. Here is your Official Initiate Badge. Now please vacate the room for the next initiate.
+                        Narr("You got the Official Initiate Badge!");
+                        item_data[9, 2] = "0";
+                        NewRoom = 18;
+                    }
 
 
 
