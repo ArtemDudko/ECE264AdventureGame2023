@@ -10,7 +10,7 @@
  * 
  * REFER TO MAP TO HELP COMPLETEING A RUN
  * 
- * 
+ * DEBUG MODE GIVES ALL ITEMS NECEESARY FOR TRY ENDING AND PUTS YOU IN ONE OF THE FINAL ROOMS
  * 
  * 
  * 
@@ -61,7 +61,7 @@ namespace ECE264AdventureGame2023
             int ending = 0;
 
             Console.ForegroundColor = ConsoleColor.White;
-            //MyGlobals.Debug = GetYesNo("Would you like to enable Debug mode? ");  //Check if this is on using ifs, debug messages are surrounded by brackets
+            MyGlobals.Debug = GetYesNo("Would you like to enable Debug mode? ");  //Check if this is on using ifs, debug messages are surrounded by brackets
             //EX:
             if (MyGlobals.Debug){Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("[Debug Mode Enabled]"); Console.ForegroundColor = ConsoleColor.White;}
@@ -71,7 +71,7 @@ namespace ECE264AdventureGame2023
             int currentRoom = 1;
             int chosen_exit_id;
             int playerAction = 0; //0 = start, 1 = move, 2 = look around
-            int money = 150;
+            int money = 5150;
             bool money_ending = true;
 
             Console.ForegroundColor = ConsoleColor.Blue;
@@ -97,7 +97,21 @@ namespace ECE264AdventureGame2023
             trigger_switch = PlayerPrompt.FirstEntry(ref currentRoom, trigger_data, ref item_data, ref money);
             foreach(var flip in trigger_switch) trigger_data[flip] = true;
             
-
+            //debug
+            if(MyGlobals.Debug)
+            {
+                item_data[1, 2] = "0";
+                item_data[3, 2] = "0";
+                item_data[4, 2] = "0";
+                item_data[5, 2] = "0";
+                item_data[6, 2] = "0";
+                item_data[7, 2] = "0";
+                item_data[8, 2] = "0";
+                item_data[9, 2] = "0";
+                item_data[10, 2] = "0";
+                item_data[11, 2] = "0";
+                currentRoom = 18;
+            }
 
 
             while (true)   //main game loop

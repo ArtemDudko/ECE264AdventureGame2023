@@ -475,6 +475,7 @@ namespace ECE264AdventureGame2023
                     YouSay("Ok, looks like I'm in an office. Hey, a wallet...with no Id? But there is money!");
                     Narr("You recieved 700 credits!");
                     Narr("You pocket the money, unaware of the camera watching your every move.");
+                    money = money + 700;
                     return trigger_switch;
 
                 case 15:
@@ -793,7 +794,7 @@ namespace ECE264AdventureGame2023
 
                     string[] valid19a = { "Stay", "Leave" };
                     playerInput = Program.GetString("\n[Stay] \n[Leave]\n", valid19a, error_prompt);
-                    if (playerInput == "STAY")
+                    if (playerInput == "LEAVE")
                     {
                         YouSay("Look, you're right. I'm in way over my head, I'm going to leave.");
                         Narr("As you turn around and walk away, you feel some relief at the fact that you are leaving alive.");
@@ -806,7 +807,7 @@ namespace ECE264AdventureGame2023
                     }
 
 
-                    if (playerInput == "LEAVE")
+                    if (playerInput == "STAY")
                     {
                         YouSay("I've come to far to bail out now.");
                         Dir4Says("You are quite foolish.");
@@ -925,14 +926,14 @@ namespace ECE264AdventureGame2023
 
                     string[] valid22a = { "Leave", "Stay" };
                     playerInput = Program.GetString("\n[leave] \n[Stay]\n", valid22a, error_prompt);
-                    if (playerInput == "LEAVE\n")
+                    if (playerInput == "LEAVE")
                     {
                         YouSay("Ok, I'm going.\n");
                         NewRoom = 11; // -you go back to room 11 and can no longer access this room -
                         trigger_switch.Add(75);
                         return trigger_switch;
                     }
-                    if (playerInput == "STAY\n")
+                    if (playerInput == "STAY")
                     {
                         YouSay("Uh, my name is " + MyGlobals.playerName + ". I was sent here by Zrkka.\n");
                         Narr("The dog aims the gun at you.\n");
@@ -1237,7 +1238,7 @@ namespace ECE264AdventureGame2023
                             Console.WriteLine("???: A cyborg? Are you a lost new recruit? Who are you?");
                             string[] valid26a = { "I'm here to stop you", "No" };
                             playerInput = Program.GetString("\n[I'm here to stop you] \n[No]\n", valid26a, error_prompt);
-                            if (playerInput == "I'M HERE TO STOP YOU\n")
+                            if (playerInput == "I'M HERE TO STOP YOU")
                             {
 
                                 YouSay("I'm here to put a stop to whatever you're doing, Jeanne!");
@@ -1256,7 +1257,7 @@ namespace ECE264AdventureGame2023
 
                                 }
 
-                                if (item_data[11, 2] != "0")
+                                if (item_data[11, 2] == "0")
                                 {
                                     Narr("You try to fight Jeanne off with the wrist blasters you bought earlier, and you put up quite a fight." +
                                         " Jeanne had to call for reinforcements to assist her.\r\n" +
@@ -1276,7 +1277,7 @@ namespace ECE264AdventureGame2023
 
                             string[] valid26b = { "I'm here to serve the directive", "No" };
                             playerInput = Program.GetString("\n[I'm here to serve the directive] \n[No]\n", valid26b, error_prompt);
-                            if (playerInput == "I'M HERE TO SERVE THE DIRECTIVE\n")
+                            if (playerInput == "I'M HERE TO SERVE THE DIRECTIVE")
                             {
                                 YouSay("I am here to serve the directive, lady Jeanne.");
                                 JeanneSays("I see. Then I suppose you have been briefed on everything you need to know. Let's test that then, hm?\r\n" +
@@ -1289,7 +1290,7 @@ namespace ECE264AdventureGame2023
                                 //insert quiz1 here
                                 string[] valid26d = { "Voris - The Superior Cyborg\r\n ", "Cyclone - The Cyber Storm\r\n", "Aurelius - the Dying Shadow\r\n" };
                                 playerInput = Program.GetString("\n[Voris - The Superior Cyborg] \n[Cyclone - The Cyber Storm]\n[Aurelius - the Dying Shadow]\n", valid26d, error_prompt);
-                                if (playerInput == "VORIS - THE SUPERIOR CYBORG\n")
+                                if (playerInput == "VORIS - THE SUPERIOR CYBORG")
                                 {
                                     JeanneSays("Guess you got lucky. Hope you're ready for round 2!\n");
                                 }
@@ -1319,7 +1320,7 @@ namespace ECE264AdventureGame2023
 
                                 string[] valid26e = { "Marina\r\n", "Frolic\r\n", "Celia\r\n" };
                                 playerInput = Program.GetString("\n[Marina] \n[Frolic]\n[Celia]\n", valid26e, error_prompt);
-                                if (playerInput == "CELIA\n")
+                                if (playerInput == "CELIA")
                                 {
                                     JeanneSays("I'm still not Convinced! Prepare for the Final Round!\n");
                                 }
@@ -1348,12 +1349,13 @@ namespace ECE264AdventureGame2023
                                 //insert quiz3 here
                                 string[] valid26c = { "Mirio and Marina - The Reason Within Madness and The Star of Cindren", "Zrkka and DMN-14 - The Steel Reaper and The Gun Wolf", "A'sher and Morris - The Savior King and The Heir of Shinaran" };
                                 playerInput = Program.GetString("\n[Mirio and Marina - The Reason Within Madness and The Star of Cindren] \n[Zrkka and DMN-14 - The Steel Reaper and The Gun Wolf]\n[A'sher and Morris - The Savior King and The Heir of Shinaran]\n", valid26c, error_prompt);
-                                if (playerInput == "ZRKKA AND DMN-14 - THE STEEL REAPER AND THE GUN WOLF\n")
+                                if (playerInput == "ZRKKA AND DMN-14 - THE STEEL REAPER AND THE GUN WOLF")
                                 {
                                     JeanneSays("Well done. I suppose I can trust you. I have some important information to give to the directors." +
                                    "\nHowever, I am a bit busy, so I will give you this key for you to access the elevator.");
                                     Narr("You Have Succeeded Where Most Fall! You Got Jeanne's Key!");
                                     JeanneSays("Now run along.");
+                                    item_data[10, 2] = "0";
                                     NewRoom = 18;
                                 }
                                 else
@@ -1431,7 +1433,7 @@ namespace ECE264AdventureGame2023
                         int Score = 0;
                         string[] valid27a = { "Morico City\r\n", "Helio City\r\n", "Kiro City\r\n" };
                         playerInput = Program.GetString("\n[Morico City] \n[Helio City]\n[Kiro City]\n", valid27a, error_prompt);
-                        if (playerInput == "HELIO CITY\n")
+                        if (playerInput == "HELIO CITY")
                         {
                             OtherSays("PA: CORRECT");
                             Score = Score + 25;
@@ -1448,7 +1450,7 @@ namespace ECE264AdventureGame2023
                         OtherSays("PA: Question 2: Which nations border Uprall?");
                         string[] valid27b = { " Shinaran\r\n", "Cindren and Beleran\r\n", "Beleran and Sakanata\r\n" };
                         playerInput = Program.GetString("\n[Morico City] \n[Helio City]\n[Beleran and Sakanata]\n", valid27b, error_prompt);
-                        if (playerInput == "BELERAN AND SAKANATA\n")
+                        if (playerInput == "BELERAN AND SAKANATA")
                         {
                             OtherSays("PA: CORRECT");
                             Score = Score + 25;
@@ -1465,7 +1467,7 @@ namespace ECE264AdventureGame2023
                         OtherSays("PA: Question 3: What is the percentage of cybernetic citizens in Uprall?");
                         string[] valid27c = { " 47%", "52%", "88%" };
                         playerInput = Program.GetString("\n[47%] \n[52%]\n[88%]\n", valid27c, error_prompt);
-                        if (playerInput == "52%\n")
+                        if (playerInput == "52%")
                         {
                             OtherSays("PA: CORRECT\n");
                             Score = Score + 50;
@@ -1639,6 +1641,7 @@ namespace ECE264AdventureGame2023
                                 "but then you remember the coin, and also scan it.");
                             Narr("Thank you, you may enter the elevator.");
                             Narr("Welcome, Jeanne.");
+                            trigger_switch.Add(96);
                         }
                         else
                         {
@@ -2031,7 +2034,7 @@ namespace ECE264AdventureGame2023
                     if (item_data[4, 2] == "0")
                     {
                         Narr("You grapple the roof of a building, allowing you to climb to the top.");
-                        trigger_switch.Add(111);
+                        trigger_switch.Add(75);
                     }
 
                     return trigger_switch;
