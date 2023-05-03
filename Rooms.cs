@@ -99,7 +99,11 @@ namespace ECE264AdventureGame2023
                         valid_exits.Add(exit_data[row, 5].Trim().ToUpper());
                     }
                     else
+                    {
+                        valid_exits.Add("Locked");
                         Console.WriteLine("[?????] - Option Locked");
+
+                    }
 
 
 

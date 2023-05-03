@@ -167,7 +167,7 @@ Begin Data After Triple &:
 &roomID&4			&1	    &5		&Academy Road S				&West			&0	&0	&0	&0	&0
 &roomID&4			&2      &3		&Helio City Square N		&South			&0	&0	&0	&0	&0
 
-&roomID&5			&1	    &7		&Academy Road N				&West			&0	&0	&0	&0	&0
+&roomID&5			&1	    &7		&Academy Road N				&North			&0	&0	&0	&0	&0
 &roomID&5			&2	    &6		&Side Alley					&South			&0	&0	&0	&0	&0
 &roomID&5			&3	    &4		&Corner Street				&East			&0	&0	&0	&0	&0
 

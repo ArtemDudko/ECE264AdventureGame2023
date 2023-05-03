@@ -340,7 +340,7 @@ namespace ECE264AdventureGame2023
                         Narr("Out of nowhere, a cyborg steps out of the shadows");
                         Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.WriteLine("???: That coin you've got there doesn't belong to you.I would like it back, if you don't mind.");
-                        YouSay("Who are you?");
+                        YouSay("Who are you?\n");
                         Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.WriteLine("???: Not that it matters, but my name is Cyclone.");
                         CycloneSays("Now, be good and give me the coin.");
@@ -377,7 +377,7 @@ namespace ECE264AdventureGame2023
                             ZrkkaSays("Yep.One of their enforcers. I'm gonna keep a closer eye on you, just in case.");
                             Narr("Zrkka turns toward the ally.");
                             ZrkkaSays("Oh, that ally should be safe for you to go into.I don't know why you would, but it's there. I need you to head to the Firioris building. That's their headquarters, and that's where we need to strike.");
-                            YouSay("Firioris building. Got it.");
+                            YouSay("Firioris building. Got it.\n");
 
                         }
                         else if (playerInput == "NO" && item_data[1, 2] != "0")
@@ -426,11 +426,18 @@ namespace ECE264AdventureGame2023
                 case 9:
 
                     if (item_data[1, 2] != "0")
+                    {
                         YouSay("Ah, the Firioris building.This place is huge! Uprall is such a neat place. Maybe tomorrow I'll see that academy.");
-                    Narr("You keep walking through the city, completely oblivious to anything that may or may not be happening in the nation of Uprall.");
-                    Narr("\n\n.\n.\n.\n\n");
-                    trigger_switch.Add(150);
-                    trigger_switch.Add(150 + 2); //ending 2
+                        Narr("You keep walking through the city, completely oblivious to anything that may or may not be happening in the nation of Uprall.");
+                        Narr("\n\n.\n.\n.\n\n");
+                        trigger_switch.Add(150);
+                        trigger_switch.Add(150 + 2); //ending 2
+                    }
+                    else if (item_data[1, 2] == "0")
+                    {
+
+                    }
+                    
                     return trigger_switch;
 
                 case 10:
@@ -583,16 +590,6 @@ namespace ECE264AdventureGame2023
                     }
 
                     return trigger_switch;
-
-
-
-
-
-
-
-
-
-
 
                 /*
             You: Hey, this place has blackjack! Maybe I can have some fun.
