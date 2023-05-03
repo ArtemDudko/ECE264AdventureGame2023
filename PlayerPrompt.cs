@@ -112,7 +112,7 @@ namespace ECE264AdventureGame2023
                         YouSay("Uh, I'm not really sure. Maybe I'll visit Uprall some other time.");
                         Narr("PA: Thank you, have a good day.");
                         trigger_switch.Add(150);
-                        trigger_switch.Add(151);
+                        trigger_switch.Add(150 + 1); //ending 1
                     }
 
                     return trigger_switch;
@@ -334,75 +334,74 @@ namespace ECE264AdventureGame2023
                     return trigger_switch; 
 
                 case 5:
-                    //enter with coin
-                    Narr("Out of nowhere, a cyborg steps out of the shadows");
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    Console.WriteLine("???: That coin you've got there doesn't belong to you.I would like it back, if you don't mind.");
-                    YouSay("Who are you?");
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    Console.WriteLine("???: Not that it matters, but my name is Cyclone.");
-                    CycloneSays("Now, be good and give me the coin.");
-                    string[] valid4a = { "Yes", "No" };
-                    playerInput = Program.GetString("\n[Yes] \n[No]\n", valid4a, error_prompt);
-
-                    Console.WriteLine("You: Sorry, but I'd rather not." +
-                        "Cyclone: I would change my mind if I were you." +
-                        "As he speaks, he walks toward you, revealing what appear to be daggers. In fear, you run into a side ally, hoping for a way to escape." +
-                        "You run into a dead end, unable to escape as Cyclone slowly approaches you." +
-                        "Cyclone: I gave you a chance. Oh well.");
-
-
-
-                    if (playerInput == "YES")
+                    trigger_switch.Add(105);
+                    if (item_data[2, 2] == "0" || item_data[3, 2] == "0")
                     {
-                        Console.WriteLine("You: Uh, yeah, sure, here.");
-                        CycloneSays("Good. Now, just pretend you never saw me, got it?");
-                        YouSay("Yeah, sure. You got it.");
-                        Narr("With a wicked smile, Cyclone leaves.\n");
+                        Narr("Out of nowhere, a cyborg steps out of the shadows");
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.WriteLine("???: That coin you've got there doesn't belong to you.I would like it back, if you don't mind.");
+                        YouSay("Who are you?");
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.WriteLine("???: Not that it matters, but my name is Cyclone.");
+                        CycloneSays("Now, be good and give me the coin.");
+                        string[] valid4a = { "Yes", "No" };
+                        playerInput = Program.GetString("\n[Yes] \n[No]\n", valid4a, error_prompt);
+
+                        if (playerInput == "YES")
+                        {
+                            Console.WriteLine("You: Uh, yeah, sure, here.");
+                            CycloneSays("Good. Now, just pretend you never saw me, got it?");
+                            YouSay("Yeah, sure. You got it.");
+                            Narr("With a wicked smile, Cyclone leaves.\n");
+                        }
+                        if (playerInput == "NO" && item_data[1, 2] == "0")//if has cyber lens
+                        {
+                            YouSay("Sorry, but I'd rather not.");
+                            CycloneSays("I would change my mind if I were you.");
+
+                            Narr("As he speaks, he walks toward you, revealing what appear to be daggers. In fear, you run into a side ally, hoping for a way to escape.");
+                            Narr("\n\n." +
+                                "\n\n." +
+                                "\n\n.\n\n");
+                            Narr("You run into a dead end, unable to escape as Cyclone slowly approaches you.");
+                            CycloneSays("I gave you a chance. Oh well.");
+                            Narr("Out of nowhere, Zrkka drops into the ally and grabs cyclone, giving you an opportunity to escape.");
+                            ZrkkaSays("Go!");
+                            Narr("Without thinking, you run past the two cyborgs and into the open street.");
+                            Narr("\n\n." +
+                                "\n\n." +
+                                "\n\n.\n\n");
+                            Narr("After some time, Zrkka walks out of the ally.");
+                            ZrkkaSays("I see you've met Cyclone.");
+                            YouSay("Is he a part of the directive?");
+                            ZrkkaSays("Yep.One of their enforcers. I'm gonna keep a closer eye on you, just in case.");
+                            Narr("Zrkka turns toward the ally.");
+                            ZrkkaSays("Oh, that ally should be safe for you to go into.I don't know why you would, but it's there. I need you to head to the Firioris building. That's their headquarters, and that's where we need to strike.");
+                            YouSay("Firioris building. Got it.");
+
+                        }
+                        else if (playerInput == "NO" && item_data[1, 2] != "0")
+                        {
+                            YouSay("Sorry, but I'd rather not.");
+                            CycloneSays("I would change my mind if I were you.");
+                            Narr("As he speaks, he walks toward you, revealing what appear to be daggers. In fear, you run into a side ally, hoping for a way to escape.");
+                            Narr("\n\n." +
+                                "\n\n." +
+                                "\n\n.\n\n");
+                            Narr("You run into a dead end, unable to escape as Cyclone slowly approaches you.");
+                            CycloneSays("I gave you a chance. Oh well.");
+                            Narr("You feel the pain of cyclone's daggers as you collapse to the ground. Cyclone walking away with the coin is the last thing you see.");
+                            Narr("\n\n.\n.\n.\n\n");
+                            trigger_switch.Add(150);        //triggers game over
+                            trigger_switch.Add(150 + 9);    //trigger ending 9
+                            return trigger_switch;
+                        }
+
                     }
-                    if (playerInput == "NO" && item_data[1, 2] == "0")//if has cyber lens
+                    else if(item_data[2, 2] != "0" || item_data[3, 2] != "0")
                     {
-                        YouSay("Sorry, but I'd rather not.");
-                        CycloneSays("I would change my mind if I were you.");
-
-                        Narr("As he speaks, he walks toward you, revealing what appear to be daggers. In fear, you run into a side ally, hoping for a way to escape.");
-                        Narr("\n\n." +
-                            "\n\n." +
-                            "\n\n.\n\n");
-                        Narr("You run into a dead end, unable to escape as Cyclone slowly approaches you.");
-                        CycloneSays("I gave you a chance. Oh well.");
-                        Narr("Out of nowhere, Zrkka drops into the ally and grabs cyclone, giving you an opportunity to escape.");
-                        ZrkkaSays("Go!");
-                        Narr("Without thinking, you run past the two cyborgs and into the open street.");
-                        Narr("\n\n." +
-                            "\n\n." +
-                            "\n\n.\n\n");
-                        Narr("After some time, Zrkka walks out of the ally.");
-                        ZrkkaSays("I see you've met Cyclone.");
-                        YouSay("Is he a part of the directive?");
-                        ZrkkaSays("Yep.One of their enforcers. I'm gonna keep a closer eye on you, just in case.");
-                        Narr("Zrkka turns toward the ally.");
-                        ZrkkaSays("Oh, that ally should be safe for you to go into.I don't know why you would, but it's there.I need you to head to the Firioris building.That's their headquarters, and that's where we need to strike.");
-                        YouSay("Firioris building.Got it.");
 
                     }
-                    else if (playerInput == "NO" && item_data[1, 2] != "0")
-                    {
-                        YouSay("Sorry, but I'd rather not.");
-                        CycloneSays("I would change my mind if I were you.");
-                        Narr("As he speaks, he walks toward you, revealing what appear to be daggers. In fear, you run into a side ally, hoping for a way to escape.");
-                        Narr("\n\n." +
-                            "\n\n." +
-                            "\n\n.\n\n");
-                        Narr("You run into a dead end, unable to escape as Cyclone slowly approaches you.");
-                        CycloneSays("I gave you a chance. Oh well.");
-                        Narr("You feel the pain of cyclone's daggers as you collapse to the ground. Cyclone walking away with the coin is the last thing you see.");
-                        Narr("\n\n.\n.\n.\n\n");
-                        trigger_switch.Add(150);        //triggers game over
-                        trigger_switch.Add(150 + 9);    //trigger ending 9
-                        return trigger_switch;
-                    }
-
                     return trigger_switch; 
 
                 case 6:
@@ -421,9 +420,179 @@ namespace ECE264AdventureGame2023
 
 
                 case 8:
+
                     return trigger_switch;
+
                 case 9:
+
+                    if (item_data[1, 2] != "0")
+                        YouSay("Ah, the Firioris building.This place is huge! Uprall is such a neat place. Maybe tomorrow I'll see that academy.");
+                    Narr("You keep walking through the city, completely oblivious to anything that may or may not be happening in the nation of Uprall.");
+                    Narr("\n\n.\n.\n.\n\n");
+                    trigger_switch.Add(150);
+                    trigger_switch.Add(150 + 2); //ending 2
                     return trigger_switch;
+
+                case 10:
+
+                    return trigger_switch;
+
+                case 11:
+
+                    return trigger_switch;
+
+                case 12:
+
+                    return trigger_switch;
+
+                case 13:
+
+                    
+                    if (!triggers[113])
+                    {
+                        OtherSays("Guard: Can I help you?");
+                        YouSay("Uh, yeah, I'm just trying to get in there.");
+                        OtherSays("Guard: Do you really think I'd just let you walk in?");
+                        YouSay("Maybe?");
+                        OtherSays("Guard: You'd have to pay a pretty penny to get in here pal.");
+
+                        string[] valid13a = { "Pay 750 credits", "Don't Pay" };
+
+                        playerInput = Program.GetString("\n[Pay 750 credits] \n[Don't Pay]\n", valid13a, error_prompt);
+                        if (playerInput == "PAY 750 CREDITS")
+                        {
+                            YouSay("Yeah, here, sure.");
+                            OtherSays("Guard: Heh, well alright. Don't let anybody see you, got it?");
+                            YouSay("Yeah, of course.");
+                            money = money - 750;
+                            trigger_switch.Add(50);
+
+                        }
+                        if (playerInput == "DON'T PAY" || money < 750)
+                        {
+                            YouSay("I don't have the kind of money.");
+                            OtherSays("Guard: Then get lost.");
+                            NewRoom = 10;
+                            return trigger_switch;
+                        }
+                        
+                        Narr("\n\n.\n.\n.\n\n");
+                        YouSay("Easier than I thought. Ooh, some loot.");
+                        Narr("You recieved 1200 credits!");
+                        YouSay("I'd call this a net gain.");
+                        Narr("You pocket the money, unaware of the camera watching your every move.");
+
+                    }
+                    return trigger_switch;
+
+                case 14:
+                    trigger_switch.Add(114);
+                    YouSay("Ok, looks like I'm in an office. Hey, a wallet...with no Id? But there is money!");
+                    Narr("You recieved 700 credits!");
+                    Narr("You pocket the money, unaware of the camera watching your every move.");
+                    return trigger_switch;
+
+                case 15:
+
+                    if (item_data[3, 2] != "0");
+                    {
+                        Narr("You try to enter the elevator door in front you, but...");
+                        YouSay("Ah, nothing's working! There's gotta be some key I need, but I dont have it!");
+                        Narr("You ponder for a while what to do next.");
+                        YouSay("That's it, I can't do this, I'm just gonna leave it to Zrkka, and move on with my life.");
+                        Narr("You leave the Firioris Building, and Uprall.");
+                        Narr("\n\n." +
+                            "\n\n." +
+                            "\n\n.\n\n");
+                        trigger_switch.Add(150);
+                        trigger_switch.Add(150 + 3); //ending 3
+                    }
+                    if (item_data[3, 2] == "0");
+                    {
+                        
+
+                    }
+                    return trigger_switch;
+
+                case 16:
+                    return trigger_switch;
+
+                case 17:
+
+                    YouSay("Ok, the Reactor.");
+                    Narr("Almost as soon as you enter, you hear faint explosions.");
+                    YouSay("Oh yeah, DMN-14 said he was going to going to blow up the reactor and that I shouldn't...go...in there...uh oh.");
+                    Narr("Almost on cue, the floor below you erupts in flames as you begin to plummet below.");
+
+                    if(item_data[4, 2] != "0")
+                    {
+                        if (item_data[12, 2] != "0")
+                        {
+                            Narr("Without anything to protect you, you dive into the flames, unable to escape.You should've listened better.");
+                            Narr("\n\n." +
+                            "\n\n." +
+                            "\n\n.\n\n");
+                            trigger_switch.Add(150);
+                            trigger_switch.Add(150 + 12);
+
+                        }
+                        else if(item_data[12, 2] == "0")
+                        {
+                            Narr("Using the Matter deflector apparatus, you manage to protect youself as an explosion launches you back to a safer height.");
+                            YouSay("That was a close one.");
+                            DMN14Says("Clearly you did not heed my warnings.");
+                            YouSay("Yeah...my bad.");
+                            ZrkkaSays("You could've been killed.");
+                            DMN14Says("And yet you are still alive. That means you are still capable of assisting us.");
+                            DMN14Says("In the coming rooms, you will likely come face to face with Jeanne. Keep an eye out for her.");
+                            ZrkkaSays("She's dangerous. Very dangerous. Without any enhancmeents, she'll try to either kill you, or cyberize you.");
+                            YouSay("She sounds charming. I'll be careful.\n");
+                        }
+                    }
+                    else if (item_data[12, 2] == "0")
+                    {
+                        Narr("You fall into the flames, until you remember you have Drayton's hookshot.");
+                        Narr("You hook yourself to safety, but as you climb, an explosion launches you up.");
+                        Narr("You feel an extremely sharp pain as you writhe on the floor.");
+                        ZrkkaSays("Holy...sit still, sit still!");
+                        YouSay("Agh! Zrkka, what the hell happened?");
+                        ZrkkaSays("I'll be right back, I need to grab something.");
+                        DMN14Says("You have been injured.");
+                        YouSay("Yeah, obviously!");
+                        DMN14Says("You do not understand. This is more than a burn or broken bone.");
+                        Narr("You look down...");
+                        Narr("...and notice your left arm has been completely blown off.");
+                        DMN14Says("It would appear that you are in shock, and therefore are mostly numb to the pain. This will not last long, however.");
+                        Narr("Zrkka appears again with a silver prosthetic, which he begins to graft onto you.");
+                        Narr("\n\n." +
+                           "\n\n." +
+                           "\n\n.\n\n");
+                        ZrkkaSays("I'm sure you didn't expect to become a cyborg today, did you?");
+                        YouSay("This is ...way too much.");
+                        DMN14Says("I sympathize with you," + MyGlobals.playerName + ", however, it is important that we carry on with our mission.");
+                        DMN14Says("I am transmitting to your arm some crucial information regarding Uprall.");
+                        DMN14Says("Considering that you are a foreigner, I belive it will assist you, should you need to take the Competance Assessment Test.");
+                        ZrkkaSays("But beyond that, you'll probably come across Jeanne's torture chamber. And with that arm, she just might find use for you.");
+                        YouSay("Is that bad ?");
+                        Narr("Zrkka and DMN - 14 laugh for a moment.");
+                        ZrkkaSays("Very.");
+                        DMN14Says("Pray you find a way past her.");
+                        YouSay("I see.Thanks guys...not concerning at all...");
+                        item_data[6, 2] = "0";
+                        Narr("You Got the Uprall Informational Data!");
+                    }
+
+                    return trigger_switch;
+
+
+
+
+
+
+
+
+
+
 
                 /*
             You: Hey, this place has blackjack! Maybe I can have some fun.
@@ -718,8 +887,7 @@ namespace ECE264AdventureGame2023
                                     "\nYou will fail and die, of course, but at least they can make an example out of you." +
                                     "\n." +
                                     "\n." +
-                                    "\n." +
-                                    "\nBad End: Eternal Service");
+                                    "\n.");
                                     trigger_switch.Add(150);        //trigger game over
                                     trigger_switch.Add(150 + 16); //trigger ending 16
                                     return trigger_switch;
@@ -895,25 +1063,23 @@ namespace ECE264AdventureGame2023
                         Narr("A door appears in front of you at the end of the ally");
                         trigger_switch.Add(106);
                     }
-                        
-
-
+                    
                     return trigger_switch;
 
                 case 7:
 
-                    if (item_data[4, 2] != "0")
+                    if (item_data[4, 2] != "0") //&& item_data[11, 2] != "0" && item_data[11, 2] != "0")
                     {
-                        string[] valid7a = { "Approach the men", "See the Vendor" };
-                        playerInput = Program.GetString("\n[Approach the Men] \n[See the Vendor]\n", valid7a, error_prompt);
+                        string[] valid7a = { "Approach the men", "Don't"};
+                        playerInput = Program.GetString("\n[Approach the Men], \n[Don't]\n", valid7a, error_prompt);
                         if (playerInput == "APPROACH THE MEN")
                         {
                             Narr("You approach the two men talking with each other.One of them directs the other away, and walks towards you as well. His spiky hair and small jacket stand out.");
-                            
+
                             Console.ForegroundColor = ConsoleColor.DarkYellow;
                             Console.WriteLine("\n???: Can I help you?");
 
-                            YouSay("No shirt with a jacket three sizes too small.Interesting choice.");
+                            YouSay("No shirt with a jacket three sizes too small. Interesting choice.");
 
                             Console.ForegroundColor = ConsoleColor.DarkYellow;
                             Console.WriteLine("\n???: In The Crags its hard to find quality clothes, but I wouln't expect you to know that.");
@@ -940,7 +1106,7 @@ namespace ECE264AdventureGame2023
 
                             YouSay("Wow.");
 
-                            DraytonSays("Yup.Crazy business, huh? Anyway, maybe someday you'd like to check out the lesser side of things. Me and my buddy Zix would be happy to put you up.");
+                            DraytonSays("Yup. Crazy business, huh? Anyway, maybe someday you'd like to check out the lesser side of things. Me and my buddy Zix would be happy to put you up.");
 
                             YouSay("Maybe, if I have time.");
 
@@ -953,15 +1119,32 @@ namespace ECE264AdventureGame2023
                             YouSay("Will do.");
 
                             Narr("Drayton walks away, leaving you alone with his gift.");
+
+                            item_data[4, 2] = "0";
+
                         }
+                        else if (playerInput == "DON'T")
+                        {
+
+                        }
+                    }
+
+                    if (item_data[11, 2] != "0" && item_data[11, 2] != "0")
+                    {
+                        YouSay("I think I see a shop over there. I wonder if they've got anything good?");
+                        string[] valid7e = { "See the Vendor" , "Don't"};
+                        playerInput = Program.GetString("\n[See the Vendor], \n[Don't]\n", valid7e, error_prompt);
+
                         if (playerInput == "SEE THE VENDOR")
                         {
+                            money = 5000;
+
                             TJSays("Hey there, welcome to my shop. Name's TJ. What would you like?");
                             while (playerInput != "LEAVE")
                             {
                                 string[] valid7b = { "Prototype Wrist Blasters", "Matter Deflection Apparatus", "Leave" };
                                 playerInput = Program.GetString("\n[Prototype Wrist Blasters] \n[Matter Deflection Apparatus] \n[Leave]\n", valid7b, error_prompt);
-                            
+
                                 if (playerInput == "PROTOTYPE WRIST BLASTERS")
                                 {
                                     TJSays("Ah, I see you have an eye for violence. With these puppies, you could punch someone and kiss their guts goodbye! And I'll sell it" +
@@ -971,7 +1154,7 @@ namespace ECE264AdventureGame2023
                                     string[] valid7c = { "Yes", "No" };
                                     playerInput = Program.GetString("\n[Yes] \n[No]\n", valid7c, error_prompt);
                                     if (playerInput == "YES")
-                                    {   
+                                    {
                                         if (money >= 3200)
                                         {
                                             Narr("You got the Prototype Wrist Blasters!");
@@ -980,7 +1163,7 @@ namespace ECE264AdventureGame2023
 
                                             money = money - 3200;
                                         }
-                                        else if(money < 3200)
+                                        else if (money < 3200)
                                         {
                                             TJSays("Look man, I can't afford sellng this any lower than that. Come back when you got the funds.");
                                         }
@@ -991,7 +1174,7 @@ namespace ECE264AdventureGame2023
                                         TJSays("Alright, if you change your mind, feel free to ask again.");
                                     }
                                 }
-                                else if(playerInput == "MATTER DEFLECTION APPARATUS")
+                                else if (playerInput == "MATTER DEFLECTION APPARATUS")
                                 {
                                     TJSays("Going for the more protective gear?. I respect that, you could tank a truck and not get a scratch. and you" +
                                           "hae it for 2900 credits.");
@@ -1017,75 +1200,130 @@ namespace ECE264AdventureGame2023
                                     }
                                 }
                             }
-                            
-                                
-                            { Yes}
-                            You got the prototype wrist blasters!
-                                            { No}
+                        }
+                        else if (playerInput == "DON'T")
+                        {
 
-
-                            { Matter Deflection Apparatus}
-                            -option to buy for 2900 credits -
-                                                    { Yes}
-                            You Got the matter deflection apparatus!
-                                            { No}
                         }
 
-
-                        
-
-                              
                     }
-
-                   else if (item_data[4, 2] == 0)
-                   string[] valid3a = {"See the Vendor"};
-                    playerInput = Program.GetString("\n[Take Coin] \n[Leave Coin]\n", valid3a, error_prompt);                    
-                    if (playerInput == "SEE THE VENDOR")
+                    if (item_data[11, 2] == "0" && item_data[11, 2] != "0")
                     {
-                        Narr("You decide it's best to leave it.");
+                        string[] valid7e = { "See the Vendor"};
+                        playerInput = Program.GetString("\n[See the Vendor]\n", valid7e, error_prompt);
+
+                        if (playerInput == "SEE THE VENDOR")
+                        {
+                            TJSays("Hey there, welcome to my shop. Name's TJ. What would you like?");
+                            while (playerInput != "LEAVE")
+                            {
+                                string[] valid7b = { "Matter Deflection Apparatus", "Leave" };
+                                playerInput = Program.GetString("\n[Matter Deflection Apparatus] \n[Leave]\n", valid7b, error_prompt);
+                                if (playerInput == "MATTER DEFLECTION APPARATUS")
+                                {
+                                    TJSays("Going for the more protective gear?. I respect that, you could tank a truck and not get a scratch. and you can" +
+                                          " have it for 2900 credits.");
+                                    YouSay("2900? Expensive....");
+
+                                    string[] valid7d = { "Yes", "No" };
+                                    playerInput = Program.GetString("\n[Yes] \n[No]\n", valid7d, error_prompt);
+                                    if (playerInput == "YES")
+                                    {
+                                        if (money >= 2900)
+                                        {
+                                            Narr("You got the Matter Deflection Apparatus!");
+                                            TJSays("Sweet, here you go.");
+                                            item_data[12, 2] = "0";
+
+                                            money = money - 2900;
+                                        }
+                                        else if (money < 2900)
+                                        {
+                                            TJSays("Look man, I can't afford sellng this any lower than that. Come back when you got the funds.");
+                                        }
+
+                                    }
+                                }
+                            }
+
+                        }
                     }
+                    if (item_data[11, 2] != "0" && item_data[11, 2] == "0")
+                    {
+                        string[] valid7e = { "See the Vendor" };
+                        playerInput = Program.GetString("\n[See the Vendor]\n", valid7e, error_prompt);
 
-                    
-                    You approach the two men talking with each other.One of them directs the other away, and walks towards you as well.His spiky hair and small jacket stand out.
-                                ???: Can I help you?
-                                You: No shirt with a jacket three sizes too small.Interesting choice. 
-                                ???: In The Crags its hard to find quality clothes, but I wouln't expect you to know that.
-                                You: The what?
-                                ???: The Crags...you're not from around here are you?
-                                You: No, I'm not. My name's { name}, what's yours?
-                                ???: ...Drayton.Name's Drayton.
-                                You: Sounds bad down in The Crags
-                                Drayton: It is.Half the people there are missing a limb or two.It's dangerous down there, but most of its citizens are poor, so they can't afford the replacements the people in these parts get.
-                                You: Replacements?
-                                Drayton: You don't know? In Uprall, if you're rich enough, you can get missing limbs replaced with cybernetic prosthetics.Whether through medical amputation or grievous injury.
-                                Drayton: Hell, some get replacements by choice.I wouldn't be surprised if at least half the citizens of Uprall are cyborgs by now.
-                                You: Wow.
-                                Drayton: Yup.Crazy business, huh? Anyway, maybe someday you'd like to check out the lesser side of things. Me and my buddy Zix would be happy to put you up.
-                                You: Maybe, if I have time.
-                                Drayton: Well, anyway, you'll need this to even have a hope of navigating down there.
-                                You got the Hookshot!
-                                Drayton: Take care of that, I dont have many.
-                                You: Will do.
-                                Drayton walks away, leaving you alone with his gift.
+                        if (playerInput == "SEE THE VENDOR")
+                        {
+                            TJSays("Hey there, welcome to my shop. Name's TJ. What would you like?");
+                            while (playerInput != "LEAVE")
+                            {
+                                string[] valid7b = { "Prototype Wrist Blasters", "Leave" };
+                                playerInput = Program.GetString("\n[Prototype Wrist Blasters] \n[Leave]\n", valid7b, error_prompt);
 
-                                //-if room is inspected so you notice the vendor-
-                                - approach the vendor-
-                                   TJ: Hey there, welcome to my shop.Name's TJ. What would you like?
-                                    - presented with options-
-                                        { Prototype Wrist Blasters}
-                    -option to buy for 3200 credits -
-                                            { Yes}
-                    You got the prototype wrist blasters!
-                                            { No}
-                    { Matter Deflection Apparatus}
-                    -option to buy for 2900 credits -
-                                            { Yes}
-                    You Got the matter deflection apparatus!
-                                            { No}
+                                if (playerInput == "PROTOTYPE WRIST BLASTERS")
+                                {
+                                    TJSays("Ah, I see you have an eye for violence. With these puppies, you could punch someone and kiss their guts goodbye! And I'll sell it" +
+                                                                        "to ya for only 3200 credits.");
+                                    YouSay("Only 3200 he says. Erm....");
 
+                                    string[] valid7c = { "Yes", "No" };
+                                    playerInput = Program.GetString("\n[Yes] \n[No]\n", valid7c, error_prompt);
+                                    if (playerInput == "YES")
+                                    {
+                                        if (money >= 3200)
+                                        {
+                                            Narr("You got the Prototype Wrist Blasters!");
+                                            TJSays("Sweet, here you go.");
+                                            item_data[11, 2] = "0";
+
+                                            money = money - 3200;
+                                        }
+                                        else if (money < 3200)
+                                        {
+                                            TJSays("Look man, I can't afford sellng this any lower than that. Come back when you got the funds.");
+                                        }
+
+                                    }
+                                    else if (playerInput == "NO")
+                                    {
+                                        TJSays("Alright, if you change your mind, feel free to ask again.");
+                                    }
+                                }
+                                
+                            }
+
+                        }
+
+                    }
+                 
+                    return trigger_switch;
+
+                case 8:
+
+                    Narr("You approach the two gentlemen having a conversation.");
+                    OldManSays("Hello there!Anything I can do for you?");
+                    YouSay("Just passing through.Is this your son?");
+                    OldManSays("Oh no, Artem comes by to visit from time to time.He and I just like to talk.");
+                    ArtemSays("You don't look like you're from around here.");
+                    YouSay("No, I'm not.");
+                    ArtemSays("Well, welcome to Uprall! I hope you've been enjoying your time here so far.");
+                    YouSay("It's been...interesting.");
+                    OldManSays("Let me give you a bit of advice while you're here: Things are rarely what they seem. It's always good to look at things from a new perspective from time to time.");
+                    ArtemSays("Also, don't be afraid to talk to people. Uprallans are generally friendly, and can be pretty helpful.");
+                    YouSay("I'll keep that in mind. I gotta go, but it was nice to meet you both.");
 
                     return trigger_switch;
 
+
+                case 11:
+
+                    if (item_data[4, 2] == "0")
+                    {
+                        Narr("You grapple the roof of a building, allowing you to climb to the top.");
+                        trigger_switch.Add(111);
+                    }
+                    return trigger_switch;
 
             }         
 
@@ -1296,6 +1534,7 @@ namespace ECE264AdventureGame2023
          *          Artem, Well, welcome to Uprall! I hope you've been enjoying your time here so far.
          *          You: It's been...interesting.
          *          Old man: Let me give you a bit of advice while you're here: Things are rarely what they seem. It's always good to look at things from a new perspective from time to time.
+         *          Artem: Also, don't be afraid to talk to people. Uprallans are generally friendly, and can be pretty helpful.
          *          You: I'll keep that in mind. I gotta go, but it was nice to meet you both.
          * 
          */
@@ -1483,7 +1722,7 @@ namespace ECE264AdventureGame2023
                         Ending 3: I'm out
                    {No}
                    
-                   -Prompt When Hookshit is used-
+                   -Prompt When Hookshot is used-
                    You use the grappling hook to grab onto a railing at the end of the gap. You should be able to get over there now
                    -allow access to S-Room7-
                    
@@ -2102,6 +2341,14 @@ namespace ECE264AdventureGame2023
             Console.WriteLine("\nDirective Head 5: " + dialogue);
             Console.ForegroundColor = ConsoleColor.White;
         }
+
+        static void OtherSays(string dialogue)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(dialogue);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
 
         // GET YES/NO OR Y/N RESPONSE. RETURN TRUE FOR YES/Y, FALSE FOR NO/N
         static bool GetYesNo(string prompt)

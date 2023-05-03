@@ -9,6 +9,8 @@ They will be loaded into a bool array, and switched when their codition is met i
 150-199 = endings, if 150 true, an ending has been reached
 
 
+trigger 50, entering room 13 from room 12
+
 Begin Data After Triple &:
 
 &&&	True &	Trigger 0: Always True.
