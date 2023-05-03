@@ -4,9 +4,20 @@ They serve as the player either having done something to gain access or knowing 
 They will be loaded into a bool array, and switched when their codition is met in game
 
 0-49 = exit triggers
-50-99 = dialogue triggers
+50-99 = dialogue and story triggers
 100-149 = first enter room trigger, roomid + 100 to store and check
 150-199 = endings, if 150 true, an ending has been reached
+
+
+
+
+96 - final room unlocked
+97 - the FREEWILL password is known
+98 - lens allows access to rooms 26 and 28
+99 - hookshot placed on rail to go to room 27 from 18
+
+
+
 
 
 Begin Data After Triple &:
