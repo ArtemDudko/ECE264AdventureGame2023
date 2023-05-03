@@ -71,7 +71,7 @@ namespace ECE264AdventureGame2023
             int currentRoom = 1;
             int chosen_exit_id;
             int playerAction = 0; //0 = start, 1 = move, 2 = look around
-            int money = 5150;
+            int money = 150;
             bool money_ending = true;
 
             Console.ForegroundColor = ConsoleColor.Blue;
@@ -111,6 +111,7 @@ namespace ECE264AdventureGame2023
                 item_data[10, 2] = "0";
                 item_data[11, 2] = "0";
                 currentRoom = 18;
+                money = 9999;
             }
 
 
