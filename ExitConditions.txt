@@ -190,7 +190,9 @@ Begin Data After Triple &:
 &roomID&10			&2	    &9		&Courtyard					&East			&0	&0	&0	&0	&0
 
 &roomID&11			&1      &9		&Courtyard					&West			&0	&0	&0	&0	&0
-&roomID&11			&2      &22  	&Rooftop					&East			&111&0	&0	&4	&0
+
+&roomID&11			&2      &22  	&Rooftop					&East			&75	&0	&0	&0	&0
+
 
 
 &roomID&12			&1	    &15		&Branching Hallway			&North			&0	&0	&0	&0	&0

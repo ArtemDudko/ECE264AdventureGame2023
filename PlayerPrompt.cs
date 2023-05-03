@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Numerics;
@@ -63,7 +64,7 @@ namespace ECE264AdventureGame2023
 
 
         //Declaring Rooms and CurrentRoom to be in
-        public static List<int> FirstEntry(int NewRoom, List<bool> triggers, ref string[,] item_data, ref int money)
+        public static List<int> FirstEntry(ref int NewRoom, List<bool> triggers, ref string[,] item_data, ref int money)
         {
 
 
@@ -96,7 +97,7 @@ namespace ECE264AdventureGame2023
                     trigger_switch.Add(101);    //mark room as visited
                     string[] valid1 = { "Helio City", "I don't know where" };
                     Narr("PA: Hello " + MyGlobals.playerName + ", where would you like to go? ");
-                    playerInput = Program.GetString("\n[Helio City] \n[I don't know where]\n", valid1,error_prompt);
+                    playerInput = Program.GetString("\n[Helio City] \n[I don't know where]\n", valid1, error_prompt);
                     if (playerInput == "HELIO CITY")
                     {
                         YouSay("You: Helio City, please");
@@ -331,7 +332,7 @@ namespace ECE264AdventureGame2023
 
 
                 case 4:
-                    return trigger_switch; 
+                    return trigger_switch;
 
                 case 5:
                     trigger_switch.Add(105);
@@ -592,7 +593,9 @@ namespace ECE264AdventureGame2023
                     return trigger_switch;
 
 
-                /*
+
+                    if (triggers[106])
+              /*
             -This prompt will occur every time you enter the room, unless Jeanne's Key is in your inventory-
             No matter where you look, you can't seem to find any way forward. Do you wish to give up?
 
@@ -665,6 +668,7 @@ namespace ECE264AdventureGame2023
     */
                 case 18:
                     if (!triggers[118] && item_data[10, 2] == "0")  //if you have not entered yet, but have jeannes key
+
                     {
                         if (Program.GetYesNo("You hold the key in hand, do you wish to keep going?"))
                         {
@@ -695,7 +699,7 @@ namespace ECE264AdventureGame2023
                     {
                         Narr("No matter where you look, you can't seem to find any way forward.");
                     }
-                    
+
 
                     return trigger_switch;
 
@@ -873,6 +877,10 @@ namespace ECE264AdventureGame2023
 
                     return trigger_switch;
 
+
+
+                    return trigger_switch;
+
                 /*
             You: Hey, this place has blackjack! Maybe I can have some fun.
             Dealer Viall: Welcome to the Casino. My Name is Viall, and I'll be your dealer this afternoon.
@@ -898,7 +906,7 @@ namespace ECE264AdventureGame2023
                     ViallSays("Welcome to the Casino. My Name is Viall, and I'll be your dealer this afternoon.");
 
                     PlayBlackJack(ref money);
-                    if(money >= 0)
+                    if (money >= 0)
                     {
                         ViallSays("Thank you for playing, feel free to stop by anytime.");
                     }
@@ -910,13 +918,138 @@ namespace ECE264AdventureGame2023
                             "\n\n.\n\n.\n\n.");
                         trigger_switch.Add(150);
                         trigger_switch.Add(150 + 10);       //bad end 10: house always wins
-                        
+
                     }
-                                        
+
                     return trigger_switch;
 
+                case 22:
+
+                                        
+
+
+
+                    Narr("You walk forward and see a robot dog. It takes notice and turns toward you.\n" +
+                       ".\n" +
+                       ".\n" +
+                       ".\n");
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("???: Halt.");
                     
-                
+
+                    Narr("You stop walking as soon as you notice a large machine gun mounted on its back.");
+
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("???: I am giving you one chance only; State your business, or leave.");
+                      
+                    string[] valid22a = { "Leave", "Stay" };
+                    playerInput = Program.GetString("\n[leave] \n[Stay]\n", valid22a, error_prompt);
+                    if (playerInput == "LEAVE\n")
+                    {
+                        YouSay("Ok, I'm going.\n");
+                        NewRoom = 11; // -you go back to room 11 and can no longer access this room -
+                        trigger_switch.Add(75);
+                        return trigger_switch;
+                    }
+                    if (playerInput == "STAY\n")
+                    {
+                        YouSay("Uh, my name is " + MyGlobals.playerName + ". I was sent here by Zrkka.\n");
+                        Narr("The dog aims the gun at you.\n");
+
+
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        Console.WriteLine("???: If this is true, then he would have given you the answer to this question: \n" +
+                                           ".\n" +
+                                           ".\n" +
+                                           ".\n" +
+                                          "???: On our first mission to The Red Stone," +
+                                          "\nit was far hotter than either of us had experienced before." +
+                                          "\nWhat was the temperature reading in degrees?");
+
+                        // -player types in their response, only numbers will be allowed-
+                        Narr("hint: Enter numbers only.");
+                        playerInput = Console.ReadLine();
+
+                        if (playerInput == "112")
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkGreen;
+                            Console.WriteLine("???: Correct.You appear trustworthy. I am DMN - 14.It is a pleasure to meet you.\n");
+
+                            Narr("While Your heart still races from having a gun, the size of a person, pointed at you. You reply Shakily.\n");
+                            YouSay("...pleasure's all mine.\n");
+                            ZrkkaSays("I see you've two met.\n");
+                            DMN14Says("Zrkka.Welcome back. I trust your scouting mission was successful?\n");
+                            ZrkkaSays("Yup, got some nice intel. However, since they'll be looking for me, I'll need you to infiltrate my friend.\n");
+                            YouSay(" Me?\n");
+                            DMN14Says("Hmm.It would be the safest and wisest course of action.\n" +
+                                "In the event you are caught, you can always play coy and act like you dont know anything.\n");
+                            YouSay("So it'd be the truth.\n");
+                            DMN14Says("While humor has its purposes, this is not one of them.\n" +
+                            ".\n" +
+                            ".\n" +
+                            ".\n");
+                            DMN14Says("Some rooms will be password protected. to open them, you must use the phrase 'FREEWILL'. It is an ironic name considering the directive's goals.\n");
+                            YouSay("Yeah...so, that building there?\n");
+                            DMN14Says("Correct.You will go in through this offcie building.\n" +
+                                "Zrkka and I will assault the reactor, leading any unsavory personel away from you.\n");
+                            DMN14Says("I would not recommend going near the reactor.\n");
+                            YouSay("Yep yep, got it. Ok, let's go, i guess.\n");
+                            Narr("You Obtained A Password!\n");
+                            item_data[5,2] = "0";
+                            NewRoom = 14;
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkGreen;
+                            Console.WriteLine("???: Incorrect.I cannot allow any chances. I am sorry.You must die.\n");
+
+                            Narr("Before you can even get a word out, he lets out a barrage of shots. You're rittled too many times to count and collapse immediately.\n" +
+                                ".\n" +
+                                ".\n" +
+                                ".\n");
+                                
+                            trigger_switch.Add(150);
+                            trigger_switch.Add(150 + 11); // Ending 11
+                        }
+
+                    }    
+                               
+                       
+                    return trigger_switch;
+
+                case 23://secret casino 2
+                    return trigger_switch;
+
+                case 24:
+                    /*
+                    -going north prompts you for the password-
+                    -if password 'freewill' is entered, you go to S-Room5, must be entered every time you wish to go to the room-
+                    -if password is not entered, player cannot enter to the room-
+                    */
+                    if (!triggers[124])
+                    { 
+                        Narr("ENTER THE PASSWORD!!! RIGHT!!! NOW!!!\n");
+                        Narr("Hint: Capital letters only.\n");
+                        playerInput = Console.ReadLine();
+
+                        if (playerInput == "FREEWILL")
+                        {
+                            Narr("Password Accepted.\n");
+                            trigger_switch.Add(124);
+
+                        }
+                        else
+                        {
+                            NewRoom = 15;
+                        }
+                    }
+                    return trigger_switch;
+                case 25:
+                Narr("After inspecting the room, you find a dusty manilla holo tape, you power it up and the title reads Jeanne's Document" +
+                "\r\nYou Found Jeanne's Document.");
+                    item_data[8,2] = "0";
+                    return trigger_switch;
+
 
                 /*
                         You walk a few steps before you are face to face with a menacing looking woman. She doesn't look like a cyborg, but you can tell that she is.
@@ -1018,6 +1151,7 @@ namespace ECE264AdventureGame2023
                         */
 
                 case 26:
+
                     {
                         /*-if player tries to go to room s6-
                              A password is required
@@ -1058,6 +1192,7 @@ namespace ECE264AdventureGame2023
                         
                         
                         
+
                         Narr("You walk a few steps before you are face to face with a menacing looking woman. She doesn't look like a cyborg, but you can tell that she is.");
                         if (item_data[6, 2] != "0") //if missing cyber arm
 
@@ -1152,10 +1287,7 @@ namespace ECE264AdventureGame2023
                                 playerInput = Program.GetString("\n[Voris - The Superior Cyborg] \n[Cyclone - The Cyber Storm]\n[Aurelius - the Dying Shadow]\n", valid26d, error_prompt);
                                 if (playerInput == "VORIS - THE SUPERIOR CYBORG\n")
                                 {
-                                    JeanneSays("Well done. I suppose I can trust you. I have some important information to give to the directors." +
-                                   "\nHowever, I am a bit busy, so I will give you this key for you to access the elevator.");
-                                    Narr("You Have Succeeded Where Most Fall! You Got Jeanne's Key!");
-                                    JeanneSays("Now run along.");
+                                    JeanneSays("Guess you got lucky. Hope you're ready for round 2!\n");
                                 }
                                 else
                                 {
@@ -1185,10 +1317,7 @@ namespace ECE264AdventureGame2023
                                 playerInput = Program.GetString("\n[Marina] \n[Frolic]\n[Celia]\n", valid26e, error_prompt);
                                 if (playerInput == "CELIA\n")
                                 {
-                                    JeanneSays("Well done. I suppose I can trust you. I have some important information to give to the directors." +
-                                   "\nHowever, I am a bit busy, so I will give you this key for you to access the elevator.");
-                                    Narr("You Have Succeeded Where Most Fall! You Got Jeanne's Key!");
-                                    JeanneSays("Now run along.");
+                                    JeanneSays("I'm still not Convinced! Prepare for the Final Round!\n");
                                 }
                                 else
                                 {
@@ -1221,6 +1350,7 @@ namespace ECE264AdventureGame2023
                                "\nHowever, I am a bit busy, so I will give you this key for you to access the elevator.");
                                     Narr("You Have Succeeded Where Most Fall! You Got Jeanne's Key!");
                                     JeanneSays("Now run along.");
+                                    NewRoom = 18;
                                 }
                                 else 
                                 {
@@ -1270,7 +1400,88 @@ namespace ECE264AdventureGame2023
                         return trigger_switch;
 
                     }
+                
+                case 27:
+    
+                    //-This event only plays on the first visit-
 
+                    Narr("You enter a chamber and see a young cyborg about to enter a room. He waves at you.\n");
+                    NikSays("Hey there buddy. Name's Nik, how are you?\n");
+                    YouSay("{name}. Im doing well, thanks.\n");
+                    NikSays("You here for the test too?\n");
+                    YouSay("Uh, yeah. For sure.\n");
+                    NikSays("I'm sure you'll do great. Anyway, I'm up, nice to meet a new recruit!\n");
+                    YouSay("Yeah, you as well.\n" +
+                           "\n." +
+                           "\n." +
+                           "\n.");
+                    Narr("You enter the test room.\n");
+                    //PA: Welcome. To ensure that we let quality members into our directive, it is important we test your knowledge, so as to not allow lesser beings into the directive.
+                    YouSay("'Lesser beings'? Sheesh...\n"+
+                            "\n." +
+                            "\n." +
+                            "\n.");
+        //PA: Question 1: What is the Capital of Uprall?
+        
+        string[] valid26e = { "Morico City\r\n", "Helio City\r\n", "Kiro City\r\n" };
+                    playerInput = Program.GetString("\n[Morico City] \n[Helio City]\n[Kiro City]\n", valid26e, error_prompt);
+                    if (playerInput == "HELIO CITY\n")
+                    { 
+                    
+                    }
+
+        .
+        .
+        .
+      //PA: Question 2: Which nations border Uprall?
+        -present choices-
+        {Shinaran}
+        {Cindren and Beleran}
+        {Beleran and Sakanata} //<-- correct
+        .
+        .
+        .
+    PA: Question 3: What is the percentage of cybernetic citizens in Uprall?
+        -present choices-
+        {47%}
+        {52%} //<-- correct
+        {88%}
+        .
+        .
+        .
+    PA: Question 4: What is the name of this building that you are taking this test in?
+        {Firioris} //<-- correct
+        {Murcurius}
+        {Helio}
+        .
+        .
+        .
+    PA: Final Question: Who is the official body of leadership in Uprall?
+        -present choices-
+        {A President}
+        {A Dictator}
+        {A Council} //<-- correct
+        .
+        .
+        .
+    PA: Caluclating score, please wait...
+    .
+    .
+    .
+    PA: Your score is {score}       //score is determined by however many answers correct, 20% for each correct answer
+
+    -triggered if player score is < 60-
+    PA: We are sorry, but we cannot allow lesser beings such as yourself inside our directive. Or inside society. We will purge you now. Goodbye.
+    You: Whoa whoa, wai-
+    .
+    .
+    .
+    Bad End: Incomptetance.
+
+    -triggered if player score is >= 60-
+    PA: Well done, you have passed. Here is your Official Initiate Badge. Now please vacate the room for the next initiate.
+    You got the Official Initiate Badge!
+    
                 case 28:
 
                     /*-if player then tries to go north -
@@ -1291,6 +1502,11 @@ namespace ECE264AdventureGame2023
 
                             - player must use Jeanne's Key in their inventory-
 
+
+                                                       
+
+                            }
+
                             Welcome, Jeanne.High - rank Key must be provided
 
                             -player must use secret coin in their inventory-
@@ -1308,6 +1524,7 @@ namespace ECE264AdventureGame2023
                             Narr("INCORRECT");
                             Narr("You return to the previous room.");
                             NewRoom = 18;
+
                             return trigger_switch;
                         }
                         else
@@ -1321,6 +1538,7 @@ namespace ECE264AdventureGame2023
                         Narr("A console asks you for the password, you enter 'FREEWILL'.");
                         Narr("PASSWORD ACCEPTED");
                     }
+
 
 
                     Narr("Please provide member authentication.");
@@ -1401,6 +1619,7 @@ namespace ECE264AdventureGame2023
                         return trigger_switch;
                     }
                     return trigger_switch;
+
 
 
 
@@ -1515,11 +1734,13 @@ namespace ECE264AdventureGame2023
                 case 7:
 
 
+
                     if (item_data[4, 2] != "0") //&& item_data[11, 2] != "0" && item_data[11, 2] != "0")
 
                     {
                         string[] valid7a = { "Approach the men", "Don't"};
                         playerInput = Program.GetString("\n[Approach the Men], \n[Don't]\n", valid7a, error_prompt);
+
                         if (playerInput == "APPROACH THE MEN")
                         {
                             Narr("You approach the two men talking with each other.One of them directs the other away, and walks towards you as well. His spiky hair and small jacket stand out.");
@@ -1586,6 +1807,7 @@ namespace ECE264AdventureGame2023
 
                         if (playerInput == "SEE THE VENDOR")
                         {
+
                             money = 5000;
 
                             TJSays("Hey there, welcome to my shop. Name's TJ. What would you like?");
@@ -1649,6 +1871,7 @@ namespace ECE264AdventureGame2023
                                     }
                                 }
                             }
+
                         }
                         else if (playerInput == "DON'T")
                         {
@@ -1657,6 +1880,7 @@ namespace ECE264AdventureGame2023
                         }
 
                     }
+
 
                     if (item_data[11, 2] == "0" && item_data[11, 2] != "0")
                     {
@@ -1780,6 +2004,7 @@ namespace ECE264AdventureGame2023
                         Narr("You grapple the roof of a building, allowing you to climb to the top.");
                         trigger_switch.Add(111);
                     }
+
                     return trigger_switch;
 
                     }         
