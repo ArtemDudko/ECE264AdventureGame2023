@@ -12,34 +12,14 @@ using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using static ECE264AdventureGame2023.PlayerPrompt.Directions;
+
 using static ECE264AdventureGame2023.Program;
 
 namespace ECE264AdventureGame2023
 {
     class PlayerPrompt
     {
-        /*
-        public static Dictionary<int, bool> LoadTriggers(string root_folder)
-        {
-            //load Rooms.txt and process
-            
-            string raw_trigger_data = File.ReadAllText(root_folder + "\\Triggers.txt");
-            raw_trigger_data = raw_trigger_data.Remove(0, raw_trigger_data.IndexOf("&&&") + 3);      //remove unnecessary stuff
-            StringBuilder sb = new StringBuilder(raw_trigger_data);
-            sb = sb.Replace("\n", "");
-            sb = sb.Replace("\t", "");
-            sb = sb.Replace("\r", "");
-            var raw_trigger_data_array = sb.ToString().Split('&');        
-
-            var trigger_data_dic = new Dictionary<bool, string>() { };
-            for (int trigger_id = 1; trigger_id < raw_trigger_data_array.Length / 2; trigger_id++)
-            {
-                trigger_data_dic.Add(bool.Parse(raw_trigger_data_array[trigger_id * 2 - 1]),trigger_id);
-            }
-            return trigger_data_dic;
-
-        }*/
+        
 
 
         /*
@@ -59,9 +39,6 @@ namespace ECE264AdventureGame2023
          */
 
         
-
-
-
 
         //Declaring Rooms and CurrentRoom to be in
         public static List<int> FirstEntry(ref int NewRoom, List<bool> triggers, ref string[,] item_data, ref int money)
@@ -594,7 +571,7 @@ namespace ECE264AdventureGame2023
 
 
 
-                    if (triggers[106])
+                    
               /*
             -This prompt will occur every time you enter the room, unless Jeanne's Key is in your inventory-
             No matter where you look, you can't seem to find any way forward. Do you wish to give up?
@@ -1401,86 +1378,7 @@ namespace ECE264AdventureGame2023
 
                     }
                 
-                case 27:
-    
-                    //-This event only plays on the first visit-
-
-                    Narr("You enter a chamber and see a young cyborg about to enter a room. He waves at you.\n");
-                    NikSays("Hey there buddy. Name's Nik, how are you?\n");
-                    YouSay("{name}. Im doing well, thanks.\n");
-                    NikSays("You here for the test too?\n");
-                    YouSay("Uh, yeah. For sure.\n");
-                    NikSays("I'm sure you'll do great. Anyway, I'm up, nice to meet a new recruit!\n");
-                    YouSay("Yeah, you as well.\n" +
-                           "\n." +
-                           "\n." +
-                           "\n.");
-                    Narr("You enter the test room.\n");
-                    //PA: Welcome. To ensure that we let quality members into our directive, it is important we test your knowledge, so as to not allow lesser beings into the directive.
-                    YouSay("'Lesser beings'? Sheesh...\n"+
-                            "\n." +
-                            "\n." +
-                            "\n.");
-        //PA: Question 1: What is the Capital of Uprall?
-        
-        string[] valid26e = { "Morico City\r\n", "Helio City\r\n", "Kiro City\r\n" };
-                    playerInput = Program.GetString("\n[Morico City] \n[Helio City]\n[Kiro City]\n", valid26e, error_prompt);
-                    if (playerInput == "HELIO CITY\n")
-                    { 
-                    
-                    }
-
-        .
-        .
-        .
-      //PA: Question 2: Which nations border Uprall?
-        -present choices-
-        {Shinaran}
-        {Cindren and Beleran}
-        {Beleran and Sakanata} //<-- correct
-        .
-        .
-        .
-    PA: Question 3: What is the percentage of cybernetic citizens in Uprall?
-        -present choices-
-        {47%}
-        {52%} //<-- correct
-        {88%}
-        .
-        .
-        .
-    PA: Question 4: What is the name of this building that you are taking this test in?
-        {Firioris} //<-- correct
-        {Murcurius}
-        {Helio}
-        .
-        .
-        .
-    PA: Final Question: Who is the official body of leadership in Uprall?
-        -present choices-
-        {A President}
-        {A Dictator}
-        {A Council} //<-- correct
-        .
-        .
-        .
-    PA: Caluclating score, please wait...
-    .
-    .
-    .
-    PA: Your score is {score}       //score is determined by however many answers correct, 20% for each correct answer
-
-    -triggered if player score is < 60-
-    PA: We are sorry, but we cannot allow lesser beings such as yourself inside our directive. Or inside society. We will purge you now. Goodbye.
-    You: Whoa whoa, wai-
-    .
-    .
-    .
-    Bad End: Incomptetance.
-
-    -triggered if player score is >= 60-
-    PA: Well done, you have passed. Here is your Official Initiate Badge. Now please vacate the room for the next initiate.
-    You got the Official Initiate Badge!
+      
     
                 case 28:
 
@@ -2007,8 +1905,8 @@ namespace ECE264AdventureGame2023
 
                     return trigger_switch;
 
-                    }         
-                                return trigger_switch;
+                             
+                
 
                 /*
                  * -prompt when cyber lens is used-
