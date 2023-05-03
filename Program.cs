@@ -186,6 +186,7 @@ namespace ECE264AdventureGame2023
                             Console.WriteLine("LOOK/EXAMINE/EXPLORE/E - Get a better description of the area, sometimes enhanced by items.");
                             Console.WriteLine("INVENTORY/INV/I - List items in your inventory.");
                             Console.WriteLine("USE [ITEM] - Make use of an item in your room.");
+                            Console.WriteLine("USE [ITEM] ON [ITEM] - Use an item on another item.");
                             Console.WriteLine("TAKE/PICKUP - Take all items from the room and stow it.");
                             Console.WriteLine("DROP/LEAVE - Drop a specific [ITEM] in the room from your inventory.");
                             Console.WriteLine("EXIT/QUIT - Quit the game.");
@@ -255,6 +256,7 @@ namespace ECE264AdventureGame2023
             string[] take = { "TAKE","T","PICKUP" };
             string[] drop = { "DROP", "D"};
             string[] check_inventory = { "INVENTORY", "INV", "I" };
+
 
 
 
