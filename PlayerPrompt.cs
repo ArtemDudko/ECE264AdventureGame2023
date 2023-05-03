@@ -534,7 +534,7 @@ namespace ECE264AdventureGame2023
                             DMN14Says("I would not recommend going near the reactor.\n");
                             YouSay("Yep yep, got it. Ok, let's go, i guess.\n");
                             Narr("You Obtained A Password!\n");
-
+                            item_data[5,2] = "0";
                             NewRoom = 14;
                         }
                         else
@@ -784,10 +784,7 @@ namespace ECE264AdventureGame2023
                                 playerInput = Program.GetString("\n[Voris - The Superior Cyborg] \n[Cyclone - The Cyber Storm]\n[Aurelius - the Dying Shadow]\n", valid26d, error_prompt);
                                 if (playerInput == "VORIS - THE SUPERIOR CYBORG\n")
                                 {
-                                    JeanneSays("Well done. I suppose I can trust you. I have some important information to give to the directors." +
-                                   "\nHowever, I am a bit busy, so I will give you this key for you to access the elevator.");
-                                    Narr("You Have Succeeded Where Most Fall! You Got Jeanne's Key!");
-                                    JeanneSays("Now run along.");
+                                    JeanneSays("Guess you got lucky. Hope you're ready for round 2!\n");
                                 }
                                 else
                                 {
@@ -817,10 +814,7 @@ namespace ECE264AdventureGame2023
                                 playerInput = Program.GetString("\n[Marina] \n[Frolic]\n[Celia]\n", valid26e, error_prompt);
                                 if (playerInput == "CELIA\n")
                                 {
-                                    JeanneSays("Well done. I suppose I can trust you. I have some important information to give to the directors." +
-                                   "\nHowever, I am a bit busy, so I will give you this key for you to access the elevator.");
-                                    Narr("You Have Succeeded Where Most Fall! You Got Jeanne's Key!");
-                                    JeanneSays("Now run along.");
+                                    JeanneSays("I'm still not Convinced! Prepare for the Final Round!\n");
                                 }
                                 else
                                 {
@@ -854,6 +848,7 @@ namespace ECE264AdventureGame2023
                                "\nHowever, I am a bit busy, so I will give you this key for you to access the elevator.");
                                     Narr("You Have Succeeded Where Most Fall! You Got Jeanne's Key!");
                                     JeanneSays("Now run along.");
+                                    NewRoom = 18;
                                 }
                                 else 
                                 {
@@ -877,23 +872,23 @@ namespace ECE264AdventureGame2023
                                     return trigger_switch;
                                 }
 
-/*
-                    else if(item_data[6,2] == "0")
-                    {
-                        Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                        Console.WriteLine("???: A cyborg? Are you a lost new recruit? Who are you?");
-                        string[] valid26a = { "I'm here to stop you", "No" };
-                        playerInput = Program.GetString("\n[I'm here to stop you] \n[No]\n", valid26a, error_prompt);
-                        if (playerInput == "I'M HERE TO STOP YOU\n")
-                        {
+                                                        /*
+                                                        else if(item_data[6,2] == "0")
+                                                        {
+                                                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                                            Console.WriteLine("???: A cyborg? Are you a lost new recruit? Who are you?");
+                                                            string[] valid26a = { "I'm here to stop you", "No" };
+                                                            playerInput = Program.GetString("\n[I'm here to stop you] \n[No]\n", valid26a, error_prompt);
+                                                            if (playerInput == "I'M HERE TO STOP YOU\n")
+                                                            {
                             
-                            YouSay("I'm here to put a stop to whatever you're doing, Jeanne!");
-                            JeanneSays("You know my name? You must be with Zrkka! I will break you.");
-                            Narr("Jeanne grabbed her spear and ran straight at you");
-                            if (true)
-                            {
-                                YouSay("");
-                                JeanneSays("");*/
+                                                                YouSay("I'm here to put a stop to whatever you're doing, Jeanne!");
+                                                                JeanneSays("You know my name? You must be with Zrkka! I will break you.");
+                                                                Narr("Jeanne grabbed her spear and ran straight at you");
+                                                                if (true)
+                                                                {
+                                                                    YouSay("");
+                                                                    JeanneSays("");*/
 
                             }
                             return trigger_switch;
