@@ -95,7 +95,7 @@ namespace ECE264AdventureGame2023
                     if (enterable)
                     {
                         //Format: &"" &1			&1		&3	&Helio City Square S	&North  &0
-                        Console.WriteLine("[Exit #{0}: {1} to {2}, roomID {3}]", exit_data[row, 2], exit_data[row, 5], exit_data[row, 4], exit_data[row, 3]);
+                        Console.WriteLine("[Exit #{0}: {1} to {2}]", exit_data[row, 2], exit_data[row, 5], exit_data[row, 4], exit_data[row, 3]);
                         valid_exits.Add(exit_data[row, 5].Trim().ToUpper());
                     }
                     else
