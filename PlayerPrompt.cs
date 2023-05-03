@@ -689,7 +689,7 @@ namespace ECE264AdventureGame2023
                         */
 
                 case 26:
-                    { 
+                     
                         Narr("You walk a few steps before you are face to face with a menacing looking woman. She doesn't look like a cyborg, but you can tell that she is.");
                         if (item_data[6, 2] != "0") //if missing cyber arm
 
@@ -872,32 +872,88 @@ namespace ECE264AdventureGame2023
                                     return trigger_switch;
                                 }
 
-                                                        /*
-                                                        else if(item_data[6,2] == "0")
-                                                        {
-                                                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                                                            Console.WriteLine("???: A cyborg? Are you a lost new recruit? Who are you?");
-                                                            string[] valid26a = { "I'm here to stop you", "No" };
-                                                            playerInput = Program.GetString("\n[I'm here to stop you] \n[No]\n", valid26a, error_prompt);
-                                                            if (playerInput == "I'M HERE TO STOP YOU\n")
-                                                            {
-                            
-                                                                YouSay("I'm here to put a stop to whatever you're doing, Jeanne!");
-                                                                JeanneSays("You know my name? You must be with Zrkka! I will break you.");
-                                                                Narr("Jeanne grabbed her spear and ran straight at you");
-                                                                if (true)
-                                                                {
-                                                                    YouSay("");
-                                                                    JeanneSays("");*/
+                                                       
 
                             }
                             return trigger_switch;
                         }
 
-                        
-                    }
+                case 27:
+    
+                    //-This event only plays on the first visit-
 
-                    return trigger_switch;
+                    Narr("You enter a chamber and see a young cyborg about to enter a room. He waves at you.\n");
+                    NikSays("Hey there buddy. Name's Nik, how are you?\n");
+                    YouSay("{name}. Im doing well, thanks.\n");
+                    NikSays("You here for the test too?\n");
+                    YouSay("Uh, yeah. For sure.\n");
+                    NikSays("I'm sure you'll do great. Anyway, I'm up, nice to meet a new recruit!\n");
+                    YouSay("Yeah, you as well.\n" +
+                           "\n." +
+                           "\n." +
+                           "\n.");
+                    Narr("You enter the test room.\n");
+                    //PA: Welcome. To ensure that we let quality members into our directive, it is important we test your knowledge, so as to not allow lesser beings into the directive.
+                    YouSay("'Lesser beings'? Sheesh...\n"+
+                            "\n." +
+                            "\n." +
+                            "\n.");
+        //PA: Question 1: What is the Capital of Uprall?
+        -present choices-
+        {Morico City}
+        {Helio City} //<--- correct answer
+        {Kiro City}
+        .
+        .
+        .
+    PA: Question 2: Which nations border Uprall?
+        -present choices-
+        {Shinaran}
+        {Cindren and Beleran}
+        {Beleran and Sakanata} //<-- correct
+        .
+        .
+        .
+    PA: Question 3: What is the percentage of cybernetic citizens in Uprall?
+        -present choices-
+        {47%}
+        {52%} //<-- correct
+        {88%}
+        .
+        .
+        .
+    PA: Question 4: What is the name of this building that you are taking this test in?
+        {Firioris} //<-- correct
+        {Murcurius}
+        {Helio}
+        .
+        .
+        .
+    PA: Final Question: Who is the official body of leadership in Uprall?
+        -present choices-
+        {A President}
+        {A Dictator}
+        {A Council} //<-- correct
+        .
+        .
+        .
+    PA: Caluclating score, please wait...
+    .
+    .
+    .
+    PA: Your score is {score}       //score is determined by however many answers correct, 20% for each correct answer
+
+    -triggered if player score is < 60-
+    PA: We are sorry, but we cannot allow lesser beings such as yourself inside our directive. Or inside society. We will purge you now. Goodbye.
+    You: Whoa whoa, wai-
+    .
+    .
+    .
+    Bad End: Incomptetance.
+
+    -triggered if player score is >= 60-
+    PA: Well done, you have passed. Here is your Official Initiate Badge. Now please vacate the room for the next initiate.
+    You got the Official Initiate Badge!
 
 
 
@@ -909,10 +965,13 @@ namespace ECE264AdventureGame2023
 
 
 
-            }
-            return trigger_switch;  
+
+
 
         }
+        return trigger_switch;  
+
+    }
 
 
 
@@ -935,33 +994,33 @@ namespace ECE264AdventureGame2023
 
 
 
-        public static List<int> ExtraExamine(int currentRoom, List<bool> triggers, ref string[,] item_data, ref int money)
+    public static List<int> ExtraExamine(int currentRoom, List<bool> triggers, ref string[,] item_data, ref int money)
+    {
+        var trigger_switch = new List<int>(0);
+        string playerInput;
+        string error_prompt = "error, reenter choice,(caps specific)";
+
+        switch (currentRoom)
         {
-            var trigger_switch = new List<int>(0);
-            string playerInput;
-            string error_prompt = "error, reenter choice,(caps specific)";
 
-            switch (currentRoom)
+
+            /*
+        -occurs if room is inspected with coin or secret coin in inventory -
+        -given option to approach vendor-
+        -if vendor is approached -
+        Abhi: Hello there, my name is Abhi, I am a humble vendor here in Uprall.How are you?
+        You: I am doing fine, thank you. Can you tell me anything about this coin?
+        Abhi: Of course!Let me see it! Oh, yes, yes, this coin is made of fine material!I will sell it to you for 500 credits!
+        - present choice -
+            { Sell the coin}
+    You: Yeah, sure, here ya go.
+                You lost the coin!
+                You gain 500 credits!
+                Abhi: Pleasure doing business with you!
             {
-
-
-                /*
-            -occurs if room is inspected with coin or secret coin in inventory -
-            -given option to approach vendor-
-            -if vendor is approached -
-            Abhi: Hello there, my name is Abhi, I am a humble vendor here in Uprall.How are you?
-            You: I am doing fine, thank you. Can you tell me anything about this coin?
-            Abhi: Of course!Let me see it! Oh, yes, yes, this coin is made of fine material!I will sell it to you for 500 credits!
-            - present choice -
-                { Sell the coin}
-        You: Yeah, sure, here ya go.
-                    You lost the coin!
-                    You gain 500 credits!
-                    Abhi: Pleasure doing business with you!
-                {
-                Don't sell the coin}
-                    You: Actually, I think I'll hold onto it. A memento of my time here, I suppose. Thank you!
-                    Abhi: Of course!Take care now!*/
+            Don't sell the coin}
+                You: Actually, I think I'll hold onto it. A memento of my time here, I suppose. Thank you!
+                Abhi: Of course!Take care now!*/
 
 
                 case 3:
