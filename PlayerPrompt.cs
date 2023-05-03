@@ -63,7 +63,7 @@ namespace ECE264AdventureGame2023
 
 
         //Declaring Rooms and CurrentRoom to be in
-        public static List<int> FirstEntry(int NewRoom, List<bool> triggers, ref string[,] item_data, ref int money)
+        public static List<int> FirstEntry(ref int NewRoom, List<bool> triggers, ref string[,] item_data, ref int money)
         {
 
 
@@ -96,7 +96,7 @@ namespace ECE264AdventureGame2023
                     trigger_switch.Add(101);    //mark room as visited
                     string[] valid1 = { "Helio City", "I don't know where" };
                     Narr("PA: Hello " + MyGlobals.playerName + ", where would you like to go? ");
-                    playerInput = Program.GetString("\n[Helio City] \n[I don't know where]\n", valid1,error_prompt);
+                    playerInput = Program.GetString("\n[Helio City] \n[I don't know where]\n", valid1, error_prompt);
                     if (playerInput == "HELIO CITY")
                     {
                         YouSay("You: Helio City, please");
@@ -331,7 +331,7 @@ namespace ECE264AdventureGame2023
 
 
                 case 4:
-                    return trigger_switch; 
+                    return trigger_switch;
 
                 case 5:
                     //enter with coin
@@ -403,21 +403,21 @@ namespace ECE264AdventureGame2023
                         return trigger_switch;
                     }
 
-                    return trigger_switch; 
+                    return trigger_switch;
 
                 case 6:
 
-                    if(triggers[106])
+                    if (triggers[106])
                     {
                         Narr("You remember that there is a secret entrance to a casino here.");
                     }
-                    
 
-                    return trigger_switch; 
+
+                    return trigger_switch;
 
                 case 7:
 
-                    return trigger_switch; 
+                    return trigger_switch;
 
 
                 case 8:
@@ -450,7 +450,7 @@ namespace ECE264AdventureGame2023
                     ViallSays("Welcome to the Casino. My Name is Viall, and I'll be your dealer this afternoon.");
 
                     PlayBlackJack(ref money);
-                    if(money >= 0)
+                    if (money >= 0)
                     {
                         ViallSays("Thank you for playing, feel free to stop by anytime.");
                     }
@@ -462,13 +462,39 @@ namespace ECE264AdventureGame2023
                             "\n\n.\n\n.\n\n.");
                         trigger_switch.Add(150);
                         trigger_switch.Add(150 + 10);       //bad end 10: house always wins
-                        
+
                     }
-
-
-                    
                     return trigger_switch;
-                
+
+                case 24:
+                    /*
+                    -going north prompts you for the password-
+                    -if password 'freewill' is entered, you go to S-Room5, must be entered every time you wish to go to the room-
+                    -if password is not entered, player cannot enter to the room-
+                    */
+                    if (!triggers[124])
+                    { 
+                        Narr("ENTER THE PASSWORD!!! RIGHT!!! NOW!!!\n");
+                        Narr("Hint: Capital letters only.\n");
+                        playerInput = Console.ReadLine();
+
+                        if (playerInput == "FREEWILL")
+                        {
+                            Narr("Password Accepted.\n");
+                            trigger_switch.Add(124);
+
+                        }
+                        else
+                        {
+                            NewRoom = 15;
+                        }
+                    }
+                    return trigger_switch;
+                case 25:
+                Narr("After inspecting the room, you find a dusty manilla holo tape, you power it up and the title reads Jeanne's Document" +
+                "\r\nYou Found Jeanne's Document.");
+                    item_data[8,2] = "0";
+                    return trigger_switch;
 
                 /*
                         You walk a few steps before you are face to face with a menacing looking woman. She doesn't look like a cyborg, but you can tell that she is.
