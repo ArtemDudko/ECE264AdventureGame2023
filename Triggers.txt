@@ -10,6 +10,9 @@ They will be loaded into a bool array, and switched when their codition is met i
 
 
 
+75 = locked out of roof
+
+
 trigger 50, entering room 13 from room 12
 
 
