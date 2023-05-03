@@ -141,12 +141,12 @@ namespace ECE264AdventureGame2023
 
 
                         //constantly prompt player to make a choice, once they want to move, 
-                        playerAction = GetPlayerAction("\\nWhat would you like to do? ");
+                        playerAction = GetPlayerAction("\nWhat would you like to do? ");
                     switch(playerAction)
                     {
                         //move
                         case 1:     
-                            Console.WriteLine("Here are your options:\\n");
+                            Console.WriteLine("Here are your options:\n");
                             //prompt room.cs to give the player their current exits, and then move the player to a new room
                             chosen_exit_id = Rooms.ListExits(currentRoom, room_data[currentRoom, 1], exit_data, trigger_data, item_data);
                             currentRoom = chosen_exit_id;
@@ -170,7 +170,7 @@ namespace ECE264AdventureGame2023
                         //display long desc
                         case 2:
                             Console.ForegroundColor = ConsoleColor.DarkBlue;
-                            Console.WriteLine("\\nYou: " + room_data[currentRoom, 3] +"\\n");
+                            Console.WriteLine("\nYou: " + room_data[currentRoom, 3] +"\n");
                             Console.ForegroundColor = ConsoleColor.White;
                             //Inventory.ListFloorItems(currentRoom, item_data);
 
@@ -207,6 +207,7 @@ namespace ECE264AdventureGame2023
                             break;
 
                         case 8:
+                            break;
 
 
 
@@ -316,20 +317,19 @@ namespace ECE264AdventureGame2023
                 case 1:
                     //font: ogre
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Ending 0:");
-                    Console.WriteLine("  _____  _           ___                _   _   _       _                         _  _          _ ");
-                    Console.WriteLine(" |_   _|| |_   ___  | _ \\\\ ___  __ _  __| | | | | | _ _ | |_  _ _  __ _ __ __ ___ | || | ___  __| |");
-                    Console.WriteLine("   | |  | ' \\\\ / -_) |   // _ \\\\/ _` |/ _` | | |_| || ' \\\\|  _|| '_|/ _` |\\\\ V // -_)| || |/ -_)/ _` |");
-                    Console.WriteLine("   |_|  |_||_|\\\\___| |_|_\\\\\\\\___/\\\\__,_|\\\\__,_|  \\\\___/ |_||_|\\\\__||_|  \\\\__,_| \\\\_/ \\\\___||_||_|\\\\___|\\\\__,_|");
-
-
+                    Console.WriteLine("Ending 1:");
+                    Console.WriteLine("  ________            ____                  __   __  __      __                        ____         __");
+                    Console.WriteLine(" /_  __/ /_  ___     / __ \\____  ____ _____/ /  / / / /___  / /__________ __   _____  / / /__  ____/ /");
+                    Console.WriteLine("  / / / __ \\/ _ \\   / /_/ / __ \\/ __ `/ __  /  / / / / __ \\/ __/ ___/ __ `/ | / / _ \\/ / / _ \\/ __  / ");
+                    Console.WriteLine(" / / / / / /  __/  / _, _/ /_/ / /_/ / /_/ /  / /_/ / / / / /_/ /  / /_/ /| |/ /  __/ / /  __/ /_/ /  ");
+                    Console.WriteLine("/_/ /_/ /_/\\___/  /_/ |_|\\____/\\__,_/\\__,_/   \\____/_/ /_/\\__/_/   \\__,_/ |___/\\___/_/_/\\___/\\__,_/   ");
 
 
                     break;
 
                 case 2:
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Ending 1: Sightseeing");
+                    Console.WriteLine("Ending 2:");
                     Console.WriteLine(" __ _       _     _                 _             ");
                     Console.WriteLine("/ _(_) __ _| |__ | |_ ___  ___  ___(_)_ __   __ _ ");
                     Console.WriteLine("\\ \\| |/ _` | '_ \\| __/ __|/ _ \\/ _ \\ | '_ \\ / _` |");
@@ -341,7 +341,7 @@ namespace ECE264AdventureGame2023
 
                 case 3:
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Ending 2: Leave It To The Pros");
+                    Console.WriteLine("Ending 3:");
                     Console.WriteLine("   __                         _____ _     _____        _____ _              ___               ");
                     Console.WriteLine("  / /  ___  __ ___   _____    \\_   \\ |_  /__   \\___   /__   \\ |__   ___    / _ \\_ __ ___  ___ ");
                     Console.WriteLine(" / /  / _ \\/ _` \\ \\ / / _ \\    / /\\/ __|   / /\\/ _ \\    / /\\/ '_ \\ / _ \\  / /_)/ '__/ _ \\/ __|");
@@ -351,7 +351,7 @@ namespace ECE264AdventureGame2023
 
                 case 4:
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Ending 3: I'm Out");
+                    Console.WriteLine("Ending 4:");
                     Console.WriteLine("  _____ _              ___       _   ");
                     Console.WriteLine("  \\_   ( ) __ ___     /___\\_   _| |_ ");
                     Console.WriteLine("   / /\\// '_ ` _ \\   //  // | | | __|");
@@ -361,7 +361,7 @@ namespace ECE264AdventureGame2023
 
                 case 5:
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Ending 4: Gung Ho");
+                    Console.WriteLine("Ending 5:");
                     Console.WriteLine("   ___                                 ");
                     Console.WriteLine("  / _ \\_   _ _ __   __ _    /\\  /\\___  ");
                     Console.WriteLine(" / /_\\/ | | | '_ \\ / _` |  / /_/ / _ \\ ");
@@ -372,7 +372,7 @@ namespace ECE264AdventureGame2023
 
                 case 6:
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Ending 5: Overwhelmed");
+                    Console.WriteLine("Ending 6:");
                     Console.WriteLine("   ___                         _          _                    _ ");
                     Console.WriteLine("  /___\\_   _____ _ ____      _| |__   ___| |_ __ ___   ___  __| |");
                     Console.WriteLine(" //  /| \\ / / _ \\ '__\\ \\ /\\ / / '_ \\ / _ \\ | '_ ` _ \\ / _ \\/ _` |");
@@ -382,7 +382,7 @@ namespace ECE264AdventureGame2023
 
                 case 7:
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Ending 6: I'm Rich");
+                    Console.WriteLine("Ending 7:");
                     
                     Console.WriteLine("  _____ _              __ _      _     ");
                     Console.WriteLine("  \\_   ( ) __ ___     /__(_) ___| |__  ");
@@ -393,7 +393,7 @@ namespace ECE264AdventureGame2023
 
                 case 8:
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("True Ending: Conspiracy Theorist");
+                    Console.WriteLine("True Ending:");
                     Console.WriteLine("   ______                       _                          ________                    _      __ ");
                     Console.WriteLine("  / ____/___  ____  _________  (_)________ ________  __   /_  __/ /_  ___  ____  _____(_)____/ /_");
                     Console.WriteLine(" / /   / __ \\/ __ \\/ ___/ __ \\/ / ___/ __ `/ ___/ / / /    / / / __ \\/ _ \\/ __ \\/ ___/ / ___/ __/");
@@ -403,8 +403,8 @@ namespace ECE264AdventureGame2023
                     break;
 
                 case 9:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Bad End: Cold And Alone");                    
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("Bad End 9:");                    
                     Console.WriteLine(" ▄████▄  ▒█████   ██▓    ▓█████▄     ▄▄▄      ███▄    █ ▓█████▄     ▄▄▄       ██▓     ▒█████   ███▄    █▓█████ ");
                     Console.WriteLine("▒██▀ ▀█ ▒██▒  ██▒▓██▒    ▒██▀ ██▌   ▒████▄    ██ ▀█   █ ▒██▀ ██▌   ▒████▄    ▓██▒    ▒██▒  ██▒ ██ ▀█   █▓█   ▀ ");
                     Console.WriteLine("▒▓█    ▄▒██░  ██▒▒██░    ░██   █▌   ▒██  ▀█▄ ▓██  ▀█ ██▒░██   █▌   ▒██  ▀█▄  ▒██░    ▒██░  ██▒▓██  ▀█ ██▒███   ");
@@ -421,7 +421,7 @@ namespace ECE264AdventureGame2023
 
                 case 10:
                     Console.ForegroundColor = ConsoleColor.DarkRed;
-                    Console.WriteLine("Bad End 10:\\n");
+                    Console.WriteLine("Bad End 10:");
                     Console.WriteLine("▄▄▄█████▓ ██░ ██ ▓█████     ██░ ██  ▒█████   █    ██  ██████ ▓█████     ▄▄▄       ██▓     █     █░ ▄▄▄     ▓██   ██▓  ██████     █     █░ ██▓ ███▄    █   ██████ ");
                     Console.WriteLine("▓  ██▒ ▓▒▓██░ ██▒▓█   ▀    ▓██░ ██▒▒██▒  ██▒ ██  ▓██▒██    ▒ ▓█   ▀    ▒████▄    ▓██▒    ▓█░ █ ░█░▒████▄    ▒██  ██▒▒██    ▒    ▓█░ █ ░█░▓██▒ ██ ▀█   █ ▒██    ▒ ");
                     Console.WriteLine("▒ ▓██░ ▒░▒██▀▀██░▒███      ▒██▀▀██░▒██░  ██▒▓██  ▒██░ ▓██▄   ▒███      ▒██  ▀█▄  ▒██░    ▒█░ █ ░█ ▒██  ▀█▄   ▒██ ██░░ ▓██▄      ▒█░ █ ░█ ▒██▒▓██  ▀█ ██▒░ ▓██▄   ");
@@ -434,8 +434,8 @@ namespace ECE264AdventureGame2023
                     break;
 
                 case 11:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Bad End: No Chances");
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("Bad End 11:");
                     Console.WriteLine(" ███▄    █ ▒█████      ▄████▄   ██░ ██  ▄▄▄      ███▄    █  ▄████▄ ▓█████   ██████ ");
                     Console.WriteLine(" ██ ▀█   █▒██▒  ██▒   ▒██▀ ▀█  ▓██░ ██▒▒████▄    ██ ▀█   █ ▒██▀ ▀█ ▓█   ▀ ▒██    ▒ ");
                     Console.WriteLine("▓██  ▀█ ██▒██░  ██▒   ▒▓█    ▄ ▒██▀▀██░▒██  ▀█▄ ▓██  ▀█ ██▒▒▓█    ▄▒███   ░ ▓██▄   ");
@@ -447,8 +447,8 @@ namespace ECE264AdventureGame2023
                     break;
 
                 case 12:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Bad End: Oops.");
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("Bad End 12:");
                     Console.WriteLine(" ▒█████   ▒█████   ██▓███    ██████ ");
                     Console.WriteLine("▒██▒  ██▒▒██▒  ██▒▓██░  ██▒▒██    ▒ ");
                     Console.WriteLine("▒██░  ██▒▒██░  ██▒▓██░ ██▓▒░ ▓██▄   ");
@@ -461,8 +461,8 @@ namespace ECE264AdventureGame2023
                     break;
 
                 case 13:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Bad End: Incompetence.");
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("Bad End 13:");
                     Console.WriteLine(" ██▓ ███▄    █  ▄████▄  ▒█████   ███▄ ▄███▓ ██▓███  ▓█████▄▄▄█████▓▓█████ ███▄    █  ▄████▄ ▓█████ ");
                     Console.WriteLine("▓██▒ ██ ▀█   █ ▒██▀ ▀█ ▒██▒  ██▒▓██▒▀█▀ ██▒▓██░  ██▒▓█   ▀▓  ██▒ ▓▒▓█   ▀ ██ ▀█   █ ▒██▀ ▀█ ▓█   ▀ ");
                     Console.WriteLine("▒██▒▓██  ▀█ ██▒▒▓█    ▄▒██░  ██▒▓██    ▓██░▓██░ ██▓▒▒███  ▒ ▓██░ ▒░▒███  ▓██  ▀█ ██▒▒▓█    ▄▒███   ");
@@ -476,8 +476,8 @@ namespace ECE264AdventureGame2023
                     break;
 
                 case 14:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Bad End: Broken Will");
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("Bad End 14:");
                     Console.WriteLine("");
                     Console.WriteLine(" ▄▄▄▄    ██▀███   ▒█████   ██ ▄█▀▓█████ ███▄    █     █     █░ ██▓ ██▓     ██▓    ");
                     Console.WriteLine("▓█████▄ ▓██ ▒ ██▒▒██▒  ██▒ ██▄█▒ ▓█   ▀ ██ ▀█   █    ▓█░ █ ░█░▓██▒▓██▒    ▓██▒    ");
@@ -491,9 +491,8 @@ namespace ECE264AdventureGame2023
                     break;
 
                 case 15:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Bad End: Big Mistake");
-                    Console.WriteLine("");
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("Bad End 15:");
                     Console.WriteLine(" ▄▄▄▄    ██▓ ▄████     ███▄ ▄███▓ ██▓  ██████ ▄▄▄█████▓ ▄▄▄       ██ ▄█▀▓█████ ");
                     Console.WriteLine("▓█████▄ ▓██▒██▒ ▀█▒   ▓██▒▀█▀ ██▒▓██▒▒██    ▒ ▓  ██▒ ▓▒▒████▄     ██▄█▒ ▓█   ▀ ");
                     Console.WriteLine("▒██▒ ▄██▒██▒██░▄▄▄░   ▓██    ▓██░▒██▒░ ▓██▄   ▒ ▓██░ ▒░▒██  ▀█▄  ▓███▄░ ▒███   ");
@@ -506,8 +505,8 @@ namespace ECE264AdventureGame2023
                     break;
 
                 case 16:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Bad End: Eternal Service");
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("Bad End 16:");
                     Console.WriteLine("▓█████▄▄▄█████▓▓█████  ██▀███   ███▄    █  ▄▄▄       ██▓         ██████ ▓█████  ██▀███   ██▒   █▓ ██▓ ▄████▄ ▓█████ ");
                     Console.WriteLine("▓█   ▀▓  ██▒ ▓▒▓█   ▀ ▓██ ▒ ██▒ ██ ▀█   █ ▒████▄    ▓██▒       ▒██    ▒ ▓█   ▀ ▓██ ▒ ██▒▓██░   █▒▓██▒▒██▀ ▀█ ▓█   ▀ ");
                     Console.WriteLine("▒███  ▒ ▓██░ ▒░▒███   ▓██ ░▄█ ▒▓██  ▀█ ██▒▒██  ▀█▄  ▒██░       ░ ▓██▄   ▒███   ▓██ ░▄█ ▒ ▓██  █▒░▒██▒▒▓█    ▄▒███   ");
@@ -520,8 +519,8 @@ namespace ECE264AdventureGame2023
                     break;
 
                 case 17:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Bad End: Silenced");
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("Bad End 17:");
                     Console.WriteLine("  ██████  ██▓ ██▓    ▓█████ ███▄    █  ▄████▄ ▓█████ ▓█████▄ ");
                     Console.WriteLine("▒██    ▒ ▓██▒▓██▒    ▓█   ▀ ██ ▀█   █ ▒██▀ ▀█ ▓█   ▀ ▒██▀ ██▌");
                     Console.WriteLine("░ ▓██▄   ▒██▒▒██░    ▒███  ▓██  ▀█ ██▒▒▓█    ▄▒███   ░██   █▌");

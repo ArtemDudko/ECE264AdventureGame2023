@@ -1645,7 +1645,7 @@ namespace ECE264AdventureGame2023
 
                     {
                         string[] valid7a = { "Approach the men", "Don't"};
-                        playerInput = Program.GetString("\n[Approach the Men], \n[Don't]\n", valid7a, error_prompt);
+                        playerInput = Program.GetString("\n[Approach the Men] \n[Don't]\n", valid7a, error_prompt);
 
                         if (playerInput == "APPROACH THE MEN")
                         {
