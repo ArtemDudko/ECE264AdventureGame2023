@@ -35,7 +35,9 @@ namespace ECE264AdventureGame2023
         static void Main(string[] args)
         {
 
-            string root_folder = "U:\\ECE264\\Adventure-ver4"; //CHANGE ME TO ROOT FOLDER
+
+            string root_folder = "C:\\ECE264AdventureGame2023"; //CHANGE ME TO ROOT FOLDER
+
 
 
 
@@ -54,7 +56,7 @@ namespace ECE264AdventureGame2023
             int ending = 0;
 
             Console.ForegroundColor = ConsoleColor.White;
-            MyGlobals.Debug = GetYesNo("Would you like to enable Debug mode? ");  //Check if this is on using ifs, debug messages are surrounded by brackets
+            //MyGlobals.Debug = GetYesNo("Would you like to enable Debug mode? ");  //Check if this is on using ifs, debug messages are surrounded by brackets
             //EX:
             if (MyGlobals.Debug){Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("[Debug Mode Enabled]"); Console.ForegroundColor = ConsoleColor.White;}
@@ -71,10 +73,10 @@ namespace ECE264AdventureGame2023
             Console.WriteLine("Welcome to...");
             Console.WriteLine("     ______      __                 ______                       _                      ");
             Console.WriteLine("    / ____/_  __/ /_  ___  _____   / ____/___  ____  _________  (_)________ ________  __");
-            Console.WriteLine("   / /   / / / / __ \\/ _ \\/ ___/  / /   / __ \\/ __ \\/ ___/ __ \\/ / ___/ __ `/ ___/ / / /");
+            Console.WriteLine("   / /   / / / / __ \\\\/ _ \\\\/ ___/  / /   / __ \\\\/ __ \\\\/ ___/ __ \\\\/ / ___/ __ `/ ___/ / / /");
             Console.WriteLine("  / /___/ /_/ / /_/ /  __/ /     / /___/ /_/ / / / (__  ) /_/ / / /  / /_/ / /__/ /_/ / ");
-            Console.WriteLine("  \\____/\\__, /_.___/\\___/_/      \\____/\\____/_/ /_/____/ .___/_/_/   \\__,_/\\___/\\__, /  ");
-            Console.WriteLine("       /____/                                         /_/                      /____/   \n");
+            Console.WriteLine("  \\\\____/\\\\__, /_.___/\\\\___/_/      \\\\____/\\\\____/_/ /_/____/ .___/_/_/   \\\\__,_/\\\\___/\\\\__, /  ");
+            Console.WriteLine("       /____/                                         /_/                      /____/   \\n");
             Console.ForegroundColor = ConsoleColor.White;
 
 
@@ -119,12 +121,12 @@ namespace ECE264AdventureGame2023
 
 
                     //constantly prompt player to make a choice, once they want to move, 
-                    playerAction = GetPlayerAction("\nWhat would you like to do? ");
+                    playerAction = GetPlayerAction("\\nWhat would you like to do? ");
                     switch(playerAction)
                     {
                         //move
                         case 1:     
-                            Console.WriteLine("Here are your options:\n");
+                            Console.WriteLine("Here are your options:\\n");
                             //prompt room.cs to give the player their current exits, and then move the player to a new room
                             chosen_exit_id = Rooms.ListExits(currentRoom, room_data[currentRoom, 1], exit_data, trigger_data, item_data);
                             currentRoom = chosen_exit_id;
@@ -148,7 +150,7 @@ namespace ECE264AdventureGame2023
                         //display long desc
                         case 2:
                             Console.ForegroundColor = ConsoleColor.DarkBlue;
-                            Console.WriteLine("\nYou: " + room_data[currentRoom, 3] +"\n");
+                            Console.WriteLine("\\nYou: " + room_data[currentRoom, 3] +"\\n");
                             Console.ForegroundColor = ConsoleColor.White;
                             //Inventory.ListFloorItems(currentRoom, item_data);
 
@@ -200,12 +202,6 @@ namespace ECE264AdventureGame2023
 
 
 
-            //Console.WriteLine("you're journey begins here, in the: {0}",Roomdata);
-            //Console.WriteLine("you have the ability to move in 4 directions: North(N),South(S),East(E),West(W)");
-
-
-            
-            //use method choices for movement from player prompt.cs
 
 
 
@@ -256,7 +252,7 @@ namespace ECE264AdventureGame2023
             return player_action;
         }
 
-        static bool GetYesNo(string prompt)
+        public static bool GetYesNo(string prompt)
         {
             string[] valid = { "YES", "Y", "NO", "N" };
             string ans;
@@ -297,9 +293,9 @@ namespace ECE264AdventureGame2023
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Ending 0:");
                     Console.WriteLine("  _____  _           ___                _   _   _       _                         _  _          _ ");
-                    Console.WriteLine(" |_   _|| |_   ___  | _ \\ ___  __ _  __| | | | | | _ _ | |_  _ _  __ _ __ __ ___ | || | ___  __| |");
-                    Console.WriteLine("   | |  | ' \\ / -_) |   // _ \\/ _` |/ _` | | |_| || ' \\|  _|| '_|/ _` |\\ V // -_)| || |/ -_)/ _` |");
-                    Console.WriteLine("   |_|  |_||_|\\___| |_|_\\\\___/\\__,_|\\__,_|  \\___/ |_||_|\\__||_|  \\__,_| \\_/ \\___||_||_|\\___|\\__,_|");
+                    Console.WriteLine(" |_   _|| |_   ___  | _ \\\\ ___  __ _  __| | | | | | _ _ | |_  _ _  __ _ __ __ ___ | || | ___  __| |");
+                    Console.WriteLine("   | |  | ' \\\\ / -_) |   // _ \\\\/ _` |/ _` | | |_| || ' \\\\|  _|| '_|/ _` |\\\\ V // -_)| || |/ -_)/ _` |");
+                    Console.WriteLine("   |_|  |_||_|\\\\___| |_|_\\\\\\\\___/\\\\__,_|\\\\__,_|  \\\\___/ |_||_|\\\\__||_|  \\\\__,_| \\\\_/ \\\\___||_||_|\\\\___|\\\\__,_|");
 
 
 
@@ -309,46 +305,98 @@ namespace ECE264AdventureGame2023
                 case 2:
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Ending 1: Sightseeing");
+                    Console.WriteLine(" __ _       _     _                 _             ");
+                    Console.WriteLine("/ _(_) __ _| |__ | |_ ___  ___  ___(_)_ __   __ _ ");
+                    Console.WriteLine("\\ \\| |/ _` | '_ \\| __/ __|/ _ \\/ _ \\ | '_ \\ / _` |");
+                    Console.WriteLine("_\\ \\ | (_| | | | | |_\\__ \\  __/  __/ | | | | (_| |");
+                    Console.WriteLine("\\__/_|\\__, |_| |_|\\__|___/\\___|\\___|_|_| |_|\\__, |");
+                    Console.WriteLine("      |___/                                 |___/ ");
+
                     break;
 
                 case 3:
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Ending 2: Leave It To The Pros");
+                    Console.WriteLine("   __                         _____ _     _____        _____ _              ___               ");
+                    Console.WriteLine("  / /  ___  __ ___   _____    \\_   \\ |_  /__   \\___   /__   \\ |__   ___    / _ \\_ __ ___  ___ ");
+                    Console.WriteLine(" / /  / _ \\/ _` \\ \\ / / _ \\    / /\\/ __|   / /\\/ _ \\    / /\\/ '_ \\ / _ \\  / /_)/ '__/ _ \\/ __|");
+                    Console.WriteLine("/ /__|  __/ (_| |\\ V /  __/ /\\/ /_ | |_   / / | (_) |  / /  | | | |  __/ / ___/| | | (_) \\__ \\");
+                    Console.WriteLine("\\____/\\___|\\__,_| \\_/ \\___| \\____/  \\__|  \\/   \\___/   \\/   |_| |_|\\___| \\/    |_|  \\___/|___/");
                     break;
 
                 case 4:
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Ending 3: I'm Out");
+                    Console.WriteLine("  _____ _              ___       _   ");
+                    Console.WriteLine("  \\_   ( ) __ ___     /___\\_   _| |_ ");
+                    Console.WriteLine("   / /\\// '_ ` _ \\   //  // | | | __|");
+                    Console.WriteLine("/\\/ /_  | | | | | | / \\_//| |_| | |_ ");
+                    Console.WriteLine("\\____/  |_| |_| |_| \\___/  \\__,_|\\__|");
                     break;
 
                 case 5:
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Ending 4: Gung Ho");
+                    Console.WriteLine("   ___                                 ");
+                    Console.WriteLine("  / _ \\_   _ _ __   __ _    /\\  /\\___  ");
+                    Console.WriteLine(" / /_\\/ | | | '_ \\ / _` |  / /_/ / _ \\ ");
+                    Console.WriteLine("/ /_\\\\| |_| | | | | (_| | / __  / (_) |");
+                    Console.WriteLine("\\____/ \\__,_|_| |_|\\__, | \\/ /_/ \\___/ ");
+                    Console.WriteLine("                   |___/               ");
                     break;
 
                 case 6:
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Ending 5: Overwhelmed");
+                    Console.WriteLine("   ___                         _          _                    _ ");
+                    Console.WriteLine("  /___\\_   _____ _ ____      _| |__   ___| |_ __ ___   ___  __| |");
+                    Console.WriteLine(" //  /| \\ / / _ \\ '__\\ \\ /\\ / / '_ \\ / _ \\ | '_ ` _ \\ / _ \\/ _` |");
+                    Console.WriteLine("/ \\_// \\ V /  __/ |   \\ V  V /| | | |  __/ | | | | | |  __/ (_| |");
+                    Console.WriteLine("\\___/   \\_/ \\___|_|    \\_/\\_/ |_| |_|\\___|_|_| |_| |_|\\___|\\__,_|");
                     break;
 
                 case 7:
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Ending 6: I'm Rich");
+                    
+                    Console.WriteLine("  _____ _              __ _      _     ");
+                    Console.WriteLine("  \\_   ( ) __ ___     /__(_) ___| |__  ");
+                    Console.WriteLine("   / /\\// '_ ` _ \\   / \\// |/ __| '_ \\ ");
+                    Console.WriteLine("/\\/ /_  | | | | | | / _  \\ | (__| | | |");
+                    Console.WriteLine("\\____/  |_| |_| |_| \\/ \\_/_|\\___|_| |_|");
                     break;
 
                 case 8:
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("True Ending: Conspiracy Theorist");
+                    Console.WriteLine("   ______                       _                          ________                    _      __ ");
+                    Console.WriteLine("  / ____/___  ____  _________  (_)________ ________  __   /_  __/ /_  ___  ____  _____(_)____/ /_");
+                    Console.WriteLine(" / /   / __ \\/ __ \\/ ___/ __ \\/ / ___/ __ `/ ___/ / / /    / / / __ \\/ _ \\/ __ \\/ ___/ / ___/ __/");
+                    Console.WriteLine("/ /___/ /_/ / / / (__  ) /_/ / / /  / /_/ / /__/ /_/ /    / / / / / /  __/ /_/ / /  / (__  ) /_  ");
+                    Console.WriteLine("\\____/\\____/_/ /_/____/ .___/_/_/   \\__,_/\\___/\\__, /    /_/ /_/ /_/\\___/\\____/_/  /_/____/\\__/  ");
+                    Console.WriteLine("                     /_/                      /____/                                             ");
                     break;
 
                 case 9:
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Bad End: Cold And Alone");
+                    Console.WriteLine("Bad End: Cold And Alone");                    
+                    Console.WriteLine(" ▄████▄  ▒█████   ██▓    ▓█████▄     ▄▄▄      ███▄    █ ▓█████▄     ▄▄▄       ██▓     ▒█████   ███▄    █▓█████ ");
+                    Console.WriteLine("▒██▀ ▀█ ▒██▒  ██▒▓██▒    ▒██▀ ██▌   ▒████▄    ██ ▀█   █ ▒██▀ ██▌   ▒████▄    ▓██▒    ▒██▒  ██▒ ██ ▀█   █▓█   ▀ ");
+                    Console.WriteLine("▒▓█    ▄▒██░  ██▒▒██░    ░██   █▌   ▒██  ▀█▄ ▓██  ▀█ ██▒░██   █▌   ▒██  ▀█▄  ▒██░    ▒██░  ██▒▓██  ▀█ ██▒███   ");
+                    Console.WriteLine("▒▓▓▄ ▄██▒██   ██░▒██░    ░▓█▄   ▌   ░██▄▄▄▄██▓██▒  ▐▌██▒░▓█▄   ▌   ░██▄▄▄▄██ ▒██░    ▒██   ██░▓██▒  ▐▌██▒▓█  ▄ ");
+                    Console.WriteLine("▒ ▓███▀ ░ ████▓▒░░██████▒░▒████▓     ▓█   ▓██▒██░   ▓██░░▒████▓     ▓█   ▓██▒░██████▒░ ████▓▒░▒██░   ▓██░▒████▒");
+                    Console.WriteLine("░ ░▒ ▒  ░ ▒░▒░▒░ ░ ▒░▓  ░ ▒▒▓  ▒     ▒▒   ▓▒█░ ▒░   ▒ ▒  ▒▒▓  ▒     ▒▒   ▓▒█░░ ▒░▓  ░░ ▒░▒░▒░ ░ ▒░   ▒ ▒░░ ▒░ ░");
+                    Console.WriteLine("  ░  ▒    ░ ▒ ▒░ ░ ░ ▒  ░ ░ ▒  ▒      ▒   ▒▒ ░ ░░   ░ ▒░ ░ ▒  ▒      ▒   ▒▒ ░░ ░ ▒  ░  ░ ▒ ▒░ ░ ░░   ░ ▒░░ ░  ░");
+                    Console.WriteLine("░       ░ ░ ░ ▒    ░ ░    ░ ░  ░      ░   ▒     ░   ░ ░  ░ ░  ░      ░   ▒     ░ ░   ░ ░ ░ ▒     ░   ░ ░   ░   ");
+                    Console.WriteLine("░ ░         ░ ░      ░  ░   ░             ░  ░        ░    ░             ░  ░    ░  ░    ░ ░           ░   ░  ░");
+                    Console.WriteLine("░                         ░                              ░                                                     ");
+                    break;
+
                     break;
 
                 case 10:
                     Console.ForegroundColor = ConsoleColor.DarkRed;
-                    Console.WriteLine("Bad End 10:\n");
+                    Console.WriteLine("Bad End 10:\\n");
                     Console.WriteLine("▄▄▄█████▓ ██░ ██ ▓█████     ██░ ██  ▒█████   █    ██  ██████ ▓█████     ▄▄▄       ██▓     █     █░ ▄▄▄     ▓██   ██▓  ██████     █     █░ ██▓ ███▄    █   ██████ ");
                     Console.WriteLine("▓  ██▒ ▓▒▓██░ ██▒▓█   ▀    ▓██░ ██▒▒██▒  ██▒ ██  ▓██▒██    ▒ ▓█   ▀    ▒████▄    ▓██▒    ▓█░ █ ░█░▒████▄    ▒██  ██▒▒██    ▒    ▓█░ █ ░█░▓██▒ ██ ▀█   █ ▒██    ▒ ");
                     Console.WriteLine("▒ ▓██░ ▒░▒██▀▀██░▒███      ▒██▀▀██░▒██░  ██▒▓██  ▒██░ ▓██▄   ▒███      ▒██  ▀█▄  ▒██░    ▒█░ █ ░█ ▒██  ▀█▄   ▒██ ██░░ ▓██▄      ▒█░ █ ░█ ▒██▒▓██  ▀█ ██▒░ ▓██▄   ");
@@ -363,36 +411,101 @@ namespace ECE264AdventureGame2023
                 case 11:
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Bad End: No Chances");
+                    Console.WriteLine(" ███▄    █ ▒█████      ▄████▄   ██░ ██  ▄▄▄      ███▄    █  ▄████▄ ▓█████   ██████ ");
+                    Console.WriteLine(" ██ ▀█   █▒██▒  ██▒   ▒██▀ ▀█  ▓██░ ██▒▒████▄    ██ ▀█   █ ▒██▀ ▀█ ▓█   ▀ ▒██    ▒ ");
+                    Console.WriteLine("▓██  ▀█ ██▒██░  ██▒   ▒▓█    ▄ ▒██▀▀██░▒██  ▀█▄ ▓██  ▀█ ██▒▒▓█    ▄▒███   ░ ▓██▄   ");
+                    Console.WriteLine("▓██▒  ▐▌██▒██   ██░   ▒▓▓▄ ▄██▒░▓█ ░██ ░██▄▄▄▄██▓██▒  ▐▌██▒▒▓▓▄ ▄██▒▓█  ▄   ▒   ██▒");
+                    Console.WriteLine("▒██░   ▓██░ ████▓▒░   ▒ ▓███▀ ░░▓█▒░██▓ ▓█   ▓██▒██░   ▓██░▒ ▓███▀ ░▒████▒▒██████▒▒");
+                    Console.WriteLine("░ ▒░   ▒ ▒░ ▒░▒░▒░    ░ ░▒ ▒  ░ ▒ ░░▒░▒ ▒▒   ▓▒█░ ▒░   ▒ ▒ ░ ░▒ ▒  ░░ ▒░ ░▒ ▒▓▒ ▒ ░");
+                    Console.WriteLine("░ ░░   ░ ▒░ ░ ▒ ▒░      ░  ▒    ▒ ░▒░ ░  ▒   ▒▒ ░ ░░   ░ ▒░  ░  ▒   ░ ░  ░░ ░▒  ░ ░");
+                    Console.WriteLine("   ░   ░ ░░ ░ ░ ▒     ░         ░  ░░ ░  ░   ▒     ░   ░ ░ ░          ░   ░  ░  ░  ");
                     break;
 
                 case 12:
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Bad End: Oops.");
+                    Console.WriteLine(" ▒█████   ▒█████   ██▓███    ██████ ");
+                    Console.WriteLine("▒██▒  ██▒▒██▒  ██▒▓██░  ██▒▒██    ▒ ");
+                    Console.WriteLine("▒██░  ██▒▒██░  ██▒▓██░ ██▓▒░ ▓██▄   ");
+                    Console.WriteLine("▒██   ██░▒██   ██░▒██▄█▓▒ ▒  ▒   ██▒");
+                    Console.WriteLine("░ ████▓▒░░ ████▓▒░▒██▒ ░  ░▒██████▒▒");
+                    Console.WriteLine("░ ▒░▒░▒░ ░ ▒░▒░▒░ ▒▓▒░ ░  ░▒ ▒▓▒ ▒ ░");
+                    Console.WriteLine("  ░ ▒ ▒░   ░ ▒ ▒░ ░▒ ░     ░ ░▒  ░ ░");
+                    Console.WriteLine("░ ░ ░ ▒  ░ ░ ░ ▒  ░░       ░  ░  ░  ");
+                    Console.WriteLine("    ░ ░      ░ ░                 ░  ");
                     break;
 
                 case 13:
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Bad End: Incompetence.");
+                    Console.WriteLine(" ██▓ ███▄    █  ▄████▄  ▒█████   ███▄ ▄███▓ ██▓███  ▓█████▄▄▄█████▓▓█████ ███▄    █  ▄████▄ ▓█████ ");
+                    Console.WriteLine("▓██▒ ██ ▀█   █ ▒██▀ ▀█ ▒██▒  ██▒▓██▒▀█▀ ██▒▓██░  ██▒▓█   ▀▓  ██▒ ▓▒▓█   ▀ ██ ▀█   █ ▒██▀ ▀█ ▓█   ▀ ");
+                    Console.WriteLine("▒██▒▓██  ▀█ ██▒▒▓█    ▄▒██░  ██▒▓██    ▓██░▓██░ ██▓▒▒███  ▒ ▓██░ ▒░▒███  ▓██  ▀█ ██▒▒▓█    ▄▒███   ");
+                    Console.WriteLine("░██░▓██▒  ▐▌██▒▒▓▓▄ ▄██▒██   ██░▒██    ▒██ ▒██▄█▓▒ ▒▒▓█  ▄░ ▓██▓ ░ ▒▓█  ▄▓██▒  ▐▌██▒▒▓▓▄ ▄██▒▓█  ▄ ");
+                    Console.WriteLine("░██░▒██░   ▓██░▒ ▓███▀ ░ ████▓▒░▒██▒   ░██▒▒██▒ ░  ░░▒████▒ ▒██▒ ░ ░▒████▒██░   ▓██░▒ ▓███▀ ░▒████▒");
+                    Console.WriteLine("░▓  ░ ▒░   ▒ ▒ ░ ░▒ ▒  ░ ▒░▒░▒░ ░ ▒░   ░  ░▒▓▒░ ░  ░░░ ▒░ ░ ▒ ░░   ░░ ▒░ ░ ▒░   ▒ ▒ ░ ░▒ ▒  ░░ ▒░ ░");
+                    Console.WriteLine(" ▒ ░░ ░░   ░ ▒░  ░  ▒    ░ ▒ ▒░ ░  ░      ░░▒ ░      ░ ░  ░   ░     ░ ░  ░ ░░   ░ ▒░  ░  ▒   ░ ░  ░");
+                    Console.WriteLine(" ▒ ░   ░   ░ ░ ░       ░ ░ ░ ▒  ░      ░   ░░          ░    ░         ░     ░   ░ ░ ░          ░   ");
+                    Console.WriteLine(" ░           ░ ░ ░         ░ ░         ░               ░  ░           ░  ░        ░ ░ ░        ░  ░");
+                    Console.WriteLine("               ░                                                                    ░              ");
                     break;
 
                 case 14:
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Bad End: Broken Will");
+                    Console.WriteLine("");
+                    Console.WriteLine(" ▄▄▄▄    ██▀███   ▒█████   ██ ▄█▀▓█████ ███▄    █     █     █░ ██▓ ██▓     ██▓    ");
+                    Console.WriteLine("▓█████▄ ▓██ ▒ ██▒▒██▒  ██▒ ██▄█▒ ▓█   ▀ ██ ▀█   █    ▓█░ █ ░█░▓██▒▓██▒    ▓██▒    ");
+                    Console.WriteLine("▒██▒ ▄██▓██ ░▄█ ▒▒██░  ██▒▓███▄░ ▒███  ▓██  ▀█ ██▒   ▒█░ █ ░█ ▒██▒▒██░    ▒██░    ");
+                    Console.WriteLine("▒██░█▀  ▒██▀▀█▄  ▒██   ██░▓██ █▄ ▒▓█  ▄▓██▒  ▐▌██▒   ░█░ █ ░█ ░██░▒██░    ▒██░    ");
+                    Console.WriteLine("░▓█  ▀█▓░██▓ ▒██▒░ ████▓▒░▒██▒ █▄░▒████▒██░   ▓██░   ░░██▒██▓ ░██░░██████▒░██████▒");
+                    Console.WriteLine("░▒▓███▀▒░ ▒▓ ░▒▓░░ ▒░▒░▒░ ▒ ▒▒ ▓▒░░ ▒░ ░ ▒░   ▒ ▒    ░ ▓░▒ ▒  ░▓  ░ ▒░▓  ░░ ▒░▓  ░");
+                    Console.WriteLine("▒░▒   ░   ░▒ ░ ▒░  ░ ▒ ▒░ ░ ░▒ ▒░ ░ ░  ░ ░░   ░ ▒░     ▒ ░ ░   ▒ ░░ ░ ▒  ░░ ░ ▒  ░");
+                    Console.WriteLine(" ░    ░   ░░   ░ ░ ░ ░ ▒  ░ ░░ ░    ░     ░   ░ ░      ░   ░   ▒ ░  ░ ░     ░ ░   ");
+                    Console.WriteLine(" ░         ░         ░ ░  ░  ░      ░  ░        ░        ░     ░      ░  ░    ░  ░");
                     break;
 
                 case 15:
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Bad End: Big Mistake");
+                    Console.WriteLine("");
+                    Console.WriteLine(" ▄▄▄▄    ██▓ ▄████     ███▄ ▄███▓ ██▓  ██████ ▄▄▄█████▓ ▄▄▄       ██ ▄█▀▓█████ ");
+                    Console.WriteLine("▓█████▄ ▓██▒██▒ ▀█▒   ▓██▒▀█▀ ██▒▓██▒▒██    ▒ ▓  ██▒ ▓▒▒████▄     ██▄█▒ ▓█   ▀ ");
+                    Console.WriteLine("▒██▒ ▄██▒██▒██░▄▄▄░   ▓██    ▓██░▒██▒░ ▓██▄   ▒ ▓██░ ▒░▒██  ▀█▄  ▓███▄░ ▒███   ");
+                    Console.WriteLine("▒██░█▀  ░██░▓█  ██▓   ▒██    ▒██ ░██░  ▒   ██▒░ ▓██▓ ░ ░██▄▄▄▄██ ▓██ █▄ ▒▓█  ▄ ");
+                    Console.WriteLine("░▓█  ▀█▓░██░▒▓███▀▒   ▒██▒   ░██▒░██░▒██████▒▒  ▒██▒ ░  ▓█   ▓██▒▒██▒ █▄░▒████▒");
+                    Console.WriteLine("░▒▓███▀▒░▓  ░▒   ▒    ░ ▒░   ░  ░░▓  ▒ ▒▓▒ ▒ ░  ▒ ░░    ▒▒   ▓▒█░▒ ▒▒ ▓▒░░ ▒░ ░");
+                    Console.WriteLine("▒░▒   ░  ▒ ░ ░   ░    ░  ░      ░ ▒ ░░ ░▒  ░ ░    ░      ▒   ▒▒ ░░ ░▒ ▒░ ░ ░  ░");
+                    Console.WriteLine(" ░    ░  ▒ ░ ░   ░    ░      ░    ▒ ░░  ░  ░    ░        ░   ▒   ░ ░░ ░    ░   ");
+                    Console.WriteLine(" ░       ░       ░           ░    ░        ░                 ░  ░░  ░      ░  ░");
                     break;
 
                 case 16:
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Bad End: Eternal Service");
+                    Console.WriteLine("▓█████▄▄▄█████▓▓█████  ██▀███   ███▄    █  ▄▄▄       ██▓         ██████ ▓█████  ██▀███   ██▒   █▓ ██▓ ▄████▄ ▓█████ ");
+                    Console.WriteLine("▓█   ▀▓  ██▒ ▓▒▓█   ▀ ▓██ ▒ ██▒ ██ ▀█   █ ▒████▄    ▓██▒       ▒██    ▒ ▓█   ▀ ▓██ ▒ ██▒▓██░   █▒▓██▒▒██▀ ▀█ ▓█   ▀ ");
+                    Console.WriteLine("▒███  ▒ ▓██░ ▒░▒███   ▓██ ░▄█ ▒▓██  ▀█ ██▒▒██  ▀█▄  ▒██░       ░ ▓██▄   ▒███   ▓██ ░▄█ ▒ ▓██  █▒░▒██▒▒▓█    ▄▒███   ");
+                    Console.WriteLine("▒▓█  ▄░ ▓██▓ ░ ▒▓█  ▄ ▒██▀▀█▄  ▓██▒  ▐▌██▒░██▄▄▄▄██ ▒██░         ▒   ██▒▒▓█  ▄ ▒██▀▀█▄    ▒██ █░░░██░▒▓▓▄ ▄██▒▓█  ▄ ");
+                    Console.WriteLine("░▒████▒ ▒██▒ ░ ░▒████▒░██▓ ▒██▒▒██░   ▓██░ ▓█   ▓██▒░██████▒   ▒██████▒▒░▒████▒░██▓ ▒██▒   ▒▀█░  ░██░▒ ▓███▀ ░▒████▒");
+                    Console.WriteLine("░░ ▒░ ░ ▒ ░░   ░░ ▒░ ░░ ▒▓ ░▒▓░░ ▒░   ▒ ▒  ▒▒   ▓▒█░░ ▒░▓  ░   ▒ ▒▓▒ ▒ ░░░ ▒░ ░░ ▒▓ ░▒▓░   ░ ▐░  ░▓  ░ ░▒ ▒  ░░ ▒░ ░");
+                    Console.WriteLine(" ░ ░  ░   ░     ░ ░  ░  ░▒ ░ ▒░░ ░░   ░ ▒░  ▒   ▒▒ ░░ ░ ▒  ░   ░ ░▒  ░ ░ ░ ░  ░  ░▒ ░ ▒░   ░ ░░   ▒ ░  ░  ▒   ░ ░  ░");
+                    Console.WriteLine("   ░    ░         ░     ░░   ░    ░   ░ ░   ░   ▒     ░ ░      ░  ░  ░     ░     ░░   ░      ░░   ▒ ░░          ░   ");
+                    Console.WriteLine("   ░  ░           ░  ░   ░              ░       ░  ░    ░  ░         ░     ░  ░   ░           ░   ░  ░ ░        ░  ░");
                     break;
 
                 case 17:
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Bad End: Silenced");
+                    Console.WriteLine("  ██████  ██▓ ██▓    ▓█████ ███▄    █  ▄████▄ ▓█████ ▓█████▄ ");
+                    Console.WriteLine("▒██    ▒ ▓██▒▓██▒    ▓█   ▀ ██ ▀█   █ ▒██▀ ▀█ ▓█   ▀ ▒██▀ ██▌");
+                    Console.WriteLine("░ ▓██▄   ▒██▒▒██░    ▒███  ▓██  ▀█ ██▒▒▓█    ▄▒███   ░██   █▌");
+                    Console.WriteLine("  ▒   ██▒░██░▒██░    ▒▓█  ▄▓██▒  ▐▌██▒▒▓▓▄ ▄██▒▓█  ▄ ░▓█▄   ▌");
+                    Console.WriteLine("▒██████▒▒░██░░██████▒░▒████▒██░   ▓██░▒ ▓███▀ ░▒████▒░▒████▓ ");
+                    Console.WriteLine("▒ ▒▓▒ ▒ ░░▓  ░ ▒░▓  ░░░ ▒░ ░ ▒░   ▒ ▒ ░ ░▒ ▒  ░░ ▒░ ░ ▒▒▓  ▒ ");
+                    Console.WriteLine("░ ░▒  ░ ░ ▒ ░░ ░ ▒  ░ ░ ░  ░ ░░   ░ ▒░  ░  ▒   ░ ░  ░ ░ ▒  ▒ ");
+                    Console.WriteLine("░  ░  ░   ▒ ░  ░ ░      ░     ░   ░ ░ ░          ░    ░ ░  ░ ");
+                    Console.WriteLine("      ░   ░      ░  ░   ░  ░        ░ ░ ░        ░  ░   ░    ");
                     break;
 
             }
