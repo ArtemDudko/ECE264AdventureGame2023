@@ -35,7 +35,9 @@ namespace ECE264AdventureGame2023
         static void Main(string[] args)
         {
 
-            string root_folder = "U:\\\\ECE264\\\\Adventure-ver4"; //CHANGE ME TO ROOT FOLDER
+
+            string root_folder = "U:\\ECE264\\Adventure-ver4"; //CHANGE ME TO ROOT FOLDER
+
 
 
 
@@ -86,7 +88,7 @@ namespace ECE264AdventureGame2023
             MyGlobals.playerName = Console.ReadLine();
             Console.ForegroundColor = ConsoleColor.White;
                         
-            trigger_switch = PlayerPrompt.FirstEntry(currentRoom, trigger_data, ref item_data, ref money);
+            trigger_switch = PlayerPrompt.FirstEntry(ref currentRoom, trigger_data, ref item_data, ref money);
             foreach(var flip in trigger_switch) trigger_data[flip] = true;
             
 
@@ -138,7 +140,7 @@ namespace ECE264AdventureGame2023
                             if (!trigger_data[currentRoom + 100])    //if a player has not been to a room
                             {
                                 //prompt player for first time and mess with triggers
-                                trigger_switch = PlayerPrompt.FirstEntry(currentRoom, trigger_data, ref item_data, ref money);
+                                trigger_switch = PlayerPrompt.FirstEntry(ref currentRoom, trigger_data, ref item_data, ref money);
                                 foreach (var flip in trigger_switch) trigger_data[flip] = true;
                             }
 

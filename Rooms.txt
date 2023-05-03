@@ -150,7 +150,7 @@ Begin Data After Triple &:
 &6			&Side Alley						&You've entered an empty alley.						&I have a feeling something's here, but I don't know how I'd be able to find it.
 
 
-&7			&Academy Road (North)			&You continue down the long road					&Those two guys to my left are staring at me. Not comforting at all. There's also a shop. Wonder what they've got. 
+&7			&Academy Road (North)			&You continue down the long road					&Those two guys to my left are staring at me. Not comforting at all. 
 
 &8			&Shelter						&You enter a shelter								&Huh, lotta folks here. Maybe I can strike up a conversation with some of them.
 

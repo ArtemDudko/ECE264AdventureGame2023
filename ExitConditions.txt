@@ -167,7 +167,7 @@ Begin Data After Triple &:
 &roomID&4			&1	    &5		&Academy Road S				&West			&0	&0	&0	&0	&0
 &roomID&4			&2      &3		&Helio City Square N		&South			&0	&0	&0	&0	&0
 
-&roomID&5			&1	    &7		&Academy Road N				&West			&0	&0	&0	&0	&0
+&roomID&5			&1	    &7		&Academy Road N				&North			&0	&0	&0	&0	&0
 &roomID&5			&2	    &6		&Side Alley					&South			&0	&0	&0	&0	&0
 &roomID&5			&3	    &4		&Corner Street				&East			&0	&0	&0	&0	&0
 
@@ -190,12 +190,14 @@ Begin Data After Triple &:
 &roomID&10			&2	    &9		&Courtyard					&East			&0	&0	&0	&0	&0
 
 &roomID&11			&1      &9		&Courtyard					&West			&0	&0	&0	&0	&0
-&roomID&11			&2      &22  	&Rooftop					&East			&0	&0	&0	&0	&0
+
+&roomID&11			&2      &22  	&Rooftop					&East			&75	&0	&0	&0	&0
+
 
 
 &roomID&12			&1	    &15		&Branching Hallway			&North			&0	&0	&0	&0	&0
-&roomID&12			&2	    &13		&Firioris Vault				&West			&0	&0	&0	&0	&0
-&roomID&12			&3	    &14		&Firioris Building Office	&East			&0	&0	&0	&0	&0
+&roomID&12			&2	    &13		&Firioris Vault				&West			&50 &0	&0	&0	&0
+&roomID&12			&3	    &14		&Firioris Building Office	&East			&114&0	&0	&0	&0
 &roomID&12			&4	    &9		&Courtyard					&South			&0	&0	&0	&0	&0
 
 &roomID&13			&1	    &12		&Firioris Building			&East			&0	&0	&0	&0	&0
