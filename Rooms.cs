@@ -80,7 +80,7 @@ namespace ECE264AdventureGame2023
                 if (exit_data[row, 1] == current_room_id.ToString())    //since there are multiples of 
                 {
                     last_exit_row = row;
-                    int[] specific_exit_triggers = new int[5];
+                    
                     bool enterable = true;
 
                     //triggers has five strings in the array, the number of the string meaning that trigger in trigger data has to be true
@@ -112,17 +112,19 @@ namespace ECE264AdventureGame2023
             }
             
             int chosen_direction;
-            
-            chosen_direction = GetPlayerDirection("Which direction? ", valid_exits); //returns 0 thru 3 to modify current line of data reading
-            int chosen_exit_id = Int32.Parse(exit_data[last_exit_row + 1 - valid_exits.Count + chosen_direction, 3]);
-            
-            //currentRoom = int.Parse(Console.ReadLine());
+            Console.WriteLine("[Stay: Stay in current room]");
 
+            chosen_direction = GetPlayerDirection("Which direction? ", valid_exits); //returns 0 thru 3 to modify current line of data reading
+            
+            
+            if(chosen_direction == 10)//player has chosen to stay
+                return current_room_id;
+            
+
+            int chosen_exit_id;         //player has chosen to take an exit
+            chosen_exit_id = Int32.Parse(exit_data[last_exit_row + 1 - valid_exits.Count + chosen_direction, 3]);
             return chosen_exit_id;
         }
-
-
-        //public static string[,] ()
 
 
 
@@ -132,115 +134,11 @@ namespace ECE264AdventureGame2023
         ///the shakespeare lab. It's possible we will need a separate long description file.
 
 
-
-        //MyGlobals.Debug
-
-        public static int Navigate(int roomID)
-        {
-            switch (roomID)
-            {
-                case 1:
-                    Console.WriteLine("You are in Helio City Square S");
-                    break;
-                case 2:
-                    Console.WriteLine("You are in Back Ally");
-                    break;
-
-                    /*
-                    while (true) //Infinitly Prompting the user until they wish to exit
-                    {
-                        //Informs the user their current location and describes the room
-                        Console.WriteLine("You are in the " + currentRoom.Name);
-                        Console.WriteLine(currentRoom.Description);
-                        //Prompts the user to input the direction
-                        Console.WriteLine("Which direction would you like to go?");
-                        //Stores the direction
-                        string input = Console.ReadLine();
-                        Directions.Direction direction = Directions.GetDirection(input);
-
-                        //Moves according to the directions from room to room
-                        switch (direction)
-                        {
-                            case Directions.Direction.North:
-                                if (currentRoom == room1)
-                                {
-                                    currentRoom = room2;
-                                    Console.WriteLine("You move to the " + currentRoom.Name);
-                                }
-                                break;
-                            case Directions.Direction.South:
-                                if (currentRoom == room2)
-                                {
-                                    currentRoom = room1;
-                                    Console.WriteLine("You move to the " + currentRoom.Name);
-                                }
-                                break;
-                            case Directions.Direction.East:
-                                if (currentRoom == room1)
-                                {
-                                    currentRoom = room3;
-                                    Console.WriteLine("You move to the " + currentRoom.Name);
-                                }
-
-                                break;
-                            case Directions.Direction.West:
-                                if (currentRoom == room3)
-                                {
-                                    currentRoom = room1;
-                                    Console.WriteLine("You move to the " + currentRoom.Name);
-                                }
-
-                                break;
-                            case Directions.Direction.NorthEast:
-                                if (currentRoom == room1)
-                                {
-                                    currentRoom = room4;
-                                    Console.WriteLine("You move to the " + currentRoom.Name);
-                                }
-                                break;
-                            case Directions.Direction.SouthWest:
-                                if (currentRoom == room4)
-                                {
-                                    currentRoom = room1;
-                                    Console.WriteLine("You move to the " + currentRoom.Name);
-                                }
-                                break;
-                            case Directions.Direction.SouthEast:
-                                if (currentRoom == room1)
-                                {
-                                    currentRoom = room5;
-                                    Console.WriteLine("You move to the " + currentRoom.Name);
-                                }
-                                break;
-                            case Directions.Direction.NorthWest:
-                                if (currentRoom == room5)
-                                {
-                                    currentRoom = room1;
-                                    Console.WriteLine("You move to the " + currentRoom.Name);
-                                }
-                                break;
-                            default:
-                                Console.WriteLine("Invalid direction.");
-                                break;
-                        }
-
-                        //Prompts the user if they wish to continue and exits if they wish to exit
-                        if (GetYesNo("Would you like to exit the game?(Y or N): "))
-                        {
-                            Console.WriteLine("Goodbye!");
-                            Environment.Exit(0);
-                        }
-                    }*/
-
-            }
-            return 0;
-        }
-
         //public static int Move(string direction)
 
         static int GetPlayerDirection(string prompt, List<string> valid_exits)
         {
-            string[] valid_cardinal = { "N", "NORTH", "S", "SOUTH", "E", "EAST", "W", "WEST" };
+            string[] valid_cardinal = { "N", "NORTH", "S", "SOUTH", "E", "EAST", "W", "WEST","STAY" };
             string[] valid_exits_array = valid_exits.ToArray();
 
             string userInput;
@@ -253,6 +151,12 @@ namespace ECE264AdventureGame2023
                 Console.ForegroundColor = ConsoleColor.DarkBlue;
                 userInput = Console.ReadLine().ToUpper();
                 Console.ForegroundColor = ConsoleColor.White;
+
+                if (userInput == "STAY")
+                {
+                    return 10;
+                }
+                    
 
                 foreach (string s in valid_cardinal) 
                     if (userInput == s.ToUpper()) 
@@ -286,6 +190,8 @@ namespace ECE264AdventureGame2023
 
             
             int exit_number = valid_exits.IndexOf(userInput);
+            
+            
             Console.Write("\n");
             return exit_number;
 
