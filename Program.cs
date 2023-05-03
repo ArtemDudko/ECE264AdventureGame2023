@@ -36,7 +36,7 @@ namespace ECE264AdventureGame2023
         {
 
 
-            string root_folder = "C:\\ECE264AdventureGame2023"; //CHANGE ME TO ROOT FOLDER
+            string root_folder = "U:\\ECE264\\Adventure-ver4"; //CHANGE ME TO ROOT FOLDER
 
 
 
