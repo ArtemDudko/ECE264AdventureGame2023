@@ -872,12 +872,12 @@ namespace ECE264AdventureGame2023
                                     return trigger_switch;
                                 }
 
-                                                       
+                            return trigger_switch;                     
 
                             }
                             return trigger_switch;
                         }
-
+                    return trigger_switch;
                 case 27:
     
                     //-This event only plays on the first visit-
@@ -979,7 +979,7 @@ namespace ECE264AdventureGame2023
                         NewRoom = 18;
                     }
 
-
+                    return trigger_switch;
 
 
 
