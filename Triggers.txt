@@ -9,6 +9,8 @@ They will be loaded into a bool array, and switched when their codition is met i
 150-199 = endings, if 150 true, an ending has been reached
 
 
+75 = locked out of roof
+
 Begin Data After Triple &:
 
 &&&	True &	Trigger 0: Always True.

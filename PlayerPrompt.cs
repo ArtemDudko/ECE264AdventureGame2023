@@ -486,7 +486,9 @@ namespace ECE264AdventureGame2023
                     if (playerInput == "LEAVE\n")
                     {
                         YouSay("Ok, I'm going.\n");
-                       // -you go back to room 11 and can no longer access this room -
+                        NewRoom = 11; // -you go back to room 11 and can no longer access this room -
+                        trigger_switch.Add(75);
+                        return trigger_switch;
                     }
                     if (playerInput == "STAY\n")
                     {
