@@ -479,7 +479,7 @@ namespace ECE264AdventureGame2023
 
                 case 15:
 
-                    if (item_data[3, 2] != "0") ;
+                    if (item_data[3, 2] != "0") 
                     {
                         Narr("You try to enter the elevator door in front you, but...");
                         YouSay("Ah, nothing's working! There's gotta be some key I need, but I dont have it!");
@@ -492,7 +492,7 @@ namespace ECE264AdventureGame2023
                         trigger_switch.Add(150);
                         trigger_switch.Add(150 + 3); //ending 3
                     }
-                    if (item_data[3, 2] == "0") ;
+                    if (item_data[3, 2] == "0") 
                     {
 
 
@@ -999,6 +999,25 @@ namespace ECE264AdventureGame2023
                     return trigger_switch;
 
                 case 23://secret casino 2
+                    YouSay("Hey, this place has blackjack! Maybe I can have some fun.");
+                    ViallSays("Welcome to the Casino. My Name is Viall, and I'll be your dealer this afternoon.");
+
+                    PlayBlackJack(ref money);
+                    if (money >= 0)
+                    {
+                        ViallSays("Thank you for playing, feel free to stop by anytime.");
+                    }
+                    else
+                    {
+                        ViallSays("Ooh, that's unfortunate. It looks like you still owe, and without the funds, we'll have to make due with your limbs and organs. Brace yourself, cuz this will hurt.");
+                        YouSay("Wait, wha-");
+                        Narr("Maybe next time you'll be careful when you gamble." +
+                            "\n\n.\n\n.\n\n.");
+                        trigger_switch.Add(150);
+                        trigger_switch.Add(150 + 10);       //bad end 10: house always wins
+
+                    }
+
                     return trigger_switch;
 
                 case 24:
@@ -2017,8 +2036,15 @@ namespace ECE264AdventureGame2023
 
                     return trigger_switch;
 
-                             
-                
+                case 15:
+                    if (item_data[1, 2] == "0")
+                    {
+                        trigger_switch.Add(95);
+                        Narr("A familiar door appears in front of you at the end of the ally, it is the Casino.");
+                    }
+                    return trigger_switch;
+
+
 
                 /*
                  * -prompt when cyber lens is used-
@@ -2036,7 +2062,7 @@ namespace ECE264AdventureGame2023
 
 
 
-            
+
 
 
                 case 18:

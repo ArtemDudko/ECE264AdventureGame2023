@@ -206,7 +206,7 @@ Begin Data After Triple &:
 &roomID&14			&1	    &12		&Firioris Building			&West			&0	&0	&0	&0	&0
 
 &roomID&15			&1	    &18		&Grand Hall					&North			&0	&0	&0	&0	&0
-&roomID&15			&2	    &23	    &Secret Casino				&West			&0	&0	&0	&0	&0
+&roomID&15			&2	    &23	    &Secret Casino				&West			&95	&0	&0	&0	&0
 &roomID&15			&3	    &24	    &Private Entrance			&East			&0	&0	&0	&0	&0
 
 &roomID&16			&1	    &24 	&Private Entrance			&West			&0	&0	&0	&0	&0

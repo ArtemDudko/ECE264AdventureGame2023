@@ -16,7 +16,7 @@ They will be loaded into a bool array, and switched when their codition is met i
 trigger 50, entering room 13 from room 12
 
 
-
+95 - second entrance secret casino
 96 - final room unlocked
 97 - the FREEWILL password is known
 98 - lens allows access to rooms 26 and 28

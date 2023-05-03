@@ -6,11 +6,14 @@
  *
  *PLEASE ENTER DIRECTORY WHERE FOLDER IS STORED TO RUN THE GAME AS 'root_folder' VARIABLE BEFORE LAUNCHING. 
  * 
+ * TYPE HELP IN GAME CONSOLE FOR IN GAME COMMANDS
+ * 
+ * REFER TO MAP TO HELP COMPLETEING A RUN
  * 
  * 
- * dialogue and other stuff on entering room for hte firs t time
- * talk feature
- * trigger options, and something to check them
+ * 
+ * 
+ * 
  * 
  */
 
@@ -21,6 +24,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using System.Runtime.ConstrainedExecution;
+using System.Runtime.Intrinsics.X86;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,7 +41,7 @@ namespace ECE264AdventureGame2023
         {
 
 
-            string root_folder = "U:\\ECE264\\Adventure-ver4"; //CHANGE ME TO ROOT FOLDER
+            string root_folder = "C:\\Users\\adudk\\source\\repos\\ECE264AdventureGame2023"; //CHANGE ME TO ROOT FOLDER
 
 
 
@@ -190,6 +195,7 @@ namespace ECE264AdventureGame2023
                             Console.WriteLine("TAKE/PICKUP - Take all items from the room and stow it.");
                             Console.WriteLine("DROP/LEAVE - Drop a specific [ITEM] in the room from your inventory.");
                             Console.WriteLine("EXIT/QUIT - Quit the game.");
+                            Console.WriteLine("MONEY/BALANCE - Check how many credits you have.");
                             break;
                         //take items
                         case 4:
@@ -204,10 +210,31 @@ namespace ECE264AdventureGame2023
                             Inventory.ListInventory(item_data);
                             break;
                         case 7:
-                            
-                            break;
+                            if(item_data[2, 2] == "0" && item_data[1, 2] == "0")
+                            {
 
+
+                                Console.WriteLine("You find some strange markings on the coin, " +
+                                    "you decide it might be worth something.\n  " +
+                                    "The Coin turned into The Secret Coin!");
+                                item_data[2, 2] = "999";    //remove coin, add secret coin
+                                item_data[3, 2] = "0";
+                            }
+                            else
+                            {
+                                Console.WriteLine("You can't do that.");
+                            }
+                            break;
                         case 8:
+                            {
+                                Console.WriteLine("See you soon!");
+                            }
+                            Environment.Exit(0);
+                            break;
+                        case 9:
+                            {
+                                Console.WriteLine("Your balance is {0} credits.", money);
+                            }
                             break;
 
 
@@ -248,7 +275,7 @@ namespace ECE264AdventureGame2023
         static int GetPlayerAction(string prompt)
         {
             int player_action = 0;
-            string[] valid = { "MOVE", "M", "GO", "LOOK", "L", "E", "LOOK AROUND", "EXPLORE","HELP", "INVENTORY", "INV", "I", "DROP", "D", "TAKE", "T", "PICKUP" };
+            string[] valid = { "BALANCE","MONEY","MOVE", "M", "GO", "LOOK", "L", "E", "LOOK AROUND", "EXPLORE","HELP", "INVENTORY", "INV", "I", "DROP", "D", "TAKE", "T", "PICKUP","USE CYBER LENS ON COIN","EXIT","QUIT" };
             
             string[] move = {"MOVE", "M","GO"};
             string[] look_around = { "LOOK", "L", "LOOK AROUND", "EXPLORE", "E","EXAMINE" };
@@ -256,7 +283,9 @@ namespace ECE264AdventureGame2023
             string[] take = { "TAKE","T","PICKUP" };
             string[] drop = { "DROP", "D"};
             string[] check_inventory = { "INVENTORY", "INV", "I" };
-
+            string[] convert = { "USE CYBER LENS ON COIN"};
+            string[] quit = { "EXIT", "QUIT" };
+            string[] check_balance = { "BALANCE","MONEY"};
 
 
 
@@ -276,6 +305,12 @@ namespace ECE264AdventureGame2023
                 player_action = 5;
             else if (check_inventory.Contains(userInput))
                 player_action = 6;
+            else if (convert.Contains(userInput))
+                player_action = 7;
+            else if (quit.Contains(userInput))
+                player_action = 8;
+            else if (check_balance.Contains(userInput))
+                player_action = 9;
 
             return player_action;
         }
@@ -536,6 +571,7 @@ namespace ECE264AdventureGame2023
 
             }
             //Console.WriteLine("GAME OVER, YOU REACHED BAD ENDING #" + gameOverNumber + ", THANKS FOR PLAYING");
+
             Environment.Exit(0);
         }
         //global variables
