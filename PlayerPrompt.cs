@@ -534,7 +534,7 @@ namespace ECE264AdventureGame2023
                             YouSay("She sounds charming. I'll be careful.\n");
                         }
                     }
-                    else if (item_data[12, 2] == "0")
+                    else if (item_data[4, 2] == "0")
                     {
                         Narr("You fall into the flames, until you remember you have Drayton's hookshot.");
                         Narr("You hook yourself to safety, but as you climb, an explosion launches you up.");
@@ -565,6 +565,10 @@ namespace ECE264AdventureGame2023
                         YouSay("I see.Thanks guys...not concerning at all...");
                         item_data[6, 2] = "0";
                         Narr("You Got the Uprall Informational Data!");
+                        Narr("It says: Uprall is a nation laying on the borders of Beleran and Sakanata. The Uprallan Council govern the nation from the cpital of Helio city. " +
+                            "Uprall is the most technilogically advanced place in the world, sporting a 52 % cyborg rate for its citizens. Whiel you're here, enjoy the bright " +
+                            "lights, the funky tunes, and most importantly, enjoy the future.");  
+   
                     }
 
                     return trigger_switch;
@@ -972,7 +976,7 @@ namespace ECE264AdventureGame2023
                             DMN14Says("I would not recommend going near the reactor.\n");
                             YouSay("Yep yep, got it. Ok, let's go, i guess.\n");
                             Narr("You Obtained A Password!\n");
-                            item_data[5,2] = "0";
+                            item_data[5,2] = "0";  Narr("The password for the Firioris building DMN-14 gave you; 'FREEWILL'");
                             NewRoom = 14;
                         }
                         else
@@ -1024,6 +1028,10 @@ namespace ECE264AdventureGame2023
                 case 25:
                 Narr("After inspecting the room, you find a dusty manilla holo tape, you power it up and the title reads Jeanne's Document" +
                 "\r\nYou Found Jeanne's Document.");
+
+                    Narr("They Say: This is not good.Voris will be expecting a report soon.That little brat, Celia, somehow the only one to manage to escape this place.Escape me.");
+                    Narr("I don't know how she did it. But I wouldn't be surprised if she went running to that traitor Zrkka, and his pet. That DMN unit, number 14 I think?");
+
                     item_data[8,2] = "0";
                     return trigger_switch;
 
@@ -2829,7 +2837,7 @@ namespace ECE264AdventureGame2023
             Console.WriteLine("\nZrkka: " + dialogue);
             Console.ForegroundColor = ConsoleColor.White;
         }
-        static void YouSay(string dialogue)
+        public static void YouSay(string dialogue)
         {
             Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.WriteLine("\nYou: " + dialogue);
@@ -3130,8 +3138,8 @@ namespace ECE264AdventureGame2023
             bool playerHit, fiveCardCharlie;
             Queue<string> deckQueue = new Queue<string>();
 
-            Console.Write("Enter Seed: ");
-            int seed = Int32.Parse(Console.ReadLine());
+            //Console.Write("Enter Seed: ");
+            int seed = 12345;//Int32.Parse(Console.ReadLine());
             List<string> freshDeck = new List<string>();     //enter seed for rng
             freshDeck = NewDeckShuffle(seed);
 
@@ -3142,7 +3150,7 @@ namespace ECE264AdventureGame2023
 
 
 
-            while (true)
+            while (money >= 0)
             {
                 //reset lists and bools                
                 pHand.Clear();
@@ -3296,10 +3304,10 @@ namespace ECE264AdventureGame2023
             }
 
 
-            Console.Write("Resetting deck... New deck order: ");
+            Console.Write("Resetting deck...");
             for (int i = 0; (i < shuffledDeck.Count); i++)
             {
-                Console.Write("[{0}]", shuffledDeck[i]);
+                //Console.Write("[{0}]", shuffledDeck[i]);
             }
 
             return shuffledDeck;

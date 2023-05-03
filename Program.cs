@@ -67,18 +67,19 @@ namespace ECE264AdventureGame2023
             int chosen_exit_id;
             int playerAction = 0; //0 = start, 1 = move, 2 = look around
             int money = 150;
+            bool money_ending = true;
 
             Console.ForegroundColor = ConsoleColor.Blue;
             //font: slant
             Console.WriteLine("Welcome to...");
-            Console.WriteLine("     ______      __                 ______                       _                      ");
-            Console.WriteLine("    / ____/_  __/ /_  ___  _____   / ____/___  ____  _________  (_)________ ________  __");
-            Console.WriteLine("   / /   / / / / __ \\\\/ _ \\\\/ ___/  / /   / __ \\\\/ __ \\\\/ ___/ __ \\\\/ / ___/ __ `/ ___/ / / /");
-            Console.WriteLine("  / /___/ /_/ / /_/ /  __/ /     / /___/ /_/ / / / (__  ) /_/ / / /  / /_/ / /__/ /_/ / ");
-            Console.WriteLine("  \\\\____/\\\\__, /_.___/\\\\___/_/      \\\\____/\\\\____/_/ /_/____/ .___/_/_/   \\\\__,_/\\\\___/\\\\__, /  ");
-            Console.WriteLine("       /____/                                         /_/                      /____/   \\n");
+            Console.WriteLine("   ______      __                 ______                       _                      ");
+            Console.WriteLine("  / ____/_  __/ /_  ___  _____   / ____/___  ____  _________  (_)________ ________  __");
+            Console.WriteLine(" / /   / / / / __ \\/ _ \\/ ___/  / /   / __ \\/ __ \\/ ___/ __ \\/ / ___/ __ `/ ___/ / / /");
+            Console.WriteLine("/ /___/ /_/ / /_/ /  __/ /     / /___/ /_/ / / / (__  ) /_/ / / /  / /_/ / /__/ /_/ / ");
+            Console.WriteLine("\\____/\\__, /_.___/\\___/_/      \\____/\\____/_/ /_/____/ .___/_/_/   \\__,_/\\___/\\__, /  ");
+            Console.WriteLine("     /____/                                         /_/                      /____/   ");
             Console.ForegroundColor = ConsoleColor.White;
-
+            Console.WriteLine();
 
 
 
@@ -103,7 +104,24 @@ namespace ECE264AdventureGame2023
                 while(!(playerAction == 1))
                 {
 
+                    if (money > 1000 && money_ending)
+                    {
+                        if(GetYesNo("You: This is a lot of money I've got here, should I just cut my losses and leave?"))
+                        {
+                            PlayerPrompt.YouSay("Ah, whatever happens here happens. I'm outta here!");
+                            trigger_switch.Add(150);
+                            trigger_switch.Add(150 + 6); //ending 3   
+                        }
+                        else
+                        {
+                            money_ending = false;
+                            PlayerPrompt.YouSay("Nah, I'm not done here in Uprall yet.");
+                        }
 
+
+                                           
+                    
+                    }
                     //check for ending
                     if (trigger_data[150])
                     {
@@ -118,10 +136,12 @@ namespace ECE264AdventureGame2023
                     }
                     Console.WriteLine(room_data[currentRoom, 2]);
 
+                    
 
 
-                    //constantly prompt player to make a choice, once they want to move, 
-                    playerAction = GetPlayerAction("\\nWhat would you like to do? ");
+
+                        //constantly prompt player to make a choice, once they want to move, 
+                        playerAction = GetPlayerAction("\\nWhat would you like to do? ");
                     switch(playerAction)
                     {
                         //move
@@ -186,6 +206,9 @@ namespace ECE264AdventureGame2023
                             
                             break;
 
+                        case 8:
+
+
 
 
                     }
@@ -231,6 +254,8 @@ namespace ECE264AdventureGame2023
             string[] take = { "TAKE","T","PICKUP" };
             string[] drop = { "DROP", "D"};
             string[] check_inventory = { "INVENTORY", "INV", "I" };
+
+
 
 
 
